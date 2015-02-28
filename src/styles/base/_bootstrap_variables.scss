@@ -1,0 +1,39 @@
+//
+// Bootstrap Variables
+// --------------------------------------------------
+
+// Colors
+// --------------------------------------------------
+
+$brand-primary: $src-very-dark !default;
+$brand-heading: $src-less-dark !default;
+$brand-success: $src-medium-bright !default;
+$brand-nav: $src-very-bright !default;
+$brand-button: $src-less-dark !default;
+$brand-warning: #f0ad4e !default;
+$brand-danger: #d9534f !default;
+$brand-info: $src-less-dark !default;
+
+// Components
+// --------------------------------------------------
+
+$border-radius-base: 0px !default;
+$border-radius-large: 0px !default;
+$border-radius-small: 0px !default;
+
+// Typography
+// --------------------------------------------------
+
+$font-size-base: $src-font-size-base;
+$font-family-base: $src-font-family-heading !default;
+$text-color: $src-very-dark !default;
+
+// Buttons
+// --------------------------------------------------
+
+$btn-default-color: $src-very-bright !default;
+
+// Responsive Viewing
+// --------------------------------------------------
+
+$screen-sm: $src-screen-sm;

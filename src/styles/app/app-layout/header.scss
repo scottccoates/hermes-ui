@@ -1,0 +1,81 @@
+// Header Layout
+// --------------------------------------------------
+$header-height: 68px;
+#header-wrapper {
+  // have this show up at the top of the flex container
+  order: 2;
+
+  display: flex;
+
+  flex-grow: 1; // make it grow as needed
+
+  border-bottom: 2px solid $src-bright;
+  background-color: $src-very-bright;
+
+  align-items: center;
+
+  color: $src-bright;
+
+  @include at-least-small-screen-styles {
+    height: $header-height;
+
+    padding-left: 28px;
+
+    @include font-size(18px);
+  }
+
+  .search-icon {
+    @include at-least-small-screen-styles {
+
+      margin-right: 12px;
+    }
+  }
+
+  .header-actions {
+    // allows us to push the icon to the right
+    // http://stackoverflow.com/questions/19564287/css3-flex-pull-child-to-the-right
+    margin-left: auto;
+
+    height: $header-height;
+
+    // http://stackoverflow.com/questions/19038799/why-is-there-an-unexplainable-gap-between-these-inline-block-div-elements
+    // this allows us to have each .header-icon line up without any gaps (gaps occur when .header-icon is display:inline-block).
+    // we could've floated left as well, but i guess just setting this one attr on the parent is easier.
+    display: flex;
+
+    .header-icon {
+      float: left;
+      text-align: center;
+
+      height: inherit;
+
+      &:not(:first-child) {
+        border-left: 2px solid $src-bright;
+      }
+
+      @include at-least-small-screen-styles {
+
+        // width is important here, it keeps all icons (regardless of their size) at a box of 20px, then the icon is centered.
+        width: 60px;
+        @include font-size(20px);
+
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      i {
+        vertical-align: middle;
+
+        @include at-least-small-screen-styles {
+          // this allows us to vertically place the icon in the middle but have borders that extend the whole height.
+          // probably not worth putting a flexbox for each icon: http://stackoverflow.com/questions/2939914/vertically-align-text-in-a-div
+          line-height: $header-height;
+
+          &#header-icon-calendar {
+            padding-bottom: 2px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,50 @@
+//
+// App Variables
+// --------------------------------------------------
+// `!default` is important here because we might want to override these in something like:
+// - a styleguide
+// - a mobile-specific theme
+
+// Brand Colors
+// --------------------------------------------------
+
+$ac: #28303D !default;
+$untameable-blue: #333B47 !default;
+$polar-express: #3D495C !default;
+$cloud-sliding: #707C94 !default;
+$the-sound: #7C89A4 !default;
+$goodbye: #A5B6C3 !default;
+$shrugs: #D8E2EB !default;
+$glass: #EBF1F5 !default;
+$grape-taffy: #AD6BAE !default;
+$aquas: #4DBAC0 !default;
+$sky-blue: #25A6F7 !default;
+$white: #FFF !default;
+
+$src-super-dark: $ac !default;
+$src-very-dark: $untameable-blue !default;
+$src-dark: $polar-express !default;
+$src-less-dark: $cloud-sliding !default;
+$src-less-bright: $the-sound !default;
+$src-bright: $goodbye !default;
+$src-slightly-brighter: rgba($src-bright, .20) !default;
+$src-brighter: $glass !default;
+$src-medium-bright: $grape-taffy !default;
+$src-even-brighter: $aquas !default;
+$src-more-bright: $sky-blue !default;
+$src-very-bright: $white !default;
+
+// Font
+// --------------------------------------------------
+
+$src-font-size-base: 16px !default;
+$src-font-family-heading: Montserrat, Helvetica, Arial, sans-serif !default;
+$src-font-family-content: 'Source Sans Pro', Helvetica, Arial, sans-serif !default;
+
+// Container
+// --------------------------------------------------
+
+// Responsive Viewing
+// --------------------------------------------------
+
+$src-screen-sm: 768px !default;

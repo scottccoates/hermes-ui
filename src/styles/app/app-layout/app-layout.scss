@@ -1,0 +1,16 @@
+// Page Layout
+// --------------------------------------------------
+@mixin container-transition {
+  transition: all .4s ease 0s;
+}
+
+@import "sidebar";
+@import "header";
+
+#page-wrapper {
+  @include container-transition;
+
+  min-height: 100vh; //http://philipwalton.github.io/solved-by-flexbox/demos/holy-grail/
+
+  display: flex;
+}

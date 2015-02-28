@@ -1,0 +1,68 @@
+/*doc
+---
+title: Main
+name: main
+category: Main
+---
+*/
+
+/*doc
+---
+title: Foundation
+name: 1foundation
+parent: main
+---
+*/
+
+/*doc
+---
+title: Base Styles
+name: base
+parent: main
+---
+*/
+
+/*doc
+---
+title: Patterns
+name: patterns
+parent: main
+---
+*/
+
+// Our own variables
+@import "base/variables";
+
+// This allows us to override bootstrap (below) because they use !default
+@import "base/bootstrap_variables";
+
+// Our own variables
+@import "base/mixins";
+
+// Rely on a lot of bootstrap classes, mixins -- defined by our variables and overrides
+@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+// Bring in our global app styling
+@import "main/animations";
+@import "main/buttons";
+@import "main/colors";
+@import "main/containers";
+@import "main/forms";
+@import "main/payment";
+@import "main/responsive";
+@import "main/typography";
+@import "main/vendor_overrides";
+
+// Bring in our feature-specific styling
+@import "app/about-us";
+@import "app/admin";
+@import "app/apartment";
+@import "app/app-layout/app-layout";
+@import "app/footer";
+@import "app/home";
+@import "app/how-it-works";
+@import "app/nav";
+@import "app/result";
+@import "app/search";
+@import "app/thank-you";
+@import "app/tos";

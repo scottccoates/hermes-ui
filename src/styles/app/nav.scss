@@ -1,0 +1,34 @@
+#main-nav {
+  
+  &.navbar-default {
+    background-color: $src-medium-bright;
+    border: 0;
+  }
+  
+  .navbar-header {
+    @media screen and (min-width: $screen-tablet) {
+      padding-top: 15px;
+      padding-bottom: 15px;
+    }
+  }
+  
+  .nav {
+    @media screen and (min-width: $screen-tablet) {
+      margin-top: 30px;
+    }
+    color: $src-less-dark;
+  }
+  
+  .navbar-brand {
+    @media screen and (min-width: $screen-tablet) {
+      font-size: ($font-size-base * 2)
+    }
+
+    color: $src-very-bright;
+    font-weight: bold;
+
+    .navbar-fixed-top .logo a {
+      color: #17baef;
+    }
+  }
+}

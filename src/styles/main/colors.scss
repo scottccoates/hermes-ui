@@ -1,0 +1,145 @@
+// Basic Color Styles
+// --------------------------------------------------
+/*doc
+---
+title: Colors
+name: colors
+parent: 1foundation
+---
+<div class="sg-section">
+    <h4>
+      Main Colors
+    </h4>
+
+    <div class="sg-color sg-lg">
+        <span class="src-very-dark sg-color-swatch">
+        <span class="sg-animated">
+          very dark
+  </span>
+        </span>
+    </div>
+    <div class="sg-color sg-lg">
+        <span class="src-less-dark sg-color-swatch">
+        <span class="sg-animated">
+          less dark
+        </span>
+        </span>
+    </div>
+    <div class="sg-color sg-lg">
+        <span class="src-bright sg-color-swatch">
+        <span class="sg-animated">
+          bright
+        </span>
+        </span>
+    </div>
+    <div class="sg-color sg-lg">
+        <span class="src-brighter sg-color-swatch">
+        <span class="sg-animated">
+          brighter
+        </span>
+        </span>
+    </div>
+    <div class="sg-color sg-lg">
+        <span class="src-more-bright sg-color-swatch">
+        <span class="sg-animated">
+          more bright
+        </span>
+        </span>
+    </div>
+
+    <h4>
+      Complementary Colors
+    </h4>
+
+    <div class="sg-color">
+        <span class="sg-color-swatch src-super-dark">
+        <span class="sg-animated">
+          super dark
+  </span>
+        </span>
+    </div>
+    <div class="sg-color">
+        <span class="sg-color-swatch src-dark">
+        <span class="sg-animated">
+          dark
+  </span>
+        </span>
+    </div>
+    <div class="sg-color">
+        <span class="src-less-bright sg-color-swatch">
+        <span class="sg-animated">
+          less bright
+        </span>
+        </span>
+    </div>
+    <div class="sg-color">
+        <span class="sg-color-swatch src-slightly-brighter">
+        <span class="sg-animated">
+          slightly brighter
+  </span>
+        </span>
+    </div>
+    <div class="sg-color">
+        <span class="sg-color-swatch src-medium-bright">
+        <span class="sg-animated">
+          medium bright
+  </span>
+        </span>
+    </div>
+    <div class="sg-color">
+        <span class="sg-color-swatch src-even-brighter">
+        <span class="sg-animated">
+          even brighter
+  </span>
+        </span>
+    </div>
+</div>
+*/
+
+.src-super-dark {
+  background-color: $src-super-dark;
+}
+
+.src-very-dark {
+  background-color: $src-very-dark;
+}
+
+.src-dark {
+  background-color: $src-dark;
+}
+
+.src-less-dark {
+  background-color: $src-less-dark;
+}
+
+.src-less-bright {
+  background-color: $src-less-bright;
+}
+
+.src-bright {
+  background-color: $src-bright;
+}
+
+.src-slightly-brighter {
+  background-color: $src-slightly-brighter;
+}
+
+.src-brighter {
+  background-color: $src-brighter;
+}
+
+.src-medium-bright {
+  background-color: $src-medium-bright;
+}
+
+.src-even-brighter {
+  background-color: $src-even-brighter;
+}
+
+.src-more-bright {
+  background-color: $src-more-bright;
+}
+
+.src-very-bright {
+  background-color: $src-very-bright;
+}

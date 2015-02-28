@@ -1,0 +1,49 @@
+// Basic Type Styles
+// --------------------------------------------------
+/*doc
+---
+title: Typography
+name: typography
+parent: 1foundation
+---
+<div class="sg-section">
+  <p class="sg-font src-heading">Montserrat, Helvetica, Arial, sans-serif;</p>
+  <p class="sg-font">'Source Sans Pro', Helvetica, Arial, sans-serif;</p>
+</div>
+*/
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, body {
+  // set the font size equal to whatever the user defines as the standard text size (usually 16px)
+  // http://stackoverflow.com/questions/22228568/switching-to-em-based-media-queries
+  // http://css-tricks.com/rems-ems/#comment-1540171
+  font-size: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  text-transform: uppercase;
+}
+
+p {
+  color: $src-less-dark;
+  font-family: $src-font-family-content;
+}
+
+.src-heading {
+  font-family: $src-font-family-heading;
+
+}
+
+.generated-info {
+  white-space: pre-wrap;
+  line-height: 18px;
+}
+
+.heavy-emphasis {
+  font-weight: 900;
+  text-decoration: underline;
+}

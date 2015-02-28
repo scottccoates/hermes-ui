@@ -1,0 +1,74 @@
+//
+// Untitler Mixins
+// --------------------------------------------------
+
+// Responsive Viewing
+// --------------------------------------------------
+
+//- conditional word wrapping http://www.css-101.org/articles/responsive-line-breaks/wbr-versus-br.php
+//- http://stackoverflow.com/questions/10933837/line-break-like-br-using-only-css
+@mixin conditional-line-break($min-width) {
+  @media (min-width: $min-width) {
+    &:after {
+      content: '\a';
+      white-space: pre;
+    }
+  }
+}
+
+// http://zerosixthree.se/8-sass-mixins-you-must-have-in-your-toolbox/
+@mixin at-least-small-screen-styles {
+  $rem-size: $src-screen-sm / $src-font-size-base;
+
+  $break-size: $rem-size * 1em;
+
+  @media only screen and (min-width: $break-size) {
+    @content;
+  }
+}
+
+// Images
+// --------------------------------------------------
+
+@mixin img-responsive-center($margin-vertical: 0) {
+  img.img-responsive {
+    margin: $margin-vertical auto;
+  }
+}
+
+// Font
+// --------------------------------------------------
+
+@function calculate-rem($pixel-size) {
+  $rem-size: $pixel-size / $src-font-size-base;
+  @return $rem-size * 1rem;
+}
+
+@mixin font-size($pixel-size) {
+  // http: //zerosixthree.se/8-sass-mixins-you-must-have-in-your-toolbox/
+
+  //noinspection CssOverwrittenProperties
+  font-size: $pixel-size;
+  //noinspection CssOverwrittenProperties
+  font-size: calculate-rem($pixel-size);
+}
+
+// Containers
+// --------------------------------------------------
+
+@mixin section-dividing-line {
+  // the parent container must be relative and the psuedo element must be absolute instated of display:block
+  // because any padding would push this border away.
+  position: relative;
+
+  border-top: 2px solid $src-super-dark;
+
+  &:before {
+    content: '';
+    border-bottom: solid 2px $src-dark;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}

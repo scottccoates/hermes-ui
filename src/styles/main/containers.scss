@@ -1,0 +1,235 @@
+// Container Styles
+// --------------------------------------------------
+/*doc
+---
+title: Panels
+name: panels
+parent: patterns
+---
+<div class="sg-section">
+  <h4>Basic example</h4>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-body">
+        Hey there, check out my body!
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h4>Panel with Heading</h4>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          Hey there, check out my heading!
+        </div>
+        <div class="panel-body">
+          Hey there, check out my body!
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+*/
+
+/*doc
+---
+title: Popovers
+name: popovers
+parent: patterns
+---
+<div class="sg-section">
+  <h4>Basic example</h4>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="sg-popover popover">
+        <h3 class="popover-heading">Find Contracts</h3>
+
+        <div class="popover-body">
+            <p>Sed posuere consectetur est at lobortis. Aenean
+                eu leo quam. Pellentesque ornare sem lacinia
+                quam venenatis vestibulum.
+            </p>
+        </div>
+    </div>
+    </div>
+  </div>
+</div>
+*/
+
+// Panels
+// --------------------------------------------------
+@mixin container-padding {
+  padding: 25px 20px;
+}
+
+$container-border-radius: 3px;
+
+$container-color: $src-less-dark;
+
+@mixin container-font-size{
+  @include font-size(16px);
+}
+
+.panel {
+  background: $src-very-bright;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.50);
+  border-radius: $container-border-radius;
+  border-width: 0;
+
+  @include at-least-small-screen-styles {
+    @include container-font-size;
+  }
+
+  color: $container-color;
+}
+
+.panel-heading {
+  border: none;
+  border-top-left-radius: $container-border-radius;
+  border-top-right-radius: $container-border-radius;
+
+  @extend .text-uppercase;
+
+  @include at-least-small-screen-styles {
+    @include container-padding;
+    margin-bottom: 10px;
+  }
+}
+
+.panel-body {
+  @include at-least-small-screen-styles {
+    @include container-padding;
+  }
+}
+
+.panel-default {
+  & > .panel-heading {
+    color: $src-very-bright;
+    background: $src-less-dark;
+  }
+}
+
+// Popovers
+// --------------------------------------------------
+.popover {
+  background: $src-very-bright;
+  border: 1px solid rgba(0, 0, 0, 0.10);
+  box-shadow: 0px 5px 7px 0px rgba(0, 0, 0, 0.20);
+  border-radius: $container-border-radius;
+
+  max-width: none;
+
+  padding: 0;
+
+  color: $container-color;
+}
+
+.popover-heading {
+  @extend .popover-title; // defined in bootstrap
+
+  @extend .text-uppercase;
+
+  @include at-least-small-screen-styles {
+    @include container-padding;
+    @include container-font-size;
+  }
+
+  background: none;
+  border: none;
+
+  // subtract because the `.popover` is defining a border width
+  border-top-left-radius: $container-border-radius - 1;
+  border-top-right-radius: $container-border-radius - 1;
+}
+
+.popover-body {
+  @extend .popover-content; // defined in bootstrap
+
+  @include at-least-small-screen-styles {
+    @include container-padding;
+    @include container-font-size;
+  }
+}
+
+// ...
+// --------------------------------------------------
+.section {
+  border-bottom: 1px solid $src-very-dark;
+  @include box-shadow(0px 1px $src-very-dark);
+}
+
+.alt-section {
+  @extend .section;
+  background: $gray-lighter url('../images/bg/handmadepaper.png');
+}
+
+.web-app-body {
+  border-bottom: none;
+}
+
+.admin-body {
+  padding-bottom: 0;
+}
+
+.rounded-light-container {
+  background-color: $body-bg;
+  border-radius: $border-radius-large; // Only round corners at higher resolutions if contained in a container
+}
+
+.transparent-background-light {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+//- There is a bit of a hack with this. See http://stackoverflow.com/a/18548682/173957.
+//- This is because bootstrap 3 isn't compatible w/ angular ui modal yet.
+.modal {
+  display: block;
+}
+
+.modal-open {
+  overflow: hidden;
+}
+
+.web-app-padding {
+  margin-top: 70px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+}
+
+// Map Container Styles
+// --------------------------------------------------
+.map-canvas {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+
+  //- Responsive
+  @media screen and (min-width: $screen-tablet) {
+    height: 300px;
+  }
+}
+
+.map-marker-label {
+  color: $src-very-bright;
+  background-color: $src-brighter;
+  font-size: 12px;
+  text-align: center;
+  width: 200px;
+  padding: 5px;
+  font-family: $src-font-family-heading;
+}
+
+// Table Styles
+// --------------------------------------------------
+.bordered-table {
+  border: 1px solid;
+  border-radius: 4px 4px 4px 4px;
+  border-collapse: separate;
+
+  margin-top: 10px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
