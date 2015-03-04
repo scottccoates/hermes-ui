@@ -24,13 +24,8 @@
     position: fixed;
     overflow-y: hidden;
 
-    //noinspection CssOverwrittenProperties
-    &:hover {
-      overflow-y: auto;
-
-      //http://stackoverflow.com/questions/8543664/overflow-overlay-doesnt-work-in-firefox
-      //noinspection CssInvalidPropertyValue
-      overflow-y: overlay;
+    &.nano > .nano-pane > .nano-slider{
+      background-color: $src-less-dark;
     }
 
     .sidebar-profile {
@@ -47,7 +42,10 @@
         @include at-least-small-screen-styles {
           margin: 34px auto 22px auto;
 
+          // make this img be explicit because we don't want to wait for server response to figure out the dimensions.
+          // that would make things like nanoScroller miscalculate space.
           width: 103px;
+          height: 103px;
         }
       }
 

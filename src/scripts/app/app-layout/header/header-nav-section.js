@@ -7,7 +7,7 @@ class HeaderNavSection extends React.Component {
 
   render() {
     return (
-        <span className="header-actions">
+        <span className="header-nav-section">
           <span className="header-icon">
             <i className="fa fa-caret-square-o-down"></i>
           </span>

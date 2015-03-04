@@ -12,10 +12,12 @@
 <body>
 <div id="app">
 </div>
-<script src="jspm_packages/system.js"></script>
+<script src="jspm_packages/system.src.js"></script>
 <script src="config.js"></script>
 <script>
-  System.import('build/js/main');
+  System.import('build/js/main').then(function () {
+
+  });
 </script>
 </body>
 </html>
