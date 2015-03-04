@@ -4,10 +4,9 @@ import React from 'react';
 import HeaderSearch from './header-search';
 import HeaderNavSection from './header-nav-section';
 
-export default
-class Header extends React.Component {
+export default React.createClass({
 
-  render() {
+  render: function () {
     return (
         <header id="header-wrapper">
           <HeaderSearch/>
@@ -15,4 +14,4 @@ class Header extends React.Component {
         </header>
     );
   }
-}
+});

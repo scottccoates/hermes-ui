@@ -1,0 +1,8 @@
+// Content Layout
+// --------------------------------------------------
+#content-wrapper {
+  background-color: $src-very-bright;
+
+  @include at-least-small-screen-styles {
+  }
+}

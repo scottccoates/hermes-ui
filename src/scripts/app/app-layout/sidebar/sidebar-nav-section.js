@@ -2,10 +2,9 @@
 
 import React from 'react';
 
-export default
-class SidebarNavSection extends React.Component {
+export default React.createClass({
 
-  render() {
+  render: function () {
     return (
         <section id="sidebar-main">
           <h6>main</h6>
@@ -26,4 +25,4 @@ class SidebarNavSection extends React.Component {
         </section>
     );
   }
-}
+});

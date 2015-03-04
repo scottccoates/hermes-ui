@@ -1,7 +1,6 @@
 /* jshint -W030 */
 'use strict';
 
-import React from 'react';
-import AppLayout from './app/app-layout/app-layout';
+import * as Routes from './config/routes';
 
-React.render(<AppLayout />, document.getElementById('app'));
+Routes.init();

@@ -2,10 +2,9 @@
 
 import React from 'react';
 
-export default
-class HeaderNavSection extends React.Component {
+export default React.createClass({
 
-  render() {
+  render: function () {
     return (
         <span className="header-nav-section">
           <span className="header-icon">
@@ -20,4 +19,4 @@ class HeaderNavSection extends React.Component {
         </span>
     );
   }
-}
+});

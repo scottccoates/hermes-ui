@@ -7,13 +7,17 @@ import ScrollContainer from '../../components/scroll-container';
 
 export default React.createClass({
 
-  render: () =>
-      <nav id="sidebar-wrapper">
-        <ScrollContainer id="sidebar-scroll-container">
-          <SidebarProfile/>
-          <SidebarNavSection/>
-          <SidebarNavSection/>
-          <SidebarNavSection/>
-        </ScrollContainer>
-      </nav>
+  render: function () {
+
+    return (
+        <nav id="sidebar-wrapper">
+          <ScrollContainer id="sidebar-scroll-container">
+            <SidebarProfile/>
+            <SidebarNavSection/>
+            <SidebarNavSection/>
+            <SidebarNavSection/>
+          </ScrollContainer>
+        </nav>
+    )
+  }
 });

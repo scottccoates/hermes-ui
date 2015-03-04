@@ -4,15 +4,25 @@ import React from 'react';
 import Sidebar from './sidebar/sidebar';
 import Header from './header/header';
 
-export default
-class AppLayout extends React.Component {
+import Router from 'react-router';
 
-  render() {
+var {RouteHandler} = Router;
+
+var AppLayout = React.createClass({
+
+  render: function () {
     return (
         <div id="page-wrapper">
-          <Header />
           <Sidebar />
+          <div id="main-wrapper">
+            <Header />
+            <div id="content-wrapper">
+              <RouteHandler/>
+            </div>
+          </div>
         </div>
     );
   }
-}
+});
+
+export default AppLayout;

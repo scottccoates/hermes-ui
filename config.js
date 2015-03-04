@@ -12,7 +12,8 @@ System.config({
   "map": {
     "jquery": "github:components/jquery@2.1.3",
     "nanoscroller": "github:jamesflorentino/nanoScrollerJS@0.8.4",
-    "react": "npm:react@0.13.0-rc1",
+    "react": "npm:react@0.12.2",
+    "react-router": "npm:react-router@0.12.4",
     "github:jamesflorentino/nanoScrollerJS@0.8.4": {
       "css": "github:systemjs/plugin-css@0.1.6",
       "jquery": "github:components/jquery@2.1.3"
@@ -130,7 +131,12 @@ System.config({
     "npm:punycode@1.3.2": {
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
-    "npm:react@0.13.0-rc1": {
+    "npm:react-router@0.12.4": {
+      "process": "github:jspm/nodelibs-process@0.1.1",
+      "qs": "npm:qs@2.3.3",
+      "react": "npm:react@0.12.2"
+    },
+    "npm:react@0.12.2": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
       "envify": "npm:envify@3.2.0",
       "process": "github:jspm/nodelibs-process@0.1.1"
