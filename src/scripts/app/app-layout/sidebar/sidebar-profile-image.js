@@ -2,12 +2,11 @@
 
 import React from 'react';
 
-export default
-class SidebarProfileImage extends React.Component {
+export default React.createClass({
 
-  render() {
+  render: function () {
     return (
         <img alt="sidebar profile image" className="sidebar-profile-image" src="build/assets/images/man-profile-pic.jpg"/>
     );
   }
-}
+});

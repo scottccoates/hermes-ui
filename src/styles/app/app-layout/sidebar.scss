@@ -4,8 +4,6 @@
   // have this show up at the left of the flex container
   order: 1;
 
-  @include container-transition;
-
   background-color: $src-very-dark;
 
   width: 70px;

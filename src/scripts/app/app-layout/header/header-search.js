@@ -2,16 +2,14 @@
 
 import React from 'react';
 
-export default
-class HeaderSearch extends React.Component {
+export default React.createClass({
 
-  render() {
+  render: function () {
     return (
         <span className="header-search">
           <i className="fa fa-search search-icon header-icon"></i>
           Search for contract, counterparty, or category
         </span>
-
     );
   }
-}
+});

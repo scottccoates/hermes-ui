@@ -1,11 +1,12 @@
 // Page Layout
 // --------------------------------------------------
-@mixin container-transition {
-  transition: all .4s ease 0s;
-}
+// This contains the stuff in the middle (header, main content)
+@import "main-layout";
 
+// The actual app layout components
 @import "sidebar";
 @import "header";
+@import "content";
 
 #page-wrapper {
   @include container-transition;

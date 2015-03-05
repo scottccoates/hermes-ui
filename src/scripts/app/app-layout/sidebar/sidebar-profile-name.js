@@ -2,10 +2,9 @@
 
 import React from 'react';
 
-export default
-class SidebarProfileName extends React.Component {
+export default React.createClass({
 
-  render() {
+  render: function () {
     return (
         <div className="sidebar-profile-name">
           Andy Nelson&nbsp;
@@ -13,4 +12,4 @@ class SidebarProfileName extends React.Component {
         </div>
     );
   }
-}
+});
