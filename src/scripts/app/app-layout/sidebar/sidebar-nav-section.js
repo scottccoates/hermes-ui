@@ -7,19 +7,22 @@ export default React.createClass({
   render: function () {
     return (
         <section id="sidebar-main">
-          <h6>main</h6>
           <ul>
             <li>
               <i className="fa fa-home"></i>
-              <span>Home</span>
-            </li>
-            <li>
-              <i className="fa fa-th-large"></i>
               <span>Dashboard</span>
             </li>
             <li>
-              <i className="fa fa-briefcase"></i>
+              <i className="fa fa-file-text"></i>
               <span>Contracts</span>
+            </li>
+            <li>
+              <i className="fa fa-calendar"></i>
+              <span>Calendar</span>
+            </li>
+            <li>
+              <i className="fa fa-bar-chart"></i>
+              <span>Reports</span>
             </li>
           </ul>
         </section>

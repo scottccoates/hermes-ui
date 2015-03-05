@@ -26,24 +26,21 @@
       background-color: $src-less-dark;
     }
 
-    .sidebar-profile {
-      text-align: center;
-
+    .sidebar-logo {
       @include at-least-small-screen-styles {
-        margin-bottom: 30px;
+        margin-bottom: 20px;
       }
 
-      .sidebar-profile-image {
+      .sidebar-logo-image {
         @include img-responsive;
-        @extend .img-circle;
 
         @include at-least-small-screen-styles {
-          margin: 34px auto 22px auto;
+          margin: 20px 25px 0 10px;
 
           // make this img be explicit because we don't want to wait for server response to figure out the dimensions.
           // that would make things like nanoScroller miscalculate space.
-          width: 103px;
-          height: 103px;
+          width: 205px;
+          height: 85px;
         }
       }
 
@@ -69,13 +66,6 @@
         padding-top: 30px;
         text-indent: 30px;
         @include font-size(14px)
-      }
-
-      h6 {
-        font-family: $src-font-family-content;
-        color: $src-less-dark;
-
-        text-transform: capitalize;
       }
 
       ul {
