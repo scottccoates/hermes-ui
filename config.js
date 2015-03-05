@@ -1,8 +1,8 @@
 System.config({
   "transpiler": "babel",
   "paths": {
-    "*": "*.js",
-    "app/*": "lib/*.js",
+    "*": "*.js", // used for explicit addresses, like cdn uris.
+    "src/*": "build/js/*.js",
     "github:*": "jspm_packages/github/*.js",
     "npm:*": "jspm_packages/npm/*.js"
   }
