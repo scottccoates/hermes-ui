@@ -4,7 +4,7 @@
 import React from 'react';
 import Router  from 'react-router';
 
-import AppLayout from '../app/app-layout/app-layout';
+import AppLayout from 'src/app/app-layout/app-layout';
 
 // Named exports only work for es6, react-router uses common. So we have to use Destructuring instead.
 var {DefaultRoute, Route} = Router;
