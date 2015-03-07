@@ -22,8 +22,14 @@
     position: fixed;
     overflow-y: hidden;
 
-    &.nano > .nano-pane > .nano-slider{
-      background-color: $src-less-dark;
+    &.nano {
+      & > .nano-pane > .nano-slider {
+        background-color: $src-less-dark;
+      }
+
+      & > .nano-content:focus {
+        outline: none;
+      }
     }
 
     .sidebar-logo {
@@ -91,28 +97,27 @@
             padding-bottom: 10px;
           }
 
+          & > i, & > span {
+            vertical-align: middle;
+          }
 
-            & > i, & > span {
-              vertical-align: middle;
-            }
+          & > i {
+            text-align: center;
 
-            & > i {
-              text-align: center;
+            @include at-least-small-screen-styles {
+              // reset the text indent inherited from the section element
+              text-indent: initial;
 
-              @include at-least-small-screen-styles {
-                // reset the text indent inherited from the section element
-                text-indent: initial;
+              margin-right: 16px;
 
-                margin-right: 16px;
+              // width is important here, it keeps all icons (regardless of their size) at a box of 20px, then the icon is centered.
+              width: 20px;
 
-                // width is important here, it keeps all icons (regardless of their size) at a box of 20px, then the icon is centered.
-                width: 20px;
-
-                @include font-size(22px);
-              }
+              @include font-size(22px);
             }
           }
         }
+      }
     }
   }
 }
