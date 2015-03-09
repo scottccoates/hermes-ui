@@ -37,6 +37,7 @@ $footer-height: 110px;
 
       &#footer-secure-connection {
         cursor: default;
+        user-select: none;
 
         i {
           @include at-least-small-screen-styles {
