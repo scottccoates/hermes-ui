@@ -3,6 +3,9 @@
 #content-wrapper {
   background-color: $src-very-bright;
 
+  // make it grow as needed.
+  flex-grow: 1;
+
   @include at-least-small-screen-styles {
   }
 }

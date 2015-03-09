@@ -7,6 +7,7 @@
 @import "sidebar";
 @import "header";
 @import "content";
+@import "footer";
 
 #page-wrapper {
   @include container-transition;

@@ -15,7 +15,7 @@ export default React.createClass({
 
   render: function () {
     return (
-        <div ref="scroll-container" id={this.props.id} className="nano">
+        <div ref="scroll-container" {...this.props} className="nano">
           <div className="nano-content">
             {this.props.children}
           </div>
