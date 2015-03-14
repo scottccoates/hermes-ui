@@ -11,7 +11,9 @@ System.config({
 System.config({
   "map": {
     "bacon": "npm:baconjs@0.7.53",
-    "bootstrap": "github:twbs/bootstrap@3.0.2",
+    "bootstrap": "github:twbs/bootstrap@3.3.4",
+    "dropzone": "npm:dropzone@4.0.1",
+    "immutable": "github:facebook/immutable-js@3.6.4",
     "jquery": "github:components/jquery@2.1.3",
     "nanoscroller": "github:jamesflorentino/nanoScrollerJS@0.8.4",
     "react": "npm:react@0.12.2",
@@ -65,6 +67,10 @@ System.config({
       "fs": "github:jspm/nodelibs-fs@0.1.1",
       "path": "github:jspm/nodelibs-path@0.1.0"
     },
+    "github:twbs/bootstrap@3.3.4": {
+      "css": "github:systemjs/plugin-css@0.1.6",
+      "jquery": "github:components/jquery@2.1.3"
+    },
     "npm:amdefine@0.1.0": {
       "fs": "github:jspm/nodelibs-fs@0.1.1",
       "module": "github:jspm/nodelibs-module@0.1.0",
@@ -107,6 +113,9 @@ System.config({
     },
     "npm:core-util-is@1.0.1": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0"
+    },
+    "npm:dropzone@4.0.1": {
+      "process": "github:jspm/nodelibs-process@0.1.1"
     },
     "npm:envify@3.3.1": {
       "jstransform": "npm:jstransform@10.1.0",

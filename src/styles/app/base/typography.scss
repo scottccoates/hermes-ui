@@ -35,7 +35,23 @@ p {
 
 .src-heading {
   font-family: $src-font-family-heading;
+}
 
+.page-header {
+  border: none;
+
+  @include at-least-small-screen-styles {
+    margin-top: 55px;
+    margin-bottom: 50px;
+
+    padding: 0;
+  }
+}
+
+h1 {
+  &.page-header {
+    @include font-size(24px);
+  }
 }
 
 .generated-info {

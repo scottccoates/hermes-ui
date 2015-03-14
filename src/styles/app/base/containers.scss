@@ -61,6 +61,7 @@ $container-color: $src-less-dark;
 
   @include at-least-small-screen-styles {
     @include container-font-size;
+    margin-bottom: 0;
   }
 
   color: $container-color;
@@ -75,7 +76,6 @@ $container-color: $src-less-dark;
 
   @include at-least-small-screen-styles {
     @include container-padding;
-    margin-bottom: 10px;
   }
 }
 
@@ -215,7 +215,7 @@ parent: patterns
 
     margin-top: 10px;
 
-    min-width: 130px;
+    min-width: 0;
 
     &::before {
       position: absolute;
@@ -265,6 +265,28 @@ parent: patterns
       left: auto;
       right: 14px;
     }
+  }
+}
+
+// File Upload
+// --------------------------------------------------
+.dropzone {
+
+  background: $src-very-bright;
+
+  &.dz-clickable {
+    cursor: pointer;
+  }
+
+  &.dz-drag-hover {
+
+    .dz-message {
+
+    }
+  }
+
+  .dz-message {
+
   }
 }
 

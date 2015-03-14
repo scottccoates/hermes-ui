@@ -1,11 +1,19 @@
 // Content Layout
 // --------------------------------------------------
 #content-wrapper {
-  background-color: $src-very-bright;
+  background-color: $src-brighter;
 
   // make it grow as needed.
   flex-grow: 1;
 
   @include at-least-small-screen-styles {
+    padding-left: $main-wrapper-padding;
+    padding-right: $main-wrapper-padding;
+
+    padding-bottom: 300px;
+  }
+
+  .page-header {
+    color: $src-bright;
   }
 }

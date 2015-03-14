@@ -53,6 +53,7 @@ parent: main
 @import "app/base/forms";
 @import "app/base/payment";
 @import "app/base/responsive";
+@import "app/base/scrollbars";
 @import "app/base/typography";
 
 // Bring in our feature-specific styling
@@ -63,6 +64,7 @@ parent: main
 @import "app/footer";
 @import "app/home";
 @import "app/how-it-works";
+@import "app/management-item/management-item";
 @import "app/nav";
 @import "app/result";
 @import "app/search";
