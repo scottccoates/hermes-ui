@@ -11,6 +11,7 @@ System.config({
 System.config({
   "map": {
     "bacon": "npm:baconjs@0.7.53",
+    "bootstrap": "github:twbs/bootstrap@3.0.2",
     "jquery": "github:components/jquery@2.1.3",
     "nanoscroller": "github:jamesflorentino/nanoScrollerJS@0.8.4",
     "react": "npm:react@0.12.2",
@@ -30,7 +31,7 @@ System.config({
     "github:jspm/nodelibs-events@0.1.0": {
       "events-browserify": "npm:events-browserify@0.0.1"
     },
-    "github:jspm/nodelibs-http@1.7.0": {
+    "github:jspm/nodelibs-http@1.7.1": {
       "Base64": "npm:Base64@0.2.1",
       "events": "github:jspm/nodelibs-events@0.1.0",
       "inherits": "npm:inherits@2.0.1",
@@ -89,7 +90,7 @@ System.config({
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
       "commander": "npm:commander@2.5.1",
       "fs": "github:jspm/nodelibs-fs@0.1.1",
-      "http": "github:jspm/nodelibs-http@1.7.0",
+      "http": "github:jspm/nodelibs-http@1.7.1",
       "https": "github:jspm/nodelibs-https@0.1.0",
       "os": "github:jspm/nodelibs-os@0.1.0",
       "path": "github:jspm/nodelibs-path@0.1.0",
@@ -107,11 +108,6 @@ System.config({
     "npm:core-util-is@1.0.1": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0"
     },
-    "npm:envify@3.2.0": {
-      "jstransform": "npm:jstransform@7.0.0",
-      "process": "github:jspm/nodelibs-process@0.1.1",
-      "through": "npm:through@2.3.6"
-    },
     "npm:envify@3.3.1": {
       "jstransform": "npm:jstransform@10.1.0",
       "process": "github:jspm/nodelibs-process@0.1.1",
@@ -121,15 +117,11 @@ System.config({
       "fs": "github:jspm/nodelibs-fs@0.1.1",
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
-    "npm:esprima-fb@7001.1.0-dev-harmony-fb": {
-      "fs": "github:jspm/nodelibs-fs@0.1.1",
-      "process": "github:jspm/nodelibs-process@0.1.1"
-    },
     "npm:events-browserify@0.0.1": {
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
     "npm:https-browserify@0.0.0": {
-      "http": "github:jspm/nodelibs-http@1.7.0"
+      "http": "github:jspm/nodelibs-http@1.7.1"
     },
     "npm:inherits@2.0.1": {
       "util": "github:jspm/nodelibs-util@0.1.0"
@@ -139,13 +131,6 @@ System.config({
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
       "esprima-fb": "npm:esprima-fb@13001.1001.0-dev-harmony-fb",
       "fs": "github:jspm/nodelibs-fs@0.1.1",
-      "process": "github:jspm/nodelibs-process@0.1.1",
-      "source-map": "npm:source-map@0.1.31"
-    },
-    "npm:jstransform@7.0.0": {
-      "base62": "npm:base62@0.1.1",
-      "buffer": "github:jspm/nodelibs-buffer@0.1.0",
-      "esprima-fb": "npm:esprima-fb@7001.1.0-dev-harmony-fb",
       "process": "github:jspm/nodelibs-process@0.1.1",
       "source-map": "npm:source-map@0.1.31"
     },
@@ -183,7 +168,8 @@ System.config({
       "inherits": "npm:inherits@2.0.1",
       "isarray": "npm:isarray@0.0.1",
       "process": "github:jspm/nodelibs-process@0.1.1",
-      "stream": "npm:stream-browserify@1.0.0",
+      "stream": "github:jspm/nodelibs-stream@0.1.0",
+      "stream-browserify": "npm:stream-browserify@1.0.0",
       "string_decoder": "npm:string_decoder@0.10.31",
       "util": "github:jspm/nodelibs-util@0.1.0"
     },

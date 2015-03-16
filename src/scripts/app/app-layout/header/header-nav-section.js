@@ -3,6 +3,8 @@
 import React from 'react';
 import ReactBootstrap from 'react-bootstrap';
 
+import Bootstrap from 'bootstrap';
+
 const {DropdownButton, MenuItem} = ReactBootstrap;
 
 export default React.createClass({
