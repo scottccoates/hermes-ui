@@ -6,7 +6,7 @@ export default React.createClass({
 
   render: function () {
     return (
-        <section id="sidebar-main">
+        <section>
           <ul>
             <li>
               <i className="fa fa-home"></i>
