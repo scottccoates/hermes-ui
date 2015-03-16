@@ -12,6 +12,14 @@ body {
   display: block;
 }
 
+.sg-dropdown-row {
+  height: 250px;
+
+  .sg-dropdown {
+    position: relative;
+  }
+}
+
 // NAV
 #sg-top-nav .sg-navbar-brand {
   padding: 10px 15px;
@@ -74,7 +82,7 @@ h3.styleguide {
   text-transform: capitalize;
 }
 
-h4{
+h4 {
   margin: 15px auto;
   text-transform: capitalize;
 }
