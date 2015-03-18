@@ -4,17 +4,23 @@
 import React from 'react';
 import Router  from 'react-router';
 
+import container from './di';
+
 import AppLayout from 'src/app/app-layout/app-layout';
 
 // Named exports only work for es6, react-router uses common. So we have to use Destructuring instead.
-var {DefaultRoute, Route, HistoryLocation} = Router;
+const {DefaultRoute, Route, HistoryLocation} = Router;
 
-var Inbox = React.createClass({
+const NewMI = container.get("NewMI").componentType;
 
+const Inbox = React.createClass({
+  accept: function () {
+  },
   render: function () {
     return (
         <div>
           hi
+          Sup Homie!
         </div>
     );
   }
@@ -23,6 +29,7 @@ var Inbox = React.createClass({
 var routes = (
     <Route  handler={AppLayout}>
       <Route name="inbox" handler={Inbox}/>
+      <Route name="new" handler={NewMI}/>
       <DefaultRoute handler={Inbox}/>
     </Route>
 );

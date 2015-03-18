@@ -22,14 +22,8 @@
     position: fixed;
     overflow-y: hidden;
 
-    &.nano {
-      & > .nano-pane > .nano-slider {
-        background-color: $src-less-dark;
-      }
-
-      & > .nano-content:focus {
-        outline: none;
-      }
+    &.nano > .nano-pane > .nano-slider {
+      background-color: $src-less-dark;
     }
 
     .sidebar-logo {

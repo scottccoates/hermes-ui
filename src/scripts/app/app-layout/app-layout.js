@@ -7,9 +7,9 @@ import Footer from './footer/footer';
 
 import Router from 'react-router';
 
-var {RouteHandler} = Router;
+const {RouteHandler} = Router;
 
-var AppLayout = React.createClass({
+const AppLayout = React.createClass({
 
   render: function () {
     return (

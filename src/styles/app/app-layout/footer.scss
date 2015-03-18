@@ -11,7 +11,8 @@ $footer-height: 110px;
   @include at-least-small-screen-styles {
     height: $footer-height;
 
-    margin-top: 60px;
+    padding-left: $main-wrapper-padding;
+    padding-right: $main-wrapper-padding;
 
     @include font-size(12px);
   }
@@ -22,9 +23,8 @@ $footer-height: 110px;
     text-transform: uppercase;
 
     @include at-least-small-screen-styles {
+      margin-left: auto;
       padding-top: 10px;
-      padding-left: 30px;
-
       margin-bottom: 0;
     }
 
@@ -56,7 +56,8 @@ $footer-height: 110px;
         float: right;
 
         @include at-least-small-screen-styles {
-          margin-right: 10px;
+          margin-left: 10px;
+          margin-right: 0;
         }
 
         i {

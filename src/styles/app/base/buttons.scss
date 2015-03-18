@@ -50,6 +50,7 @@ parent: base
 .btn {
   font-family: $src-font-family-heading;
   border: none;
+  text-transform: uppercase;
 }
 
 .btn-default {
@@ -62,4 +63,6 @@ parent: base
   border-radius: 3px;
 
   border: 1px solid $src-very-dark;
+
+  text-transform: none;
 }

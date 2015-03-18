@@ -26,7 +26,8 @@ $header-wrapper-bottom-border-height: 2px;
   @include at-least-small-screen-styles {
     height: $header-height;
 
-    padding-left: 28px;
+    padding-left: $main-wrapper-padding;
+    padding-right: $main-wrapper-padding;
 
     @include font-size(18px);
   }
@@ -147,11 +148,7 @@ $header-wrapper-bottom-border-height: 2px;
           }
         }
 
-        &.header-new-item {
-
-          @include at-least-small-screen-styles {
-            margin-right: 10px;
-          }
+        &.header-new-mi {
 
           .btn {
             color: $src-very-bright;

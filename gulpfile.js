@@ -6,6 +6,7 @@ var rimraf = require('rimraf');
 var browserSync = require('browser-sync');
 var runSequence = require('run-sequence');
 var karma = require('karma').server;
+var historyApiFallback = require('connect-history-api-fallback');
 
 // DEVELOPMENT TASKS
 //================================================
@@ -27,7 +28,8 @@ gulp.task('browser-sync', function() {
   {
     notify: false,
     server: {
-      baseDir: ['./']
+      baseDir: ['./'],
+      middleware:[historyApiFallback] //https://github.com/BrowserSync/browser-sync/issues/204#issuecomment-60410751
     },
     port: 3500,
     browser: [],
@@ -40,6 +42,7 @@ gulp.task('jsx', function() {
   return gulp.src('src/scripts/**/*.js')
     .pipe(plugins.cached('jsx'))  //Process only changed files
     .pipe(plugins.react())
+    .on('error', plugins.util.log)
     .pipe(gulp.dest('build/js'));
 });
 

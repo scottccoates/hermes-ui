@@ -1,0 +1,93 @@
+// New MI Layout
+// --------------------------------------------------
+#new-mi-wrapper {
+
+  .import-mi-panel {
+
+    .panel-body {
+
+      @include at-least-small-screen-styles {
+        padding-top: 110px;
+        padding-bottom: 130px;
+        text-align: center;
+      }
+
+      .import-mi-container {
+
+        &:hover {
+          .fa {
+            color: $src-less-dark;
+          }
+        }
+
+        &.dz-drag-hover {
+          .secondary-import-text span {
+            @extend .btn-primary;
+          }
+        }
+
+        .fa {
+          color: $src-bright;
+          @include at-least-small-screen-styles {
+            @include font-size(168px);
+          }
+        }
+
+        .primary-import-text {
+          color: $src-less-dark;
+
+          @include at-least-small-screen-styles {
+            @include font-size(16px);
+            margin-bottom: 12px;
+          }
+        }
+
+        .secondary-import-text {
+          span {
+            color: $src-bright;
+
+            @include at-least-small-screen-styles {
+              @include font-size(14px);
+
+              padding: 6px 12px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .create-mi-section {
+    @include at-least-small-screen-styles {
+      margin-top: 76px;
+      text-align: center;
+    }
+
+    h4 {
+      @include at-least-small-screen-styles {
+        @include font-size(16px);
+        border-bottom: 1px solid $src-bright;
+        line-height: 0.1em;
+      }
+
+      span {
+        background-color: $src-brighter;
+
+        cursor: default;
+        user-select: none;
+
+        @include at-least-small-screen-styles {
+          padding-left: 18px;
+          padding-right: 18px;
+        }
+      }
+    }
+
+    a {
+      @include at-least-small-screen-styles {
+        @include font-size(16px);
+        margin-top: 85px;
+      }
+    }
+  }
+}

@@ -2,10 +2,14 @@
 
 import React from 'react';
 import ReactBootstrap from 'react-bootstrap';
+import Router  from 'react-router';
 
-import Bootstrap from 'bootstrap';
+// use the min file because it doesn't have a dep on the css! file, which we don't want to inject into our html doc.
+import Bootstrap from 'bootstrap/js/bootstrap.min';
 
 const {DropdownButton, MenuItem} = ReactBootstrap;
+
+const {Link} = Router;
 
 export default React.createClass({
 
@@ -49,8 +53,8 @@ export default React.createClass({
               </span>
             </li>
 
-            <li className="header-item header-new-item">
-              <a className="btn btn-primary btn-xs">New Contract</a>
+            <li className="header-item header-new-mi">
+              <Link activeClassName={""} to="new" className="btn btn-primary btn-xs">New Contract</Link>
             </li>
           </ul>
         </section>
