@@ -4,13 +4,14 @@
 import React from 'react';
 import Router  from 'react-router';
 
-import AppLayout from 'src/app/app-layout/app-layout';
-import FileUploader from 'src/app/components/file-uploader';
+import container from './di';
 
-import NewMI from 'src/app/management-item/new/new-management-item';
+import AppLayout from 'src/app/app-layout/app-layout';
 
 // Named exports only work for es6, react-router uses common. So we have to use Destructuring instead.
 const {DefaultRoute, Route, HistoryLocation} = Router;
+
+const NewMI = container.get("NewMI").componentType;
 
 const Inbox = React.createClass({
   accept: function () {
@@ -19,9 +20,7 @@ const Inbox = React.createClass({
     return (
         <div>
           hi
-          <FileUploader accept={this.accept} url="test/test" className="inbox-file-upload dropzone">
-            Sup Homie!
-          </FileUploader>
+          Sup Homie!
         </div>
     );
   }

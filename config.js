@@ -14,6 +14,7 @@ System.config({
     "bootstrap": "github:twbs/bootstrap@3.3.4",
     "dropzone": "npm:dropzone@4.0.1",
     "immutable": "github:facebook/immutable-js@3.6.4",
+    "intravenous": "npm:intravenous@0.1.4-beta",
     "jquery": "github:components/jquery@2.1.3",
     "nanoscroller": "github:jamesflorentino/nanoScrollerJS@0.8.4",
     "react": "npm:react@0.12.2",
