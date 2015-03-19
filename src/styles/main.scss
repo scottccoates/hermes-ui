@@ -30,6 +30,14 @@ parent: main
 ---
 */
 
+/*doc
+---
+title: Forms
+name: forms
+parent: main
+---
+*/
+
 // Our own variables
 @import "app/base/variables";
 
@@ -49,6 +57,7 @@ parent: main
 @import "app/base/animations";
 @import "app/base/buttons";
 @import "app/base/colors";
+@import "app/base/components";
 @import "app/base/containers";
 @import "app/base/forms";
 @import "app/base/payment";

@@ -13,7 +13,7 @@ const {Link} = Router;
 
 export default React.createClass({
 
-  render: function () {
+  render() {
     return (
         <section className="header-nav-section">
 
@@ -21,7 +21,7 @@ export default React.createClass({
 
             <li className="header-item header-profile">
               <a data-target="#" href="#" data-toggle="dropdown">
-                <img alt="header profile image" className="header-profile-image" src="build/assets/images/man-profile-pic.jpg"/>
+                <img alt="header profile image" className="header-profile-image" src="/build/assets/images/man-profile-pic.jpg"/>
                 <span className="header-profile-name">Andy
                   <i className="fa fa-caret-down"></i>
                 </span>
@@ -54,7 +54,7 @@ export default React.createClass({
             </li>
 
             <li className="header-item header-new-mi">
-              <Link activeClassName={""} to="new" className="btn btn-primary btn-xs">New Contract</Link>
+              <Link activeClassName={""} to="newMI" className="btn btn-primary btn-xs">New Contract</Link>
             </li>
           </ul>
         </section>

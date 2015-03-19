@@ -7,14 +7,14 @@ import ReactBacon from 'react-bacon';
 export default React.createClass({
   mixins: [ReactBacon.BaconMixin],
 
-  componentWillMount: function () {
+  componentWillMount() {
     this.eventStream('onClick')
         .map('.target.value')
         .debounce(350)
         .onValue(()=>console.log('oh hai'));
   },
 
-  render: function () {
+  render() {
     return (
         <span className="header-search">
           <i className="fa fa-search search-icon header-icon"></i>

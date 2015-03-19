@@ -152,9 +152,12 @@ $header-wrapper-bottom-border-height: 2px;
 
           .btn {
             color: $src-very-bright;
+            text-transform: none;
 
             @include at-least-small-screen-styles {
               @include font-size(12px);
+              padding-top: 2px;
+              padding-bottom: 2px;
             }
           }
         }

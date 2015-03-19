@@ -1,3 +1,15 @@
+// Typography Styles
+// --------------------------------------------------
+
+// Fonts
+// --------------------------------------------------
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/build/assets/fonts/Montserrat-Light-webfont.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+}
+
 // Basic Type Styles
 // --------------------------------------------------
 /*doc
@@ -42,7 +54,7 @@ p {
 
   @include at-least-small-screen-styles {
     margin-top: 55px;
-    margin-bottom: 50px;
+    margin-bottom: 55px;
 
     padding: 0;
   }

@@ -25,6 +25,8 @@ $border-radius-small: 0px !default;
 // --------------------------------------------------
 
 $font-size-base: $src-font-size-base;
+$font-size-large: $src-font-size-base;
+$font-size-small: $src-font-size-small;
 $font-family-base: $src-font-family-heading !default;
 $text-color: $src-very-dark !default;
 
@@ -37,3 +39,11 @@ $btn-default-color: $src-very-bright !default;
 // --------------------------------------------------
 
 $screen-sm: $src-screen-sm;
+
+// Buttons
+// --------------------------------------------------
+$padding-base-vertical: 7px !default;
+$padding-base-horizontal: 14px !default;
+
+$padding-xs-vertical: 3px !default;
+$padding-xs-horizontal: 8px !default;
