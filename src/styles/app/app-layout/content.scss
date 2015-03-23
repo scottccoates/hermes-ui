@@ -16,4 +16,31 @@
   .page-header {
     color: $src-bright;
   }
+
+  .content-enter {
+    // ReactCSSTransitionGroup adds these classes dynamically
+    opacity: 0.01;
+
+    transition: opacity 0.15s linear;
+    //    max-height: 0;
+    //    overflow: hidden;
+    //
+    //    transition: max-height .65s ease;
+
+    &.content-enter-active {
+      opacity: 1;
+      // http://stackoverflow.com/questions/19341546/why-this-css3-transition-on-height-does-not-work
+      //      max-height: 1000px;
+    }
+  }
+
+  .content-leave {
+    opacity: 1;
+
+    transition: opacity 0.15s linear;
+
+    &.content-leave-active {
+      opacity: 0.01;
+    }
+  }
 }

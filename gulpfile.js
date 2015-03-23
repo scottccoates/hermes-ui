@@ -105,17 +105,15 @@ gulp.task('serve', ['browser-sync', 'jsx', 'sass', 'assets'] , function(cb) {
 });
 
 // Delete build Directory
-gulp.task('delete-build', function() {
-  rimraf('./build', function(err) {
-    plugins.util.log(err);
-  });
+gulp.task('delete-build', function(cb) {
+  rimraf('./build', cb);
 });
 
 //build (no server)
 gulp.task('build', ['jsx', 'sass']);
 
 // Default
-gulp.task('default', ['delete-build', 'serve']);
+gulp.task('default', runSequence.call(null, 'delete-build', 'serve'));
 
 // Tests
 gulp.task('test', function(done) {

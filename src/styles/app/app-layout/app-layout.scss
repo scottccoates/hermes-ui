@@ -10,8 +10,6 @@
 @import "footer";
 
 #page-wrapper {
-  @include container-transition;
-
   min-height: 100vh; //http://philipwalton.github.io/solved-by-flexbox/demos/holy-grail/
 
   display: flex;

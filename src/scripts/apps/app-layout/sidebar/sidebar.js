@@ -2,14 +2,14 @@
 
 import React from 'react';
 
-import ScrollContainer from 'src/app/components/scroll-container';
+import ScrollContainer from 'src/libs/components/scroll-container';
 
 import SidebarLogo from './sidebar-logo';
 import SidebarNavSection from './sidebar-nav-section';
 
 export default React.createClass({
 
-  render: function () {
+  render() {
 
     return (
         <nav id="sidebar-wrapper">

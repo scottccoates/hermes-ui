@@ -5,7 +5,7 @@ import nanoScroller from 'nanoscroller';
 import $ from 'jquery';
 
 export default React.createClass({
-  componentDidMount: function () {
+  componentDidMount() {
     // remember to use non-arrow function here because that would bind it to undefined and then `this` wouldn't work.
 
     var scrollContainer = $(this.refs['scroll-container'].getDOMNode());
@@ -13,7 +13,7 @@ export default React.createClass({
     scrollContainer.nanoScroller();
   },
 
-  render: function () {
+  render() {
     return (
         <div ref="scroll-container" {...this.props} className="nano">
           <div className="nano-content">

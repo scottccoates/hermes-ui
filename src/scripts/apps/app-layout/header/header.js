@@ -6,7 +6,7 @@ import HeaderNavSection from './header-nav-section';
 
 export default React.createClass({
 
-  render: function () {
+  render() {
     return (
         <header id="header-wrapper">
           <HeaderSearch/>

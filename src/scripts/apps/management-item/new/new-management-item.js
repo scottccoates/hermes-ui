@@ -3,7 +3,9 @@
 import React from 'react';
 import Router  from 'react-router';
 
-import ComponentProvider from 'src/lib/components/component-provider';
+import ComponentProvider from 'src/libs/components/component-provider';
+
+import Actions from 'src/aggregates/management-item/actions';
 
 const {Link} = Router;
 
@@ -12,6 +14,13 @@ export default function (FileUploadProvider) {
   const FileUploader = FileUploadProvider.componentType;
 
   const component = React.createClass({
+    onAddedFile(file) {
+      Actions.newMIFileUpload(file);
+    },
+
+    onProgressed(progress) {
+      console.log(progress);
+    },
 
     render() {
       return (
@@ -25,7 +34,9 @@ export default function (FileUploadProvider) {
                   </div>
                   <div className="panel-body">
 
-                    <FileUploader url="test/test" className="import-mi-container dropzone">
+                    <FileUploader url="test/test" onAddedFile={this.onAddedFile} onProgressed={this.onProgressed}
+                        addedfile={()=> {
+                        }} className="import-mi-container dropzone">
                       <i className="fa fa-cloud-upload"></i>
                       <div className="primary-import-text">Select a file to upload</div>
                       <div className="secondary-import-text">

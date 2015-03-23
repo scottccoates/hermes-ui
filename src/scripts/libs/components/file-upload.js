@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import ComponentProvider from 'src/lib/components/component-provider';
+import ComponentProvider from 'src/libs/components/component-provider';
 
 import Dropzone from 'dropzone';
 import Immutable from 'immutable';
@@ -10,21 +10,27 @@ import Immutable from 'immutable';
 // Disabling autoDiscover, otherwise Dropzone will try to attach twice.
 Dropzone.autoDiscover = false;
 
-export default function FileUploaderProvider(DropzoneFactory) {
+export default function (DropzoneFactory) {
 
   const component = React.createClass({
-
     propTypes: {
-      onDrop: React.PropTypes.func.isRequired,
       url: React.PropTypes.string.isRequired,
+      onAddedFile: React.PropTypes.func,
+      onProgressed: React.PropTypes.func,
       style: React.PropTypes.object
+    },
+
+    getDefaultProps() {
+      return {
+        onAddedFile: ()=> {},
+        onProgressed: (progress)=> {}
+      }
     },
 
     _configureProps() {
       const propsMap = Immutable.Map(this.props);
 
       this._dropzoneOptions = propsMap.filter((v, k)=>k in Dropzone.prototype.defaultOptions);
-      this._componentOptions = propsMap.filter((v, k)=> !(k in this._dropzoneOptions));
     },
 
     componentWillMount() {
@@ -34,6 +40,9 @@ export default function FileUploaderProvider(DropzoneFactory) {
     componentDidMount() {
       // remember to use non-arrow function here because that would bind it to undefined and then `this` wouldn't work.
       this.dropzone = DropzoneFactory.get(this.getDOMNode(), this._dropzoneOptions.toJS());
+
+      this.dropzone.on('addedfile', this.props.onAddedFile);
+      this.dropzone.on('totaluploadprogress', this.props.onProgressed);
     },
 
     componentWillUnmount() {
@@ -43,7 +52,7 @@ export default function FileUploaderProvider(DropzoneFactory) {
 
     render() {
       return (
-          <form {...this._componentOptions.toJS()}>
+          <form {...this.props}>
             <div className="dz-message">
             {this.props.children}
             </div>

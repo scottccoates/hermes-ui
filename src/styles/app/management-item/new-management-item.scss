@@ -85,8 +85,94 @@
 
     a {
       @include at-least-small-screen-styles {
-        @include font-size(16px);
-        margin-top: 85px;
+        margin-top: 76px;
+      }
+    }
+  }
+
+  .mi-form-section {
+    @include at-least-small-screen-styles {
+      margin-bottom: 105px;
+    }
+
+    &.mi-form-section-save {
+
+      @include at-least-small-screen-styles {
+        margin-bottom: 0;
+      }
+
+      button {
+        margin-right: 20px;
+      }
+    }
+
+    &:hover {
+      .mi-form-advanced-field-button {
+        visibility: visible !important;
+      }
+    }
+
+    h3 {
+
+      @include at-least-small-screen-styles {
+
+        @include font-size(18px);
+        color: $src-bright;
+      }
+    }
+    .mi-form-data-entry {
+
+      .form-group {
+        @include at-least-small-screen-styles {
+          margin-top: 25px;
+        }
+
+        .form-control {
+          @include at-least-small-screen-styles {
+            max-width: 630px;
+          }
+
+          i {
+            float: right;
+
+            @include at-least-small-screen-styles {
+              padding-top: 3px;
+            }
+          }
+        }
+
+        .mi-form-button {
+          text-transform: none;
+
+          &.mi-form-action-button, &.mi-form-expand-button, &.mi-form-advanced-field-button {
+
+            @include at-least-small-screen-styles {
+              float: right;
+            }
+
+            i {
+              @include at-least-small-screen-styles {
+                padding-left: 8px;
+              }
+            }
+          }
+
+          &.mi-form-advanced-field-button {
+            @include at-least-small-screen-styles {
+              margin-top: 25px;
+
+              visibility: hidden;
+            }
+          }
+
+          &.mi-form-field-button {
+
+            @include at-least-small-screen-styles {
+              margin-top: 3px;
+            }
+          }
+        }
+
       }
     }
   }
