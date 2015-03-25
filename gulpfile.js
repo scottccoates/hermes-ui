@@ -78,7 +78,7 @@ gulp.task('serve', ['browser-sync', 'jsx', 'sass', 'assets'] , function(cb) {
       name: 'SASS'
     },
     function() {
-      runSequence('sass','style-guide');
+      runSequence('sass');
     }
   );
 

@@ -70,6 +70,7 @@ parent: main
 @import "app/admin";
 @import "app/apartment";
 @import "app/app-layout/app-layout";
+@import "app/dashboard/dashboard";
 @import "app/footer";
 @import "app/home";
 @import "app/how-it-works";
@@ -77,5 +78,6 @@ parent: main
 @import "app/nav";
 @import "app/result";
 @import "app/search";
+@import "app/task/task";
 @import "app/thank-you";
 @import "app/tos";

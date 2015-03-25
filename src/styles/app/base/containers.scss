@@ -1,5 +1,20 @@
 // Container Styles
 // --------------------------------------------------
+@mixin container-padding {
+  padding: 25px 20px;
+}
+
+@mixin hovering-container-border {
+  box-shadow: 0px 5px 7px 0px rgba(0, 0, 0, 0.20);
+  border: 1px solid rgba(0, 0, 0, 0.10);
+}
+
+@mixin container-font-size {
+  @include font-size(16px);
+}
+
+$container-border-radius: 3px;
+$container-color: $src-less-dark;
 
 // Panels
 // --------------------------------------------------
@@ -36,35 +51,18 @@ parent: patterns
   </div>
 </div>
 */
-@mixin container-padding {
-  padding: 25px 20px;
-}
-
-@mixin hovering-container-border {
-  box-shadow: 0px 5px 7px 0px rgba(0, 0, 0, 0.20);
-  border: 1px solid rgba(0, 0, 0, 0.10);
-}
-
-$container-border-radius: 3px;
-
-$container-color: $src-less-dark;
-
-@mixin container-font-size {
-  @include font-size(16px);
-}
 
 .panel {
   background: $src-very-bright;
   box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.50);
   border-radius: $container-border-radius;
   border: none;
+  color: $container-color;
 
   @include at-least-small-screen-styles {
     @include container-font-size;
     margin-bottom: 0;
   }
-
-  color: $container-color;
 }
 
 .panel-heading {
@@ -136,17 +134,18 @@ parent: patterns
 
   @extend .text-uppercase;
 
-  @include at-least-small-screen-styles {
-    @include container-padding;
-    @include container-font-size;
-  }
-
   background: none;
   border: none;
 
   // subtract because the `.popover` is defining a border width
   border-top-left-radius: $container-border-radius - 1;
   border-top-right-radius: $container-border-radius - 1;
+
+  @include at-least-small-screen-styles {
+    @include container-padding;
+    @include container-font-size;
+  }
+
 }
 
 .popover-body {
@@ -186,7 +185,7 @@ parent: patterns
 <div class="sg-section">
   <h4>Right-sided Dropdown example</h4>
   <div class="sg-dropdown-row row">
-    <div class="col-md-2">
+    <div class="col-md-2 col-md-offset-1">
       <div class="sg-dropdown open pull-right">
        <a data-target="#" href="#" data-toggle="dropdown"><span>Actions</span><i class="fa fa-caret-down"></i></span></a>
        <ul class="dropdown-body dropdown-body-right">
@@ -265,6 +264,46 @@ parent: patterns
       left: auto;
       right: 14px;
     }
+  }
+}
+
+// Simple Containers
+// --------------------------------------------------
+/*doc
+---
+title: Simple Container
+name: simple-container
+parent: patterns
+---
+<div class="sg-section">
+  <h4>Basic example</h4>
+   <div class="row">
+    <div class="col-md-6">
+      <div class="simple-container">
+        Hey there, check out my body!
+      </div>
+    </div>
+  </div>
+</div>
+*/
+.simple-container {
+  background: $src-very-bright;
+
+  border: 1px solid $src-bright;
+
+  color: $src-bright;
+
+  border-radius: $container-border-radius;
+
+  position: relative; //some things inside might be absolute.
+
+  @include at-least-small-screen-styles {
+
+    @include container-font-size;
+
+    @include container-padding;
+    padding-top: $src-simple-container-height-padding;
+    padding-bottom: $src-simple-container-height-padding;
   }
 }
 

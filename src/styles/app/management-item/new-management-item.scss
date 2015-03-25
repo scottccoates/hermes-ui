@@ -1,5 +1,6 @@
 // New MI Layout
 // --------------------------------------------------
+
 #new-mi-wrapper {
 
   .import-mi-panel {
@@ -112,26 +113,15 @@
       }
     }
 
-    h3 {
-
-      @include at-least-small-screen-styles {
-
-        @include font-size(18px);
-        color: $src-bright;
-      }
-    }
     .mi-form-data-entry {
 
       .form-group {
-        @include at-least-small-screen-styles {
-          margin-top: 25px;
+        .control-label {
+          @include at-least-small-screen-styles {
+          }
         }
 
         .form-control {
-          @include at-least-small-screen-styles {
-            max-width: 630px;
-          }
-
           i {
             float: right;
 
@@ -139,6 +129,9 @@
               padding-top: 3px;
             }
           }
+        }
+
+        @include at-least-small-screen-styles {
         }
 
         .mi-form-button {
@@ -172,7 +165,6 @@
             }
           }
         }
-
       }
     }
   }

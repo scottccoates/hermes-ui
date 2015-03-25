@@ -24,9 +24,11 @@ const AppLayout = React.createClass({
           <div id="main-wrapper">
             <Header />
             <div id="content-wrapper">
-              <ReactCSSTransitionGroup transitionName="content" transitionLeave={false}>
-                <RouteHandler key={name}/>
-              </ReactCSSTransitionGroup>
+              <div className="container">
+                <ReactCSSTransitionGroup transitionName="content" transitionLeave={false}>
+                  <RouteHandler key={name}/>
+                </ReactCSSTransitionGroup>
+              </div>
             </div>
             <Footer />
           </div>

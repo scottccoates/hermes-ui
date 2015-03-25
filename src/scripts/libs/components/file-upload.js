@@ -17,13 +17,15 @@ export default function (DropzoneFactory) {
       url: React.PropTypes.string.isRequired,
       onAddedFile: React.PropTypes.func,
       onProgressed: React.PropTypes.func,
+      onComplete: React.PropTypes.func,
       style: React.PropTypes.object
     },
 
     getDefaultProps() {
       return {
         onAddedFile: ()=> {},
-        onProgressed: (progress)=> {}
+        onProgressed: (progress)=> {},
+        onComplete: ()=> {}
       }
     },
 
@@ -43,6 +45,7 @@ export default function (DropzoneFactory) {
 
       this.dropzone.on('addedfile', this.props.onAddedFile);
       this.dropzone.on('totaluploadprogress', this.props.onProgressed);
+      this.dropzone.on('queuecomplete', this.props.onComplete);
     },
 
     componentWillUnmount() {

@@ -1,11 +1,10 @@
 /* jshint -W030 */
 'use strict';
 
-import * as Display from './settings/display';
-import * as Routes from './settings/routes';
+import Routes from './settings/routes';
 
-import './settings/action-handlers';
+// load init scripts - configures things like event handlers
+import 'src/aggregates/init';
+import 'src/apps/init';
 
-
-Display.init();
 Routes.init();

@@ -11,6 +11,7 @@
   color: $src-bright;
 
   @include at-least-small-screen-styles {
+    flex-shrink: 0; //always keep it at the desired width, even if the other items shrink
     width: 240px;
   }
 
@@ -84,7 +85,7 @@
 
           @include at-least-small-screen-styles {
             &:hover {
-              box-shadow: inset 6px 0 $src-more-bright;
+              box-shadow: inset 6px 0 $src-more-brighter;
             }
 
             padding-top: 10px;

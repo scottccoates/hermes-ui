@@ -68,7 +68,7 @@ parent: base
 }
 
 .btn-primary {
-  @include btn($src-more-bright, $src-less-dark, .5);
+  @include btn($src-more-brighter, $src-less-dark, .5);
 
   border-radius: 3px;
 

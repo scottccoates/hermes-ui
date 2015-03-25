@@ -5,7 +5,7 @@ import Router  from 'react-router';
 
 import ComponentProvider from 'src/libs/components/component-provider';
 
-import Actions from 'src/aggregates/management-item/actions';
+import Actions from 'src/apps/management-item/actions';
 
 const {Link} = Router;
 
@@ -19,7 +19,10 @@ export default function (FileUploadProvider) {
     },
 
     onProgressed(progress) {
-      console.log(progress);
+      Actions.newMIFileUpload.progressed(progress);
+    },
+    onComplete() {
+      Actions.newMIFileUpload.completed();
     },
 
     render() {
@@ -34,7 +37,7 @@ export default function (FileUploadProvider) {
                   </div>
                   <div className="panel-body">
 
-                    <FileUploader url="test/test" onAddedFile={this.onAddedFile} onProgressed={this.onProgressed}
+                    <FileUploader url="test/test" onAddedFile={this.onAddedFile} onProgressed={this.onProgressed} onComplete={this.onComplete}
                         addedfile={()=> {
                         }} className="import-mi-container dropzone">
                       <i className="fa fa-cloud-upload"></i>
@@ -54,7 +57,7 @@ export default function (FileUploadProvider) {
                   <h4>
                     <span>Or</span>
                   </h4>
-                  <Link activeClassName={""} to="new" className="btn btn-default btn-lg">Generate New Contract From Template</Link>
+                  <Link activeClassName={""} to="newMI" className="btn btn-default btn-lg">Generate New Contract From Template</Link>
                 </div>
               </div>
             </section>

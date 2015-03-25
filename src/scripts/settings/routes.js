@@ -8,8 +8,12 @@ import container from './di';
 
 import AppLayout from 'src/apps/app-layout/app-layout';
 
+import AsyncRouteHandler from 'src/libs/react-js/async-route-handler';
+
 // Named exports only work for es6, react-router uses common. So we have to use Destructuring instead.
 const {DefaultRoute, Route, HistoryLocation} = Router;
+
+const Dashboard = container.get("Dashboard").componentType;
 
 const MI = container.get("MI").componentType;
 const NewMI = container.get("NewMI").componentType;
@@ -35,10 +39,10 @@ var routes = (
     <Route  handler={AppLayout}>
       <Route name="contracts" handler={MI}>
         <Route name="newMI" path="step_1" handler={NewMI}/>
-        <Route name="MIForm" path="step_2" handler={MIForm}/>
+        <Route name="miForm" path="step_2" handler={MIForm}/>
       </Route>
       <Route name="inbox" handler={Inbox}/>
-      <Route name="new" handler={NewMI}/>
+      <Route name="dashboard" handler={Dashboard}/>
       <Route name="form" handler={MIForm}/>
 
 
@@ -46,8 +50,16 @@ var routes = (
     </Route>
 );
 
-export function init() {
-  Router.run(routes, HistoryLocation, function (Handler) {
-    React.render(<Handler/>, document.getElementById('app'));
-  });
+const router = Router.create({
+  routes: routes,
+  location: HistoryLocation
+});
+
+function init() {
+
+  router.run(AsyncRouteHandler.getHandler('app'));
+
+  return router;
 }
+
+export default {init, router};
