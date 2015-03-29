@@ -16,7 +16,7 @@ export default function (TaskListProvider) {
   const component = React.createClass({
     render() {
       return (
-          <div id="dashboard-wrapper">
+          <div id="dashboard-wrapper" className="container">
             <h1 className="page-header">Dashboard</h1>
             <TaskList/>
           </div>

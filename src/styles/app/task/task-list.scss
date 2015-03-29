@@ -77,18 +77,10 @@
 
       &.task-action-snooze {
         background-color: $src-more-bright;
-
-        @include at-least-small-screen-styles {
-          @extend .col-sm-pull-2;
-        }
       }
 
       &.task-action-edit {
         background-color: $src-even-brighter;
-
-        @include at-least-small-screen-styles {
-          @extend .col-sm-pull-4;
-        }
       }
     }
   }

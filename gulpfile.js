@@ -92,16 +92,6 @@ gulp.task('serve', ['browser-sync', 'jsx', 'sass', 'assets'] , function(cb) {
       gulp.start('jsx');
     }
   );
-
-  plugins.watch(
-    ['./docs/style_guide/**/*.*', '!./docs/style_guide/out/**/*.*'],
-    {
-      name: 'STYLE_GUIDE'
-    },
-    function() {
-      gulp.start('style-guide');
-    }
-  );
 });
 
 // Delete build Directory

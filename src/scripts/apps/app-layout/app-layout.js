@@ -14,6 +14,9 @@ const ReactCSSTransitionGroup = ReactAddons.addons.CSSTransitionGroup;
 const AppLayout = React.createClass({
   mixins: [Router.State],
 
+  componentDidMount() {
+    console.log('i mounted')
+  },
   render() {
     //https://github.com/rackt/react-router/blob/e0a15ebc81d76119935fef27e0ab7d7b024b98fd/examples/animations/app.js
     var name = this.getRoutes().reverse()[0].name;
@@ -24,11 +27,9 @@ const AppLayout = React.createClass({
           <div id="main-wrapper">
             <Header />
             <div id="content-wrapper">
-              <div className="container">
-                <ReactCSSTransitionGroup transitionName="content" transitionLeave={false}>
-                  <RouteHandler key={name}/>
-                </ReactCSSTransitionGroup>
-              </div>
+              <ReactCSSTransitionGroup transitionName="content" transitionLeave={false}>
+                <RouteHandler key={name}/>
+              </ReactCSSTransitionGroup>
             </div>
             <Footer />
           </div>

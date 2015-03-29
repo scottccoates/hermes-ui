@@ -27,10 +27,10 @@ export default function (FileUploadProvider) {
 
     render() {
       return (
-          <div id="new-mi-wrapper">
+          <div id="new-mi-wrapper" className="container-fluid">
             <h1 className="page-header">New Contract</h1>
             <div className="row">
-              <div className="col-md-12">
+              <div className="col-md-24">
                 <div className="panel panel-default import-mi-panel">
                   <div className="panel-heading">
                     Import Contract
@@ -53,7 +53,7 @@ export default function (FileUploadProvider) {
             </div>
             <section className="create-mi-section">
               <div className="row">
-                <div className="col-md-12">
+                <div className="col-md-24">
                   <h4>
                     <span>Or</span>
                   </h4>
