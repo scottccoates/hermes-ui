@@ -13,25 +13,26 @@ System.config({
     "bacon": "npm:baconjs@0.7.53",
     "bootstrap": "github:twbs/bootstrap@3.3.4",
     "dropzone": "npm:dropzone@4.0.1",
+    "eventemitter3": "npm:eventemitter3@0.1.6",
     "immutable": "github:facebook/immutable-js@3.6.4",
     "intravenous": "npm:intravenous@0.1.4-beta",
     "jquery": "github:components/jquery@2.1.3",
     "nanoscroller": "github:jamesflorentino/nanoScrollerJS@0.8.4",
-    "pace": "github:HubSpot/pace@1.0.2",
+    "nprogress": "github:rstacruz/nprogress@0.1.6",
     "react": "npm:react@0.12.2",
     "react-bacon": "npm:react-bacon@0.0.4",
     "react-bootstrap": "npm:react-bootstrap@0.16.1",
     "react-router": "npm:react-router@0.12.4",
     "reflux": "npm:reflux@0.2.7",
     "github:jamesflorentino/nanoScrollerJS@0.8.4": {
-      "css": "github:systemjs/plugin-css@0.1.6",
+      "css": "github:systemjs/plugin-css@0.1.7",
       "jquery": "github:components/jquery@2.1.3"
     },
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.3.0"
     },
     "github:jspm/nodelibs-buffer@0.1.0": {
-      "buffer": "npm:buffer@3.1.1"
+      "buffer": "npm:buffer@3.1.2"
     },
     "github:jspm/nodelibs-events@0.1.0": {
       "events-browserify": "npm:events-browserify@0.0.1"
@@ -65,13 +66,16 @@ System.config({
     "github:jspm/nodelibs-util@0.1.0": {
       "util": "npm:util@0.10.3"
     },
-    "github:systemjs/plugin-css@0.1.6": {
+    "github:rstacruz/nprogress@0.1.6": {
+      "css": "github:systemjs/plugin-css@0.1.7"
+    },
+    "github:systemjs/plugin-css@0.1.7": {
       "clean-css": "npm:clean-css@3.0.10",
       "fs": "github:jspm/nodelibs-fs@0.1.2",
       "path": "github:jspm/nodelibs-path@0.1.0"
     },
     "github:twbs/bootstrap@3.3.4": {
-      "css": "github:systemjs/plugin-css@0.1.6",
+      "css": "github:systemjs/plugin-css@0.1.7",
       "jquery": "github:components/jquery@2.1.3"
     },
     "npm:amdefine@0.1.0": {
@@ -90,7 +94,7 @@ System.config({
       "path": "github:jspm/nodelibs-path@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
-    "npm:buffer@3.1.1": {
+    "npm:buffer@3.1.2": {
       "base64-js": "npm:base64-js@0.0.8",
       "ieee754": "npm:ieee754@1.1.4",
       "is-array": "npm:is-array@1.0.1"

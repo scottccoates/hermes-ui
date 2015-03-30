@@ -9,6 +9,11 @@ import MI from 'src/apps/management-item/management-item';
 import NewMI from 'src/apps/management-item/new/new-management-item';
 import MIForm from 'src/apps/management-item/new/management-item-form';
 
+import Dashboard from 'src/apps/dashboard/dashboard';
+
+import TaskList from 'src/apps/task/list/task-list';
+
+
 import Dropzone from 'dropzone';
 import NoOpDropzone from 'src/libs/file-upload/no-op-dropzone';
 
@@ -18,16 +23,22 @@ const container = Intravenous.create({
   }
 });
 
-container.register("MI", MI);
+container.register("Dashboard", Dashboard);
 
-NewMI.$inject = ["FileUpload"];
+container.register("TaskList", TaskList);
+
 container.register("NewMI", NewMI);
 
+container.register("MI", MI);
 container.register("MIForm", MIForm);
 
-FileUpload.$inject = ["DropzoneFactory"];
 container.register("FileUpload", FileUpload);
 container.register("Dropzone", NoOpDropzone);
 
-export default container;
+NewMI.$inject = ["FileUpload"];
 
+FileUpload.$inject = ["DropzoneFactory"];
+
+Dashboard.$inject = ["TaskList"];
+
+export default container;

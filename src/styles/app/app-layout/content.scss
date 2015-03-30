@@ -3,18 +3,18 @@
 #content-wrapper {
   background-color: $src-brighter;
 
-  // make it grow as needed.
+  // make it grow as needed. This keeps the footer at the bottom.
   flex-grow: 1;
 
   @include at-least-small-screen-styles {
     padding-left: $main-wrapper-padding;
     padding-right: $main-wrapper-padding;
 
-    padding-bottom: 300px;
+    padding-bottom: 60px;
   }
 
-  .page-header {
-    color: $src-bright;
+  .container{
+    margin-left: 0;
   }
 
   .content-enter {
@@ -41,6 +41,35 @@
 
     &.content-leave-active {
       opacity: 0.01;
+    }
+  }
+
+  .page-header {
+    color: $src-bright;
+  }
+
+  .section-container {
+
+    @include at-least-small-screen-styles {
+      margin-top: $src-section-container-margin;
+      margin-bottom: $src-section-container-margin;
+    }
+  }
+
+  .section-header {
+
+    @include at-least-small-screen-styles {
+
+      @include font-size(18px);
+      color: $src-bright;
+
+      margin-bottom: 25px; // Doesn't affect forms with margin collapse.
+    }
+  }
+
+  .section-item {
+    @include at-least-small-screen-styles {
+      margin-top: 25px;
     }
   }
 }

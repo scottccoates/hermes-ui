@@ -40,9 +40,9 @@ parent: 1foundation
         </span>
     </div>
     <div class="sg-color sg-lg">
-        <span class="src-more-bright sg-color-swatch">
+        <span class="src-more-brighter sg-color-swatch">
         <span class="sg-animated">
-          more bright
+          more brighter
         </span>
         </span>
     </div>
@@ -93,6 +93,13 @@ parent: 1foundation
   </span>
         </span>
     </div>
+    <div class="sg-color">
+        <span class="sg-color-swatch src-more-bright">
+        <span class="sg-animated">
+          more bright
+  </span>
+        </span>
+    </div>
 </div>
 */
 
@@ -138,6 +145,10 @@ parent: 1foundation
 
 .src-more-bright {
   background-color: $src-more-bright;
+}
+
+.src-more-brighter {
+  background-color: $src-more-brighter;
 }
 
 .src-very-bright {

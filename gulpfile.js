@@ -78,7 +78,7 @@ gulp.task('serve', ['browser-sync', 'jsx', 'sass', 'assets'] , function(cb) {
       name: 'SASS'
     },
     function() {
-      runSequence('sass','style-guide');
+      runSequence('sass');
     }
   );
 
@@ -90,16 +90,6 @@ gulp.task('serve', ['browser-sync', 'jsx', 'sass', 'assets'] , function(cb) {
     function() {
       // notes on gulp.start: http://stackoverflow.com/questions/21905875/gulp-run-is-deprecated-how-do-i-compose-tasks
       gulp.start('jsx');
-    }
-  );
-
-  plugins.watch(
-    ['./docs/style_guide/**/*.*', '!./docs/style_guide/out/**/*.*'],
-    {
-      name: 'STYLE_GUIDE'
-    },
-    function() {
-      gulp.start('style-guide');
     }
   );
 });

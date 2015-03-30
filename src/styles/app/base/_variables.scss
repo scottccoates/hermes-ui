@@ -18,6 +18,7 @@ $shrugs: #D8E2EB !default;
 $glass: #EBF1F5 !default;
 $grape-taffy: #AD6BAE !default;
 $aquas: #4DBAC0 !default;
+$fanta: #F77626 !default;
 $sky-blue: #25A6F7 !default;
 $white: #FFF !default;
 
@@ -31,7 +32,8 @@ $src-slightly-brighter: rgba($src-bright, .20) !default;
 $src-brighter: $glass !default;
 $src-medium-bright: $grape-taffy !default;
 $src-even-brighter: $aquas !default;
-$src-more-bright: $sky-blue !default;
+$src-more-bright: $fanta !default;
+$src-more-brighter: $sky-blue !default;
 $src-very-bright: $white !default;
 
 // Font
@@ -44,8 +46,15 @@ $src-font-family-content: 'Source Sans Pro', Helvetica, Arial, sans-serif !defau
 
 // Container
 // --------------------------------------------------
+$src-section-container-margin: 55px;
+
+$src-simple-container-height-padding: 14px;
+
+// Separator
+// --------------------------------------------------
+$src-separator-margin: 22px;
 
 // Responsive Viewing
 // --------------------------------------------------
-
+$src-grid-columns: 24;
 $src-screen-sm: 768px !default;
