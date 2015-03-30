@@ -1,4 +1,4 @@
-import MIActions from 'src/apps/management-item/actions';
+import MIActions from 'src/apps/management-item/actions/actions';
 
 import Routes from 'src/settings/routes';
 

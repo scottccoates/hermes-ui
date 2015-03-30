@@ -1,0 +1,15 @@
+// Feedback Styles
+// --------------------------------------------------
+
+// Loading Progress
+// --------------------------------------------------
+
+body #nprogress {
+  .bar {
+    background: $src-more-brighter;
+  }
+
+  .peg {
+    box-shadow: 0 0 10px $src-more-brighter, 0 0 5px $src-more-brighter;
+  }
+}

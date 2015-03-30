@@ -6,7 +6,7 @@ import Router  from 'react-router';
 
 import container from './di';
 
-import AppLayout from 'src/apps/app-layout/app-layout';
+import AppLayout from 'src/apps/app-layout/components/app-layout';
 
 import AsyncRouteHandler from 'src/libs/react-js/async-route-handler';
 
@@ -37,14 +37,15 @@ const Inbox = React.createClass({
 
 var routes = (
     <Route  handler={AppLayout}>
+
       <Route name="contracts" handler={MI}>
         <Route name="newMI" path="step_1" handler={NewMI}/>
         <Route name="miForm" path="step_2" handler={MIForm}/>
       </Route>
+
       <Route name="inbox" handler={Inbox}/>
       <Route name="dashboard" handler={Dashboard}/>
       <Route name="form" handler={MIForm}/>
-
 
       <DefaultRoute handler={Inbox}/>
     </Route>
@@ -57,6 +58,9 @@ const router = Router.create({
 
 function init() {
 
+  const asyncRoutes = {
+
+  };
   router.run(AsyncRouteHandler.getHandler('app'));
 
   return router;
