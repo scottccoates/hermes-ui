@@ -13,6 +13,7 @@
       "react": "npm:react@0.12.2",
       "react-bacon": "npm:react-bacon@0.0.4",
       "react-bootstrap": "npm:react-bootstrap@0.16.1",
+      "react-immutable-render-mixin": "npm:react-immutable-render-mixin@0.8.0",
       "react-router": "npm:react-router@0.12.4",
       "reflux": "npm:reflux@0.2.7"
     }

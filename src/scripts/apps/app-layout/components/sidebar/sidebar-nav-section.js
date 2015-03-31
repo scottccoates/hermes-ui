@@ -1,6 +1,9 @@
 'use strict';
 
 import React from 'react';
+import Router  from 'react-router';
+
+const {Link} = Router;
 
 export default React.createClass({
 
@@ -10,7 +13,7 @@ export default React.createClass({
           <ul>
             <li>
               <i className="fa fa-home"></i>
-              <span>Dashboard</span>
+              <Link to="dashboard">Dashboard</Link>
             </li>
             <li>
               <i className="fa fa-file-text"></i>

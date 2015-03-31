@@ -5,13 +5,13 @@ import Router  from 'react-router';
 
 import ComponentProvider from 'src/libs/components/component-provider';
 
-import Actions from 'src/apps/management-item/actions';
+import Actions from 'src/apps/management-item/actions/actions';
 
 const {Link} = Router;
 
-export default function (FileUploadProvider) {
+export default function (fileUploadProvider) {
 
-  const FileUploader = FileUploadProvider.componentType;
+  const FileUploader = fileUploadProvider.componentType;
 
   const component = React.createClass({
     onAddedFile(file) {

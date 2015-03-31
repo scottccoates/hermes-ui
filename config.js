@@ -22,6 +22,7 @@ System.config({
     "react": "npm:react@0.12.2",
     "react-bacon": "npm:react-bacon@0.0.4",
     "react-bootstrap": "npm:react-bootstrap@0.16.1",
+    "react-immutable-render-mixin": "npm:react-immutable-render-mixin@0.8.0",
     "react-router": "npm:react-router@0.12.4",
     "reflux": "npm:reflux@0.2.7",
     "github:jamesflorentino/nanoScrollerJS@0.8.4": {
@@ -176,6 +177,9 @@ System.config({
     },
     "npm:react-bootstrap@0.16.1": {
       "react": "npm:react@0.12.2"
+    },
+    "npm:react-immutable-render-mixin@0.8.0": {
+      "immutable": "npm:immutable@3.7.1"
     },
     "npm:react-router@0.12.4": {
       "process": "github:jspm/nodelibs-process@0.1.1",
