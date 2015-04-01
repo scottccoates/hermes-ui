@@ -307,6 +307,11 @@ parent: patterns
   }
 }
 
+.simple-container-bottom{
+  border:none;
+  border-bottom: 1px solid $src-bright;
+}
+
 // File Upload
 // --------------------------------------------------
 .dropzone {
@@ -329,17 +334,8 @@ parent: patterns
   }
 }
 
-// ...
+// Sections
 // --------------------------------------------------
-.section {
-  border-bottom: 1px solid $src-very-dark;
-  @include box-shadow(0px 1px $src-very-dark);
-}
-
-.alt-section {
-  @extend .section;
-  background: $gray-lighter url('../images/bg/handmadepaper.png');
-}
 
 .web-app-body {
   border-bottom: none;

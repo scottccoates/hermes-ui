@@ -13,8 +13,9 @@
     padding-bottom: 60px;
   }
 
-  .container{
+  .container {
     margin-left: 0;
+    padding: 0;
   }
 
   .content-enter {
@@ -44,8 +45,23 @@
     }
   }
 
-  .page-header {
-    color: $src-bright;
+  .section {
+    @include at-least-small-screen-styles {
+      padding-bottom: $src-section-container-margin;
+    }
+  }
+
+  .alt-section {
+    border-top: 2px solid $src-bright;
+    background: $src-very-bright;
+
+    @include at-least-small-screen-styles {
+      margin-left: -$main-wrapper-padding;
+      margin-right: -$main-wrapper-padding;
+
+      padding-left: $main-wrapper-padding;
+      padding-right: $main-wrapper-padding;
+    }
   }
 
   .section-container {

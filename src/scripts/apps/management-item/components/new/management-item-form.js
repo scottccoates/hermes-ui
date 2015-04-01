@@ -155,7 +155,7 @@ export default function () {
               </div>
             </section>
             <section className="row mi-form-section section-container mi-form-section-save">
-              <div className="col-md-24f">
+              <div className="col-md-24">
                 <button className="btn btn-default">Save
                 </button>
                 <button className="btn btn-primary">Save and Close

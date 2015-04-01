@@ -1,10 +1,11 @@
 System.config({
+  "baseURL": "/",
   "transpiler": "babel",
   "paths": {
     "*": "*.js",
-    "src/*": "/build/js/*.js",
-    "github:*": "/jspm_packages/github/*.js",
-    "npm:*": "/jspm_packages/npm/*.js"
+    "src/*": "build/js/*.js",
+    "github:*": "jspm_packages/github/*.js",
+    "npm:*": "jspm_packages/npm/*.js"
   }
 });
 
@@ -15,7 +16,7 @@ System.config({
     "dropzone": "npm:dropzone@4.0.1",
     "eventemitter3": "npm:eventemitter3@0.1.6",
     "immutable": "github:facebook/immutable-js@3.6.4",
-    "intravenous": "npm:intravenous@0.1.4-beta",
+    "intravenous": "github:willow/intravenous@master",
     "jquery": "github:components/jquery@2.1.3",
     "nanoscroller": "github:jamesflorentino/nanoScrollerJS@0.8.4",
     "nprogress": "github:rstacruz/nprogress@0.1.6",
@@ -25,6 +26,7 @@ System.config({
     "react-immutable-render-mixin": "npm:react-immutable-render-mixin@0.8.0",
     "react-router": "npm:react-router@0.12.4",
     "reflux": "npm:reflux@0.2.7",
+    "willow/intravenous": "github:willow/intravenous@master",
     "github:jamesflorentino/nanoScrollerJS@0.8.4": {
       "css": "github:systemjs/plugin-css@0.1.7",
       "jquery": "github:components/jquery@2.1.3"

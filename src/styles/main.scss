@@ -67,6 +67,7 @@ parent: main
 @import "app/base/typography";
 
 // Bring in our feature-specific styling
+@import "app/activity/activity";
 @import "app/about-us";
 @import "app/admin";
 @import "app/apartment";

@@ -13,6 +13,10 @@
   border-bottom: 1px solid $src-bright;
   line-height: 0.1em;
   text-align: center;
+
+  @include at-least-small-screen-styles {
+    margin-top: $src-section-container-margin - $src-separator-margin;
+  }
 }
 
 .separator-body {
@@ -41,3 +45,8 @@
     }
   }
 }
+
+.alt-separator-body {
+  background-color: $src-very-bright;
+}
+

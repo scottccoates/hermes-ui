@@ -3,20 +3,21 @@ import Reflux from 'reflux';
 import LoadingFeedback from 'src/apps/feedback/components/loading/loading-feedback';
 
 import MIActions from 'src/apps/management-item/actions/actions';
-import TaskActions from 'src/apps/task/actions/actions';
+import ReactMixinActions from 'src/libs/react-js/actions/actions';
 
 MIActions.newMIFileUpload.listen((file)=> {
   LoadingFeedback.start();
 });
 
 MIActions.newMIFileUpload.progressed.listen((progress)=> {
-  LoadingFeedback.set(progress / 100);
+  LoadingFeedback.setProgress(progress / 100);
 });
 
 MIActions.newMIFileUpload.completed.listen(()=> {
-  console.log('yay');
+  LoadingFeedback.done();
+
 });
 
-TaskActions.loadTasks.listen(LoadingFeedback.start);
+ReactMixinActions.dataTransition.listen(LoadingFeedback.start);
 
-TaskActions.loadTasks.completed.listen(LoadingFeedback.done);
+ReactMixinActions.dataTransition.completed.listen(LoadingFeedback.done);

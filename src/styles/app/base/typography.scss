@@ -43,7 +43,7 @@ h1, h2, h3, h4, h5, h6 {
 a {
   color: $src-more-brighter;
 
-  &:hover{
+  &:hover {
     color: $src-more-brighter;
   }
 }
@@ -58,6 +58,7 @@ p {
 }
 
 .page-header {
+  color: $src-less-dark;
   border: none;
 
   @include at-least-small-screen-styles {
@@ -69,8 +70,12 @@ p {
 }
 
 h1 {
+
   &.page-header {
-    @include font-size(24px);
+
+    @include at-least-small-screen-styles {
+      @include font-size(24px);
+    }
   }
 }
 
