@@ -1,52 +1,66 @@
-#task-list-wrapper {
+#activity-list-wrapper {
 
   .simple-container {
-    @include clearfix;
+    color: #707C94;
 
-    &:hover, &.hover {
-      background-color: $src-less-dark;
-      border-color: $src-less-dark;
-      border-right-color: $src-more-brighter;
-      color: $src-very-bright;
-
-      .task-action {
-        @include at-least-small-screen-styles {
-          display: block;
-        }
-      }
+    @include at-least-small-screen-styles {
+      padding-left: 0;
     }
+
+    @include clearfix;
 
     i {
 
       @include at-least-small-screen-styles {
         position: absolute;
+        @include font-size(28px);
       }
 
-      &.fa-calendar {
+      &.fa-edit {
         @include at-least-small-screen-styles {
-          @include font-size(40px);
-          top: -9px;
+          top: -2px;
         }
       }
 
-      &.fa-exclamation-circle {
+      &.fa-comment-o {
         @include at-least-small-screen-styles {
-          @include font-size(44px);
-          top: -12px;
+          top: -5px;
         }
       }
 
-      &.fa-refresh {
+      &.fa-plus-square-o {
         @include at-least-small-screen-styles {
-          @include font-size(44px);
-          top: -11px;
+          top: -2px;
         }
       }
     }
 
-    .task-content {
+    .activity-action {
       @include at-least-small-screen-styles {
         padding-left: 0;
+      }
+    }
+
+    .activity-profile-image {
+      @include at-least-small-screen-styles {
+        position: absolute;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        top: -4px;
+        left: 7px
+      }
+    }
+
+    .activity-content {
+
+      @include at-least-small-screen-styles {
+        padding-left: 14px;
+      }
+
+      strong {
+        color: $src-very-dark;
+        font-weight: normal;
       }
     }
 

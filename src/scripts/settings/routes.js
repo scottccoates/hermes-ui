@@ -8,7 +8,7 @@ import container from './di';
 
 import AppLayout from 'src/apps/app-layout/components/app-layout';
 
-import AsyncRouteHandler from 'src/libs/react-js/async-route-handler';
+import AsyncRouteHandler from 'src/libs/react-js/routing/async-route-handler';
 
 // Named exports only work for es6, react-router uses common. So we have to use Destructuring instead.
 const {DefaultRoute, Route, HistoryLocation} = Router;
@@ -56,14 +56,6 @@ const router = Router.create({
   location: HistoryLocation
 });
 
-function init() {
+router.run(AsyncRouteHandler.getHandler('app'));
 
-  const asyncRoutes = {
-
-  };
-  router.run(AsyncRouteHandler.getHandler('app'));
-
-  return router;
-}
-
-export default {init, router};
+export default {router};

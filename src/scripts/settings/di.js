@@ -13,8 +13,13 @@ import Dashboard from 'src/apps/dashboard/components/dashboard';
 
 import TaskList from 'src/apps/task/components/task-list';
 import TaskItem from 'src/apps/task/components/task-item';
-
 import TaskListStore from 'src/apps/task/stores/task-list-store';
+import TaskAPI from 'src/aggregates/task/api/task-api';
+
+import ActivityList from 'src/apps/activity/components/activity-list';
+import ActivityItem from 'src/apps/activity/components/activity-item';
+import ActivityListStore from 'src/apps/activity/stores/activity-list-store';
+import ActivityAPI from 'src/aggregates/activity/api/activity-api';
 
 import Dropzone from 'dropzone';
 import NoOpDropzone from 'src/libs/file-upload/no-op-dropzone';
@@ -29,7 +34,13 @@ container.register("Dashboard", Dashboard);
 
 container.register("TaskList", TaskList);
 container.register("TaskItem", TaskItem);
-container.register("TaskListStore", TaskListStore);
+container.register("TaskListStore", TaskListStore, "singleton"); //http://www.royjacobs.org/intravenous/#how_can_i_control_the_lifecycle_of_a_service
+container.register("TaskAPI", TaskAPI);
+
+container.register("ActivityList", ActivityList);
+container.register("ActivityItem", ActivityItem);
+container.register("ActivityListStore", ActivityListStore, "singleton"); //http://www.royjacobs.org/intravenous/#how_can_i_control_the_lifecycle_of_a_service
+container.register("ActivityAPI", ActivityAPI);
 
 container.register("NewMI", NewMI);
 
@@ -43,8 +54,10 @@ NewMI.$inject = ["FileUpload"];
 
 FileUpload.$inject = ["DropzoneFactory"];
 
-Dashboard.$inject = ["TaskList", "TaskListStore"];
+Dashboard.$inject = ["TaskList", "TaskListStore", "ActivityList", "ActivityListStore"];
 
 TaskList.$inject = ["TaskItem"];
+
+ActivityList.$inject = ["ActivityItem"];
 
 export default container;

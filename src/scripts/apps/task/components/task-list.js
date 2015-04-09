@@ -36,13 +36,11 @@ export default function (TaskItemProvider) {
 
       return (
           <div id="task-list-wrapper">
-            <section className="row section-container">
+            <section className="row">
               <div className="col-sm-24">
                 <h3 className="section-header">Upcoming Tasks</h3>
-                  {taskNodes}
-                <div className="section-item task-list-separator">
-                  <Separator/>
-                </div>
+                {taskNodes}
+                <Separator/>
               </div>
             </section>
           </div>

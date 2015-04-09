@@ -2,11 +2,11 @@ import Reflux from 'reflux';
 
 import Immutable from 'immutable';
 
-import TaskActions from 'src/aggregates/task/actions/actions';
+import ActivityActions from 'src/aggregates/activity/actions/actions';
 
 export default function () {
-  const taskListStore = Reflux.createStore({
-    listenables: TaskActions,
+  const activityListStore = Reflux.createStore({
+    listenables: ActivityActions,
 
     _data: Immutable.List(),
 
@@ -18,11 +18,11 @@ export default function () {
       return this._data;
     },
 
-    onLoadTasksCompleted(tasks) {
-      this._data = Immutable.List(tasks);
+    onLoadActivitiesCompleted(activities) {
+      this._data = Immutable.List(activities);
       this.trigger(this._data);
     }
   });
 
-  return taskListStore;
+  return activityListStore;
 }
