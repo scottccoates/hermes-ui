@@ -2,9 +2,6 @@
 
 import React from 'react';
 import Router  from 'react-router';
-import EventEmitter from 'eventemitter3';
-
-const loadingEvents = new EventEmitter();
 
 function fetchData(routes, params) {
   const data = {};
@@ -21,7 +18,6 @@ function fetchData(routes, params) {
 
 function getHandler(containerId) {
   return (Handler, state) => {
-    loadingEvents.emit('loadStart');
 
     React.render(<Handler/>, document.getElementById(containerId));
   };

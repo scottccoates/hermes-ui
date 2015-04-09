@@ -14,7 +14,6 @@ System.config({
     "bacon": "npm:baconjs@0.7.53",
     "bootstrap": "github:twbs/bootstrap@3.3.4",
     "dropzone": "npm:dropzone@4.0.1",
-    "eventemitter3": "npm:eventemitter3@0.1.6",
     "immutable": "github:facebook/immutable-js@3.6.4",
     "intravenous": "github:willow/intravenous@master",
     "jquery": "github:components/jquery@2.1.3",
@@ -26,7 +25,6 @@ System.config({
     "react-immutable-render-mixin": "npm:react-immutable-render-mixin@0.8.0",
     "react-router": "npm:react-router@0.12.4",
     "reflux": "npm:reflux@0.2.7",
-    "willow/intravenous": "github:willow/intravenous@master",
     "github:jamesflorentino/nanoScrollerJS@0.8.4": {
       "css": "github:systemjs/plugin-css@0.1.7",
       "jquery": "github:components/jquery@2.1.3"

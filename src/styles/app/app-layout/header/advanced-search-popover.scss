@@ -1,0 +1,174 @@
+$advanced-header-font-size: 14px;
+$input-field-size: 28px;
+
+.advanced-search-popover {
+  @include at-least-small-screen-styles {
+    top: $header-search-height;
+    width: $header-search-width;
+    @include font-size($advanced-header-font-size);
+  }
+
+  .popover-heading {
+    @include at-least-small-screen-styles {
+      @include font-size($advanced-header-font-size);
+    }
+  }
+
+  .popover-body {
+    @include at-least-small-screen-styles {
+      margin: 0;
+      padding: 0;
+    }
+
+    & > ul {
+      // first layer
+      list-style: none;
+
+      @include at-least-small-screen-styles {
+        margin: 0;
+        padding: 0;
+      }
+
+      .search-field {
+
+        &:hover {
+          background-color: $src-slightly-brighter;
+        }
+
+        &.empty {
+          &:not(.focused) {
+
+            .search-field-value {
+              border-bottom: solid 1px $src-bright;
+              height: 16px;
+            }
+
+            .search-field-text-value {
+              display: none;
+            }
+          }
+        }
+
+        &:not(.empty) {
+          i {
+            color: $src-more-brighter;
+          }
+        }
+
+        &.focused {
+
+          .search-field-value {
+
+            .search-field-text-value {
+              @include at-least-small-screen-styles {
+                display: none;
+              }
+            }
+
+            .search-field-text-input-value {
+              @include at-least-small-screen-styles {
+                display: block;
+              }
+            }
+          }
+        }
+
+        &.more-fields-link {
+
+          .search-field-label {
+            @include at-least-small-screen-styles {
+              margin-right: 4px;
+            }
+          }
+
+          i {
+            color: $src-less-dark;
+            &.more-fields-icon {
+              @include at-least-small-screen-styles {
+                @include font-size(8px);
+              }
+            }
+          }
+        }
+
+        @include at-least-small-screen-styles {
+          display: flex;
+
+          align-items: center;
+
+          @include container-padding;
+          padding-top: $src-simple-container-height-padding;
+          padding-bottom: $src-simple-container-height-padding;
+
+          height: 50px;
+        }
+
+        i {
+          @include at-least-small-screen-styles {
+            width: $advanced-header-font-size;
+            margin-right: 12px;
+          }
+        }
+
+        .search-field-label {
+
+          @include at-least-small-screen-styles {
+            margin-right: 12px;
+          }
+        }
+
+        .search-field-value {
+          cursor: text;
+          border-bottom: 1px solid transparent;
+
+          @include at-least-small-screen-styles {
+            flex-grow: 1;
+          }
+
+          .search-field-text-value {
+            @include at-least-small-screen-styles {
+              // line up with text box
+              padding-left: 15px;
+            }
+          }
+
+          .search-field-text-input-value {
+            @include at-least-small-screen-styles {
+              display: none;
+              @include font-size($advanced-header-font-size);
+              height: $input-field-size;
+            }
+          }
+        }
+
+        .search-field-date-input-value {
+          @include at-least-small-screen-styles {
+
+            @include font-size($advanced-header-font-size);
+            height: $input-field-size;
+            width: 80px;
+            margin-right: 12px;
+          }
+        }
+
+        .search-field-button {
+          text-transform: none;
+        }
+      }
+
+    }
+
+    .advanced-search-button {
+      @include at-least-small-screen-styles {
+        @include container-padding;
+        padding-top: $src-simple-container-height-padding;
+        padding-bottom: $src-simple-container-height-padding;
+      }
+
+      .btn-primary{
+        text-transform: none;
+      }
+    }
+  }
+}
+

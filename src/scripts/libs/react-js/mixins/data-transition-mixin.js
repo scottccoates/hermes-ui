@@ -24,16 +24,12 @@ const dataTransitionMixin = (dataActions)=> {
 
     statics: {
 
-      willTransitionTo(transition, params, query, callback) {
+      willTransitionTo(transition, params) {
 
         const actions = dataActions.reduce((accum, dataAction)=> {
           accum.push(doTransition(...dataAction));
           return accum;
         }, []);
-
-        Promise.all(actions).then(()=>{
-          callback();
-        });
       }
     }
   };
