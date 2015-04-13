@@ -1,7 +1,16 @@
 #dashboard-wrapper {
-  #activity-list-wrapper{
-    .separator-body{
-      background-color: $src-very-bright;
+
+  .activity-list-section {
+
+    @include at-least-small-screen-styles {
+      margin-bottom: -$content-padding;
+    }
+
+    #activity-list-wrapper {
+
+      .separator-body {
+        background-color: $src-very-bright;
+      }
     }
   }
 }

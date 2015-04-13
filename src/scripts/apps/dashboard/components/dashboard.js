@@ -42,7 +42,7 @@ export default function (taskListProvider, taskListStore, activityListProvider, 
               </div>
             </div>
 
-            <div className="section alt-section">
+            <div className="section alt-section activity-list-section">
               <div className="container">
                 <div className="section-container">
                   <ActivityList activities={this.state.activities}/>

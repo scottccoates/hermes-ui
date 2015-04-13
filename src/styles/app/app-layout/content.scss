@@ -1,3 +1,5 @@
+$content-padding: 60px;
+
 // Content Layout
 // --------------------------------------------------
 #content-wrapper {
@@ -10,7 +12,7 @@
     padding-left: $main-wrapper-padding;
     padding-right: $main-wrapper-padding;
 
-    padding-bottom: 60px;
+    padding-bottom: $content-padding;
   }
 
   .container {
