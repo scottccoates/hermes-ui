@@ -9,10 +9,6 @@
   border: 1px solid rgba(0, 0, 0, 0.10);
 }
 
-@mixin container-font-size {
-  @include font-size(16px);
-}
-
 $container-border-radius: 3px;
 $container-color: $src-less-dark;
 
@@ -60,7 +56,6 @@ parent: patterns
   color: $container-color;
 
   @include at-least-small-screen-styles {
-    @include container-font-size;
     margin-bottom: 0;
   }
 }
@@ -117,6 +112,8 @@ parent: patterns
 </div>
 */
 .popover {
+  display: block;
+
   background: $src-very-bright;
   border-radius: $container-border-radius;
 
@@ -143,7 +140,6 @@ parent: patterns
 
   @include at-least-small-screen-styles {
     @include container-padding;
-    @include container-font-size;
   }
 
 }
@@ -153,7 +149,6 @@ parent: patterns
 
   @include at-least-small-screen-styles {
     @include container-padding;
-    @include container-font-size;
   }
 }
 
@@ -208,8 +203,6 @@ parent: patterns
   @include hovering-container-border;
 
   @include at-least-small-screen-styles {
-    @include container-font-size;
-
     padding: 11px 0;
 
     margin-top: 10px;
@@ -298,8 +291,6 @@ parent: patterns
   position: relative; //some things inside might be absolute.
 
   @include at-least-small-screen-styles {
-
-    @include container-font-size;
 
     @include container-padding;
     padding-top: $src-simple-container-height-padding;

@@ -3,6 +3,11 @@
 $header-height: 68px;
 $header-wrapper-bottom-border-height: 2px;
 
+$header-search-height: 40px;
+$header-search-width: 552px;
+
+$header-font-size: 18px;
+
 @mixin bright-header-color {
   color: $src-bright;
 }
@@ -16,20 +21,19 @@ $header-wrapper-bottom-border-height: 2px;
 }
 
 #header-wrapper {
-  display: flex;
-
   border-bottom: $header-wrapper-bottom-border-height solid $src-bright;
   background-color: $src-very-bright;
 
   align-items: center;
 
   @include at-least-small-screen-styles {
+    display: flex;
     height: $header-height;
 
     padding-left: $main-wrapper-padding;
     padding-right: $main-wrapper-padding;
 
-    @include font-size(18px);
+    @include font-size($header-font-size);
   }
 
   .header-search {
@@ -45,7 +49,9 @@ $header-wrapper-bottom-border-height: 2px;
 
         position: absolute;
         top: 10px;
-        left: 10px;
+        left: 20px;
+
+        width: $header-font-size;
       }
     }
 
@@ -56,26 +62,23 @@ $header-wrapper-bottom-border-height: 2px;
       border-radius: 3px;
 
       @include at-least-small-screen-styles {
-        height: 40px;
-        padding-left: 46px;
+        height: $header-search-height;
+        padding-left: 50px;
 
-        width: 552px;
+        width: $header-search-width;
       }
 
       &::placeholder {
         @include bright-header-color;
       }
 
-      &:hover {
-        background-color: $src-slightly-brighter;
-      }
-
       &:focus {
-        outline: none;
-        box-shadow: 0px 0px 5px 1px rgba(31, 141, 214, 0.3);
-        background-color: $src-slightly-brighter;
+        @include input-focus();
       }
     }
+
+    @import "search-popover";
+    @import "advanced-search-popover";
   }
 
   .header-nav-section {
