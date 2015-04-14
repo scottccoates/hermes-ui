@@ -4,7 +4,7 @@ import React from 'react';
 import Router  from 'react-router';
 import Reflux from 'reflux';
 
-import ComponentProvider from 'src/libs/components/component-provider';
+import ComponentProvider from 'src/libs/react-js/components/component-provider';
 
 import DataTransitionMixin from 'src/libs/react-js/mixins/data-transition-mixin';
 

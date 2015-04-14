@@ -1,10 +1,10 @@
 $advanced-header-font-size: 14px;
-$input-field-size: 28px;
+$advanced-input-field-size: 28px;
 
 .advanced-search-popover {
   @include at-least-small-screen-styles {
     top: $header-search-height;
-    width: $header-search-width;
+    width: 798px; // should be $header-search-width?
     @include font-size($advanced-header-font-size);
   }
 
@@ -44,7 +44,9 @@ $input-field-size: 28px;
             }
 
             .search-field-text-value {
-              display: none;
+              @include at-least-small-screen-styles {
+                display: none;
+              }
             }
           }
         }
@@ -65,7 +67,7 @@ $input-field-size: 28px;
               }
             }
 
-            .search-field-text-input-value {
+            .search-field-text-input-value, .search-field-apollo-tagsinput {
               @include at-least-small-screen-styles {
                 display: block;
               }
@@ -96,9 +98,7 @@ $input-field-size: 28px;
 
           align-items: center;
 
-          @include container-padding;
-          padding-top: $src-simple-container-height-padding;
-          padding-bottom: $src-simple-container-height-padding;
+          @include inner-container-padding;
 
           height: 50px;
         }
@@ -107,6 +107,7 @@ $input-field-size: 28px;
           @include at-least-small-screen-styles {
             width: $advanced-header-font-size;
             margin-right: 12px;
+            flex-shrink: 0; //search-field-value can grow
           }
         }
 
@@ -114,6 +115,7 @@ $input-field-size: 28px;
 
           @include at-least-small-screen-styles {
             margin-right: 12px;
+            flex-shrink: 0; //search-field-value can grow
           }
         }
 
@@ -125,6 +127,17 @@ $input-field-size: 28px;
             flex-grow: 1;
           }
 
+          .search-field-text-input-value, .search-field-apollo-tagsinput {
+            @include at-least-small-screen-styles {
+              display: none;
+              @include font-size($advanced-header-font-size);
+              height: auto; //reset bootstrap
+              min-height: $advanced-input-field-size;
+              padding-top: 2px;
+              padding-bottom: 2px;
+            }
+          }
+
           .search-field-text-value {
             @include at-least-small-screen-styles {
               // line up with text box
@@ -132,20 +145,160 @@ $input-field-size: 28px;
             }
           }
 
-          .search-field-text-input-value {
-            @include at-least-small-screen-styles {
-              display: none;
-              @include font-size($advanced-header-font-size);
-              height: $input-field-size;
+          .search-field-apollo-tagsinput {
+            @extend .form-control;
+
+            &.focused {
+              @extend .form-control.focus;
+            }
+
+            &:not(.focused) {
+
+              &:not(.empty) {
+                @include at-least-small-screen-styles {
+                  display: block;
+                  border: none;
+                  box-shadow: none;
+                  background: none;
+
+                  .search-field-apollo-tagsinput-input {
+                    // it's especially important that this not displayed, because depending on the state `focused, empty` we
+                    // might want to basically hide the fact that a text box exists.
+                    display: none;
+                  }
+                }
+              }
+            }
+
+            .search-field-apollo-tagsinput-tag {
+              display: inline-block; //match the height of children, not just font-size.
+
+              .search-field-apollo-tagsinput-remove {
+                display: none; //don't use this right now.
+                cursor: pointer;
+                color: $src-very-bright;
+
+                &:before {
+                  content: " x";
+                }
+              }
+
+              .search-field-apollo-token {
+                display: inline-block; //inline padding isn't respected by block container.
+                color: $src-very-bright;
+                padding: 1px 10px;
+                margin-bottom: 1px;
+                margin-right: 5px;
+                border-radius: 3px;
+                cursor: default;
+
+                &.search-field-apollo-token-scalar {
+                  background: $src-bright;
+                }
+
+                &.search-field-apollo-token-composite {
+                  background: $src-slightly-brighter;
+
+                  .search-field-apollo-drag {
+                    i {
+                      color: $src-bright;
+                    }
+                  }
+                }
+
+                &.drop-available {
+                  background: $src-even-brighter;
+                  box-shadow: 0 0 2px 2px $src-even-brighter;
+
+                  &:not(.drop-hovering) {
+                    animation: shake 1s infinite;
+                  }
+                }
+
+                &.drop-hovering {
+                  // The initial plan was to use transitions:
+                  // transform: scale(2.1);
+                  // transition: transform .05s;
+                  // but it didn't seem to trigger the transitions if the animation property is also defined (above).
+
+                  animation: grow .05s both;
+                }
+
+                .search-field-apollo-text {
+                  vertical-align: middle; //buttons are middle by default, so line up with em.
+                  @include at-least-small-screen-styles {
+                  }
+                }
+
+                .search-field-apollo-drag {
+                  cursor: move;
+                  display: inline-block; //make all icons, and the space between, grabbable.
+
+                  @include at-least-small-screen-styles {
+                    margin-right: 4px;
+                    width: auto;
+                  }
+
+                  i {
+                    color: $src-very-bright;
+                    vertical-align: middle;
+                    @include at-least-small-screen-styles {
+                      margin-right: 2px;
+                      width: auto;
+                    }
+                  }
+                }
+
+                .btn-group {
+
+                  &.open {
+                    .btn-default {
+                      @extend .btn-default.active;
+                    }
+                  }
+
+                  .btn {
+                    // technically these buttons are part of a token and should therefore reside within search-field-apollo-token
+                    text-transform: none;
+
+                    @include at-least-small-screen-styles {
+                      margin-right: 5px;
+                      padding: 1px 10px;
+                    }
+                  }
+
+                  .dropdown-menu {
+                    a {
+                      color: $src-less-dark;
+                    }
+                  }
+
+                }
+              }
+            }
+
+            .search-field-apollo-tagsinput-input {
+              border: none;
+              padding: 0;
+              width: 80px;
+
+              // it's especially important that this is none, because depending on the state `focused, empty` we
+              // might want to basically hide the fact that a text box exists.
+              background: none;
+
+              &:focus {
+                outline: none;
+              }
             }
           }
         }
 
+        // date input value is not put within a .search-field-value.
         .search-field-date-input-value {
           @include at-least-small-screen-styles {
 
             @include font-size($advanced-header-font-size);
-            height: $input-field-size;
+            height: $advanced-input-field-size;
             width: 80px;
             margin-right: 12px;
           }
@@ -155,20 +308,16 @@ $input-field-size: 28px;
           text-transform: none;
         }
       }
-
     }
 
     .advanced-search-button {
       @include at-least-small-screen-styles {
-        @include container-padding;
-        padding-top: $src-simple-container-height-padding;
-        padding-bottom: $src-simple-container-height-padding;
+        @include inner-container-padding;
       }
 
-      .btn-primary{
+      .btn-primary {
         text-transform: none;
       }
     }
   }
 }
-

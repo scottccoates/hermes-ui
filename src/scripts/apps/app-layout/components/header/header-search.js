@@ -4,7 +4,7 @@ import React from 'react';
 import Bacon from 'bacon';
 import ReactBacon from 'react-bacon';
 
-import Dropdown from 'src/libs/components/dropdown';
+import Dropdown from 'src/libs/react-js/components/dropdown';
 
 import HeaderSearchDropdown from 'src/apps/app-layout/components/header/header-search-dropdown';
 import HeaderAdvancedSearchDropdown from 'src/apps/app-layout/components/header/header-advanced-search-dropdown';

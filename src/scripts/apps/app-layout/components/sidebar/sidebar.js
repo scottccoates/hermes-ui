@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import ScrollContainer from 'src/libs/components/scroll-container';
+import ScrollContainer from 'src/libs/react-js/components/scroll-container';
 
 import SidebarLogo from './sidebar-logo';
 import SidebarNavSection from './sidebar-nav-section';
