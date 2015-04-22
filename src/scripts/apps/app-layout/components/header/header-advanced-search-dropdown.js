@@ -6,6 +6,7 @@ import ReactBacon from 'react-bacon';
 import ReactBootstrap from 'react-bootstrap';
 
 import TextSearchField from 'src/apps/app-layout/components/header/header-advanced-text-search-field'
+import ApolloSearchField from 'src/apps/app-layout/components/header/header-advanced-apollo-search-field'
 import DateSearchField from 'src/apps/app-layout/components/header/header-advanced-date-search-field'
 
 export default React.createClass({
@@ -21,6 +22,7 @@ export default React.createClass({
         <div className="popover-body">
           <ul>
             <TextSearchField iconClass='fa-search' fieldLabel="Contains the words"/>
+            <ApolloSearchField iconClass='fa-cubes' fieldLabel="Terms and connectors"/>
             <TextSearchField iconClass='fa-building' fieldLabel="Counterparty"/>
             <TextSearchField iconClass='fa-tag' fieldLabel="All of the tags"/>
             <TextSearchField iconClass='fa-user' fieldLabel="Owner"/>

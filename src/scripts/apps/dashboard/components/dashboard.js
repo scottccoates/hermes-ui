@@ -4,7 +4,7 @@ import React from 'react';
 import Router  from 'react-router';
 import Reflux from 'reflux';
 
-import ComponentProvider from 'src/libs/components/component-provider';
+import ComponentProvider from 'src/libs/react-js/components/component-provider';
 
 import DataTransitionMixin from 'src/libs/react-js/mixins/data-transition-mixin';
 
@@ -42,7 +42,7 @@ export default function (taskListProvider, taskListStore, activityListProvider, 
               </div>
             </div>
 
-            <div className="section alt-section">
+            <div className="section alt-section activity-list-section">
               <div className="container">
                 <div className="section-container">
                   <ActivityList activities={this.state.activities}/>

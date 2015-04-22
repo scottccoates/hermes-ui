@@ -45,10 +45,17 @@ export default React.createClass({
   },
 
   render() {
-    return (
+    if (this.props.noContainer) {
+      return (
+        this.props.children
+      );
+    }
+    else {
+      return (
         <div style={{display: this.props.open ? "block" : "none"}}>
           {this.props.children}
         </div>
-    );
+      );
+    }
   }
 });

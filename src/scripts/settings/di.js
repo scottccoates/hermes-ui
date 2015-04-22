@@ -3,7 +3,7 @@
 
 import Intravenous from 'intravenous';
 
-import FileUpload from 'src/libs/components/file-upload';
+import FileUpload from 'src/libs/react-js/components/file-upload';
 
 import MI from 'src/apps/management-item/components/management-item';
 import NewMI from 'src/apps/management-item/components/new/new-management-item';

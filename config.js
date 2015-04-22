@@ -1,6 +1,11 @@
 System.config({
   "baseURL": "/",
   "transpiler": "babel",
+  "babelOptions": {
+    "optional": [
+      "runtime"
+    ]
+  },
   "paths": {
     "*": "*.js",
     "src/*": "build/js/*.js",
@@ -11,8 +16,11 @@ System.config({
 
 System.config({
   "map": {
+    "babel": "npm:babel-core@5.1.10",
+    "babel-runtime": "npm:babel-runtime@5.1.10",
     "bacon": "npm:baconjs@0.7.53",
     "bootstrap": "github:twbs/bootstrap@3.3.4",
+    "core-js": "npm:core-js@0.8.4",
     "dropzone": "npm:dropzone@4.0.1",
     "immutable": "github:facebook/immutable-js@3.6.4",
     "intravenous": "github:willow/intravenous@master",
@@ -22,8 +30,10 @@ System.config({
     "react": "npm:react@0.12.2",
     "react-bacon": "npm:react-bacon@0.0.4",
     "react-bootstrap": "npm:react-bootstrap@0.16.1",
+    "react-dnd": "npm:react-dnd@0.9.8",
     "react-immutable-render-mixin": "npm:react-immutable-render-mixin@0.8.0",
     "react-router": "npm:react-router@0.12.4",
+    "react-tagsinput": "github:olahol/react-tagsinput@1.2.0",
     "reflux": "npm:reflux@0.2.7",
     "github:jamesflorentino/nanoScrollerJS@0.8.4": {
       "css": "github:systemjs/plugin-css@0.1.7",
@@ -119,16 +129,19 @@ System.config({
       "path": "github:jspm/nodelibs-path@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
+    "npm:core-js@0.8.4": {
+      "process": "github:jspm/nodelibs-process@0.1.1"
+    },
     "npm:core-util-is@1.0.1": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0"
     },
     "npm:dropzone@4.0.1": {
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
-    "npm:envify@3.3.1": {
+    "npm:envify@3.4.0": {
       "jstransform": "npm:jstransform@10.1.0",
       "process": "github:jspm/nodelibs-process@0.1.1",
-      "through": "npm:through@2.3.6"
+      "through": "npm:through@2.3.7"
     },
     "npm:esprima-fb@13001.1001.0-dev-harmony-fb": {
       "fs": "github:jspm/nodelibs-fs@0.1.2",
@@ -155,6 +168,9 @@ System.config({
       "process": "github:jspm/nodelibs-process@0.1.1",
       "source-map": "npm:source-map@0.1.31"
     },
+    "npm:lodash@3.7.0": {
+      "process": "github:jspm/nodelibs-process@0.1.1"
+    },
     "npm:native-promise-only@0.7.6-a": {
       "child_process": "github:jspm/nodelibs-child_process@0.1.0",
       "fs": "github:jspm/nodelibs-fs@0.1.2",
@@ -178,6 +194,13 @@ System.config({
     "npm:react-bootstrap@0.16.1": {
       "react": "npm:react@0.12.2"
     },
+    "npm:react-dnd@0.9.8": {
+      "events": "github:jspm/nodelibs-events@0.1.0",
+      "flux": "npm:flux@2.0.1",
+      "lodash": "npm:lodash@3.7.0",
+      "process": "github:jspm/nodelibs-process@0.1.1",
+      "react": "npm:react@0.13.1"
+    },
     "npm:react-immutable-render-mixin@0.8.0": {
       "immutable": "npm:immutable@3.7.1"
     },
@@ -188,7 +211,12 @@ System.config({
     },
     "npm:react@0.12.2": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
-      "envify": "npm:envify@3.3.1",
+      "envify": "npm:envify@3.4.0",
+      "process": "github:jspm/nodelibs-process@0.1.1"
+    },
+    "npm:react@0.13.1": {
+      "buffer": "github:jspm/nodelibs-buffer@0.1.0",
+      "envify": "npm:envify@3.4.0",
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
     "npm:readable-stream@1.1.13": {
@@ -227,7 +255,7 @@ System.config({
     "npm:string_decoder@0.10.31": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0"
     },
-    "npm:through@2.3.6": {
+    "npm:through@2.3.7": {
       "process": "github:jspm/nodelibs-process@0.1.1",
       "stream": "github:jspm/nodelibs-stream@0.1.0"
     },

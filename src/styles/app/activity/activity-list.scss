@@ -63,39 +63,5 @@
         font-weight: normal;
       }
     }
-
-    .task-action {
-      text-transform: uppercase;
-      text-align: center;
-
-      @include at-least-small-screen-styles {
-        display: none;
-
-        position: absolute;
-        top: -1px; // cover up the borderw
-        bottom: -1px;
-        padding-top: $src-simple-container-height-padding;
-      }
-
-      &.task-action-done {
-        background-color: $src-more-brighter;
-
-        @include at-least-small-screen-styles {
-          right: 0;
-
-          border-right: 1px solid $src-more-brighter;
-          border-top-right-radius: 3px;
-          border-bottom-right-radius: 3px;
-        }
-      }
-
-      &.task-action-snooze {
-        background-color: $src-more-bright;
-      }
-
-      &.task-action-edit {
-        background-color: $src-even-brighter;
-      }
-    }
   }
 }
