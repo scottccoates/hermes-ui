@@ -21,6 +21,9 @@ import ActivityItem from 'src/apps/activity/components/activity-item';
 import ActivityListStore from 'src/apps/activity/stores/activity-list-store';
 import ActivityAPI from 'src/aggregates/activity/api/activity-api';
 
+import SearchResultList from 'src/apps/search/components/result/search-result-list';
+import SearchResultItem from 'src/apps/search/components/result/search-result-item';
+
 import Dropzone from 'dropzone';
 import NoOpDropzone from 'src/libs/file-upload/no-op-dropzone';
 
@@ -42,6 +45,9 @@ container.register("ActivityItem", ActivityItem);
 container.register("ActivityListStore", ActivityListStore, "singleton"); //http://www.royjacobs.org/intravenous/#how_can_i_control_the_lifecycle_of_a_service
 container.register("ActivityAPI", ActivityAPI);
 
+container.register("SearchResultList", SearchResultList);
+container.register("SearchResultItem", SearchResultItem);
+
 container.register("NewMI", NewMI);
 
 container.register("MI", MI);
@@ -59,5 +65,7 @@ Dashboard.$inject = ["TaskList", "TaskListStore", "ActivityList", "ActivityListS
 TaskList.$inject = ["TaskItem"];
 
 ActivityList.$inject = ["ActivityItem"];
+
+SearchResultList.$inject = ["SearchResultItem"];
 
 export default container;

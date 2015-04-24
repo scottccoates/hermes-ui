@@ -87,7 +87,7 @@ $advanced-input-field-size: 28px;
             color: $src-less-dark;
             &.more-fields-icon {
               @include at-least-small-screen-styles {
-                @include font-size(8px);
+                @include font-size(10px);
               }
             }
           }

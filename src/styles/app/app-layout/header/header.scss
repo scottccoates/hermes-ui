@@ -1,7 +1,6 @@
 // Header Layout
 // --------------------------------------------------
 $header-height: 68px;
-$header-wrapper-bottom-border-height: 2px;
 
 $header-search-height: 40px;
 $header-search-width: 552px;
@@ -21,7 +20,8 @@ $header-font-size: 18px;
 }
 
 #header-wrapper {
-  border-bottom: $header-wrapper-bottom-border-height solid $src-bright;
+  border-bottom: $bright-border;
+
   background-color: $src-very-bright;
 
   align-items: center;

@@ -49,12 +49,11 @@ $content-padding: 60px;
 
   .section {
     @include at-least-small-screen-styles {
-      padding-bottom: $src-section-container-margin;
+      margin-bottom: $src-section-container-margin;
     }
   }
 
   .alt-section {
-    border-top: 2px solid $src-bright;
     background: $src-very-bright;
 
     @include at-least-small-screen-styles {

@@ -86,7 +86,6 @@ System.config({
       "path": "github:jspm/nodelibs-path@0.1.0"
     },
     "github:twbs/bootstrap@3.3.4": {
-      "css": "github:systemjs/plugin-css@0.1.7",
       "jquery": "github:components/jquery@2.1.3"
     },
     "npm:amdefine@0.1.0": {

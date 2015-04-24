@@ -19,6 +19,8 @@ const MI = container.get("MI").componentType;
 const NewMI = container.get("NewMI").componentType;
 const MIForm = container.get("MIForm").componentType;
 
+const SearchResultList = container.get("SearchResultList").componentType;
+
 const Inbox = React.createClass({
   accept() {
   },
@@ -45,7 +47,7 @@ var routes = (
 
       <Route name="inbox" handler={Inbox}/>
       <Route name="dashboard" handler={Dashboard}/>
-      <Route name="form" handler={MIForm}/>
+      <Route name="search" handler={SearchResultList}/>
 
       <DefaultRoute handler={Inbox}/>
     </Route>
