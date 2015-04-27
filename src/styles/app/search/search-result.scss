@@ -71,42 +71,48 @@
     }
     .search-results {
 
-      .search-result-counterparty-image {
-
+      .search-item {
         @include at-least-small-screen-styles {
-          margin-right: 0;
-          margin-left: auto;
-        }
-      }
-
-      .search-result-mi-name {
-        color: $src-very-dark;
-        text-transform: none;
-      }
-
-      .search-result-mi-details {
-        @include at-least-small-screen-styles {
-          @include font-size(14px);
-          margin-top: 15px;
-          margin-bottom: 15px;
+          margin-top: 25px;
         }
 
-        .search-result-mi-detail {
-          i.fa-file {
-            @include at-least-small-screen-styles {
-              margin-right: 6px;
-            }
+        .search-result-counterparty-image {
+
+          @include at-least-small-screen-styles {
+            margin-right: 0;
+            margin-left: auto;
           }
         }
 
-        i.fa-circle {
-          //chrome was not respecting the rem font size - it was sticking at 9px font-size
-          font-size: 4px;
-          vertical-align: middle;
+        .search-result-mi-name {
+          color: $src-very-dark;
+          text-transform: none;
+        }
 
+        .search-result-mi-details {
           @include at-least-small-screen-styles {
-            margin-left: 8px;
-            margin-right: 8px;
+            @include font-size(14px);
+            margin-top: 15px;
+            margin-bottom: 15px;
+          }
+
+          .search-result-mi-detail {
+            i.fa-file {
+              @include at-least-small-screen-styles {
+                margin-right: 6px;
+              }
+            }
+          }
+
+          i.fa-circle {
+            //chrome was not respecting the rem font size - it was sticking at 9px font-size
+            font-size: 4px;
+            vertical-align: middle;
+
+            @include at-least-small-screen-styles {
+              margin-left: 8px;
+              margin-right: 8px;
+            }
           }
         }
       }

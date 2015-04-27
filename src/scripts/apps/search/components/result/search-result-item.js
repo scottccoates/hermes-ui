@@ -5,6 +5,8 @@ import Router  from 'react-router';
 
 import ComponentProvider from 'src/libs/react-js/components/component-provider';
 
+import Highlighter from 'react-highlighter';
+
 const {Link, RouteHandler} = Router;
 
 export default function () {
@@ -45,10 +47,12 @@ export default function () {
                 </div>
                 <div className='search-result-mi-content'>
                   <p>
-                    … Confidential disclosure Information. I understand that “Confidential Information” means
-                    information and physical material not generally known or … outside the Company and
-                    information and physical material entrusted to the Company in confidence by third parties.
-                    Confidential Disclosure Information includes, without limitation …
+                    <Highlighter search="confidential disclosure" caseSensitive={false}>
+                      … Confidential disclosure Information. I understand that “Confidential Information” means
+                      information and physical material not generally known or … outside the Company and
+                      information and physical material entrusted to the Company in confidence by third parties.
+                      Confidential Disclosure Information includes, without limitation …
+                    </Highlighter>
                   </p>
                 </div>
               </div>

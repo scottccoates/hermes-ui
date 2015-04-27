@@ -48,6 +48,7 @@ export default function (SearchResultItemProvider) {
                 <div className="search-results">
 
                   <SearchResultItem />
+                  <SearchResultItem />
 
                 </div>
               </div>
