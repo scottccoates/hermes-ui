@@ -30,8 +30,8 @@ $header-font-size: 18px;
     display: flex;
     height: $header-height;
 
-    padding-left: $main-wrapper-padding;
-    padding-right: $main-wrapper-padding;
+    padding-left: $src-content-section-horizontal-space;
+    padding-right: $src-content-section-horizontal-space;
 
     @include font-size($header-font-size);
   }
@@ -162,13 +162,6 @@ $header-font-size: 18px;
               padding-top: 2px;
               padding-bottom: 2px;
             }
-          }
-        }
-
-        .fa-caret-down {
-
-          @include at-least-small-screen-styles {
-            padding-left: 8px;
           }
         }
 

@@ -28,7 +28,7 @@ export default function (TaskItemProvider) {
     render() {
       const taskNodes = this.props.tasks.map(function (task) {
         return (
-            <div className="section-item" key={task.id}>
+            <div className="content-section-item space-top-sm" key={task.id}>
               <TaskItem taskName={task.taskName} taskType={task.taskType}/>
             </div>
         );
@@ -38,7 +38,7 @@ export default function (TaskItemProvider) {
           <div id="task-list-wrapper">
             <section className="row">
               <div className="col-sm-24">
-                <h3 className="section-header">Upcoming Tasks</h3>
+                <h3 className="content-section-header">Upcoming Tasks</h3>
                 {taskNodes}
                 <Separator/>
               </div>

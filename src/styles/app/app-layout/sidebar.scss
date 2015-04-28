@@ -44,18 +44,6 @@
           height: 85px;
         }
       }
-
-      .sidebar-profile-name {
-        @include at-least-small-screen-styles {
-
-          @include font-size(20px);
-
-          i {
-            @include font-size(5px);
-            vertical-align: super;
-          }
-        }
-      }
     }
 
     section {
@@ -66,7 +54,7 @@
 
         padding-top: 30px;
         text-indent: 30px;
-        @include font-size(14px)
+        @include font-size($src-font-size-small)
       }
 
       ul {
@@ -92,18 +80,12 @@
             padding-bottom: 10px;
           }
 
-          & > i, & > span, & > a {
-            vertical-align: middle;
-          }
-
           & > i {
             text-align: center;
 
             @include at-least-small-screen-styles {
               // reset the text indent inherited from the section element
               text-indent: initial;
-
-              margin-right: 16px;
 
               // width is important here, it keeps all icons (regardless of their size) at a box of 20px, then the icon is centered.
               width: 20px;

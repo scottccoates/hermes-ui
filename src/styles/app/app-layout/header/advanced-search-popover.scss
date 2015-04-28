@@ -1,16 +1,13 @@
-$advanced-header-font-size: 14px;
-$advanced-input-field-size: 28px;
-
 .advanced-search-popover {
   @include at-least-small-screen-styles {
     top: $header-search-height;
     width: 798px; // should be $header-search-width?
-    @include font-size($advanced-header-font-size);
+    @include font-size($src-font-size-small);
   }
 
   .popover-heading {
     @include at-least-small-screen-styles {
-      @include font-size($advanced-header-font-size);
+      @include font-size($src-font-size-small);
     }
   }
 
@@ -98,14 +95,14 @@ $advanced-input-field-size: 28px;
 
           align-items: center;
 
-          @include inner-container-padding;
+          @include inner-container-space;
 
           height: 50px;
         }
 
         i {
           @include at-least-small-screen-styles {
-            width: $advanced-header-font-size;
+            width: $src-font-size-small;
             margin-right: 12px;
             flex-shrink: 0; //search-field-value can grow
           }
@@ -130,7 +127,7 @@ $advanced-input-field-size: 28px;
           .search-field-text-input-value, .search-field-apollo-tagsinput {
             @include at-least-small-screen-styles {
               display: none;
-              @include font-size($advanced-header-font-size);
+              @include font-size($src-font-size-small);
               height: auto; //reset bootstrap
               min-height: $advanced-input-field-size;
               padding-top: 2px;
@@ -279,7 +276,7 @@ $advanced-input-field-size: 28px;
 
             .search-field-apollo-tagsinput-input {
               border: none;
-              padding: 0;
+              padding: 1px 0 0; //there seems to be a need for just a little nudge of the inner textbox.
               width: 80px;
 
               // it's especially important that this is none, because depending on the state `focused, empty` we
@@ -297,7 +294,7 @@ $advanced-input-field-size: 28px;
         .search-field-date-input-value {
           @include at-least-small-screen-styles {
 
-            @include font-size($advanced-header-font-size);
+            @include font-size($src-font-size-small);
             height: $advanced-input-field-size;
             width: 80px;
             margin-right: 12px;
@@ -312,7 +309,7 @@ $advanced-input-field-size: 28px;
 
     .advanced-search-button {
       @include at-least-small-screen-styles {
-        @include inner-container-padding;
+        @include inner-container-space;
       }
 
       .btn-primary {

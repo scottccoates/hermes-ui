@@ -63,9 +63,7 @@ p {
   border: none;
 
   @include at-least-small-screen-styles {
-    margin-top: 55px;
-    margin-bottom: 55px;
-
+    margin: 0;
     padding: 0;
   }
 }
@@ -78,6 +76,10 @@ h1 {
       @include font-size(24px);
     }
   }
+}
+
+.middle {
+  vertical-align: middle;
 }
 
 .generated-info {

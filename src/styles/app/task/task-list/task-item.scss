@@ -1,5 +1,4 @@
-#task-list-wrapper {
-
+.task-item {
   .simple-container {
     @include clearfix;
 
@@ -60,7 +59,7 @@
         position: absolute;
         top: -1px; // cover up the borderw
         bottom: -1px;
-        padding-top: $src-simple-container-height-padding;
+        padding-top: $src-container-horizontal-space;
       }
 
       &.task-action-done {

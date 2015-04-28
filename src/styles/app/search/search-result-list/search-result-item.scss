@@ -1,0 +1,25 @@
+.search-item {
+
+  .search-result-counterparty-image {
+
+    @include at-least-small-screen-styles {
+      margin-right: 0;
+      margin-left: auto;
+    }
+  }
+
+  .search-result-mi-name {
+    color: $src-very-dark;
+    text-transform: none;
+  }
+
+  .search-result-mi-details {
+    @include at-least-small-screen-styles {
+      @include font-size($src-font-size-small);
+    }
+
+    .search-result-mi-detail {
+
+    }
+  }
+}

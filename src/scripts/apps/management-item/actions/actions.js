@@ -1,7 +1,7 @@
 import Reflux from 'reflux';
 
 const Actions = Reflux.createActions({
-  "newMIFileUpload": {
+  "createMIFileUpload": {
     asyncResult: true,
     children: ["progressed"]
   }

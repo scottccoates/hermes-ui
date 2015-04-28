@@ -1,4 +1,4 @@
-#activity-list-wrapper {
+.activity-item {
 
   .simple-container {
     color: #707C94;
@@ -53,11 +53,6 @@
     }
 
     .activity-content {
-
-      @include at-least-small-screen-styles {
-        padding-left: 14px;
-      }
-
       strong {
         color: $src-very-dark;
         font-weight: normal;

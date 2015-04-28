@@ -1,0 +1,66 @@
+// MI Form Layout
+// --------------------------------------------------
+
+.mi-form-section {
+
+  &.mi-form-section-save {
+    button {
+      margin-right: 20px;
+    }
+  }
+
+  &:hover {
+    .mi-form-advanced-field-button {
+      visibility: visible !important;
+    }
+  }
+
+  .mi-form-data-entry {
+
+    .form-group {
+      .control-label {
+        @include at-least-small-screen-styles {
+        }
+      }
+
+      .form-control {
+        i {
+          float: right;
+
+          @include at-least-small-screen-styles {
+            padding-top: 3px;
+          }
+        }
+      }
+
+      @include at-least-small-screen-styles {
+      }
+
+      .mi-form-button {
+        text-transform: none;
+
+        &.mi-form-action-button, &.mi-form-expand-button, &.mi-form-advanced-field-button {
+
+          @include at-least-small-screen-styles {
+            float: right;
+          }
+        }
+
+        &.mi-form-advanced-field-button {
+          @include at-least-small-screen-styles {
+            margin-top: 25px;
+
+            visibility: hidden;
+          }
+        }
+
+        &.mi-form-field-button {
+
+          @include at-least-small-screen-styles {
+            margin-top: 3px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -12,7 +12,7 @@
       "react": "npm:react@0.12.2",
       "react-bacon": "npm:react-bacon@0.0.4",
       "react-bootstrap": "npm:react-bootstrap@0.16.1",
-      "react-dnd": "npm:react-dnd@^0.9.8",
+      "react-dnd": "npm:react-dnd@0.9.8",
       "react-highlighter": "github:helior/react-highlighter@0.2.1",
       "react-immutable-render-mixin": "npm:react-immutable-render-mixin@0.8.0",
       "react-router": "npm:react-router@0.12.4",

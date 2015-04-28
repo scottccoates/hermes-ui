@@ -23,6 +23,7 @@ export default function () {
 
       return (
 
+        <div className="task-item">
           <div className="simple-container">
 
             <div className="col-sm-2">
@@ -43,6 +44,7 @@ export default function () {
               Edit
             </div>
           </div>
+        </div>
       );
     }
   });

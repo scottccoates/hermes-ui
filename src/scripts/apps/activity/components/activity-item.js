@@ -22,6 +22,8 @@ export default function () {
       const classes = cx('fa', activityTypeIcons[this.props.activityType]);
 
       return (
+        <div className="activity-item">
+
           <div className="simple-container simple-container-bottom">
 
             <div className="col-sm-1 activity-action">
@@ -29,7 +31,8 @@ export default function () {
             </div>
 
             <div className="col-sm-1">
-              <img alt="activity profile image" className="activity-profile-image" src="/build/assets/images/man-profile-pic.jpg"/>
+              <img alt="activity profile image" className="activity-profile-image"
+                   src="/build/assets/images/man-profile-pic.jpg"/>
             </div>
 
             <div className="col-sm-22 activity-content">
@@ -37,10 +40,11 @@ export default function () {
                 <strong>
                   <span>{this.props.actorName} </span>
                 </strong>
-              {this.props.activityContent}
+                {this.props.activityContent}
               </span>
             </div>
           </div>
+        </div>
       );
     }
   });

@@ -42,7 +42,7 @@
 
           @include at-least-small-screen-styles {
             display: block;
-            @include container-padding;
+            @include inner-container-space-lg;
           }
 
           &:hover {

@@ -6,8 +6,8 @@ import Intravenous from 'intravenous';
 import FileUpload from 'src/libs/react-js/components/file-upload';
 
 import MI from 'src/apps/management-item/components/management-item';
-import NewMI from 'src/apps/management-item/components/new/new-management-item';
-import MIForm from 'src/apps/management-item/components/new/management-item-form';
+import CreateMI from 'src/apps/management-item/components/new-management-item/create-management-item';
+import MIForm from 'src/apps/management-item/components/new-management-item/management-item-form';
 
 import Dashboard from 'src/apps/dashboard/components/dashboard';
 
@@ -48,7 +48,7 @@ container.register("ActivityAPI", ActivityAPI);
 container.register("SearchResultList", SearchResultList);
 container.register("SearchResultItem", SearchResultItem);
 
-container.register("NewMI", NewMI);
+container.register("CreateMI", CreateMI);
 
 container.register("MI", MI);
 container.register("MIForm", MIForm);
@@ -56,7 +56,7 @@ container.register("MIForm", MIForm);
 container.register("FileUpload", FileUpload);
 container.register("Dropzone", NoOpDropzone);
 
-NewMI.$inject = ["FileUpload"];
+CreateMI.$inject = ["FileUpload"];
 
 FileUpload.$inject = ["DropzoneFactory"];
 

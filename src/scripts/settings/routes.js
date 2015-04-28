@@ -16,7 +16,7 @@ const {DefaultRoute, Route, HistoryLocation} = Router;
 const Dashboard = container.get("Dashboard").componentType;
 
 const MI = container.get("MI").componentType;
-const NewMI = container.get("NewMI").componentType;
+const CreateMI = container.get("CreateMI").componentType;
 const MIForm = container.get("MIForm").componentType;
 
 const SearchResultList = container.get("SearchResultList").componentType;
@@ -41,7 +41,7 @@ var routes = (
     <Route  handler={AppLayout}>
 
       <Route name="contracts" handler={MI}>
-        <Route name="newMI" path="step_1" handler={NewMI}/>
+        <Route name="createMI" path="step_1" handler={CreateMI}/>
         <Route name="miForm" path="step_2" handler={MIForm}/>
       </Route>
 

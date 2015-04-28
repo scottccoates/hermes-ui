@@ -15,7 +15,7 @@
   text-align: center;
 
   @include at-least-small-screen-styles {
-    margin-top: $src-section-container-margin - $src-separator-margin;
+    margin-top: $src-content-section-vertical-space - $src-separator-margin;
   }
 }
 

@@ -1,20 +1,5 @@
 // Container Styles
 // --------------------------------------------------
-@mixin container-padding {
-  padding: 25px 20px;
-}
-
-@mixin inner-container-padding {
-  padding: 14px 20px;
-}
-
-@mixin hovering-container-border {
-  box-shadow: 0px 5px 7px 0px rgba(0, 0, 0, 0.20);
-  border: 1px solid rgba(0, 0, 0, 0.10);
-}
-
-$container-border-radius: 3px;
-$container-color: $src-less-dark;
 
 // Panels
 // --------------------------------------------------
@@ -73,13 +58,13 @@ parent: patterns
   @extend .text-uppercase;
 
   @include at-least-small-screen-styles {
-    @include container-padding;
+    @include inner-container-space-lg;
   }
 }
 
 .panel-body {
   @include at-least-small-screen-styles {
-    @include container-padding;
+    @include inner-container-space-lg;
   }
 }
 
@@ -144,7 +129,7 @@ parent: patterns
   border-top-right-radius: $container-border-radius - 1;
 
   @include at-least-small-screen-styles {
-    @include container-padding;
+    @include inner-container-space-lg;
   }
 
 }
@@ -153,7 +138,7 @@ parent: patterns
   @extend .popover-content; // defined in bootstrap
 
   @include at-least-small-screen-styles {
-    @include container-padding;
+    @include inner-container-space-lg;
   }
 }
 
@@ -320,7 +305,7 @@ parent: patterns
   position: relative; //some things inside might be absolute.
 
   @include at-least-small-screen-styles {
-    @include inner-container-padding;
+    @include inner-container-space;
   }
 }
 

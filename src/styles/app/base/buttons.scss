@@ -59,6 +59,8 @@ parent: base
   text-transform: uppercase;
   font-size: inherit; //overwrite bootstrap's font-sizes for buttons.
   line-height: inherit; //overwrite bootstrap's line-heights for buttons.
+
+  padding: 0.4375em 0.875em; // 7x14 @ normal (16px)
 }
 
 .btn-default {
@@ -81,4 +83,12 @@ parent: base
   & > .btn {
     line-height: inherit; //overwrite bootstrap's line-heights for buttons.
   }
+}
+
+.btn-sm {
+  padding: 0.3125em 0.625em; // 5x10 @ normal (16px)
+}
+
+.btn-xs {
+  padding: 0.1875em 0.5em; // 3x8 @ normal (16px)
 }

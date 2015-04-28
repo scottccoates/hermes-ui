@@ -1,11 +1,7 @@
 #dashboard-wrapper {
 
-  .activity-list-section {
+  .activity-list-content-section {
     border-top: $bright-border;
-
-    @include at-least-small-screen-styles {
-      margin-bottom: -$content-padding;
-    }
 
     #activity-list-wrapper {
 

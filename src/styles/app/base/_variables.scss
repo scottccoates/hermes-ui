@@ -46,15 +46,44 @@ $src-font-family-content: 'Source Sans Pro', Helvetica, Arial, sans-serif !defau
 
 // Container
 // --------------------------------------------------
-$src-section-container-margin: 55px;
+$src-content-section-vertical-space-xl: 105px !default;
+$src-content-section-vertical-space-lg: 75px !default;
+$src-content-section-vertical-space: 55px !default;
+$src-content-section-vertical-space-md: 35px !default;
+$src-content-section-vertical-space-sm: 25px !default;
+$src-content-section-vertical-space-xs: 20px !default;
+$src-content-section-vertical-space-xxs: 15px !default;
+$src-content-section-horizontal-space: 28px !default;
+$src-content-section-horizontal-space-md: 25px !default;
 
-$src-simple-container-height-padding: 14px;
+$src-container-vertical-space: 20px !default;
+$src-container-horizontal-space-lg: 25px !default;
+$src-container-horizontal-space: 14px !default;
+
+$src-icon-horizontal-space-lg: 16px !default;
+$src-icon-horizontal-space: 8px !default;
+$src-icon-horizontal-space-md: 6px !default;
+
+$container-border-radius: 3px !default;
+$container-color: $src-less-dark !default;
+
+// Footer
+// --------------------------------------------------
+$footer-height: 110px;
+
+// Form
+// --------------------------------------------------
+$advanced-input-field-size: 28px;
+
+// Border
+// --------------------------------------------------
+$bright-border: 2px solid $src-bright !default;
 
 // Separator
 // --------------------------------------------------
-$src-separator-margin: 22px;
+$src-separator-margin: 22px !default;
 
 // Responsive Viewing
 // --------------------------------------------------
-$src-grid-columns: 24;
+$src-grid-columns: 24 !default;
 $src-screen-sm: 768px !default;

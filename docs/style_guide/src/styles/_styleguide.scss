@@ -49,6 +49,10 @@ body {
   border-bottom: 1px solid $src-slightly-brighter;
 }
 
+p{
+  margin-bottom:10px;
+}
+
 h1.styleguide {
   // hologram puts an h1 by default
   display: none;

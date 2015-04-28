@@ -3,7 +3,18 @@
 // --------------------------------------------------
 
 // Containers
-$bright-border: 2px solid $src-bright;
+@mixin inner-container-space-lg {
+  padding: $src-container-horizontal-space-lg $src-container-vertical-space;
+}
+
+@mixin inner-container-space {
+  padding: $src-container-horizontal-space $src-container-vertical-space;
+}
+
+@mixin hovering-container-border {
+  box-shadow: 0 5px 7px 0 rgba(0, 0, 0, 0.20);
+  border: 1px solid rgba(0, 0, 0, 0.10);
+}
 
 // Responsive Viewing
 // --------------------------------------------------

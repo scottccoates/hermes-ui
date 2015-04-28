@@ -31,7 +31,7 @@ export default function (ActivityItemProvider) {
     render() {
       const activityNodes = this.props.activities.map(function (activity) {
         return (
-            <div className="section-item" key={activity.id}>
+            <div className="content-section-item space-top-sm" key={activity.id}>
               <ActivityItem activityType={activity.activityType} actorName={activity.actorName} activityContent={activity.activityContent}/>
             </div>
         );
@@ -41,7 +41,7 @@ export default function (ActivityItemProvider) {
           <div id="activity-list-wrapper">
             <section className="row">
               <div className="col-sm-24">
-                <h3 className="section-header">Recent Activity</h3>
+                <h3 className="content-section-header">Recent Activity</h3>
 
                 <ReactCSSTransitionGroup transitionName="content" transitionLeave={false}>
                   {activityNodes}

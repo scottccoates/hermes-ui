@@ -33,24 +33,27 @@ export default function (taskListProvider, taskListStore, activityListProvider, 
 
     render() {
       return (
-          <div id="dashboard-wrapper">
+        <div id="dashboard-wrapper">
 
-            <div className="section">
-              <div className="container">
-                <h1 className="page-header">Dashboard</h1>
-                <TaskList tasks={this.state.tasks}/>
-              </div>
+          <div className="content-section default-content-section space-top space-bottom">
+            <div className="container">
+              <h1 className="page-header">Dashboard</h1>
             </div>
-
-            <div className="section alt-section activity-list-section">
-              <div className="container">
-                <div className="section-container">
-                  <ActivityList activities={this.state.activities}/>
-                </div>
-              </div>
-            </div>
-
           </div>
+
+          <div className="content-section default-content-section space-bottom">
+            <div className="container">
+              <TaskList tasks={this.state.tasks}/>
+            </div>
+          </div>
+
+          <div className="content-section alt-content-section space-top space-bottom activity-list-content-section">
+            <div className="container">
+              <ActivityList activities={this.state.activities}/>
+            </div>
+          </div>
+
+        </div>
       );
     }
   });

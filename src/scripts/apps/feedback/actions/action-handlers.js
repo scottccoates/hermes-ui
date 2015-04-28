@@ -5,15 +5,15 @@ import LoadingFeedback from 'src/apps/feedback/components/loading/loading-feedba
 import MIActions from 'src/apps/management-item/actions/actions';
 import ReactMixinActions from 'src/libs/react-js/actions/actions';
 
-MIActions.newMIFileUpload.listen((file)=> {
+MIActions.createMIFileUpload.listen((file)=> {
   LoadingFeedback.start();
 });
 
-MIActions.newMIFileUpload.progressed.listen((progress)=> {
+MIActions.createMIFileUpload.progressed.listen((progress)=> {
   LoadingFeedback.setProgress(progress / 100);
 });
 
-MIActions.newMIFileUpload.completed.listen(()=> {
+MIActions.createMIFileUpload.completed.listen(()=> {
   LoadingFeedback.done();
 
 });
