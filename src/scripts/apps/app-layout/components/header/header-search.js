@@ -28,23 +28,24 @@ export default React.createClass({
 
   render() {
     return (
-        <div className="header-search">
+      <div className="header-search">
           <span>
             <i className="fa fa-search search-icon header-icon"></i>
             <input type="text" onClick={this.onClick} className="search-box" placeholder="Search"/>
           </span>
-          <div>
 
-            <Dropdown open={this.state.searchDropdownEnabled} onClose={this.onHeaderSearchClose}>
-              <HeaderSearchDropdown onAdvancedSearchClick={this.onAdvancedSearchClick}/>
-            </Dropdown>
+        <div>
 
-            <Dropdown open={this.state.advancedSearchDropdownEnabled} onClose={this.onHeaderAdvancedSearchClose}>
-              <HeaderAdvancedSearchDropdown />
-            </Dropdown>
+          <Dropdown open={this.state.searchDropdownEnabled} onClose={this.onHeaderSearchClose}>
+            <HeaderSearchDropdown onAdvancedSearchClick={this.onAdvancedSearchClick}/>
+          </Dropdown>
 
-          </div>
+          <Dropdown open={this.state.advancedSearchDropdownEnabled} onClose={this.onHeaderAdvancedSearchClose}>
+            <HeaderAdvancedSearchDropdown close={this.onHeaderAdvancedSearchClose}/>
+          </Dropdown>
+
         </div>
+      </div>
     );
   },
 

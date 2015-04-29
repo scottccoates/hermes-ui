@@ -23,8 +23,6 @@
 
     .search-adjust {
       button {
-        text-transform: none;
-
         @include at-least-small-screen-styles {
           @include font-size($src-font-size-small);
         }

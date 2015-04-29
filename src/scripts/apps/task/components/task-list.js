@@ -28,22 +28,22 @@ export default function (TaskItemProvider) {
     render() {
       const taskNodes = this.props.tasks.map(function (task) {
         return (
-            <div className="content-section-item space-top-sm" key={task.id}>
-              <TaskItem taskName={task.taskName} taskType={task.taskType}/>
-            </div>
+          <div className="content-section-item space-top-sm" key={task.id}>
+            <TaskItem taskSubject={task.taskSubject} taskAction={task.taskAction} taskType={task.taskType}/>
+          </div>
         );
-      }).toJS();
+      });
 
       return (
-          <div id="task-list-wrapper">
-            <section className="row">
-              <div className="col-sm-24">
-                <h3 className="content-section-header">Upcoming Tasks</h3>
-                {taskNodes}
-                <Separator/>
-              </div>
-            </section>
-          </div>
+        <div id="task-list-wrapper">
+          <section className="row">
+            <div className="col-sm-24">
+              <h3 className="content-section-header">Upcoming Tasks</h3>
+              {taskNodes}
+              <Separator/>
+            </div>
+          </section>
+        </div>
       );
     }
   });

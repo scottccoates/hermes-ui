@@ -56,7 +56,6 @@ parent: base
 .btn {
   font-family: $src-font-family-heading;
   border: none;
-  text-transform: uppercase;
   font-size: inherit; //overwrite bootstrap's font-sizes for buttons.
   line-height: inherit; //overwrite bootstrap's line-heights for buttons.
 

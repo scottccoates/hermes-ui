@@ -5,7 +5,7 @@
     @include font-size($header-font-size);
   }
 
-  .popover-body {
+  .popover-content {
     @include at-least-small-screen-styles {
       margin: 0;
       padding: 0;

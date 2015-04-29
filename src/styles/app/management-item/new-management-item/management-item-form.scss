@@ -37,8 +37,6 @@
       }
 
       .mi-form-button {
-        text-transform: none;
-
         &.mi-form-action-button, &.mi-form-expand-button, &.mi-form-advanced-field-button {
 
           @include at-least-small-screen-styles {

@@ -23,7 +23,7 @@ export default React.createClass({
       this.setState({isFocused: true});
 
       // we need to wait until render has finished before we can set focus to this as its currently hidden.
-      setTimeout(()=>this.refs.fieldInput.getDOMNode().focus());
+      setTimeout(()=>React.findDOMNode(this.refs.fieldInput).focus());
     });
 
     const blurStream = this.eventStream('onBlur');
@@ -42,14 +42,14 @@ export default React.createClass({
     const classes = cx({'search-field': true, 'focused': this.state.isFocused, 'empty': !this.state.textValue});
     const iconClasses = cx('fa', this.props.iconClass);
     return (
-      <li className={classes} onClick={this.onClick}>
+      <div className={classes} onClick={this.onClick}>
         <i className={iconClasses}></i>
         <span className="search-field-label">{this.props.fieldLabel}</span>
         <span className="search-field-value">
           <span className="search-field-text-value">{this.state.textValue}</span>
           <input type="text" ref="fieldInput" className="search-field-text-input-value form-control" onBlur={this.onBlur} onChange={this.onChange} />
         </span>
-      </li>
+      </div>
     );
   }
 });

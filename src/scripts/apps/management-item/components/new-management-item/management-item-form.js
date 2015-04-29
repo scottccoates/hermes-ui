@@ -31,14 +31,15 @@ export default function () {
                       <label htmlFor="mi-form-contract-name" className="col-sm-6 control-label">Contract Name</label>
 
                       <div className="col-sm-18">
-                        <input type="text" className="form-control" id="mi-form-contract-name"/>
+                        <input type="text" className="form-control" id="mi-form-contract-name"
+                               defaultValue="Licensing Agreement Between Microsoft and Hermes, Inc. for Microsoft Office Suite Products"/>
                       </div>
                     </div>
                     <div className="form-group content-section-item">
                       <label htmlFor="mi-form-counterparty" className="col-sm-6 control-label">Counterparty</label>
 
                       <div className="col-sm-18">
-                        <input type="text" className="form-control" id="mi-form-counterparty"/>
+                        <input type="text" className="form-control" id="mi-form-counterparty" defaultValue="Microsoft"/>
                       </div>
                     </div>
                     <div className="form-group content-section-item">
@@ -54,10 +55,10 @@ export default function () {
 
                       <div className="col-sm-18">
                         <div className="dropdown-wrapper">
-                          <button className="form-control dropdown-toggle" type="button" id="mi-form-contract-type"
+                          <button type='button' className="form-control dropdown-toggle" id="mi-form-contract-type"
                                   data-toggle="dropdown" aria-expanded="true">
                           <span>
-                            Dropdown
+                            Licensing Agreement
                             <i className="fa fa-caret-down space-left"></i>
                           </span>
                           </button>
@@ -80,7 +81,8 @@ export default function () {
                     </div>
                     <div className="form-group content-section-item space-top">
                       <div className="col-sm-6">
-                        <button className="btn btn-xs btn-info mi-form-button mi-form-advanced-field-button">Advanced
+                        <button type='button'
+                                className="btn btn-xs btn-info mi-form-button mi-form-advanced-field-button">Advanced
                           Fields
                           <i className="fa fa-caret-down space-left"></i>
                         </button>
@@ -100,16 +102,17 @@ export default function () {
                         Length</label>
 
                       <div className="col-sm-3">
-                        <input type="text" className="form-control" id="mi-form-contract-term-length"/>
+                        <input type="text" className="form-control" id="mi-form-contract-term-length" defaultValue="2"/>
                       </div>
                       <div className="col-sm-6">
-                        <button className="btn btn-sm btn-info mi-form-button mi-form-field-button">Days
+                        <button type='button' className="btn btn-sm btn-info mi-form-button mi-form-field-button">Years
                         </button>
                       </div>
                     </div>
                     <div className="form-group content-section-item space-top">
                       <div className="col-sm-6">
-                        <button className="btn btn-xs btn-info mi-form-button mi-form-advanced-field-button">Advanced
+                        <button type='button'
+                                className="btn btn-xs btn-info mi-form-button mi-form-advanced-field-button">Advanced
                           Fields
                           <i className="fa fa-caret-down space-left"></i>
                         </button>
@@ -129,16 +132,23 @@ export default function () {
 
                       <div className="col-sm-6">
                         <div className="btn-group" role="group" aria-label="...">
-                          <button className="btn btn-sm btn-info mi-form-button active mi-form-field-button">In
+                          <button type='button'
+                                  className="btn btn-sm btn-info mi-form-button mi-form-field-button">In
                           </button>
-                          <button className="btn btn-sm btn-info mi-form-button mi-form-field-button">Out</button>
-                          <button className="btn btn-sm btn-info mi-form-button mi-form-field-button">None</button>
+                          <button type='button'
+                                  className="btn btn-sm btn-info active mi-form-button mi-form-field-button">
+                            Out
+                          </button>
+                          <button type='button' className="btn btn-sm btn-info mi-form-button mi-form-field-button">
+                            None
+                          </button>
                         </div>
                       </div>
                     </div>
                     <div className="form-group content-section-item space-top">
                       <div className="col-sm-6">
-                        <button className="btn btn-xs btn-info mi-form-button mi-form-advanced-field-button">Advanced
+                        <button type='button'
+                                className="btn btn-xs btn-info mi-form-button mi-form-advanced-field-button">Advanced
                           Fields
                           <i className="fa fa-caret-down space-left"></i>
                         </button>
@@ -154,7 +164,8 @@ export default function () {
                   <form className="form-horizontal mi-form-data-entry">
                     <div className="form-group content-section-item">
                       <div className="col-sm-6">
-                        <button className="btn btn-xs btn-info mi-form-button mi-form-action-button">Add New Alert
+                        <button type='button' className="btn btn-xs btn-info mi-form-button mi-form-action-button">Add
+                          New Alert
                         </button>
                       </div>
                     </div>
@@ -168,7 +179,8 @@ export default function () {
                   <form className="form-horizontal mi-form-data-entry">
                     <div className="form-group content-section-item">
                       <div className="col-sm-6">
-                        <button className="btn btn-xs btn-info mi-form-button mi-form-expand-button">Categories
+                        <button type='button' className="btn btn-xs btn-info mi-form-button mi-form-expand-button">
+                          Categories
                           <i className="fa fa-caret-down space-left"></i>
                         </button>
                       </div>
@@ -178,10 +190,10 @@ export default function () {
               </section>
               <section className="row mi-form-section mi-form-section-save content-section-item">
                 <div className="col-md-24">
-                  <button className="btn btn-default">Save
+                  <button type='button' className="btn btn-default">Save
                   </button>
-                  <button className="btn btn-primary">Save and Close
-                  </button>
+                  <Link to="dashboard" className="btn btn-primary">Save and Close
+                  </Link>
                 </div>
               </section>
             </div>

@@ -86,7 +86,7 @@ export default React.createClass({
     // If using this `dropdown` component is overkill, or if we really need blur behavior, consider: http://stackoverflow.com/questions/121499/when-onblur-occurs-how-can-i-find-out-which-element-focus-went-to
     return (
       <Dropdown noContainer open={this.state.isFocused} onClose={this.onFocusOutside}>
-        <li className={classes} onClick={this.onClick}>
+        <div className={classes} onClick={this.onClick}>
           <i className={iconClasses}></i>
           <span className="search-field-label">{this.props.fieldLabel}</span>
 
@@ -95,7 +95,7 @@ export default React.createClass({
                      placeholder={""} onBlur={this.onBlur} transform={this.transform} validate={this.tagsValidate}/>
         </span>
 
-        </li>
+        </div>
       </Dropdown>
     );
   }

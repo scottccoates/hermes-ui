@@ -88,9 +88,9 @@ parent: patterns
   <div class="row">
     <div class="col-md-12">
       <div class="sg-popover popover">
-        <h3 class="popover-heading">Find Contracts</h3>
+        <h3 class="popover-title">Find Contracts</h3>
 
-        <div class="popover-body">
+        <div class="popover-content">
             <p>Sed posuere consectetur est at lobortis. Aenean
                 eu leo quam. Pellentesque ornare sem lacinia
                 quam venenatis vestibulum.
@@ -116,9 +116,7 @@ parent: patterns
   color: $container-color;
 }
 
-.popover-heading {
-  @extend .popover-title; // defined in bootstrap
-
+.popover-title {
   @extend .text-uppercase;
 
   background: none;
@@ -134,9 +132,7 @@ parent: patterns
 
 }
 
-.popover-body {
-  @extend .popover-content; // defined in bootstrap
-
+.popover-content {
   @include at-least-small-screen-styles {
     @include inner-container-space-lg;
   }
@@ -156,7 +152,7 @@ parent: patterns
     <div class="col-md-4">
       <div class="sg-dropdown open">
        <a data-target="#" href="#" data-toggle="dropdown"><span>Actions</span><i class="fa fa-caret-down"></i></span></a>
-       <ul class="dropdown-body">
+       <ul class="dropdown-menu">
           <li role="presentation"> <a role="menuitem" href="#">Dashboard</a></li>
           <li role="presentation"> <a role="menuitem" href="#">Edit Profile</a></li>
           <li role="presentation"> <a role="menuitem" href="#">Admin</a></li>
@@ -173,7 +169,7 @@ parent: patterns
     <div class="col-md-4">
       <div class="sg-dropdown open">
        <a data-target="#" href="#" data-toggle="dropdown"><span>Actions</span><i class="fa fa-caret-down"></i></span></a>
-       <ul class="dropdown-body dropdown-body-arrow">
+       <ul class="dropdown-menu dropdown-menu-arrow">
           <li role="presentation"> <a role="menuitem" href="#">Dashboard</a></li>
           <li role="presentation"> <a role="menuitem" href="#">Edit Profile</a></li>
           <li role="presentation"> <a role="menuitem" href="#">Admin</a></li>
@@ -190,7 +186,7 @@ parent: patterns
     <div class="col-md-4 col-md-offset-2">
       <div class="sg-dropdown open pull-right">
        <a data-target="#" href="#" data-toggle="dropdown"><span>Actions</span><i class="fa fa-caret-down"></i></span></a>
-       <ul class="dropdown-body dropdown-body-arrow dropdown-body-arrow-right">
+       <ul class="dropdown-menu dropdown-menu-arrow dropdown-menu-arrow-right">
           <li role="presentation"> <a role="menuitem" href="#">Dashboard</a></li>
           <li role="presentation"> <a role="menuitem" href="#">Edit Profile</a></li>
           <li role="presentation"> <a role="menuitem" href="#">Admin</a></li>
@@ -202,9 +198,7 @@ parent: patterns
   </div>
 </div>
 */
-.dropdown-body, .dropdown-menu {
-  @extend .dropdown-menu; // defined in bootstrap
-
+.dropdown-menu {
   background: $src-very-bright;
 
   @include hovering-container-border;
@@ -229,7 +223,7 @@ parent: patterns
   }
 }
 
-.dropdown-body-arrow {
+.dropdown-menu-arrow {
   @extend .dropdown-menu-left; // defined in bootstrap
 
   @include at-least-small-screen-styles {
@@ -258,7 +252,7 @@ parent: patterns
   }
 }
 
-.dropdown-body-arrow-right {
+.dropdown-menu-arrow-right {
   @extend .dropdown-menu-right; // defined in bootstrap
 
   @include at-least-small-screen-styles {

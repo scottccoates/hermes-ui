@@ -21,12 +21,13 @@ export default React.createClass({
 
           <li className="header-item header-profile">
             <a data-target="#" href="#" data-toggle="dropdown">
-              <img alt="header profile image" className="header-profile-image" src="/build/assets/images/man-profile-pic.jpg"/>
+              <img alt="header profile image" className="header-profile-image"
+                   src="/build/assets/images/andy-profile-pic.jpg"/>
               <span className="header-profile-name">Andy
                 <i className="fa fa-caret-down space-left"></i>
               </span>
             </a>
-            <ul className="dropdown-body dropdown-body-arrow dropdown-body-arrow-right" role="menu">
+            <ul className="dropdown-menu dropdown-menu-arrow dropdown-menu-arrow-right" role="menu">
               <li role="presentation">
                 <a role="menuitem" href="#">Dashboard</a>
               </li>
@@ -54,7 +55,7 @@ export default React.createClass({
           </li>
 
           <li className="header-item header-new-mi">
-            <Link activeClassName={""} to="createMI" className="btn btn-primary btn-xs">New Contract</Link>
+            <Link activeClassName="" to="createMI" className="btn btn-primary btn-xs">New Contract</Link>
           </li>
         </ul>
       </section>

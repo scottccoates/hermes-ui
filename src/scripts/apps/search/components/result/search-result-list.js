@@ -18,7 +18,7 @@ export default function (SearchResultItemProvider) {
           <div className="content-section alt-content-section search-header-section space-bottom-sm space-top-sm">
             <div className="container">
               <p className='search-header-text'>
-                Contracts containing confidential within the same sentence as disclosure and notifications due within 90
+                Contracts containing licensee within the same sentence as terminate and notifications due within 90
                 days
               </p>
             </div>
@@ -28,7 +28,7 @@ export default function (SearchResultItemProvider) {
             <div className="container">
 
               <div className='search-results-count content-section-item space-bottom-sm'>
-                17 Results Found
+                2 Results Found
               </div>
 
               <div className="search-adjust content-section-item ">
@@ -45,7 +45,7 @@ export default function (SearchResultItemProvider) {
             </div>
           </div>
 
-          <div className="content-section default-content-section search-results-section">
+          <div className="content-section default-content-section search-results-section space-bottom">
             <div className="container">
               <div className="search-results">
 

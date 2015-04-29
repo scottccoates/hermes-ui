@@ -23,9 +23,12 @@ export default function (dropzoneFactory) {
 
     getDefaultProps() {
       return {
-        onAddedFile: ()=> {},
-        onProgressed: (progress)=> {},
-        onComplete: ()=> {}
+        onAddedFile: ()=> {
+        },
+        onProgressed: (progress)=> {
+        },
+        onComplete: ()=> {
+        }
       }
     },
 
@@ -41,7 +44,7 @@ export default function (dropzoneFactory) {
 
     componentDidMount() {
       // remember to use non-arrow function here because that would bind it to undefined and then `this` wouldn't work.
-      this.dropzone = dropzoneFactory.get(this.getDOMNode(), this._dropzoneOptions.toJS());
+      this.dropzone = dropzoneFactory.get(React.findDOMNode(this), this._dropzoneOptions.toJS());
 
       this.dropzone.on('addedfile', this.props.onAddedFile);
       this.dropzone.on('totaluploadprogress', this.props.onProgressed);
@@ -55,11 +58,11 @@ export default function (dropzoneFactory) {
 
     render() {
       return (
-          <form {...this.props}>
-            <div className="dz-message">
+        <form {...this.props}>
+          <div className="dz-message">
             {this.props.children}
-            </div>
-          </form>
+          </div>
+        </form>
       );
     }
   });

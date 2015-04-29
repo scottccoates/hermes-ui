@@ -31,26 +31,29 @@ export default function (ActivityItemProvider) {
     render() {
       const activityNodes = this.props.activities.map(function (activity) {
         return (
-            <div className="content-section-item space-top-sm" key={activity.id}>
-              <ActivityItem activityType={activity.activityType} actorName={activity.actorName} activityContent={activity.activityContent}/>
-            </div>
+          <div className="content-section-item space-top-sm" key={activity.id}>
+            <ActivityItem activityType={activity.activityType} actorName={activity.actorName}
+                          actorImage={activity.actorImage}
+                          activitySubject={activity.activitySubject} activityAction={activity.activityAction}
+                          activityTypeDisplayName={activity.activityTypeDisplayName}/>
+          </div>
         );
-      }).toJS();
+      });
 
       return (
-          <div id="activity-list-wrapper">
-            <section className="row">
-              <div className="col-sm-24">
-                <h3 className="content-section-header">Recent Activity</h3>
+        <div id="activity-list-wrapper">
+          <section className="row">
+            <div className="col-sm-24">
+              <h3 className="content-section-header">Recent Activity</h3>
 
-                <ReactCSSTransitionGroup transitionName="content" transitionLeave={false}>
-                  {activityNodes}
-                </ReactCSSTransitionGroup>
+              <ReactCSSTransitionGroup transitionName="content" transitionLeave={false}>
+                {activityNodes}
+              </ReactCSSTransitionGroup>
 
-                <Separator/>
-              </div>
-            </section>
-          </div>
+              <Separator/>
+            </div>
+          </section>
+        </div>
       );
     }
   });

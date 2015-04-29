@@ -16,7 +16,7 @@ export default React.createClass({
   render() {
     return (
         <div className="popover search-popover">
-          <div className="popover-body">
+          <div className="popover-content">
             <ul>
 
               <li id="advanced-search-link">

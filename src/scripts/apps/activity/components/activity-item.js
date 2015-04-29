@@ -32,15 +32,15 @@ export default function () {
 
             <div className="col-sm-1">
               <img alt="activity profile image" className="activity-profile-image"
-                   src="/build/assets/images/man-profile-pic.jpg"/>
+                   src={this.props.actorImage}/>
             </div>
 
             <div className="col-sm-22 activity-content">
               <span>
-                <strong>
-                  <span>{this.props.actorName} </span>
-                </strong>
-                {this.props.activityContent}
+                <a href="#"><strong><span>{this.props.actorName}</span></strong></a>
+                <span> {this.props.activityTypeDisplayName} </span>
+                <a href="#">{this.props.activitySubject}</a>
+                <span> {this.props.activityAction}</span>
               </span>
             </div>
           </div>

@@ -5,13 +5,13 @@
     @include font-size($src-font-size-small);
   }
 
-  .popover-heading {
+  .popover-title {
     @include at-least-small-screen-styles {
       @include font-size($src-font-size-small);
     }
   }
 
-  .popover-body {
+  .popover-content {
     @include at-least-small-screen-styles {
       margin: 0;
       padding: 0;
@@ -256,8 +256,6 @@
 
                   .btn {
                     // technically these buttons are part of a token and should therefore reside within search-field-apollo-token
-                    text-transform: none;
-
                     @include at-least-small-screen-styles {
                       margin-right: 5px;
                       padding: 1px 10px;
@@ -302,7 +300,6 @@
         }
 
         .search-field-button {
-          text-transform: none;
         }
       }
     }
@@ -313,7 +310,6 @@
       }
 
       .btn-primary {
-        text-transform: none;
       }
     }
   }

@@ -24,12 +24,14 @@ const dataTransitionMixin = (dataActions)=> {
 
     statics: {
 
-      willTransitionTo(transition, params) {
+      asyncTransition(params) {
 
         const actions = dataActions.reduce((accum, dataAction)=> {
           accum.push(doTransition(...dataAction));
           return accum;
         }, []);
+
+        return actions;
       }
     }
   };

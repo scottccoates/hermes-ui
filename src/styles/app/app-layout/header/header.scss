@@ -121,7 +121,7 @@ $header-font-size: 18px;
             }
           }
 
-          .dropdown-body {
+          .dropdown-menu {
 
             @include at-least-small-screen-styles {
               @include font-size(12px);
@@ -155,7 +155,6 @@ $header-font-size: 18px;
 
           .btn {
             color: $src-very-bright;
-            text-transform: none;
 
             @include at-least-small-screen-styles {
               @include font-size(12px);

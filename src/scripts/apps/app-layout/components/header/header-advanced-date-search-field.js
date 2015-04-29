@@ -20,7 +20,7 @@ export default React.createClass({
     const clickStream = this.eventStream('onClick');
     clickStream.subscribe(()=> {
       // we need to wait until render has finished before we can set focus to this as its currently hidden.
-      setTimeout(()=>this.refs.fieldInput.getDOMNode().focus());
+      setTimeout(()=>React.findDOMNode(this.refs.fieldInput).focus());
     });
 
     const changeStream = this.eventStream('onChange');
@@ -35,12 +35,13 @@ export default React.createClass({
     const classes = cx({'search-field': true, 'empty': !this.state.textValue});
     const iconClasses = cx('fa', this.props.iconClass);
     return (
-      <li className={classes} onClick={this.onClick}>
+      <div className={classes} onClick={this.onClick}>
         <i className={iconClasses}></i>
         <span className="search-field-label">{this.props.fieldLabel}</span>
-        <input type="text" ref="fieldInput" value={this.state.textValue} className="search-field-date-input-value form-control" onChange={this.onChange} />
+        <input type="text" ref="fieldInput" value={this.state.textValue}
+               className="search-field-date-input-value form-control" onChange={this.onChange}/>
         <button className="btn btn-sm btn-default search-field-button">Days</button>
-      </li>
+      </div>
     );
   }
 
