@@ -109,6 +109,43 @@ export default function () {
                         </button>
                       </div>
                     </div>
+                    <div className="form-group content-section-item">
+                      <label htmlFor="mi-form-contract-term-length"
+                             className="col-sm-6 control-label">Auto-Renew?</label>
+
+                      <div className="col-sm-6">
+                        <button type='button' className="btn btn-sm btn-info mi-form-button mi-form-field-button">Yes
+                        </button>
+                      </div>
+                    </div>
+                    <div className="form-group content-section-item">
+                      <label htmlFor="mi-form-contract-term-length" className="col-sm-6 control-label">Renewal
+                        Notice</label>
+
+                      <div className="col-sm-3">
+                        <input type="text" className="form-control" id="mi-form-contract-term-length"
+                               defaultValue="60"/>
+                      </div>
+                      <div className="col-sm-10">
+                        <button type='button' className="btn btn-sm btn-info mi-form-button mi-form-field-button">Days
+                        </button>
+                        <span
+                          className="control-label content-section-item space-left-sm space-right-sm mi-form-control-text">before
+                        </span>
+                        <button type='button' className="btn btn-sm btn-info mi-form-button mi-form-field-button">
+                          Expiration
+                        </button>
+                      </div>
+
+                    </div>
+                    <div className="form-group content-section-item">
+                      <label htmlFor="mi-form-description" className="col-sm-6 control-label">Other Details</label>
+
+                      <div className="col-sm-18">
+                        <textarea rows="5" className="form-control" id="mi-form-description"/>
+                      </div>
+                    </div>
+
                     <div className="form-group content-section-item space-top">
                       <div className="col-sm-6">
                         <button type='button'
@@ -145,6 +182,13 @@ export default function () {
                         </div>
                       </div>
                     </div>
+                    <div className="form-group content-section-item">
+                      <label htmlFor="mi-form-description" className="col-sm-6 control-label">Other Details</label>
+
+                      <div className="col-sm-18">
+                        <textarea rows="5" className="form-control" id="mi-form-description"/>
+                      </div>
+                    </div>
                     <div className="form-group content-section-item space-top">
                       <div className="col-sm-6">
                         <button type='button'
@@ -162,6 +206,25 @@ export default function () {
                   <h3 className="content-section-header">Contract Alerts</h3>
 
                   <form className="form-horizontal mi-form-data-entry">
+                    <div className="form-group content-section-item">
+                      <label htmlFor="mi-form-contract-term-length" className="col-sm-6 control-label">Notify Me</label>
+
+                      <div className="col-sm-3">
+                        <input type="text" className="form-control" id="mi-form-contract-term-length"
+                               defaultValue="30"/>
+                      </div>
+                      <div className="col-sm-10">
+                        <button type='button' className="btn btn-sm btn-info mi-form-button mi-form-field-button">Days
+                        </button>
+                        <span
+                          className="control-label content-section-item space-left-sm space-right-sm mi-form-control-text">before
+                        </span>
+                        <button type='button' className="btn btn-sm btn-info mi-form-button mi-form-field-button">
+                          Renewal Notice
+                        </button>
+                      </div>
+
+                    </div>
                     <div className="form-group content-section-item">
                       <div className="col-sm-6">
                         <button type='button' className="btn btn-xs btn-info mi-form-button mi-form-action-button">Add

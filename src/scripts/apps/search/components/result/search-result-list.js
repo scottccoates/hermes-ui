@@ -18,8 +18,7 @@ export default function (SearchResultItemProvider) {
           <div className="content-section alt-content-section search-header-section space-bottom-sm space-top-sm">
             <div className="container">
               <p className='search-header-text'>
-                Contracts containing licensee within the same sentence as terminate and notifications due within 90
-                days
+                Contracts containing licensee within the same sentence as terminate
               </p>
             </div>
           </div>
@@ -50,15 +49,30 @@ export default function (SearchResultItemProvider) {
               <div className="search-results">
 
                 <div className="content-section-item space-top-sm">
-                  <SearchResultItem />
+                  <SearchResultItem searchResultSubject="Licensing Agreement Between Microsoft and Hermes, Inc.
+                      for Microsoft Office Suite Products" searchResultOwner="Microsoft"
+                                    searchResultImage="/build/assets/images/microsoft-logo.png"
+                                    searchResultEntityType="Licensing Agreement"
+                                    searchResultAdditionalDetails="2 upcoming tasks"
+                                    searchResultContent="… within a reasonable period, Licensee's sole recourse shall be to terminate the Agreement and
+                        Licensor's sole obligation shall be … Licensee Right to Terminate. Licensee shall have the right
+                        to … all rights granted to Licensee under this Agreement shall forthwith terminate and
+                        immediately revert to Licensor and …"/>
                 </div>
 
                 <div className="content-section-item space-top-sm">
-                  <SearchResultItem />
+                  <SearchResultItem
+                    searchResultSubject="Licensing Agreement Between Hermes Inc. and Adobe for Adobe Master Suite"
+                    searchResultOwner="Adobe"
+                    searchResultImage="/build/assets/images/adobe-logo.png"
+                    searchResultEntityType="Licensing Agreement"
+                    searchResultAdditionalDetails="1 upcoming task"
+                    searchResultContent="… Licensee Right to Terminate. Licensee shall have the right
+                        to … all rights granted to Licensee under this Agreement shall forthwith terminate and
+                        immediately revert to Licensor … and within a reasonable period, Licensee's sole recourse shall be to terminate the Agreement and
+                        Licensor's sole obligation shall be …"/>
                 </div>
-
               </div>
-
             </div>
           </div>
         </div>

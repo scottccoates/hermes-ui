@@ -151,9 +151,21 @@
       }
     }
 
+    &.space-left-sm {
+      @include at-least-small-screen-styles {
+        margin-left: $src-content-section-horizontal-space-sm;
+      }
+    }
+
     &.space-right-md {
       @include at-least-small-screen-styles {
         margin-right: $src-content-section-horizontal-space-md;
+      }
+    }
+
+    &.space-right-sm {
+      @include at-least-small-screen-styles {
+        margin-right: $src-content-section-horizontal-space-sm;
       }
     }
   }

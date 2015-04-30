@@ -19,6 +19,7 @@
 
     .form-group {
       .control-label {
+        color: $src-less-dark;
         @include at-least-small-screen-styles {
         }
       }
@@ -55,8 +56,17 @@
         &.mi-form-field-button {
 
           @include at-least-small-screen-styles {
-            margin-top: 3px;
+            margin-top: 1px;
           }
+        }
+      }
+
+      .mi-form-control-text {
+        @include at-least-small-screen-styles {
+          display: inline-block;
+          padding: 0;
+          position: relative;
+          top: 2px; //required because the padding will push down all inline elements (other buttons)
         }
       }
     }
