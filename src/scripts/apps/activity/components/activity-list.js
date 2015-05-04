@@ -46,7 +46,7 @@ export default function (ActivityItemProvider) {
             <div className="col-sm-24">
               <h3 className="content-section-header">Recent Activity</h3>
 
-              <ReactCSSTransitionGroup transitionName="content" transitionLeave={false}>
+              <ReactCSSTransitionGroup component="div" transitionName="content" transitionLeave={false}>
                 {activityNodes}
               </ReactCSSTransitionGroup>
 

@@ -23,8 +23,7 @@ const AppLayout = React.createClass({
 
     const style = {"visibility": this.props.loading ? "hidden" : "visible"};
 
-    console.log('style', style);
-
+    console.log('name', name);
     return (
       <div id="page-wrapper">
         <Sidebar />
@@ -34,9 +33,9 @@ const AppLayout = React.createClass({
 
           <div id="content-wrapper">
 
-            <ReactCSSTransitionGroup transitionName="content" transitionLeave={false}>
-              <div style={style}>
-                <RouteHandler key={name}/>
+            <ReactCSSTransitionGroup component="div" transitionName="content" transitionLeave={false}>
+              <div style={style} key={name}>
+                <RouteHandler/>
               </div>
             </ReactCSSTransitionGroup>
 
