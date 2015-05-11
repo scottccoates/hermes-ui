@@ -6,7 +6,7 @@ import ReactBootstrap from 'react-bootstrap';
 const {DropdownStateMixin} = ReactBootstrap;
 
 export default React.createClass({
-  displayName: "Dropdown",
+  displayName: "FocusContainer",
   mixins: [DropdownStateMixin],
 
   propTypes: {
@@ -37,25 +37,16 @@ export default React.createClass({
   },
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.open != this.props.open) {
-      // this could happen if this component has many dropdown siblings and one of them was activiated but not this one.
+    if (nextProps.inFocus != this.props.inFocus) {
+      // this could happen if this component has many focus-container siblings and one of them was activiated but not this one.
       // if that's the case, do not change the bind/unbind handlers and don't notify parent that it has closed.
-      this.setDropdownState(nextProps.open);
+      this.setDropdownState(nextProps.inFocus);
     }
   },
 
   render() {
-    if (this.props.noContainer) {
-      return (
-        this.props.children
-      );
-    }
-    else {
-      return (
-        <div style={{display: this.props.open ? "block" : "none"}}>
-          {this.props.children}
-        </div>
-      );
-    }
+    return (
+      this.props.children
+    );
   }
 });

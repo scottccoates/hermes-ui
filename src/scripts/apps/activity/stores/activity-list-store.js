@@ -2,7 +2,7 @@ import Reflux from 'reflux';
 
 import Immutable from 'immutable';
 
-import ActivityActions from 'src/aggregates/activity/actions/actions';
+import ActivityActions from 'src/scripts/aggregates/activity/actions/actions';
 
 export default function () {
   const activityListStore = Reflux.createStore({

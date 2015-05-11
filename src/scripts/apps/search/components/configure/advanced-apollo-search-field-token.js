@@ -6,12 +6,12 @@ import ReactDND from 'react-dnd';
 
 const {DragDropMixin} = ReactDND;
 
-const cx = React.addons.classSet;
+import cx from 'classnames';
 
 const {DropdownButton, MenuItem} = ReactBootstrap;
 
 export default React.createClass({
-  displayName: "HeaderAdvancedTextSearchFieldToken",
+  displayName: "AdvancedApolloSearchFieldToken",
   mixins: [DragDropMixin],
 
   statics: {

@@ -77,8 +77,41 @@ $header-font-size: 18px;
       }
     }
 
-    @import "search-popover";
-    @import "advanced-search-popover";
+    .search-popover {
+      @include at-least-small-screen-styles {
+        top: $header-search-height;
+        width: $header-search-width;
+        @include font-size($header-font-size);
+      }
+
+      .popover-content {
+        @include at-least-small-screen-styles {
+          margin: 0;
+          padding: 0;
+        }
+      }
+    }
+
+    .advanced-search-popover {
+      @include at-least-small-screen-styles {
+        top: $header-search-height;
+        width: 798px; // should be $header-search-width?
+        @include font-size($src-font-size-small);
+      }
+
+      .popover-title {
+        @include at-least-small-screen-styles {
+          @include font-size($src-font-size-small);
+        }
+      }
+
+      .popover-content {
+        @include at-least-small-screen-styles {
+          margin: 0;
+          padding: 0;
+        }
+      }
+    }
   }
 
   .header-nav-section {

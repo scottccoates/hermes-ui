@@ -6,9 +6,9 @@ import ImmutableRenderMixin from 'react-immutable-render-mixin';
 
 import Immutable from 'immutable';
 
-import ComponentProvider from 'src/libs/react-js/components/component-provider';
+import ComponentProvider from 'src/scripts/libs/react-js/components/component-provider';
 
-import Separator from 'src/libs/react-js/components/separator';
+import Separator from 'src/scripts/libs/react-js/components/separator.js!jsx';
 
 const {Link} = Router;
 

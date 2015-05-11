@@ -1,9 +1,5 @@
 import Reflux from 'reflux';
 
-const Actions = Reflux.createActions({
-  "loadData": {
-    asyncResult: true
-  }
-});
+const Actions = Reflux.createActions({});
 
 export default Actions;

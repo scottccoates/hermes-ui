@@ -2,7 +2,7 @@ import Reflux from 'reflux';
 
 import Immutable from 'immutable';
 
-import TaskActions from 'src/aggregates/task/actions/actions';
+import TaskActions from 'src/scripts/aggregates/task/actions/actions';
 
 export default function () {
   const taskListStore = Reflux.createStore({

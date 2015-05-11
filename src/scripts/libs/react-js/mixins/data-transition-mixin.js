@@ -1,4 +1,4 @@
-import Actions from 'src/libs/react-js/actions/actions';
+import Actions from 'src/scripts/libs/react-js/actions/actions';
 
 const noop = ()=> true;
 

@@ -4,10 +4,11 @@ import React from 'react';
 import Bacon from 'bacon';
 import ReactBacon from 'react-bacon';
 
-import Dropdown from 'src/libs/react-js/components/dropdown';
+import FocusContainer from 'src/scripts/libs/react-js/components/focus-container.js!jsx';
+import DisplayContainer from 'src/scripts/libs/react-js/components/display-container.js!jsx';
 
-import HeaderSearchDropdown from 'src/apps/app-layout/components/header/header-search-dropdown';
-import HeaderAdvancedSearchDropdown from 'src/apps/app-layout/components/header/header-advanced-search-dropdown';
+import SearchContainer from 'src/scripts/apps/search/components/configure/search-container.js!jsx';
+import AdvancedSearchContainer from 'src/scripts/apps/search/components/configure/advanced-search-container.js!jsx';
 
 export default React.createClass({
   displayName: "HeaderSearch",
@@ -36,24 +37,39 @@ export default React.createClass({
 
         <div>
 
-          <Dropdown open={this.state.searchDropdownEnabled} onClose={this.onHeaderSearchClose}>
-            <HeaderSearchDropdown onAdvancedSearchClick={this.onAdvancedSearchClick}/>
-          </Dropdown>
+          <FocusContainer inFocus={this.state.searchDropdownEnabled} onClose={this.onSearchClose}>
+            <DisplayContainer open={this.state.searchDropdownEnabled}>
+              <div className="popover search-popover">
+                <div className="popover-content">
+                  <SearchContainer onAdvancedSearchClick={this.onAdvancedSearchClick}/>
+                </div>
+              </div>
+            </DisplayContainer>
 
-          <Dropdown open={this.state.advancedSearchDropdownEnabled} onClose={this.onHeaderAdvancedSearchClose}>
-            <HeaderAdvancedSearchDropdown close={this.onHeaderAdvancedSearchClose}/>
-          </Dropdown>
+          </FocusContainer>
+
+          <FocusContainer inFocus={this.state.advancedSearchDropdownEnabled} onClose={this.onAdvancedSearchClose}>
+            <DisplayContainer open={this.state.advancedSearchDropdownEnabled}>
+              <div className="popover advanced-search-popover">
+                <div className="popover-title">Find Contracts</div>
+                <div className="popover-content">
+                  <AdvancedSearchContainer close={this.onHeaderAdvancedSearchClose}/>
+                </div>
+              </div>
+            </DisplayContainer>
+
+          </FocusContainer>
 
         </div>
       </div>
     );
   },
 
-  onHeaderSearchClose() {
+  onSearchClose() {
     this.setState({searchDropdownEnabled: false});
   },
 
-  onHeaderAdvancedSearchClose() {
+  onAdvancedSearchClose() {
     this.setState({advancedSearchDropdownEnabled: false});
   },
 

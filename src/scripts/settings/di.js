@@ -3,29 +3,29 @@
 
 import Intravenous from 'intravenous';
 
-import FileUpload from 'src/libs/react-js/components/file-upload';
+import FileUpload from 'src/scripts/libs/react-js/components/file-upload.js!jsx';
 
-import MI from 'src/apps/management-item/components/management-item';
-import CreateMI from 'src/apps/management-item/components/new-management-item/create-management-item';
-import MIForm from 'src/apps/management-item/components/new-management-item/management-item-form';
+import MI from 'src/scripts/apps/management-item/components/management-item.js!jsx';
+import CreateMI from 'src/scripts/apps/management-item/components/new-management-item/create-management-item.js!jsx';
+import MIForm from 'src/scripts/apps/management-item/components/new-management-item/management-item-form.js!jsx';
 
-import Dashboard from 'src/apps/dashboard/components/dashboard';
+import Dashboard from 'src/scripts/apps/dashboard/components/dashboard.js!jsx';
 
-import TaskList from 'src/apps/task/components/task-list';
-import TaskItem from 'src/apps/task/components/task-item';
-import TaskListStore from 'src/apps/task/stores/task-list-store';
-import TaskAPI from 'src/aggregates/task/api/task-api';
+import TaskList from 'src/scripts/apps/task/components/task-list.js!jsx';
+import TaskItem from 'src/scripts/apps/task/components/task-item.js!jsx';
+import TaskListStore from 'src/scripts/apps/task/stores/task-list-store';
+import TaskAPI from 'src/scripts/aggregates/task/api/task-api';
 
-import ActivityList from 'src/apps/activity/components/activity-list';
-import ActivityItem from 'src/apps/activity/components/activity-item';
-import ActivityListStore from 'src/apps/activity/stores/activity-list-store';
-import ActivityAPI from 'src/aggregates/activity/api/activity-api';
+import ActivityList from 'src/scripts/apps/activity/components/activity-list.js!jsx';
+import ActivityItem from 'src/scripts/apps/activity/components/activity-item.js!jsx';
+import ActivityListStore from 'src/scripts/apps/activity/stores/activity-list-store';
+import ActivityAPI from 'src/scripts/aggregates/activity/api/activity-api';
 
-import SearchResultList from 'src/apps/search/components/result/search-result-list';
-import SearchResultItem from 'src/apps/search/components/result/search-result-item';
+import SearchResultList from 'src/scripts/apps/search/components/result/search-result-list.js!jsx';
+import SearchResultItem from 'src/scripts/apps/search/components/result/search-result-item.js!jsx';
 
 import Dropzone from 'dropzone';
-import NoOpDropzone from 'src/libs/file-upload/no-op-dropzone';
+import NoOpDropzone from 'src/scripts/libs/file-upload/no-op-dropzone';
 
 const container = Intravenous.create({
   onDispose: function (obj, serviceName) {

@@ -1,5 +1,5 @@
 import Immutable from 'immutable';
-import MockAPI from 'src/libs/api/mock/mock-api';
+import MockAPI from 'src/scripts/libs/api/mock/mock-api';
 
 const task1 = {
   id: 1,

@@ -1,1 +1,1 @@
-import SearchActions from 'src/apps/search/actions/actions';
+import SearchActions from 'src/scripts/apps/search/actions/actions';

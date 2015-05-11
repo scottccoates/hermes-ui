@@ -16,15 +16,9 @@
     opacity: 0.01;
 
     transition: opacity 0.15s linear;
-    //    max-height: 0;
-    //    overflow: hidden;
-    //
-    //    transition: max-height .65s ease;
 
     &.content-enter-active {
       opacity: 1;
-      // http://stackoverflow.com/questions/19341546/why-this-css3-transition-on-height-does-not-work
-      //      max-height: 1000px;
     }
   }
 
@@ -38,11 +32,21 @@
     }
   }
 
+  .transition-content-wrapper {
+    overflow: hidden;
+    transition: height 0.20s linear;
+    // http://stackoverflow.com/questions/19341546/why-this-css3-transition-on-height-does-not-work
+    // http://stackoverflow.com/questions/13938460/css-transition-auto-height-not-working/13938747#13938747
+  }
+
+  .transition-content {
+    transition: opacity 0.15s 0.30s linear;
+  }
+
   .content-section {
     @include at-least-small-screen-styles {
       padding-left: $src-content-section-horizontal-space;
       padding-right: $src-content-section-horizontal-space;
-
     }
 
     &.space-top-lg {

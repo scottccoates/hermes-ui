@@ -12,42 +12,31 @@ var historyApiFallback = require('connect-history-api-fallback');
 //================================================
 
 /*
-* 1. Setup a webserver with livereload using BrowserSync
-* 2. JS and CSS get processed and served from the 'build' folder
-* 3. JSX: Transform jsx React files and put in build 'build' folder
-* 4. Compile sass files, autoprefix and put in 'build' folder
-* */
+ * 1. Setup a webserver with livereload using BrowserSync
+ * 2. JS and CSS get processed and served from the 'build' folder
+ * 3. Compile sass files, autoprefix and put in 'build' folder
+ * */
 
- // BrowserSync Server
-gulp.task('browser-sync', function() {
-  browserSync.init([
-    './build/css/*.css',
-    './build/js/**/*.js',
-    './**/*.html'
-  ],
-  {
-    notify: false,
-    server: {
-      baseDir: ['./'],
-      middleware:[historyApiFallback] //https://github.com/BrowserSync/browser-sync/issues/204#issuecomment-60410751
-    },
-    port: 3500,
-    browser: [],
-    tunnel: false
-  });
-});
-
-// JSX
-gulp.task('jsx', function() {
-  return gulp.src('src/scripts/**/*.js')
-    .pipe(plugins.cached('jsx'))  //Process only changed files
-    .pipe(plugins.react())
-    .on('error', plugins.util.log)
-    .pipe(gulp.dest('build/js'));
+// BrowserSync Server
+gulp.task('browser-sync', function () {
+  browserSync.init(
+    {
+      files: [ // files to watch
+        './index.html',
+        './src/scripts/**/*.js',
+        './build/css/*.css'
+      ],
+      notify: false,
+      server: {
+        baseDir: './',
+        middleware: [historyApiFallback] // https://github.com/BrowserSync/browser-sync/issues/204#issuecomment-60410751
+      },
+      port: 3500
+    });
 });
 
 // Sass
-gulp.task('sass', function() {
+gulp.task('sass', function () {
   return gulp.src('./src/styles/main.scss')
     .pipe(plugins.sourcemaps.init())
     .pipe(plugins.sass())
@@ -65,48 +54,32 @@ gulp.task('sass', function() {
 // Assets
 gulp.task('assets', function () {
   return gulp.src('./src/assets/**/*.*')
-      .pipe(gulp.dest('./build/assets'))
-      .on('error', plugins.util.log);
+    .pipe(gulp.dest('./build/assets'))
+    .on('error', plugins.util.log);
 });
 
 // serve task
-gulp.task('serve', ['browser-sync', 'jsx', 'sass', 'assets'] , function(cb) {
-
-  plugins.watch(
-    './src/styles/**/*.scss',
-    {
-      name: 'SASS'
-    },
-    function() {
-      runSequence('sass');
-    }
-  );
-
-  plugins.watch(
-    './src/scripts/**/*.js',
-    {
-      name: 'JS'
-    },
-    function() {
-      // notes on gulp.start: http://stackoverflow.com/questions/21905875/gulp-run-is-deprecated-how-do-i-compose-tasks
-      gulp.start('jsx');
-    }
-  );
+gulp.task('serve', ['browser-sync', 'sass', 'assets'], function () {
+  gulp.watch('./src/styles/**/*.scss', ['sass']);
 });
 
 // Delete build Directory
-gulp.task('delete-build', function(cb) {
+gulp.task('delete-build', function (cb) {
   rimraf('./build', cb);
 });
 
 //build (no server)
-gulp.task('build', ['jsx', 'sass']);
+gulp.task('build', function (cb) {
+  runSequence('delete-build', 'sass', 'assets', cb)
+});
 
 // Default
-gulp.task('default', runSequence.call(null, 'delete-build', 'serve'));
+gulp.task('default', function (cb) {
+  runSequence('delete-build', 'serve', cb);
+});
 
 // Tests
-gulp.task('test', function(done) {
+gulp.task('test', function (done) {
   karma.start({
     configFile: __dirname + '/karma.conf.js'
   }, done);
@@ -117,14 +90,14 @@ gulp.task('test', function(done) {
 //===============================================
 
 // Delete dist Directory
-gulp.task('delete-dist', function() {
-  rimraf('./dist', function(err) {
+gulp.task('delete-dist', function () {
+  rimraf('./dist', function (err) {
     plugins.util.log(err);
   });
 });
 
 // CSS
-gulp.task('css', function() {
+gulp.task('css', function () {
   return gulp.src('./build/css/main.css')
     .pipe(gulp.dest('./dist/css'))
     .pipe(plugins.csso())
@@ -134,19 +107,19 @@ gulp.task('css', function() {
 });
 
 // Copy index.html to 'dist'
-gulp.task('html', function() {
+gulp.task('html', function () {
   gulp.src(['./index.html'])
     .pipe(gulp.dest('./dist'))
     .on('error', plugins.util.log);
 });
 
 // Bundle with jspm
-gulp.task('bundle', ['jsx'], plugins.shell.task([
-  'jspm bundle-sfx build/js/main dist/js/app.js'
+gulp.task('bundle', plugins.shell.task([
+  'jspm bundle-sfx src/scripts/main dist/js/app.js'
 ]));
 
 // Uglify the bundle
-gulp.task('uglify', function() {
+gulp.task('uglify', function () {
   return gulp.src('./dist/js/app.js')
     .pipe(plugins.sourcemaps.init({loadMaps: true}))
     .pipe(plugins.uglify())
@@ -156,7 +129,7 @@ gulp.task('uglify', function() {
     .on('error', plugins.util.log);
 });
 
-gulp.task('dist', function() {
+gulp.task('dist', function () {
   runSequence(
     'delete-dist',
     'build',
@@ -171,7 +144,7 @@ gulp.task('dist', function() {
 // Install rvm and then install hologram into the global rvm gemset. Bundler will find it.
 gulp.task('style-guide', ['style-guide:sass'], function () {
   // Delete dir first because hologram has a bug where it'll keep nesting its outputs.
-  rimraf('./docs/style_guide/out', function(err) {
+  rimraf('./docs/style_guide/out', function (err) {
     plugins.util.log(err);
   });
 

@@ -6,9 +6,9 @@ import Router  from 'react-router';
 
 import container from './di';
 
-import AppLayout from 'src/apps/app-layout/components/app-layout';
+import AppLayout from 'src/scripts/apps/app-layout/components/app-layout.js!jsx';
 
-import AsyncRouteHandler from 'src/libs/react-js/routing/async-route-handler';
+import AsyncRouteHandler from 'src/scripts/libs/react-js/routing/async-route-handler.js!jsx';
 
 // Named exports only work for es6, react-router uses common. So we have to use Destructuring instead.
 const {DefaultRoute, Route, HistoryLocation} = Router;

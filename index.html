@@ -16,9 +16,9 @@
 <script src="/jspm_packages/system.js"></script>
 <script src="/config.js"></script>
 <script>
-  System.import('src/apps/feedback/components/loading/loading-feedback').then(function (loadingFeedback) {
+  System.import('src/scripts/apps/feedback/components/loading/loading-feedback').then(function (loadingFeedback) {
     loadingFeedback.default.start();
-    System.import('src/main').then(function () {
+    System.import('src/scripts/main').then(function () {
       loadingFeedback.default.done();
     });
   });

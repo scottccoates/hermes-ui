@@ -1,7 +1,7 @@
 // Karma configuration
 // Generated on Tue Jan 13 2015 13:06:52 GMT-0500 (EST)
 
-module.exports = function(config) {
+module.exports = function (config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -20,20 +20,18 @@ module.exports = function(config) {
     //],
 
     jspm: {
-      loadFiles: ['test/**/*.js'],
-      serveFiles: ['build/js/**/*.js']
+      loadFiles: ['src/scripts/**/test-*.js'],
+      serveFiles: ['src/scripts/**/*.js']
     },
 
 
     // list of files to exclude
-    exclude: [
-    ],
+    exclude: [],
 
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {
-    },
+    preprocessors: {},
 
 
     // test results reporter to use

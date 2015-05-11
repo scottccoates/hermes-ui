@@ -1,1 +1,1 @@
-import TaskActions from 'src/apps/task/actions/actions';
+import TaskActions from 'src/scripts/apps/task/actions/actions';

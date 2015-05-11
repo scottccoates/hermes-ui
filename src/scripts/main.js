@@ -1,9 +1,9 @@
 /* jshint -W030 */
 'use strict';
 
-import 'src/settings/di';
-import 'src/settings/routes';
+import 'src/scripts/settings/di';
+import 'src/scripts/settings/routes.js!jsx';
 
 // load init scripts - configures things like event handlers
-import 'src/aggregates/init';
-import 'src/apps/init';
+import 'src/scripts/aggregates/init';
+import 'src/scripts/apps/init';

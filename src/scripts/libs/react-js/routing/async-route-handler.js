@@ -4,7 +4,6 @@ import React from 'react';
 import Router  from 'react-router';
 
 function getAsyncTransition(state) {
-  var retVal = null;
 
   var asyncTransitionRoutes = (
     state.routes
@@ -13,15 +12,13 @@ function getAsyncTransition(state) {
         route.handler.asyncTransition(state.params))
   );
 
-  if (asyncTransitionRoutes) {
-    //flatten http://stackoverflow.com/questions/10865025/merge-flatten-an-array-of-arrays-in-javascript
-    asyncTransitionRoutes = [].concat.apply([], asyncTransitionRoutes);
-    retVal = Promise.all(asyncTransitionRoutes);
-  }
+  //flatten http://stackoverflow.com/questions/10865025/merge-flatten-an-array-of-arrays-in-javascript
+  asyncTransitionRoutes = [].concat.apply([], asyncTransitionRoutes);
 
-  return retVal;
+  const asyncTransitionPromises = Promise.all(asyncTransitionRoutes);
+
+  return asyncTransitionPromises;
 }
-
 
 function getHandler(containerId) {
 
@@ -33,14 +30,9 @@ function getHandler(containerId) {
 
     const asyncTransitionPromise = getAsyncTransition(state);
 
-    if (asyncTransitionPromise) {
-      renderHandler(Handler, true);
+    renderHandler(Handler, true);
 
-      asyncTransitionPromise.then(() => renderHandler(Handler, false));
-    }
-    else {
-      renderHandler(Handler, false);
-    }
+    asyncTransitionPromise.then(() => renderHandler(Handler, false));
   };
 }
 

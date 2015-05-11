@@ -1,19 +1,19 @@
 'use strict';
 
-import React from 'react';
+import React from 'react/addons';
 import Bacon from 'bacon';
 import ReactBacon from 'react-bacon';
 
-import Dropdown from 'src/libs/react-js/components/dropdown';
+import FocusContainer from 'src/scripts/libs/react-js/components/focus-container.js!jsx';
 
 import TagsInput from 'react-tagsinput';
 
-import ApolloSearchFieldToken from 'src/apps/app-layout/components/header/header-advanced-apollo-search-field-token';
+import ApolloSearchFieldToken from 'src/scripts/apps/search/components/configure/advanced-apollo-search-field-token.js!jsx';
 
-const cx = React.addons.classSet;
+import cx from 'classnames';
 
 export default React.createClass({
-  displayName: "HeaderAdvancedTextSearchField",
+  displayName: "AdvancedApolloSearchField",
   mixins: [React.addons.LinkedStateMixin, ReactBacon.BaconMixin],
   getInitialState() {
     return {
@@ -85,7 +85,7 @@ export default React.createClass({
 
     // If using this `dropdown` component is overkill, or if we really need blur behavior, consider: http://stackoverflow.com/questions/121499/when-onblur-occurs-how-can-i-find-out-which-element-focus-went-to
     return (
-      <Dropdown noContainer open={this.state.isFocused} onClose={this.onFocusOutside}>
+      <FocusContainer inFocus={this.state.isFocused} onClose={this.onFocusOutside}>
         <div className={classes} onClick={this.onClick}>
           <i className={iconClasses}></i>
           <span className="search-field-label">{this.props.fieldLabel}</span>
@@ -96,7 +96,7 @@ export default React.createClass({
         </span>
 
         </div>
-      </Dropdown>
+      </FocusContainer>
     );
   }
 });

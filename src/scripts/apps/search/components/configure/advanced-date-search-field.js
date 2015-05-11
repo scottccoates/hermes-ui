@@ -4,10 +4,10 @@ import React from 'react';
 import Bacon from 'bacon';
 import ReactBacon from 'react-bacon';
 
-const cx = React.addons.classSet;
+import cx from 'classnames';
 
 export default React.createClass({
-  displayName: "HeaderAdvancedDateSearchField",
+  displayName: "AdvancedDateSearchField",
   mixins: [ReactBacon.BaconMixin],
 
   getInitialState() {

@@ -1,1 +1,1 @@
-import ActivityActions from 'src/apps/activity/actions/actions';
+import ActivityActions from 'src/scripts/apps/activity/actions/actions';

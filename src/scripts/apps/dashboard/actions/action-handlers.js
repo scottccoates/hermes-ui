@@ -1,1 +1,1 @@
-import DashboardActions from 'src/apps/dashboard/actions/actions';
+import DashboardActions from 'src/scripts/apps/dashboard/actions/actions';

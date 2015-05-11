@@ -2,8 +2,6 @@ import NProgress from 'nprogress';
 
 import Bacon from 'bacon';
 
-import Actions from 'src/apps/feedback/actions/actions';
-
 NProgress.configure({ease: 'ease', speed: 100, trickleRate: .2, trickleSpeed: 200});
 
 const startStream = new Bacon.Bus();
@@ -30,12 +28,10 @@ const offStream = actionStream.filter(val => val === 0);
 
 onStream.subscribe(()=> {
   NProgress.start();
-  Actions.loadData();
 });
 
 offStream.subscribe(()=> {
   NProgress.done();
-  Actions.loadData.completed();
 });
 
 export default {start, done, setProgress};

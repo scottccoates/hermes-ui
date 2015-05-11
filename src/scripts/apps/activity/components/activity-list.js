@@ -1,19 +1,18 @@
 'use strict';
 
-import React from 'react';
-import ReactAddons from 'react/addons';
+import React from 'react/addons';
 
 import Router  from 'react-router';
 import ImmutableRenderMixin from 'react-immutable-render-mixin';
 
 import Immutable from 'immutable';
 
-import ComponentProvider from 'src/libs/react-js/components/component-provider';
+import ComponentProvider from 'src/scripts/libs/react-js/components/component-provider';
 
-import Separator from 'src/libs/react-js/components/separator';
+import Separator from 'src/scripts/libs/react-js/components/separator.js!jsx';
 
 const {Link} = Router;
-const ReactCSSTransitionGroup = ReactAddons.addons.CSSTransitionGroup;
+const ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 export default function (ActivityItemProvider) {
 

@@ -1,7 +1,7 @@
 import Immutable from 'immutable';
-import MockAPI from 'src/libs/api/mock/mock-api';
+import MockAPI from 'src/scripts/libs/api/mock/mock-api';
 
-import ActivityActions from 'src/aggregates/activity/actions/actions';
+import ActivityActions from 'src/scripts/aggregates/activity/actions/actions';
 
 const activity1 = {
   id: 1,

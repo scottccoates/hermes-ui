@@ -3,11 +3,11 @@
 import React from 'react';
 import Router  from 'react-router';
 
-import ComponentProvider from 'src/libs/react-js/components/component-provider';
+import ComponentProvider from 'src/scripts/libs/react-js/components/component-provider';
 
 const {Link} = Router;
 
-const cx = React.addons.classSet;
+import cx from 'classnames';
 
 const activityTypeIcons = {
   "amend": "fa-edit",

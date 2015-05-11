@@ -1,6 +1,6 @@
-import ActivityActions from 'src/aggregates/activity/actions/actions';
+import ActivityActions from 'src/scripts/aggregates/activity/actions/actions';
 
-import container from 'src/settings/di';
+import container from 'src/scripts/settings/di';
 
 const activityAPI = container.get('ActivityAPI');
 

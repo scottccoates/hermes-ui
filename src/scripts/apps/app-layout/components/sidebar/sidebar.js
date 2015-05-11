@@ -2,10 +2,10 @@
 
 import React from 'react';
 
-import ScrollContainer from 'src/libs/react-js/components/scroll-container';
+import ScrollContainer from 'src/scripts/libs/react-js/components/scroll-container.js!jsx';
 
-import SidebarLogo from './sidebar-logo';
-import SidebarNavSection from './sidebar-nav-section';
+import SidebarLogo from './sidebar-logo.js!jsx';
+import SidebarNavSection from './sidebar-nav-section.js!jsx';
 
 export default React.createClass({
 

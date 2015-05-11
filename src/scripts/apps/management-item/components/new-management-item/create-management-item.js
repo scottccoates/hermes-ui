@@ -3,9 +3,9 @@
 import React from 'react';
 import Router  from 'react-router';
 
-import ComponentProvider from 'src/libs/react-js/components/component-provider';
+import ComponentProvider from 'src/scripts/libs/react-js/components/component-provider';
 
-import Actions from 'src/apps/management-item/actions/actions';
+import Actions from 'src/scripts/apps/management-item/actions/actions';
 
 const {Link} = Router;
 
