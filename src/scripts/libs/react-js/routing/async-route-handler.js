@@ -3,7 +3,7 @@
 import React from 'react';
 import Router  from 'react-router';
 
-function getAsyncTransition(state) {
+function getAsyncTransitionPromises(state) {
 
   var asyncTransitionRoutes = (
     state.routes
@@ -26,13 +26,10 @@ function getHandler(containerId) {
     React.render(<Handler loading={loading}/>, document.getElementById(containerId));
   }
 
-  return (Handler, state) => {
-
-    const asyncTransitionPromise = getAsyncTransition(state);
-
-    renderHandler(Handler, true);
-
-    asyncTransitionPromise.then(() => renderHandler(Handler, false));
+  return async function (handler, state) {
+    renderHandler(handler, true);
+    await getAsyncTransitionPromises(state);
+    renderHandler(handler, false);
   };
 }
 

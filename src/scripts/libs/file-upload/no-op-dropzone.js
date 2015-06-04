@@ -1,45 +1,36 @@
 import Dropzone from 'dropzone';
+import sleep from 'src/scripts/libs/js-utils/async/sleep';
 
 export default
 class NoOpDropzone extends Dropzone {
 
-  _updateProgress(files) {
-    const retVal = new Promise((resolve, reject)=> {
+  async _updateProgress(files) {
+    const total = 100;
 
-      const total = 100;
+    const totalBytes = files
+      .map((file)=>file.size)
+      .reduce((total, size)=>total + size);
 
-      const totalBytes = files
-          .map((file)=>file.size)
-          .reduce((total, size)=>total + size);
+    var loaded = 0;
 
-      (function _makeProgress(loaded) {
+    while (loaded < total) {
+      loaded += (Math.random() * 10);
 
-        if (loaded < total) {
-          loaded += (Math.random() * 10);
+      if (loaded > total) loaded = total;
 
-          if (loaded > 100) loaded = 100;
+      files.forEach((file)=> {
+        var bytesSent = file.size * (loaded / 100);
+        file.upload = {bytesSent, totalBytes, total: file.size};
+      });
 
-          files.forEach((file)=> {
-            var bytesSent = file.size * (loaded / 100);
-            file.upload = {bytesSent, totalBytes, total: file.size};
-          });
+      this.updateTotalUploadProgress();
 
-          this.updateTotalUploadProgress();
-
-          setTimeout(() => _makeProgress.call(this, loaded), 200);
-        }
-        else {
-          resolve();
-        }
-      }).call(this, 0);
-
-    });
-
-    return retVal;
+      await sleep(200);
+    }
   }
 
-  uploadFiles(files) {
-    return this._updateProgress(files)
-        .then(()=>this._finished(files, 'OK', {}));
+  async uploadFiles(files) {
+    await this._updateProgress(files);
+    this._finished(files, 'OK', {})
   }
 }
