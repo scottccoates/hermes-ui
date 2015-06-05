@@ -28,6 +28,7 @@
     }
   },
   "devDependencies": {
+    "babel": "^5.5.4",
     "bootstrap-sass": "3.3.3",
     "browser-sync": "2.7.6",
     "connect-history-api-fallback": "0.0.5",

@@ -1,21 +1,21 @@
 // MI Form Layout
 // --------------------------------------------------
 
-.mi-form-section {
+.mi-form-data-entry {
 
-  &.mi-form-section-save {
-    button {
-      margin-right: 20px;
+  .mi-form-section {
+
+    &.mi-form-section-save {
+      button {
+        margin-right: 20px;
+      }
     }
-  }
 
-  &:hover {
-    .mi-form-advanced-field-button {
-      visibility: visible !important;
+    &:hover {
+      .mi-form-advanced-field-button {
+        visibility: visible !important;
+      }
     }
-  }
-
-  .mi-form-data-entry {
 
     .form-group {
       .control-label {

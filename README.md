@@ -47,3 +47,8 @@ Everything in the src folder is for example purposes. Have a look to see how eve
 ## Resources
 
 If you want a more stable and probable better put together React Kit project that uses webpack, have a look at the [React Starter Kit](https://github.com/kriasoft/react-starter-kit).
+
+## FAQ
+### Why are `expect` and `should` globals in the tests?
+kmees/karma-sinon-chai sets up karma with chai and sinon globals:
+https://github.com/kmees/karma-sinon-chai/blob/master/chai-adapter.js
