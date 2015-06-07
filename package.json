@@ -11,7 +11,7 @@
       "jsx": "github:floatdrop/plugin-jsx@1.1.0",
       "nanoscroller": "github:jamesflorentino/nanoScrollerJS@0.8.4",
       "nprogress": "github:rstacruz/nprogress@0.1.6",
-      "react": "npm:react@0.13.2",
+      "react": "npm:react@0.13.3",
       "react-bacon": "npm:react-bacon@0.0.4",
       "react-bootstrap": "npm:react-bootstrap@0.21.1",
       "react-dnd": "npm:react-dnd@0.9.8",
@@ -28,7 +28,7 @@
     }
   },
   "devDependencies": {
-    "babel": "^5.5.4",
+    "babel": "5.5.7",
     "bootstrap-sass": "3.3.3",
     "browser-sync": "2.7.6",
     "connect-history-api-fallback": "0.0.5",

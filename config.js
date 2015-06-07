@@ -30,7 +30,7 @@ System.config({
     "jsx": "github:floatdrop/plugin-jsx@1.1.0",
     "nanoscroller": "github:jamesflorentino/nanoScrollerJS@0.8.4",
     "nprogress": "github:rstacruz/nprogress@0.1.6",
-    "react": "npm:react@0.13.2",
+    "react": "npm:react@0.13.3",
     "react-bacon": "npm:react-bacon@0.0.4",
     "react-bootstrap": "npm:react-bootstrap@0.21.1",
     "react-dnd": "npm:react-dnd@0.9.8",
@@ -107,7 +107,7 @@ System.config({
     "github:twbs/bootstrap@3.3.4": {
       "jquery": "github:components/jquery@2.1.3"
     },
-    "npm:amdefine@0.1.0": {
+    "npm:amdefine@0.1.1": {
       "fs": "github:jspm/nodelibs-fs@0.1.2",
       "module": "github:jspm/nodelibs-module@0.1.0",
       "path": "github:jspm/nodelibs-path@0.1.0",
@@ -425,14 +425,14 @@ System.config({
     "npm:react-bootstrap@0.21.1": {
       "classnames": "npm:classnames@1.2.2",
       "process": "github:jspm/nodelibs-process@0.1.1",
-      "react": "npm:react@0.13.2"
+      "react": "npm:react@0.13.3"
     },
     "npm:react-dnd@0.9.8": {
       "events": "github:jspm/nodelibs-events@0.1.1",
       "flux": "npm:flux@2.0.1",
       "lodash": "npm:lodash@3.7.0",
       "process": "github:jspm/nodelibs-process@0.1.1",
-      "react": "npm:react@0.13.2"
+      "react": "npm:react@0.13.3"
     },
     "npm:react-immutable-render-mixin@0.8.0": {
       "immutable": "npm:immutable@3.7.1"
@@ -441,7 +441,7 @@ System.config({
       "object-assign": "npm:object-assign@2.0.0",
       "process": "github:jspm/nodelibs-process@0.1.1",
       "qs": "npm:qs@2.4.1",
-      "react": "npm:react@0.13.2"
+      "react": "npm:react@0.13.3"
     },
     "npm:react-tools@0.13.3": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
@@ -449,7 +449,7 @@ System.config({
       "jstransform": "npm:jstransform@10.1.0",
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
-    "npm:react@0.13.2": {
+    "npm:react@0.13.3": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
       "envify": "npm:envify@3.4.0",
       "process": "github:jspm/nodelibs-process@0.1.1"
@@ -494,13 +494,13 @@ System.config({
       "util": "github:jspm/nodelibs-util@0.1.0"
     },
     "npm:source-map@0.1.31": {
-      "amdefine": "npm:amdefine@0.1.0",
+      "amdefine": "npm:amdefine@0.1.1",
       "fs": "github:jspm/nodelibs-fs@0.1.2",
       "path": "github:jspm/nodelibs-path@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
     "npm:source-map@0.1.43": {
-      "amdefine": "npm:amdefine@0.1.0",
+      "amdefine": "npm:amdefine@0.1.1",
       "fs": "github:jspm/nodelibs-fs@0.1.2",
       "path": "github:jspm/nodelibs-path@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.1"

@@ -10,6 +10,8 @@ const {Link} = Router;
 export default function () {
 
   const component = React.createClass({
+    displayName: "ManagementItemForm",
+
     render() {
       return (
         <div id="new-mi-wrapper">
