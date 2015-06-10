@@ -2,17 +2,48 @@
 
 import React from 'react';
 import Router  from 'react-router';
-
 import ComponentProvider from 'src/scripts/libs/react-js/components/component-provider';
 
+import Validation from 'rc-form-validation';
+
 const {Link} = Router;
+
+const {Validator} = Validation;
 
 export default function () {
 
   const component = React.createClass({
     displayName: "ManagementItemForm",
+    mixins: [Validation.FieldMixin],
+
+    getInitialState() {
+      return {
+        status: {
+          name: {}
+        },
+        formData: {
+          name: 'heya'
+        }
+      };
+    },
+
+    onSubmit(event){
+      event.preventDefault();
+      var validation = this.refs.validation;
+      validation.validate((valid) => {
+        if (!valid) {
+          console.log('error in form');
+        } else {
+          console.log('submit');
+        }
+        console.log(this.state.formData);
+      });
+    },
 
     render() {
+      var formData = this.state.formData;
+      var status = this.state.status;
+
       return (
         <div id="new-mi-wrapper">
 
@@ -24,18 +55,22 @@ export default function () {
 
           <div className="content-section default-content-section space-bottom">
             <div className="container">
-              <form className="form-horizontal mi-form-data-entry">
-                <section className="row mi-form-section content-section-item space-bottom-xl">
-                  <div className="space-top-sm col-md-24">
-                    <h3 className="content-section-header">General Contract Information</h3>
+              <form className="form-horizontal mi-form-data-entry" onSubmit={this.onSubmit}>
+                <Validation ref='validation' onValidate={this.handleValidate}>
+                  <section className="row mi-form-section content-section-item space-bottom-xl">
+                    <div className="space-top-sm col-md-24">
+                      <h3 className="content-section-header">General Contract Information</h3>
 
 
                       <div className="form-group content-section-item">
                         <label htmlFor="mi-form-contract-name" className="col-sm-6 control-label">Contract Name</label>
 
                         <div className="col-sm-18">
-                          <input type="text" className="form-control" id="mi-form-contract-name"
-                                 defaultValue="Licensing Agreement Between Microsoft and Hermes, Inc. for Microsoft Office Suite Products"/>
+                          <Validator rules={{required:true, message: 'WTF'}} value={formData.name}>
+                            <input type="text" name="name" className="form-control" id="mi-form-contract-name"
+                                   value={formData.name}/>
+                          </Validator>
+                          {status.name.errors ? <span> {status.name.errors.join(', ')}</span> : null}
                         </div>
                       </div>
                       <div className="form-group content-section-item">
@@ -93,12 +128,12 @@ export default function () {
                         </div>
                       </div>
 
-                  </div>
+                    </div>
 
-                </section>
-                <section className="row mi-form-section content-section-item space-top-sm space-bottom-xl">
-                  <div className="col-md-24">
-                    <h3 className="content-section-header">Contract Duration and Renewal Information</h3>
+                  </section>
+                  <section className="row mi-form-section content-section-item space-top-sm space-bottom-xl">
+                    <div className="col-md-24">
+                      <h3 className="content-section-header">Contract Duration and Renewal Information</h3>
 
 
                       <div className="form-group content-section-item">
@@ -162,11 +197,11 @@ export default function () {
                         </div>
                       </div>
 
-                  </div>
-                </section>
-                <section className="row mi-form-section content-section-item space-top-sm space-bottom-xl">
-                  <div className="col-md-24">
-                    <h3 className="content-section-header">Financial Details</h3>
+                    </div>
+                  </section>
+                  <section className="row mi-form-section content-section-item space-top-sm space-bottom-xl">
+                    <div className="col-md-24">
+                      <h3 className="content-section-header">Financial Details</h3>
 
 
                       <div className="form-group content-section-item">
@@ -205,11 +240,11 @@ export default function () {
                         </div>
                       </div>
 
-                  </div>
-                </section>
-                <section className="row mi-form-section content-section-item space-top-sm space-bottom-xl">
-                  <div className="col-md-24">
-                    <h3 className="content-section-header">Contract Alerts</h3>
+                    </div>
+                  </section>
+                  <section className="row mi-form-section content-section-item space-top-sm space-bottom-xl">
+                    <div className="col-md-24">
+                      <h3 className="content-section-header">Contract Alerts</h3>
 
 
                       <div className="form-group content-section-item">
@@ -240,11 +275,11 @@ export default function () {
                         </div>
                       </div>
 
-                  </div>
-                </section>
-                <section className="row mi-form-section content-section-item space-top-sm space-bottom-xl">
-                  <div className="col-md-24">
-                    <h3 className="content-section-header">Advanced Contract Categories</h3>
+                    </div>
+                  </section>
+                  <section className="row mi-form-section content-section-item space-top-sm space-bottom-xl">
+                    <div className="col-md-24">
+                      <h3 className="content-section-header">Advanced Contract Categories</h3>
 
 
                       <div className="form-group content-section-item">
@@ -255,16 +290,17 @@ export default function () {
                           </button>
                         </div>
                       </div>
-                  </div>
-                </section>
-                <section className="row mi-form-section mi-form-section-save content-section-item">
-                  <div className="col-md-24">
-                    <button type='button' className="btn btn-default">Save
-                    </button>
-                    <Link to="dashboard" className="btn btn-primary">Save and Close
-                    </Link>
-                  </div>
-                </section>
+                    </div>
+                  </section>
+                  <section className="row mi-form-section mi-form-section-save content-section-item">
+                    <div className="col-md-24">
+                      <button type='submit' className="btn btn-default">Save
+                      </button>
+                      <Link to="dashboard" className="btn btn-primary">Save and Close
+                      </Link>
+                    </div>
+                  </section>
+                </Validation>
               </form>
             </div>
           </div>

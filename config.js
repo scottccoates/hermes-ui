@@ -1,17 +1,17 @@
 System.config({
   "baseURL": "/",
   "transpiler": "babel",
+  "paths": {
+    "src/*": "src/*.js",
+    "github:*": "jspm_packages/github/*.js",
+    "npm:*": "jspm_packages/npm/*.js",
+    "*": "*.js"
+  },
   "babelOptions": {
     "optional": [
       "runtime"
     ],
     "stage": 1
-  },
-  "paths": {
-    "*": "*.js",
-    "src/*": "src/*.js",
-    "github:*": "jspm_packages/github/*.js",
-    "npm:*": "jspm_packages/npm/*.js"
   }
 });
 
@@ -30,6 +30,7 @@ System.config({
     "jsx": "github:floatdrop/plugin-jsx@1.1.0",
     "nanoscroller": "github:jamesflorentino/nanoScrollerJS@0.8.4",
     "nprogress": "github:rstacruz/nprogress@0.1.6",
+    "rc-form-validation": "npm:rc-form-validation@2.3.2",
     "react": "npm:react@0.13.3",
     "react-bacon": "npm:react-bacon@0.0.4",
     "react-bootstrap": "npm:react-bootstrap@0.21.1",
@@ -416,6 +417,10 @@ System.config({
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
       "crypto": "github:jspm/nodelibs-crypto@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.1"
+    },
+    "npm:rc-form-validation@2.3.2": {
+      "async-validator": "npm:async-validator@1.1.2",
+      "rc-util": "npm:rc-util@2.0.2"
     },
     "npm:react-bacon@0.0.4": {
       "baconjs": "npm:baconjs@0.7.53",

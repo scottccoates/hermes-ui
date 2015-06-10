@@ -20,6 +20,8 @@ module.exports = function (config) {
     //],
 
     jspm: {
+      // remember, karma only serves some files from the basePath. jspm-karma takes care of telling karma
+      // which files to serve.
       loadFiles: ['src/scripts/**/test-*.js'],
       serveFiles: ['src/scripts/**/*.js']
     },

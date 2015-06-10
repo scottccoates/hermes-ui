@@ -52,3 +52,12 @@ If you want a more stable and probable better put together React Kit project tha
 ### Why are `expect` and `should` globals in the tests?
 kmees/karma-sinon-chai sets up karma with chai and sinon globals:
 https://github.com/kmees/karma-sinon-chai/blob/master/chai-adapter.js
+
+### Why is babel defined in npm and jspm?
+In `package.json`, babel is defined in jspm because jspm uses it when it fetches a new file. It's configured in npm
+as well, so that wallaby can transpile it before instrumenting it.
+
+### Why isn't sinon, chai, or mocha imported in tests? Why are they global?
+NPM is used to manage karma and its dependencies. When karma loads a client page, it uses a karma plugin to add sinon-chai framework.
+When that happens, its expected for these libs to be accessed globally.
+We'd have to separately manage it via jspm otherwise.

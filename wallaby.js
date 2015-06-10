@@ -9,6 +9,9 @@ module.exports = function (wallaby) {
     debug:false,
     testFramework: 'mocha@2.2.4',
     files: [
+      // remember, wallaby + express only serves some files from the basePath. These params takes care of telling wallaby
+      // which files to serve.
+
       // look in src/scripts/resources/testing/phantom-polyfill.js for explanation of this.
       {pattern: 'src/scripts/resources/testing/phantom-polyfill.js', instrument: false},
 
