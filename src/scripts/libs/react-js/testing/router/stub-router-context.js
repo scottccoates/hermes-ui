@@ -36,6 +36,8 @@ export default (Component, props, stubs) => {
   }, stubs);
 
   return React.createClass({
+    displayName: "StubRouterContext",
+
     childContextTypes: {
       router: React.PropTypes.func,
       routeDepth: React.PropTypes.number
@@ -49,7 +51,7 @@ export default (Component, props, stubs) => {
     },
 
     render () {
-      return <Component {...props} />
+      return <Component ref="component" {...props} />
     }
   });
 };

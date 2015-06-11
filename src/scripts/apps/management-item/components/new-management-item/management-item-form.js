@@ -27,17 +27,19 @@ export default function () {
       };
     },
 
+    getDefaultProps(){
+      return {
+        onValidate: ()=> {
+        }
+      }
+    },
+
     onSubmit(event){
       event.preventDefault();
       var validation = this.refs.validation;
-      validation.validate((valid) => {
-        if (!valid) {
-          console.log('error in form');
-        } else {
-          console.log('submit');
-        }
-        console.log(this.state.formData);
-      });
+
+      // it's important to remember that validation is async (consider database calls, apis, existence in db, etc).
+      validation.validate(this.props.onValidate);
     },
 
     render() {

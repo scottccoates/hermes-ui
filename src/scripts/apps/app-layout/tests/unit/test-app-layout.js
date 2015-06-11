@@ -1,11 +1,13 @@
 /* jshint -W030 */
 'use strict';
 
-import React from 'react';
-import TestUtils from 'react/lib/ReactTestUtils';
+import React from 'react/addons';
 
 import StubRouterContext from 'src/scripts/libs/react-js/testing/router/stub-router-context.js!jsx'
+
 import AppLayout from 'src/scripts/apps/app-layout/components/app-layout.js!jsx';
+
+const {TestUtils} = React.addons;
 
 describe('AppLayout', ()=> {
 
@@ -17,7 +19,7 @@ describe('AppLayout', ()=> {
     const Subject = StubRouterContext(AppLayout, {loading: true});
 
     const element = TestUtils.renderIntoDocument(<Subject/>);
-    const height = TestUtils.scryRenderedDOMComponentsWithClass(element, "transition-content-wrapper")[0].getDOMNode().style.height;
+    const height = TestUtils.findRenderedDOMComponentWithClass(element, "transition-content-wrapper").getDOMNode().style.height;
     expect(height).to.equal("500px");
   });
 });

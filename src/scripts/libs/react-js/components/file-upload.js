@@ -35,7 +35,14 @@ export default function (dropzoneFactory) {
     _configureProps() {
       const propsMap = Immutable.Map(this.props);
 
-      this._dropzoneOptions = propsMap.filter((v, k)=>k in Dropzone.prototype.defaultOptions);
+      var dropzoneOptions = propsMap.filter((v, k)=>k in Dropzone.prototype.defaultOptions);
+
+      // For some stupid reason, they provide a default implementation of 'addedfile'.
+      // It results in a <div> tag containing an image preview.
+      dropzoneOptions = dropzoneOptions.set('addedfile', ()=> {
+      });
+
+      this._dropzoneOptions = dropzoneOptions;
     },
 
     componentWillMount() {

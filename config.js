@@ -1,17 +1,17 @@
 System.config({
   "baseURL": "/",
   "transpiler": "babel",
-  "paths": {
-    "src/*": "src/*.js",
-    "github:*": "jspm_packages/github/*.js",
-    "npm:*": "jspm_packages/npm/*.js",
-    "*": "*.js"
-  },
   "babelOptions": {
     "optional": [
       "runtime"
     ],
     "stage": 1
+  },
+  "paths": {
+    "src/*": "src/*.js",
+    "github:*": "jspm_packages/github/*.js",
+    "npm:*": "jspm_packages/npm/*.js",
+    "*": "*.js"
   }
 });
 

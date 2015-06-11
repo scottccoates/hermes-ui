@@ -46,8 +46,7 @@ export default function (fileUploadProvider) {
 
                       <FileUploader url="test/test" onAddedFile={this.onAddedFile} onProgressed={this.onProgressed}
                                     onComplete={this.onComplete}
-                                    addedfile={()=> {
-                        }} className="import-mi-container dropzone">
+                                    className="import-mi-container dropzone">
                         <i className="fa fa-cloud-upload"></i>
 
                         <div className="primary-import-text">Select a file to upload</div>

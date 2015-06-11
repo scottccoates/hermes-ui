@@ -6,7 +6,7 @@ var babel = require('babel');
 module.exports = function (wallaby) {
 
   return {
-    debug:false,
+    debug: false,
     testFramework: 'mocha@2.2.4',
     files: [
       // remember, wallaby + express only serves some files from the basePath. These params takes care of telling wallaby
@@ -19,6 +19,7 @@ module.exports = function (wallaby) {
       // what `node_modules/karma-sinon-chai/index.js` does.
       {pattern: 'node_modules/karma-sinon-chai/node_modules/chai/chai.js', instrument: false},
       {pattern: 'node_modules/karma-sinon-chai/node_modules/sinon-chai/lib/sinon-chai.js', instrument: false},
+      {pattern: 'node_modules/karma-sinon-chai/bower_components/sinonjs/sinon.js', instrument: false},
       {pattern: 'node_modules/karma-sinon-chai/adapter.js', instrument: false},
 
       {pattern: 'jspm_packages/system.js', instrument: false},
