@@ -14,7 +14,7 @@ export default function () {
       return this._data;
     },
 
-    getInitialState: function () {
+    getInitialState() {
       return this._data;
     },
 

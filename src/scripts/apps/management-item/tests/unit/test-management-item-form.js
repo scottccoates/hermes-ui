@@ -3,39 +3,44 @@
 
 import React from 'react/addons';
 
-import TestUtilsHelpers from 'src/scripts/libs/react-js/testing/react-js/react-test-utils-helper';
-import StubRouterContext from 'src/scripts/libs/react-js/testing/router/stub-router-context.js!jsx'
-
 import MIForm from 'src/scripts/apps/management-item/components/new-management-item/management-item-form.js!jsx';
+
+import noop from 'src/scripts/libs/js-utils/functions/noop';
 
 const {TestUtils} = React.addons;
 
 describe('Management Item Form', ()=> {
 
   it('should exist', () => {
-    expect(MIForm).to.not.be.undefined;
+    expect(MIForm).to.be.ok;
   });
 
   describe('Submit Form', ()=> {
-    const MIFormComponent = MIForm().componentType;
+    const eventFake = {preventDefault: noop};
 
-    const anEmptyString = '';
+    const validationStub = {validate: sinon.stub().yields()};
+    const propsOnValidateSpy = sinon.spy();
 
-    it('validates input', (done) => {
-      const Subject = StubRouterContext(MIFormComponent, {onValidate: onValidate});
+    const miServiceSpy = {create: sinon.spy()};
 
-      const element = TestUtils.renderIntoDocument(<Subject/>);
 
-      const contractNameNode = TestUtilsHelpers.findRenderedDOMComponentWithId(element, 'mi-form-contract-name');
-      TestUtils.Simulate.change(contractNameNode, {target: {value: anEmptyString}});
+    const MIFormComponent = MIForm(miServiceSpy).componentType;
 
-      const formNode = TestUtils.findRenderedDOMComponentWithTag(element, 'form');
-      TestUtils.Simulate.submit(formNode);
+    MIFormComponent.prototype.refs = {validation: validationStub};
+    MIFormComponent.prototype.props = {onValidate: propsOnValidateSpy};
+    MIFormComponent.prototype.state = {formData: {}};
 
-      function onValidate(valid) {
-        expect(valid).to.be.false;
-        done();
-      }
+
+    it('checks if form is valid', () => {
+      MIFormComponent.prototype.onSubmit(eventFake);
+
+      expect(propsOnValidateSpy).to.have.been.called;
+    });
+
+    it('fires action if valid form', () => {
+      MIFormComponent.prototype.onSubmit(eventFake);
+
+      expect(miServiceSpy.create).to.have.been.called;
     });
   });
 });

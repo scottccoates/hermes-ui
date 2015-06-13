@@ -5,9 +5,10 @@ import Intravenous from 'intravenous';
 
 import FileUpload from 'src/scripts/libs/react-js/components/file-upload.js!jsx';
 
-import MI from 'src/scripts/apps/management-item/components/management-item.js!jsx';
-import CreateMI from 'src/scripts/apps/management-item/components/new-management-item/create-management-item.js!jsx';
-import MIForm from 'src/scripts/apps/management-item/components/new-management-item/management-item-form.js!jsx';
+import MIComponent from 'src/scripts/apps/management-item/components/management-item.js!jsx';
+import CreateMIComponent from 'src/scripts/apps/management-item/components/new-management-item/create-management-item.js!jsx';
+import MIFormComponent from 'src/scripts/apps/management-item/components/new-management-item/management-item-form.js!jsx';
+import MIService from 'src/scripts/aggregates/management-item/services/management-item-service';
 
 import Dashboard from 'src/scripts/apps/dashboard/components/dashboard.js!jsx';
 
@@ -48,15 +49,16 @@ container.register("ActivityAPI", ActivityAPI);
 container.register("SearchResultList", SearchResultList);
 container.register("SearchResultItem", SearchResultItem);
 
-container.register("CreateMI", CreateMI);
-
-container.register("MI", MI);
-container.register("MIForm", MIForm);
+container.register("MIComponent", MIComponent);
+container.register("CreateMIComponent", CreateMIComponent);
+container.register("MIFormComponent", MIFormComponent);
+container.register("MIService", MIService);
 
 container.register("FileUpload", FileUpload);
 container.register("Dropzone", NoOpDropzone);
 
-CreateMI.$inject = ["FileUpload"];
+CreateMIComponent.$inject = ["FileUpload"];
+MIFormComponent.$inject = ["MIService"];
 
 FileUpload.$inject = ["DropzoneFactory"];
 

@@ -15,9 +15,9 @@ const {DefaultRoute, Route, HistoryLocation} = Router;
 
 const Dashboard = container.get("Dashboard").componentType;
 
-const MI = container.get("MI").componentType;
-const CreateMI = container.get("CreateMI").componentType;
-const MIForm = container.get("MIForm").componentType;
+const MI = container.get("MIComponent").componentType;
+const CreateMI = container.get("CreateMIComponent").componentType;
+const MIForm = container.get("MIFormComponent").componentType;
 
 const SearchResultList = container.get("SearchResultList").componentType;
 

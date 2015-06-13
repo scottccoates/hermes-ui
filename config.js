@@ -38,8 +38,10 @@ System.config({
     "react-highlighter": "github:helior/react-highlighter@0.2.1",
     "react-immutable-render-mixin": "npm:react-immutable-render-mixin@0.8.0",
     "react-router": "npm:react-router@0.13.3",
+    "react-select": "npm:react-select@0.4.9",
     "react-tagsinput": "github:olahol/react-tagsinput@1.2.0",
     "reflux": "npm:reflux@0.2.7",
+    "tcomb": "npm:tcomb@2.0.0-beta",
     "github:floatdrop/plugin-jsx@1.1.0": {
       "react-tools": "npm:react-tools@0.13.3"
     },
@@ -167,11 +169,16 @@ System.config({
     },
     "npm:buffer@3.2.2": {
       "base64-js": "npm:base64-js@0.0.8",
-      "ieee754": "npm:ieee754@1.1.5",
+      "ieee754": "npm:ieee754@1.1.6",
       "is-array": "npm:is-array@1.0.1"
     },
     "npm:classnames@1.2.2": {
       "assert": "github:jspm/nodelibs-assert@0.1.0"
+    },
+    "npm:classnames@2.1.2": {
+      "assert": "github:jspm/nodelibs-assert@0.1.0",
+      "process": "github:jspm/nodelibs-process@0.1.1",
+      "systemjs-json": "github:systemjs/plugin-json@0.1.0"
     },
     "npm:clean-css@3.0.10": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
@@ -442,11 +449,20 @@ System.config({
     "npm:react-immutable-render-mixin@0.8.0": {
       "immutable": "npm:immutable@3.7.1"
     },
+    "npm:react-input-autosize@0.4.4": {
+      "react": "npm:react@0.13.3"
+    },
     "npm:react-router@0.13.3": {
       "object-assign": "npm:object-assign@2.0.0",
       "process": "github:jspm/nodelibs-process@0.1.1",
       "qs": "npm:qs@2.4.1",
       "react": "npm:react@0.13.3"
+    },
+    "npm:react-select@0.4.9": {
+      "classnames": "npm:classnames@2.1.2",
+      "css": "github:systemjs/plugin-css@0.1.7",
+      "react": "npm:react@0.13.3",
+      "react-input-autosize": "npm:react-input-autosize@0.4.4"
     },
     "npm:react-tools@0.13.3": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
@@ -517,6 +533,9 @@ System.config({
     },
     "npm:string_decoder@0.10.31": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0"
+    },
+    "npm:tcomb@2.0.0-beta": {
+      "process": "github:jspm/nodelibs-process@0.1.1"
     },
     "npm:through@2.3.7": {
       "process": "github:jspm/nodelibs-process@0.1.1",

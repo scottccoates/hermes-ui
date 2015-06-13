@@ -2,15 +2,19 @@
 
 import React from 'react';
 import Router  from 'react-router';
+
 import ComponentProvider from 'src/scripts/libs/react-js/components/component-provider';
 
+import ManagementItem from 'src/scripts/aggregates/management-item/models/management-item';
+
+import Select from 'react-select';
 import Validation from 'rc-form-validation';
 
 const {Link} = Router;
 
 const {Validator} = Validation;
 
-export default function () {
+export default function (managementItemService) {
 
   const component = React.createClass({
     displayName: "ManagementItemForm",
@@ -39,13 +43,48 @@ export default function () {
       var validation = this.refs.validation;
 
       // it's important to remember that validation is async (consider database calls, apis, existence in db, etc).
-      validation.validate(this.props.onValidate);
+      validation.validate(valid => {
+        debugger
+        this.props.onValidate(valid);
+        managementItemService.create(this.state.formData);
+      });
     },
 
     render() {
-      var formData = this.state.formData;
-      var status = this.state.status;
 
+      const formData = this.state.formData;
+      const status = this.state.status;
+
+      function logChange(val) {
+        console.log("Selected:", val, arguments);
+      }
+
+      var SelectedValuesField = React.createClass({
+
+        onLabelClick: function (data, event) {
+          console.log(data, event);
+        },
+
+        render: function () {
+          var ops = [
+            {label: 'Chocolate', value: 'chocolate'},
+            {label: 'Vanilla', value: 'vanilla'},
+            {label: 'Strawberry', value: 'strawberry'},
+            {label: 'Caramel', value: 'caramel'},
+            {label: 'Cookies and Cream', value: 'cookiescream'},
+            {label: 'Peppermint', value: 'peppermint'}
+          ];
+          return (
+            <Select
+              onOptionLabelClick={this.onLabelClick}
+              value="chocolate,vanilla,strawberry"
+              multi={true}
+              placeholder="Select your favourite(s)"
+              options={ops}
+              onChange={logChange}/>
+          );
+        }
+      });
       return (
         <div id="new-mi-wrapper">
 
@@ -81,6 +120,14 @@ export default function () {
                         <div className="col-sm-18">
                           <input type="text" className="form-control" id="mi-form-counterparty"
                                  defaultValue="Microsoft"/>
+
+                        </div>
+                      </div>
+                      <div className="form-group content-section-item">
+                        <label htmlFor="mi-form-counterparty" className="col-sm-6 control-label">Counterparty</label>
+
+                        <div className="col-sm-18">
+                          <SelectedValuesField label="Clickable labels (labels as links):"/>
                         </div>
                       </div>
                       <div className="form-group content-section-item">
