@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/hermes-ui.iml" filepath="$PROJECT_DIR$/hermes-ui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jspm-react.iml" filepath="$PROJECT_DIR$/jspm-react.iml" />
     </modules>
   </component>
 </project>

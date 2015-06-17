@@ -2,34 +2,29 @@
 
 import React from 'react';
 import Router  from 'react-router';
-import Reflux from 'reflux';
 
-import ComponentProvider from 'src/scripts/libs/react-js/components/component-provider';
+import DependencyProvider from '../../../libs/dependency-injection/utils/dependency-provider';
 
-import DataTransitionMixin from 'src/scripts/libs/react-js/mixins/data-transition-mixin';
+import DataTransitionMixin from '../../../libs/react-js/mixins/data-transition-mixin';
 
-import TaskActions from 'src/scripts/aggregates/task/actions/actions';
+import TaskActions from '../../../domain/task/messaging/task-actions';
 
-import ActivityActions from 'src/scripts/aggregates/activity/actions/actions';
+import ActivityActions from '../../../domain/activity/messaging/activity-actions';
 
 const {Link} = Router;
 
 
 export default function (taskListProvider, taskListStore, activityListProvider, activityListStore) {
-  const TaskList = taskListProvider.componentType;
-  const ActivityList = activityListProvider.componentType;
+  const TaskList     = taskListProvider.dependency;
+  const ActivityList = activityListProvider.dependency;
 
   const dataActions = [
-    [TaskActions.loadTasks, () => true, (data)=>console.log('hi data', data)],
-    [ActivityActions.loadActivities, () => true, (data)=>console.log('hi data', data)]
+    [TaskActions.getTasks, () => true],
+    [ActivityActions.getActivities, () => true]
   ];
 
   const component = React.createClass({
-    mixins: [
-      Reflux.connect(taskListStore, "tasks"), //this providers getInitialState
-      Reflux.connect(activityListStore, "activities"), //this providers getInitialState
-      DataTransitionMixin.connect(dataActions)
-    ],
+    mixins: [DataTransitionMixin.connect(dataActions)],
 
     render() {
       return (
@@ -57,5 +52,5 @@ export default function (taskListProvider, taskListStore, activityListProvider, 
       );
     }
   });
-  return new ComponentProvider(component);
+  return new DependencyProvider(component);
 };

@@ -3,9 +3,9 @@
 
 import React from 'react/addons';
 
-import StubRouterContext from 'src/scripts/libs/react-js/testing/router/stub-router-context.js!jsx'
+import StubRouterContext from '../../../../libs/react-js/testing/router/stub-router-context'
 
-import AppLayout from 'src/scripts/apps/app-layout/components/app-layout.js!jsx';
+import AppLayout from '../../components/app-layout';
 
 const {TestUtils} = React.addons;
 

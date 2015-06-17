@@ -1,8 +1,8 @@
 'use strict';
 
 import React from 'react';
-import HeaderSearch from './header-search.js!jsx';
-import HeaderNavSection from './header-nav-section.js!jsx';
+import HeaderSearch from './header-search';
+import HeaderNavSection from './header-nav-section';
 
 export default React.createClass({
 

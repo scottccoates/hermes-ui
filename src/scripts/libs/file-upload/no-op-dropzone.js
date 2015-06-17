@@ -1,5 +1,5 @@
 import Dropzone from 'dropzone';
-import sleep from 'src/scripts/libs/js-utils/async/sleep';
+import sleep from '../js-utils/async/sleep';
 
 export default
 class NoOpDropzone extends Dropzone {

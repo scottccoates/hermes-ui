@@ -2,11 +2,10 @@
 
 import React from 'react';
 import Router from 'react-router';
-import Reflux from 'reflux';
 
-import Sidebar from './sidebar/sidebar.js!jsx';
-import Header from './header/header.js!jsx';
-import Footer from './footer/footer.js!jsx';
+import Sidebar from './sidebar/sidebar';
+import Header from './header/header';
+import Footer from './footer/footer';
 
 const {RouteHandler} = Router;
 

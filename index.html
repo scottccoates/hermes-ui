@@ -5,10 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Willow</title>
   <link rel="shortcut icon" href="/build/assets/images/willow-logo-green-bg-no-text.png"/>
-  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro|Montserrat' rel='stylesheet' type='text/css'>
-  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="/build/css/main.css"/>
-  <!--<link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">-->
+  <link rel="stylesheet" href="/jspm_packages/npm/react-select@0.4.9/dist/default.css"/>
 </head>
 <body>
 <div id="app">
@@ -16,11 +14,11 @@
 <script src="/jspm_packages/system.js"></script>
 <script src="/config.js"></script>
 <script>
-  System.import('src/scripts/apps/feedback/components/loading/loading-feedback').then(function (loadingFeedback) {
+  System.import('/src/scripts/apps/feedback/components/loading/loading-feedback').then(function (loadingFeedback) {
     loadingFeedback.default.start();
-    System.import('src/scripts/main').then(function () {
-      loadingFeedback.default.done();
-    });
+    System.import('/src/scripts/main')
+//        .catch(console.log.bind(console))
+        .then(loadingFeedback.default.done);
   });
 </script>
 </body>

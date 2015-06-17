@@ -3,9 +3,9 @@
 
 import React from 'react/addons';
 
-import StubRouterContext from 'src/scripts/libs/react-js/testing/router/stub-router-context.js!jsx'
+import StubRouterContext from '../../../../libs/react-js/testing/router/stub-router-context'
 
-import FileUpload from 'src/scripts/libs/react-js/components/file-upload.js!jsx';
+import FileUpload from '../../../../libs/react-js/components/file-upload';
 
 const {TestUtils} = React.addons;
 
@@ -19,7 +19,7 @@ describe('FileUpload', ()=> {
     const dropzoneSpy = {on: sinon.spy()};
     const dropzoneFactoryStub = {get: sinon.stub().returns(dropzoneSpy)};
 
-    const FileUploadComponent = FileUpload(dropzoneFactoryStub).componentType;
+    const FileUploadComponent = FileUpload(dropzoneFactoryStub).dependency;
 
     var element;
 

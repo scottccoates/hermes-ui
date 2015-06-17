@@ -58,7 +58,7 @@ NPM is used to manage karma and its dependencies. When karma loads a client page
 When that happens, it's expected for these libs to be accessed globally.
 We'd have to separately manage it via jspm otherwise.
 
-### What is ComponentProvider and why isn't a ReactElement returned from component files?
-Instead of a `ReactElement`, we `return new ComponentProvider(component)`. You can access it this way:
-`MIForm().componentType`. We do this so we can inject dependencies into a component file.
+### What is DependencyProvider and why isn't a ReactElement returned from component files?
+Instead of a `ReactElement`, we `return new DependencyProvider(component)`. You can access it this way:
+`MIForm().dependency`. We do this so we can inject dependencies into a component file.
 

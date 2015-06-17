@@ -37,7 +37,7 @@ module.exports = function (wallaby) {
     compilers: {
       'src/scripts/**/*.js': wallaby.compilers.babel({
         babel: babel,
-        stage: 1,
+        stage: 0,
         optional: [
           "runtime"
         ]

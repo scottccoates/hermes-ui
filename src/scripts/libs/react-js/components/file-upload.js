@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import ComponentProvider from 'src/scripts/libs/react-js/components/component-provider.js!jsx';
+import DependencyProvider from './../../dependency-injection/utils/dependency-provider';
 
 import Dropzone from 'dropzone';
 import Immutable from 'immutable';
@@ -74,5 +74,5 @@ export default function (dropzoneFactory) {
     }
   });
 
-  return new ComponentProvider(component);
+  return new DependencyProvider(component);
 };

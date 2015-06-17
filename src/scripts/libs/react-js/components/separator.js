@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import ComponentProvider from 'src/scripts/libs/react-js/components/component-provider';
+import DependencyProvider from './../../dependency-injection/utils/dependency-provider';
 
 const Separator = React.createClass({
   render() {

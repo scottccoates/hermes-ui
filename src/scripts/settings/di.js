@@ -3,30 +3,39 @@
 
 import Intravenous from 'intravenous';
 
-import FileUpload from 'src/scripts/libs/react-js/components/file-upload.js!jsx';
+import FileUpload from '../libs/react-js/components/file-upload';
 
-import MIComponent from 'src/scripts/apps/management-item/components/management-item.js!jsx';
-import CreateMIComponent from 'src/scripts/apps/management-item/components/new-management-item/create-management-item.js!jsx';
-import MIFormComponent from 'src/scripts/apps/management-item/components/new-management-item/management-item-form.js!jsx';
-import MIService from 'src/scripts/aggregates/management-item/services/management-item-service';
+import ReactJsActions from '/src/scripts/libs/react-js/actions/react-js-actions';
 
-import Dashboard from 'src/scripts/apps/dashboard/components/dashboard.js!jsx';
+import ManagementItemActions from '../domain/management-item/messaging/management-item-actions';
+import ManagementItemStore from '../domain/management-item/messaging/stores/management-item-store';
+import ManagementItemComponent from '../domain/management-item/components/management-item';
+import CreateManagementItemComponent from '../domain/management-item/components/new-management-item/create-management-item';
+import ManagementItemFormComponent from '../domain/management-item/components/new-management-item/management-item-form';
+import ManagementItemService from '../domain/management-item/services/management-item-service';
+import ManagementItemRepository from '../domain/management-item/services/management-item-repository';
 
-import TaskList from 'src/scripts/apps/task/components/task-list.js!jsx';
-import TaskItem from 'src/scripts/apps/task/components/task-item.js!jsx';
-import TaskListStore from 'src/scripts/apps/task/stores/task-list-store';
-import TaskAPI from 'src/scripts/aggregates/task/api/task-api';
+import DashboardComponent from '../apps/dashboard/components/dashboard';
 
-import ActivityList from 'src/scripts/apps/activity/components/activity-list.js!jsx';
-import ActivityItem from 'src/scripts/apps/activity/components/activity-item.js!jsx';
-import ActivityListStore from 'src/scripts/apps/activity/stores/activity-list-store';
-import ActivityAPI from 'src/scripts/aggregates/activity/api/activity-api';
+import TaskList from '../domain/task/components/task-list';
+import TaskItem from '../domain/task/components/task-item';
+import TaskListStore from '../domain/task/messaging/stores/task-list-store';
+//import TaskAPI from '../domain/task/services/task-service';
 
-import SearchResultList from 'src/scripts/apps/search/components/result/search-result-list.js!jsx';
-import SearchResultItem from 'src/scripts/apps/search/components/result/search-result-item.js!jsx';
+import ActivityList from '../domain/activity/components/activity-list';
+import ActivityItem from '../domain/activity/components/activity-item';
+import ActivityListStore from '../domain/activity/messaging/stores/activity-list-store';
+//import ActivityAPI from '../domain/activity/api/activity-api';
+
+import SearchResultList from '../domain/search/components/result/search-result-list';
+import SearchResultItem from '../domain/search/components/result/search-result-item';
+
+import LoadingFeedbackStore from '/src/scripts/apps/feedback/stores/loading-feedback-store';
+
+import ClientSideApi from '../apps/api/services/client-side-api';
 
 import Dropzone from 'dropzone';
-import NoOpDropzone from 'src/scripts/libs/file-upload/no-op-dropzone';
+import NoOpDropzone from '../libs/file-upload/no-op-dropzone';
 
 const container = Intravenous.create({
   onDispose: function (obj, serviceName) {
@@ -34,35 +43,47 @@ const container = Intravenous.create({
   }
 });
 
-container.register("Dashboard", Dashboard);
+container.register("DashboardComponent", DashboardComponent);
 
 container.register("TaskList", TaskList);
 container.register("TaskItem", TaskItem);
-container.register("TaskListStore", TaskListStore, "singleton"); //http://www.royjacobs.org/intravenous/#how_can_i_control_the_lifecycle_of_a_service
-container.register("TaskAPI", TaskAPI);
+container.register("ActivityListStore", TaskListStore);
+//container.register("TaskAPI", TaskAPI);
 
 container.register("ActivityList", ActivityList);
 container.register("ActivityItem", ActivityItem);
-container.register("ActivityListStore", ActivityListStore, "singleton"); //http://www.royjacobs.org/intravenous/#how_can_i_control_the_lifecycle_of_a_service
-container.register("ActivityAPI", ActivityAPI);
+container.register("ActivityListStore", ActivityListStore);
+//container.register("ActivityAPI", ActivityAPI);
 
 container.register("SearchResultList", SearchResultList);
 container.register("SearchResultItem", SearchResultItem);
 
-container.register("MIComponent", MIComponent);
-container.register("CreateMIComponent", CreateMIComponent);
-container.register("MIFormComponent", MIFormComponent);
-container.register("MIService", MIService);
+container.register("ManagementItemComponent", ManagementItemComponent);
+container.register("CreateManagementItemComponent", CreateManagementItemComponent);
+container.register("ManagementItemFormComponent", ManagementItemFormComponent);
+container.register("ManagementItemActions", ManagementItemActions);
+container.register("ActivityListStore", ManagementItemStore);
+container.register("ManagementItemService", ManagementItemService);
+container.register("ManagementItemRepository", ManagementItemRepository);
 
 container.register("FileUpload", FileUpload);
 container.register("Dropzone", NoOpDropzone);
 
-CreateMIComponent.$inject = ["FileUpload"];
-MIFormComponent.$inject = ["MIService"];
+container.register("APIService", ClientSideApi);
+
+container.register("ReactJsActions", ReactJsActions);
+
+container.register("LoadingFeedbackStore", LoadingFeedbackStore);
+
+CreateManagementItemComponent.$inject = ["ManagementItemActions", "FileUpload"];
+ManagementItemFormComponent.$inject   = ["ManagementItemActions"];
+ManagementItemActions.$inject         = ["ManagementItemService"];
+ManagementItemService.$inject         = ["ManagementItemRepository"];
+ManagementItemRepository.$inject      = ["APIService"];
 
 FileUpload.$inject = ["DropzoneFactory"];
 
-Dashboard.$inject = ["TaskList", "TaskListStore", "ActivityList", "ActivityListStore"];
+DashboardComponent.$inject = ["TaskList", "ActivityListStore", "ActivityList", "ActivityListStore"];
 
 TaskList.$inject = ["TaskItem"];
 

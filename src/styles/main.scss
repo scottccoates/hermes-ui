@@ -45,6 +45,7 @@ parent: main
 @import "vendor/bootstrap_variables";
 
 // Override Vendors
+@import "vendor/font-awesome";
 @import "vendor/vendor_overrides";
 
 // Our own variables

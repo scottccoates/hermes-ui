@@ -1,26 +1,14 @@
-import Actions from 'src/scripts/libs/react-js/actions/actions';
+import Actions from '../actions/react-js-actions';
 
 const noop = ()=> true;
 
-async function doTransition(asyncAction, dataFetchCondition = noop, resolveAction = noop, rejectAction = noop) {
+async function doTransition(asyncAction, dataFetchCondition = noop) {
   if (dataFetchCondition()) {
-
-    Actions.dataTransition();
-
-    try {
-      let asyncActionValue = await asyncAction();
-      resolveAction(asyncActionValue);
-    }
-    catch (e) {
-      rejectAction(e);
-    }
-
-    Actions.dataTransition.completed();
+    return Actions.performAsyncAction(asyncAction);
   }
 }
 
-
-const dataTransitionMixin = (dataActions)=> {
+function dataTransitionMixin(dataActions) {
 
   const retVal = {
 
@@ -39,6 +27,6 @@ const dataTransitionMixin = (dataActions)=> {
   };
 
   return retVal;
-};
+}
 
 export default {connect: dataTransitionMixin};

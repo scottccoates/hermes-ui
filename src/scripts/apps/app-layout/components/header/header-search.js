@@ -4,11 +4,11 @@ import React from 'react';
 import Bacon from 'bacon';
 import ReactBacon from 'react-bacon';
 
-import FocusContainer from 'src/scripts/libs/react-js/components/focus-container.js!jsx';
-import DisplayContainer from 'src/scripts/libs/react-js/components/display-container.js!jsx';
+import FocusContainer from '../../../../libs/react-js/components/focus-container';
+import DisplayContainer from '../../../../libs/react-js/components/display-container';
 
-import SearchContainer from 'src/scripts/apps/search/components/configure/search-container.js!jsx';
-import AdvancedSearchContainer from 'src/scripts/apps/search/components/configure/advanced-search-container.js!jsx';
+import SearchContainer from '../../../../domain/search/components/configure/search-container';
+import AdvancedSearchContainer from '../../../../domain/search/components/configure/advanced-search-container';
 
 export default React.createClass({
   displayName: "HeaderSearch",

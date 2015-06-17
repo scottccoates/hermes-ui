@@ -1,17 +1,21 @@
 System.config({
   "baseURL": "/",
+  "defaultJSExtensions": true,
   "transpiler": "babel",
   "babelOptions": {
     "optional": [
       "runtime"
     ],
-    "stage": 1
+    "stage": 0
   },
   "paths": {
-    "src/*": "src/*.js",
-    "github:*": "jspm_packages/github/*.js",
-    "npm:*": "jspm_packages/npm/*.js",
-    "*": "*.js"
+    "github:*": "jspm_packages/github/*",
+    "npm:*": "jspm_packages/npm/*"
+  },
+  "modules": {
+    "*.js": {
+      "plugin": "jsx"
+    }
   }
 });
 
@@ -20,10 +24,12 @@ System.config({
     "babel": "npm:babel-core@5.4.7",
     "babel-runtime": "npm:babel-runtime@5.4.7",
     "bacon": "npm:baconjs@0.7.53",
+    "bankers-box": "github:twilio/BankersBox@0.1.0",
     "bootstrap": "github:twbs/bootstrap@3.3.4",
     "classnames": "github:JedWatson/classnames@2.1.2",
     "core-js": "npm:core-js@0.9.13",
     "dropzone": "npm:dropzone@4.0.1",
+    "flummox": "npm:flummox@3.5.2",
     "immutable": "github:facebook/immutable-js@3.6.4",
     "intravenous": "github:willow/intravenous@master",
     "jquery": "github:components/jquery@2.1.3",
@@ -40,13 +46,12 @@ System.config({
     "react-router": "npm:react-router@0.13.3",
     "react-select": "npm:react-select@0.4.9",
     "react-tagsinput": "github:olahol/react-tagsinput@1.2.0",
-    "reflux": "npm:reflux@0.2.7",
     "tcomb": "npm:tcomb@2.0.0-beta",
     "github:floatdrop/plugin-jsx@1.1.0": {
       "react-tools": "npm:react-tools@0.13.3"
     },
     "github:jamesflorentino/nanoScrollerJS@0.8.4": {
-      "css": "github:systemjs/plugin-css@0.1.7",
+      "css": "github:systemjs/plugin-css@0.1.12",
       "jquery": "github:components/jquery@2.1.3"
     },
     "github:jspm/nodelibs-assert@0.1.0": {
@@ -100,10 +105,10 @@ System.config({
       "vm-browserify": "npm:vm-browserify@0.0.4"
     },
     "github:rstacruz/nprogress@0.1.6": {
-      "css": "github:systemjs/plugin-css@0.1.7"
+      "css": "github:systemjs/plugin-css@0.1.12"
     },
-    "github:systemjs/plugin-css@0.1.7": {
-      "clean-css": "npm:clean-css@3.0.10",
+    "github:systemjs/plugin-css@0.1.12": {
+      "clean-css": "npm:clean-css@3.1.9",
       "fs": "github:jspm/nodelibs-fs@0.1.2",
       "path": "github:jspm/nodelibs-path@0.1.0"
     },
@@ -116,7 +121,7 @@ System.config({
       "path": "github:jspm/nodelibs-path@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
-    "npm:asn1.js@2.0.3": {
+    "npm:asn1.js@2.0.4": {
       "assert": "github:jspm/nodelibs-assert@0.1.0",
       "bn.js": "npm:bn.js@2.0.5",
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
@@ -161,7 +166,7 @@ System.config({
       "create-hash": "npm:create-hash@1.1.1",
       "create-hmac": "npm:create-hmac@1.1.3",
       "crypto": "github:jspm/nodelibs-crypto@0.1.0",
-      "elliptic": "npm:elliptic@3.0.3",
+      "elliptic": "npm:elliptic@3.1.0",
       "inherits": "npm:inherits@2.0.1",
       "parse-asn1": "npm:parse-asn1@3.0.1",
       "stream": "github:jspm/nodelibs-stream@0.1.0",
@@ -180,9 +185,9 @@ System.config({
       "process": "github:jspm/nodelibs-process@0.1.1",
       "systemjs-json": "github:systemjs/plugin-json@0.1.0"
     },
-    "npm:clean-css@3.0.10": {
+    "npm:clean-css@3.1.9": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
-      "commander": "npm:commander@2.5.1",
+      "commander": "npm:commander@2.6.0",
       "fs": "github:jspm/nodelibs-fs@0.1.2",
       "http": "github:jspm/nodelibs-http@1.7.1",
       "https": "github:jspm/nodelibs-https@0.1.0",
@@ -194,6 +199,12 @@ System.config({
       "util": "github:jspm/nodelibs-util@0.1.0"
     },
     "npm:commander@2.5.1": {
+      "child_process": "github:jspm/nodelibs-child_process@0.1.0",
+      "events": "github:jspm/nodelibs-events@0.1.1",
+      "path": "github:jspm/nodelibs-path@0.1.0",
+      "process": "github:jspm/nodelibs-process@0.1.1"
+    },
+    "npm:commander@2.6.0": {
       "child_process": "github:jspm/nodelibs-child_process@0.1.0",
       "events": "github:jspm/nodelibs-events@0.1.1",
       "path": "github:jspm/nodelibs-path@0.1.0",
@@ -234,7 +245,7 @@ System.config({
       "bn.js": "npm:bn.js@2.0.5",
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
       "crypto": "github:jspm/nodelibs-crypto@0.1.0",
-      "elliptic": "npm:elliptic@3.0.3"
+      "elliptic": "npm:elliptic@3.1.0"
     },
     "npm:create-hash@1.1.1": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
@@ -242,7 +253,7 @@ System.config({
       "fs": "github:jspm/nodelibs-fs@0.1.2",
       "inherits": "npm:inherits@2.0.1",
       "ripemd160": "npm:ripemd160@1.0.1",
-      "sha.js": "npm:sha.js@2.4.1",
+      "sha.js": "npm:sha.js@2.4.2",
       "stream": "github:jspm/nodelibs-stream@0.1.0"
     },
     "npm:create-hmac@1.1.3": {
@@ -275,7 +286,7 @@ System.config({
     "npm:dropzone@4.0.1": {
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
-    "npm:elliptic@3.0.3": {
+    "npm:elliptic@3.1.0": {
       "bn.js": "npm:bn.js@2.0.5",
       "brorand": "npm:brorand@1.0.5",
       "hash.js": "npm:hash.js@1.0.3",
@@ -298,6 +309,14 @@ System.config({
     "npm:eventemitter3@0.1.6": {
       "process": "github:jspm/nodelibs-process@0.1.1",
       "util": "github:jspm/nodelibs-util@0.1.0"
+    },
+    "npm:flummox@3.5.2": {
+      "eventemitter3": "npm:eventemitter3@0.1.6",
+      "flux": "npm:flux@2.0.3",
+      "object-assign": "npm:object-assign@2.0.0",
+      "path": "github:jspm/nodelibs-path@0.1.0",
+      "process": "github:jspm/nodelibs-process@0.1.1",
+      "uniqueid": "npm:uniqueid@0.1.0"
     },
     "npm:glob@4.2.2": {
       "assert": "github:jspm/nodelibs-assert@0.1.0",
@@ -354,7 +373,7 @@ System.config({
       "process": "github:jspm/nodelibs-process@0.1.1",
       "source-map": "npm:source-map@0.1.31"
     },
-    "npm:lodash@3.7.0": {
+    "npm:lodash@3.9.3": {
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
     "npm:miller-rabin@2.0.1": {
@@ -373,12 +392,6 @@ System.config({
       "path": "github:jspm/nodelibs-path@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
-    "npm:native-promise-only@0.7.6-a": {
-      "child_process": "github:jspm/nodelibs-child_process@0.1.0",
-      "fs": "github:jspm/nodelibs-fs@0.1.2",
-      "path": "github:jspm/nodelibs-path@0.1.0",
-      "process": "github:jspm/nodelibs-process@0.1.1"
-    },
     "npm:once@1.3.2": {
       "wrappy": "npm:wrappy@1.0.1"
     },
@@ -386,7 +399,7 @@ System.config({
       "os": "github:jspm/nodelibs-os@0.1.0"
     },
     "npm:parse-asn1@3.0.1": {
-      "asn1.js": "npm:asn1.js@2.0.3",
+      "asn1.js": "npm:asn1.js@2.0.4",
       "browserify-aes": "npm:browserify-aes@1.0.1",
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
       "create-hash": "npm:create-hash@1.1.1",
@@ -426,8 +439,8 @@ System.config({
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
     "npm:rc-form-validation@2.3.2": {
-      "async-validator": "npm:async-validator@1.1.2",
-      "rc-util": "npm:rc-util@2.0.2"
+      "async-validator": "npm:async-validator@1.1.5",
+      "rc-util": "npm:rc-util@2.0.3"
     },
     "npm:react-bacon@0.0.4": {
       "baconjs": "npm:baconjs@0.7.53",
@@ -441,13 +454,13 @@ System.config({
     },
     "npm:react-dnd@0.9.8": {
       "events": "github:jspm/nodelibs-events@0.1.1",
-      "flux": "npm:flux@2.0.1",
-      "lodash": "npm:lodash@3.7.0",
+      "flux": "npm:flux@2.0.3",
+      "lodash": "npm:lodash@3.9.3",
       "process": "github:jspm/nodelibs-process@0.1.1",
       "react": "npm:react@0.13.3"
     },
     "npm:react-immutable-render-mixin@0.8.0": {
-      "immutable": "npm:immutable@3.7.1"
+      "immutable": "npm:immutable@3.7.4"
     },
     "npm:react-input-autosize@0.4.4": {
       "react": "npm:react@0.13.3"
@@ -460,7 +473,6 @@ System.config({
     },
     "npm:react-select@0.4.9": {
       "classnames": "npm:classnames@2.1.2",
-      "css": "github:systemjs/plugin-css@0.1.7",
       "react": "npm:react@0.13.3",
       "react-input-autosize": "npm:react-input-autosize@0.4.4"
     },
@@ -496,15 +508,11 @@ System.config({
       "process": "github:jspm/nodelibs-process@0.1.1",
       "source-map": "npm:source-map@0.1.43"
     },
-    "npm:reflux@0.2.7": {
-      "eventemitter3": "npm:eventemitter3@0.1.6",
-      "native-promise-only": "npm:native-promise-only@0.7.6-a"
-    },
     "npm:ripemd160@1.0.1": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
-    "npm:sha.js@2.4.1": {
+    "npm:sha.js@2.4.2": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
       "fs": "github:jspm/nodelibs-fs@0.1.2",
       "inherits": "npm:inherits@2.0.1",
@@ -540,6 +548,9 @@ System.config({
     "npm:through@2.3.7": {
       "process": "github:jspm/nodelibs-process@0.1.1",
       "stream": "github:jspm/nodelibs-stream@0.1.0"
+    },
+    "npm:uniqueid@0.1.0": {
+      "assert": "github:jspm/nodelibs-assert@0.1.0"
     },
     "npm:url@0.10.3": {
       "assert": "github:jspm/nodelibs-assert@0.1.0",

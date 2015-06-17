@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Router  from 'react-router';
+import FluxComponent from 'flummox/component';
 
 function getAsyncTransitionPromises(state) {
 
@@ -20,10 +21,17 @@ function getAsyncTransitionPromises(state) {
   return asyncTransitionPromises;
 }
 
-function getHandler(containerId) {
+function getHandler(containerId, fluxInstance) {
 
   function renderHandler(Handler, loading) {
-    React.render(<Handler loading={loading}/>, document.getElementById(containerId));
+
+    const handler = (
+      <FluxComponent flux={fluxInstance}>
+        <Handler loading={loading}/>
+      </FluxComponent>
+    );
+
+    React.render(handler, document.getElementById(containerId));
   }
 
   return async function (handler, state) {
