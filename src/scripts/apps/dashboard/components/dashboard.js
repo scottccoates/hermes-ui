@@ -3,28 +3,18 @@
 import React from 'react';
 import Router  from 'react-router';
 
+import ConnectToStores from 'flummox/connect';
+
 import DependencyProvider from '../../../libs/dependency-injection/utils/dependency-provider';
-
-import DataTransitionMixin from '../../../libs/react-js/mixins/data-transition-mixin';
-
-import TaskActions from '../../../domain/task/messaging/task-actions';
-
-import ActivityActions from '../../../domain/activity/messaging/activity-actions';
 
 const {Link} = Router;
 
-
-export default function (taskListProvider, taskListStore, activityListProvider, activityListStore) {
-  const TaskList     = taskListProvider.dependency;
-  const ActivityList = activityListProvider.dependency;
-
-  const dataActions = [
-    [TaskActions.getTasks, () => true],
-    [ActivityActions.getActivities, () => true]
-  ];
+export default function (agreementListComponent) {
+  const AgreementList = agreementListComponent.dependency;
 
   const component = React.createClass({
-    mixins: [DataTransitionMixin.connect(dataActions)],
+
+    displayName: "Dashboard",
 
     render() {
       return (
@@ -38,13 +28,12 @@ export default function (taskListProvider, taskListStore, activityListProvider, 
 
           <div className="content-section default-content-section space-bottom">
             <div className="container">
-              <TaskList tasks={this.state.tasks}/>
+              <AgreementList agreements={this.props.agreements}/>
             </div>
           </div>
 
           <div className="content-section alt-content-section space-top space-bottom activity-list-content-section">
             <div className="container">
-              <ActivityList activities={this.state.activities}/>
             </div>
           </div>
 
@@ -52,5 +41,5 @@ export default function (taskListProvider, taskListStore, activityListProvider, 
       );
     }
   });
-  return new DependencyProvider(component);
+  return new DependencyProvider(ConnectToStores(component, 'agreementStore'));
 };

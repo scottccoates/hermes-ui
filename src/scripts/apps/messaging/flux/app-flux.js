@@ -1,27 +1,39 @@
 import { Flux } from 'flummox';
 
-import container from '../../../settings/di';
 
-const managementItemStore   = container.get("ActivityListStore").dependency;
-const managementItemActions = container.get("ManagementItemActions");
+export default {
+  init (container) {
 
-const reactJsActions = container.get("ReactJsActions");
+    const agreementStore   = container.get("AgreementStore").dependency;
+    const agreementActions = container.get("AgreementActions");
 
-const loadingFeedbackStore = container.get("LoadingFeedbackStore").dependency;
+    const reactJsActions = container.get("ReactJsActions");
 
+    const sessionActions = container.get("SessionActions");
+    const sessionStore   = container.get("SessionStore").dependency;
 
-export default class AppFlux extends Flux {
+    const loadingFeedbackStore = container.get("LoadingFeedbackStore").dependency;
 
-  constructor() {
-    super();
+    return class AppFlux extends Flux {
 
-    this.createActions('managementItemActions', managementItemActions);
+      constructor() {
+        super();
 
-    this.createActions('reactJsActions', reactJsActions);
+        // follow the format (above)
+        // import X ===== import x
+        this.createActions('agreementActions', agreementActions);
 
-    // The extra argument(s) are passed to the MessageStore constructor
-    this.createStore('managementItemStore', managementItemStore, this);
+        this.createActions('reactJsActions', reactJsActions);
 
-    this.createStore('loadingFeedbackStore', loadingFeedbackStore, this);
+        this.createActions('sessionActions', sessionActions);
+
+        // The extra argument(s) are passed to the MessageStore constructor
+        this.createStore('agreementStore', agreementStore, this);
+
+        this.createStore('loadingFeedbackStore', loadingFeedbackStore, this);
+
+        this.createStore('sessionStore', sessionStore, this);
+      }
+    }
   }
 };

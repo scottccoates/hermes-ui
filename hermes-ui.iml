@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src/scripts/libs/react-js/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/scripts/apps/app-layout/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/scripts/domain/agreement/tests" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/build" />
+      <excludeFolder url="file://$MODULE_DIR$/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/docs/style_guide/doc_assets/static/css" />
+      <excludeFolder url="file://$MODULE_DIR$/docs/style_guide/out" />
+      <excludeFolder url="file://$MODULE_DIR$/jspm_packages" />
+      <excludeFolder url="file://$MODULE_DIR$/node_modules" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

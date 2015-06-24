@@ -65,23 +65,13 @@ parent: main
 @import "app/base/icons";
 @import "app/base/payment";
 @import "app/base/responsive";
-@import "app/base/scrollbars";
 @import "app/base/typography";
 
 // Bring in our feature-specific styling
 @import "app/activity/activity";
-@import "app/about-us";
-@import "app/admin";
-@import "app/apartment";
 @import "app/app-layout/app-layout";
 @import "app/dashboard/dashboard";
-@import "app/footer";
-@import "app/home";
-@import "app/how-it-works";
-@import "app/management-item/management-item";
-@import "app/nav";
-@import "app/result";
+@import "app/agreement/agreement";
 @import "app/search/search";
+@import "app/session/session";
 @import "app/task/task";
-@import "app/thank-you";
-@import "app/tos";

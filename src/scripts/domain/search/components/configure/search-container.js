@@ -31,7 +31,7 @@ export default React.createClass({
             </ul>
           </li>
 
-          <li className="mi-search-link">
+          <li className="agreement-search-link">
             <ul>
               <li>
                 <a className="search-link" href="#">

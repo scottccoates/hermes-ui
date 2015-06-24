@@ -1,17 +1,35 @@
 'use strict';
 
 import React from 'react';
-import ReactBootstrap from 'react-bootstrap';
+import ReactBacon from 'react-bacon';
+
 import Router  from 'react-router';
+import ConnectToStores from 'flummox/connect';
 
-// use the min file because it doesn't have a dep on the css! file, which we don't want to inject into our html doc.
-import Bootstrap from 'bootstrap/js/bootstrap.min';
-
-const {DropdownButton, MenuItem} = ReactBootstrap;
+import FocusContainer from '../../../../libs/react-js/components/focus-container';
+import DisplayContainer from '../../../../libs/react-js/components/display-container';
 
 const {Link} = Router;
 
-export default React.createClass({
+var headerNavSection = React.createClass({
+  displayName: "HeaderNavSection",
+  mixins: [ReactBacon.BaconMixin],
+
+  getInitialState() {
+    return {
+      profileDropdownEnabled: false
+    };
+  },
+
+  componentWillMount() {
+    const clickStream = this.eventStream('onClick');
+
+    clickStream.filter(() => !this.state.profileDropdownEnabled).subscribe(()=>this.setState({profileDropdownEnabled: true}));
+  },
+
+  onDropdownClose() {
+    this.setState({profileDropdownEnabled: false});
+  },
 
   render() {
     return (
@@ -20,28 +38,33 @@ export default React.createClass({
         <ul>
 
           <li className="header-item header-profile">
-            <a data-target="#" href="#" data-toggle="dropdown">
+            <a href="#" onClick={this.onClick}>
               <img alt="header profile image" className="header-profile-image"
-                   src="/build/assets/images/andy-profile-pic.jpg"/>
-              <span className="header-profile-name">Andy
+                   src={this.props.user.picture}/>
+              <span className="header-profile-name">{this.props.user.nickname}
                 <i className="fa fa-caret-down space-left"></i>
               </span>
             </a>
-            <ul className="dropdown-menu dropdown-menu-arrow dropdown-menu-arrow-right" role="menu">
-              <li role="presentation">
-                <a role="menuitem" href="#">Dashboard</a>
-              </li>
-              <li role="presentation">
-                <a role="menuitem" href="#">Edit Profile</a>
-              </li>
-              <li role="presentation">
-                <a role="menuitem" href="#">Admin</a>
-              </li>
-              <li role="presentation" className="divider"></li>
-              <li role="presentation">
-                <a role="menuitem" href="#">Logout</a>
-              </li>
-            </ul>
+            <FocusContainer inFocus={this.state.profileDropdownEnabled} onClose={this.onDropdownClose}>
+              <DisplayContainer open={this.state.profileDropdownEnabled}>
+                <ul className="dropdown-menu dropdown-menu-right dropdown-menu-arrow dropdown-menu-arrow-right">
+                  <li role="presentation">
+                    <a role="menuitem" href="#">Dashboard</a>
+                  </li>
+                  <li role="presentation">
+                    <a role="menuitem" href="#">Edit Profile</a>
+                  </li>
+                  <li role="presentation">
+                    <a role="menuitem" href="#">Admin</a>
+                  </li>
+                  <li role="presentation" className="divider"></li>
+                  <li role="presentation">
+                    <Link to="logout">Logout</Link>
+                  </li>
+                </ul>
+              </DisplayContainer>
+            </FocusContainer>
+
           </li>
 
           <li className="header-item header-alerts">
@@ -54,8 +77,8 @@ export default React.createClass({
             </span>
           </li>
 
-          <li className="header-item header-new-mi">
-            <Link activeClassName="" to="createMI" className="btn btn-primary btn-xs">New Contract</Link>
+          <li className="header-item header-new-agreement">
+            <Link activeClassName="" to="create-agreement" className="btn btn-primary btn-xs">New Contract</Link>
           </li>
         </ul>
       </section>
@@ -63,3 +86,5 @@ export default React.createClass({
   }
 });
 
+headerNavSection = ConnectToStores(headerNavSection, "sessionStore");
+export default headerNavSection;

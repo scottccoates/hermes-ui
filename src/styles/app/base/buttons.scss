@@ -35,24 +35,6 @@ parent: base
 </div>
 */
 
-@mixin btn($btn-color, $shadow-color, $inset-shadow-alpha: .20) {
-  background-image: linear-gradient($btn-color, darken($btn-color, 5%));
-
-  box-shadow: 0 1px 3px 0 rgba($shadow-color, 0.50), inset 0 1px 0 0 rgba($src-very-bright, $inset-shadow-alpha);
-
-  $active-background: linear-gradient(darken($btn-color, 5%), darken($btn-color, 10%));
-
-  &:hover {
-    background: $active-background;
-    box-shadow: 0 1px 3px 1px rgba($shadow-color, 0.55);
-  }
-
-  &:active, &.active {
-    background: $active-background;
-    box-shadow: 0 1px 3px 0 rgba($shadow-color, 0.55), inset 0 3px 6px $src-very-dark;
-  }
-}
-
 .btn {
   font-family: $src-font-family-heading;
   border: none;

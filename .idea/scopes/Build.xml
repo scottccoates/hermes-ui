@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="Build" pattern="file[jspm-react]:build//*||file:gulpfile.js||file[jspm-react]:dist//*" />
+</component>

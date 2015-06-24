@@ -10,7 +10,7 @@ export default {
     return nextId;
   },
 
-  async save(path, data){
+  async addToCollection(path, data){
 
     const collectionKey = `${namespace}:${path}`;
     const nextId        = this._getNextId();

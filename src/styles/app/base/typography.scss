@@ -5,7 +5,7 @@
 // --------------------------------------------------
 @font-face {
   font-family: 'Montserrat';
-  src: local('Montserrat-Light'), url('/build/assets/fonts/Montserrat-Light-webfont.woff2') format('woff2');
+  src: local('Montserrat-Light'), url('/assets/fonts/Montserrat-Light-webfont.woff2') format('woff2');
   font-weight: 300;
   font-style: normal; //italics, bold, normal.
 }
@@ -14,14 +14,14 @@
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 400;
-  src: local('Montserrat-Regular'), url('/build/assets/fonts/Montserrat-Regular-webfont.woff2') format('woff2');
+  src: local('Montserrat-Regular'), url('/assets/fonts/Montserrat-Regular-webfont.woff2') format('woff2');
 }
 
 @font-face {
   font-family: 'Source Sans Pro';
   font-style: normal;
   font-weight: 400;
-  src: local('SourceSansPro-Regular'), url('/build/assets/fonts/SourceSansPro-Regular-webfont.woff2') format('woff2');
+  src: local('SourceSansPro-Regular'), url('/assets/fonts/SourceSansPro-Regular-webfont.woff2') format('woff2');
 }
 
 // Basic Type Styles

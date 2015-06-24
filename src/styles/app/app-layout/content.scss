@@ -13,6 +13,7 @@
 
   .content-enter {
     // ReactCSSTransitionGroup adds these classes dynamically
+    // ActivityList uses this.
     opacity: 0.01;
 
     transition: opacity 0.15s linear;

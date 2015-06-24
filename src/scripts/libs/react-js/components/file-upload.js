@@ -61,6 +61,7 @@ export default function (dropzoneFactory) {
     componentWillUnmount() {
       this.dropzone.destroy();
       this.dropzone = null;
+      dropzoneFactory.dispose(this.dropzone);
     },
 
     render() {

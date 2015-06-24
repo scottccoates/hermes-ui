@@ -4,7 +4,7 @@ import Bacon from 'bacon';
 
 import Immutable from 'immutable';
 
-import DependencyProvider from '/src/scripts/libs/dependency-injection/utils/dependency-provider';
+import DependencyProvider from 'src/scripts/libs/dependency-injection/utils/dependency-provider';
 
 export default function () {
   const startStream  = new Bacon.Bus();

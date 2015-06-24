@@ -6,7 +6,7 @@ export default React.createClass({
   render() {
     return (
         <div className="sidebar-logo">
-          <img alt="Willow Logo" className="sidebar-logo-image" src="/build/assets/images/medium-logo.svg"/>
+          <img alt="Willow Logo" className="sidebar-logo-image" src="/assets/images/medium-logo.svg"/>
         </div>
     );
   }

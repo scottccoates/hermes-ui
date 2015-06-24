@@ -27,9 +27,6 @@ export default React.createClass({
     const clickStream = this.eventStream('onClick');
     clickStream.subscribe(()=> {
       this.setState({isFocused: true});
-
-      // we need to wait until render has finished before we can set focus to this as its currently hidden.
-      setTimeout(()=>this.refs.fieldInput.focus());
     });
 
     const blurStream = this.eventStream('onBlur');

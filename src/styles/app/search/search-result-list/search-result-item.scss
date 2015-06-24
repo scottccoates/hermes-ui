@@ -8,17 +8,17 @@
     }
   }
 
-  .search-result-mi-name {
+  .search-result-agreement-name {
     color: $src-very-dark;
     text-transform: none;
   }
 
-  .search-result-mi-details {
+  .search-result-agreement-details {
     @include at-least-small-screen-styles {
       @include font-size($src-font-size-small);
     }
 
-    .search-result-mi-detail {
+    .search-result-agreement-detail {
 
     }
   }

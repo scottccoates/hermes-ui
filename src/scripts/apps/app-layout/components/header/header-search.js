@@ -1,7 +1,6 @@
 'use strict';
 
 import React from 'react';
-import Bacon from 'bacon';
 import ReactBacon from 'react-bacon';
 
 import FocusContainer from '../../../../libs/react-js/components/focus-container';

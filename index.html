@@ -4,19 +4,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Willow</title>
-  <link rel="shortcut icon" href="/build/assets/images/willow-logo-green-bg-no-text.png"/>
-  <link rel="stylesheet" href="/build/css/main.css"/>
-  <link rel="stylesheet" href="/jspm_packages/npm/react-select@0.4.9/dist/default.css"/>
+
+  <link rel="shortcut icon" href="/assets/images/willow-logo-green-bg-no-text.png"/>
+  <link rel="stylesheet" href="/css/main.css"/>
+
+  <!--<link rel="stylesheet" href="/jspm_packages/npm/react-select@0.4.9/dist/default.css"/>-->
 </head>
 <body>
 <div id="app">
 </div>
-<script src="/jspm_packages/system.js"></script>
+<!-- @if BUILD_TYPE='local' -->
+<script src="/jspm_packages/system.src.js"></script>
 <script src="/config.js"></script>
+<!-- @endif -->
+
+<!-- @if BUILD_TYPE='server' -->
+<script src="/js/app.js"></script>
+<!-- @endif -->
 <script>
-  System.import('/src/scripts/apps/feedback/components/loading/loading-feedback').then(function (loadingFeedback) {
+  System.import('src/scripts/apps/feedback/components/loading/loading-feedback').then(function (loadingFeedback) {
     loadingFeedback.default.start();
-    System.import('/src/scripts/main')
+    System.import('src/scripts/main')
 //        .catch(console.log.bind(console))
         .then(loadingFeedback.default.done);
   });

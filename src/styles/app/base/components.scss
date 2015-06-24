@@ -50,3 +50,9 @@
   background-color: $src-very-bright;
 }
 
+// Scrollbar
+// --------------------------------------------------
+
+.nano > .nano-content:focus {
+  outline: none !important;
+}

@@ -1,0 +1,28 @@
+// Auth0
+// --------------------------------------------------
+body {
+
+  #a0-lock {
+
+    &.a0-theme-default {
+
+      .a0-panel {
+
+        * {
+          font-family: $src-font-family-heading !important;
+        }
+
+        button.a0-primary {
+          @extend .btn-primary;
+        }
+        .a0-icon-container {
+          .a0-image {
+            img {
+              border-radius: 50%;
+            }
+          }
+        }
+      }
+    }
+  }
+}

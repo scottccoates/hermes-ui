@@ -1,0 +1,35 @@
+{
+  "firebase": "<!-- @echo FIREBASE_DESTINATION  -->",
+  "public": ".",
+  "ignore": [
+    "firebase.json",
+    "rev-manifest.json"
+  ],
+  "rules": "../src/scripts/resources/deployment/firebase/rules.json",
+  "rewrites": [
+    {
+      "source": "**",
+      "destination": "/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/index.html",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "max-age=0"
+        }
+      ]
+    },
+    {
+      "source": "**/!(index.html)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "max-age=31536000"
+        }
+      ]
+    }
+  ]
+}

@@ -24,28 +24,28 @@ export default function () {
                 </div>
                 <div className='col-sm-20'>
                   <h5 className='content-section-item'>
-                    <a className='search-result-mi-name' href="#">{this.props.searchResultSubject}</a>
+                    <a className='search-result-agreement-name' href="#">{this.props.searchResultSubject}</a>
                   </h5>
 
-                  <div className='search-result-mi-details content-section-item space-top-xxs space-bottom-xxs'>
-                            <span className='search-result-mi-detail'>
+                  <div className='search-result-agreement-details content-section-item space-top-xxs space-bottom-xxs'>
+                            <span className='search-result-agreement-detail'>
                               {this.props.searchResultOwner}
                             </span>
 
                     <i className='fa fa-circle middle space-left space-right'></i>
 
-                            <span className='search-result-mi-detail'>
+                            <span className='search-result-agreement-detail'>
                               <i className='fa fa-file space-right-md'></i>
                               {this.props.searchResultEntityType}
                             </span>
 
                     <i className='fa fa-circle middle space-left space-left space-right'></i>
 
-                            <span className='search-result-mi-detail'>
+                            <span className='search-result-agreement-detail'>
                               {this.props.searchResultAdditionalDetails}
                             </span>
                   </div>
-                  <div className='search-result-mi-content content-section-item'>
+                  <div className='search-result-agreement-content content-section-item'>
                     <p>
                       <Highlighter search="licensee(\'s)? | terminate" caseSensitive={false}>
                         {this.props.searchResultContent}
