@@ -3,16 +3,16 @@
 
 import React from 'react/addons';
 
-import MIForm from '../../components/new-agreement/agreement-form';
+import AgreementForm from '../../components/new-agreement/new-agreement-form';
 
 import noop from '../../../../libs/js-utils/functions/noop';
 
 const {TestUtils} = React.addons;
 
-describe('Management Item Form', ()=> {
+describe('Agreement Form', ()=> {
 
   it('should exist', () => {
-    expect(MIForm).to.be.ok;
+    expect(AgreementForm).to.be.ok;
   });
 
   describe('Submit Form', ()=> {
@@ -24,7 +24,7 @@ describe('Management Item Form', ()=> {
     const miServiceSpy = {addToCollection: sinon.spy()};
 
 
-    const MIFormComponent = MIForm(miServiceSpy).dependency;
+    const MIFormComponent = AgreementForm(miServiceSpy).dependency;
 
     MIFormComponent.prototype.refs = {validation: validationStub};
     MIFormComponent.prototype.props = {onValidate: propsOnValidateSpy};

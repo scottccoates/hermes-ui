@@ -1,5 +1,5 @@
 System.config({
-  "baseURL": "/",
+  "baseURL": /\/base\//.test(System.baseURL) ? System.baseURL : "/",
   "defaultJSExtensions": true,
   "transpiler": "babel",
   "babelOptions": {
@@ -22,8 +22,8 @@ System.config({
 System.config({
   "map": {
     "auth0-lock": "github:auth0/lock@7.5.6",
-    "babel": "npm:babel-core@5.6.15",
-    "babel-runtime": "npm:babel-runtime@5.6.15",
+    "babel": "npm:babel-core@5.8.3",
+    "babel-runtime": "npm:babel-runtime@5.8.3",
     "bacon": "npm:baconjs@0.7.53",
     "bankers-box": "github:twilio/BankersBox@0.1.0",
     "classnames": "github:JedWatson/classnames@2.1.2",
@@ -32,7 +32,7 @@ System.config({
     "firebase": "github:firebase/firebase-bower@2.2.7",
     "flummox": "npm:flummox@3.5.2",
     "humps": "github:domchristie/humps@0.6.0",
-    "immutable": "github:facebook/immutable-js@3.6.4",
+    "immutable": "npm:immutable@3.7.4",
     "intravenous": "github:willow/intravenous@master",
     "jquery": "github:components/jquery@2.1.3",
     "loglevel": "npm:loglevel@1.3.1",
@@ -44,11 +44,11 @@ System.config({
     "react-bootstrap": "npm:react-bootstrap@0.21.1",
     "react-dnd": "npm:react-dnd@0.9.8",
     "react-highlighter": "github:helior/react-highlighter@0.2.1",
-    "react-immutable-render-mixin": "npm:react-immutable-render-mixin@0.8.0",
+    "react-immutable-render-mixin": "npm:react-immutable-render-mixin@0.8.1",
     "react-router": "npm:react-router@0.13.3",
     "react-select": "npm:react-select@0.4.9",
     "react-tagsinput": "github:olahol/react-tagsinput@1.2.0",
-    "tcomb": "npm:tcomb@2.0.0-beta",
+    "tcomb": "npm:tcomb@2.0.1",
     "github:jamesflorentino/nanoScrollerJS@0.8.4": {
       "css": "github:systemjs/plugin-css@0.1.12",
       "jquery": "github:components/jquery@2.1.3"
@@ -57,7 +57,7 @@ System.config({
       "assert": "npm:assert@1.3.0"
     },
     "github:jspm/nodelibs-buffer@0.1.0": {
-      "buffer": "npm:buffer@3.3.0"
+      "buffer": "npm:buffer@3.3.1"
     },
     "github:jspm/nodelibs-events@0.1.1": {
       "events": "npm:events@1.0.2"
@@ -108,7 +108,7 @@ System.config({
     "npm:assert@1.3.0": {
       "util": "npm:util@0.10.3"
     },
-    "npm:babel-runtime@5.6.15": {
+    "npm:babel-runtime@5.8.3": {
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
     "npm:baconjs@0.7.53": {
@@ -118,7 +118,7 @@ System.config({
       "path": "github:jspm/nodelibs-path@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
-    "npm:buffer@3.3.0": {
+    "npm:buffer@3.3.1": {
       "base64-js": "npm:base64-js@0.0.8",
       "ieee754": "npm:ieee754@1.1.6",
       "is-array": "npm:is-array@1.0.1"
@@ -232,7 +232,7 @@ System.config({
       "process": "github:jspm/nodelibs-process@0.1.1",
       "react": "npm:react@0.13.3"
     },
-    "npm:react-immutable-render-mixin@0.8.0": {
+    "npm:react-immutable-render-mixin@0.8.1": {
       "immutable": "npm:immutable@3.7.4"
     },
     "npm:react-input-autosize@0.4.4": {
@@ -284,7 +284,7 @@ System.config({
     "npm:string_decoder@0.10.31": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0"
     },
-    "npm:tcomb@2.0.0-beta": {
+    "npm:tcomb@2.0.1": {
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
     "npm:through@2.3.7": {

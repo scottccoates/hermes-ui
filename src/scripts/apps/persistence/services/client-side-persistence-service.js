@@ -1,3 +1,6 @@
+/*
+This module is for storing things on the client, like the session token, cookies, etc.
+ */
 import {BankersBox} from 'bankers-box';
 
 const namespace = 'hermes';

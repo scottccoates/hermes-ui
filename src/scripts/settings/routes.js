@@ -25,7 +25,7 @@ export default {
     const CreateAgreementComponent    = container.get("CreateAgreementComponent").dependency;
     const AgreementFormComponent      = container.get("AgreementFormComponent").dependency;
 
-    const SearchResultList = container.get("SearchResultList").dependency;
+    const SearchResultContainer = container.get("SearchResultContainer").dependency;
 
     const flux = container.get("AppFlux");
 
@@ -55,7 +55,7 @@ export default {
           </Route>
           <Route name="inbox" handler={Inbox}/>
           <Route name="dashboard" handler={DashboardComponent}/>
-          <Route name="search" handler={SearchResultList}/>
+          <Route name="search" handler={SearchResultContainer}/>
           <DefaultRoute handler={Inbox}/>
         </Route>
 

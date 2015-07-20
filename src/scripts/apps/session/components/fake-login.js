@@ -5,9 +5,11 @@ import DependencyProvider from 'src/scripts/libs/dependency-injection/utils/depe
 
 import Validation from 'rc-form-validation';
 
+import log from 'loglevel';
+
 const {Validator} = Validation;
 
-export default function () {
+export default function (tokenService) {
 
   var login = React.createClass({
     displayName: "FakeLogin",
@@ -39,9 +41,20 @@ export default function () {
       var validation = this.refs.validation;
 
       // it's important to remember that validation is async (consider database calls, apis, existence in db, etc).
-      validation.validate(valid => {
-        const sessionActions = this.props.flux.getActions('sessionActions');
-        sessionActions.login(this.state.formData);
+      validation.validate(async valid => {
+        if (valid) {
+          const sessionActions = this.props.flux.getActions('sessionActions');
+          const tokenData      = tokenService.getTokenData(this.state.formData);
+
+          try {
+            log.info("Beginning: Log in user: %s", tokenData.profile.username);
+            await sessionActions.login(tokenData.idToken, tokenData.profile);
+            log.info("Completed: Log in user: %s", tokenData.profile.username);
+          } catch (e) {
+            throw new Error("Error completing the login process " + e.stack);
+          }
+          sessionActions.login();
+        }
       });
     },
 
@@ -62,9 +75,8 @@ export default function () {
             <div className="container">
               <form className="form-horizontal agreement-form-data-entry" onSubmit={this.onSubmit}>
                 <Validation ref='validation' onValidate={this.handleValidate}>
-                  <section className="row agreement-form-section content-section-item space-bottom-xl">
+                  <section className="row content-section-item space-bottom-xl">
                     <div className="space-top-sm col-md-24">
-                      <h3 className="content-section-header">General Contract Information</h3>
 
                       <div className="form-group content-section-item">
                         <label htmlFor="login-username" className="col-sm-6 control-label">Username</label>
@@ -82,7 +94,7 @@ export default function () {
 
                         <div className="col-sm-18">
                           <Validator rules={{required:true, message: 'Password required.'}} value={formData.password}>
-                            <input type="text" name="password" className="form-control" id="login-password"
+                            <input type="password" name="password" className="form-control" id="login-password"
                                    value={formData.password}/>
                           </Validator>
                           {status.password.errors ? <span> {status.password.errors.join(', ')}</span> : null}

@@ -1,8 +1,15 @@
-import Agreement from '../models/agreement';
+import AgreementViewItem from '../models/agreement-view-item';
+import * as normalizers from 'src/scripts/libs/domain/tcomb/normalizers';
 
 export default{
-  create(name){
-    const agreement = Agreement._from_attrs(name);
+  createAgreementViewItem(data){
+
+    const agreementData = Object.assign({}, data);
+
+    agreementData.expirationDate = normalizers.stringDateNormalize(data.expirationDate);
+    agreementData.modifiedDate   = normalizers.stringDateNormalize(data.expirationDate);
+
+    const agreement = AgreementViewItem._from_attrs(agreementData);
     return agreement;
   }
 }

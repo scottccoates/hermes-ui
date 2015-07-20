@@ -1,11 +1,12 @@
 import log from 'loglevel';
 
+import agreementRetrievalRepo from'./agreement-firebase-retrieval-repository';
+
 export default function (firebase) {
   return {
     init(container) {
-      const appFlux                = container.get("AppFlux");
-      const sessionStore           = appFlux.getStore("sessionStore");
-      const agreementRetrievalRepo = container.get("AgreementFirebaseRetrievalRepo");
+      const appFlux      = container.get("AppFlux");
+      const sessionStore = appFlux.getStore("sessionStore");
 
       var isAuthenticated = false;
 
@@ -18,7 +19,7 @@ export default function (firebase) {
             if (error) throw new Error("Error authenticating with firebase: " + error.stack);
 
             if (!isAuthenticated) {
-              agreementRetrievalRepo.init(firebase, sessionStore.state.user);
+              agreementRetrievalRepo.init(appFlux, firebase, sessionStore.state.user);
             }
 
             isAuthenticated = true;
@@ -29,6 +30,7 @@ export default function (firebase) {
           if (isAuthenticated) {
             agreementRetrievalRepo.close();
             firebase.unauth();
+            isAuthenticated = false;
             log.info("Firebase unauthenticated");
           }
         }

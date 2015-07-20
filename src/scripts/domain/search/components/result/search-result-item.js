@@ -7,19 +7,21 @@ import DependencyProvider from '../../../../libs/dependency-injection/utils/depe
 
 import Highlighter from 'react-highlighter';
 
-const {Link, RouteHandler} = Router;
+const {Link} = Router;
 
 export default function () {
 
   const component = React.createClass({
+    displayName: "SearchResultItem",
+
     render() {
       return (
-        <div className="search-item">
+        <div className="search-result-item">
           <div className='panel panel-default'>
             <div className='panel-body'>
               <div className='row'>
                 <div className='col-sm-4'>
-                  <img alt="header profile image" className="search-result-counterparty-image img-responsive"
+                  <img alt="counterparty image" className="img-responsive"
                        src={this.props.searchResultImage}/>
                 </div>
                 <div className='col-sm-20'>

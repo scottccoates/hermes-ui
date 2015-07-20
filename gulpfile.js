@@ -14,25 +14,34 @@ var cp                 = require('child_process');
 // ENVIRONMENT
 //================================================
 
+// this is used for config files, identifying which one to use.
 var settingsModule = process.env.SETTINGS_MODULE;
 if (!settingsModule) {
-  // The reason I am setting the env var here is so that other tools, like gulp-preprocessor
   settingsModule = process.env.SETTINGS_MODULE = "demo";
   console.warn("Missing SETTINGS_MODULE environment variable. Assuming demo.");
 }
-
+// this is used for preprocessing. index.html has diff scripts depending on the build type.
 var buildType = process.env.BUILD_TYPE;
 if (!buildType) {
-  // The reason I am setting the env var here is so that other tools, like gulp-preprocessor
+  // The reason I am setting the env var here is so that other tools, like gulp-preprocessor, can preprocess files.
   buildType = process.env.BUILD_TYPE = "local";
   console.warn("Missing BUILD_TYPE environment variable. Assuming local.");
 }
 
 var firebaseDestination = process.env.FIREBASE_DESTINATION;
 if (!firebaseDestination) {
-  // The reason I am setting the env var here is so that other tools, like gulp-preprocessor
   firebaseDestination = process.env.FIREBASE_DESTINATION = "hermes-qa";
   console.warn("Missing FIREBASE_DESTINATION environment variable. Assuming " + firebaseDestination + ".");
+}
+
+var deployDemoAssets = process.env.DEPLOY_DEMO_ASSETS;
+if (!deployDemoAssets) {
+  // The reason I am setting the env var here is so that other tools, like gulp-preprocessor
+  deployDemoAssets = process.env.DEPLOY_DEMO_ASSETS = false;
+  console.warn("Missing DEPLOY_DEMO_ASSETS environment variable. Assuming " + deployDemoAssets + ".");
+} else {
+  // cast to bool
+  deployDemoAssets = deployDemoAssets === "true";
 }
 
 // DEVELOPMENT TASKS
@@ -49,11 +58,11 @@ gulp.task('browser-sync', function () {
   browserSync.init(
     {
       files: [ // files to watch
-        './build/index.html',
-        './src/scripts/**/*.js',
+        //'./build/index.html',
+        //'./src/scripts/**/*.js',
         './build/css/*.css'
       ],
-      notify: false,
+      notify: true, // true might make it faster - https://github.com/BrowserSync/browser-sync/issues/155
       server: {
         baseDir: ['./', './build', './jspm_packages'],
         index: "./build/index.html",
@@ -93,7 +102,13 @@ gulp.task('sass', function () {
 
 // Assets
 gulp.task('assets', function () {
-  return gulp.src(['./src/assets/**/*.*', '!./src/assets/images/client-side/**/*.*'])
+  var src = ['./src/assets/**/*.*'];
+
+  if (!deployDemoAssets) {
+    src.push('!./src/assets/images/client-side/**/*.*');
+  }
+
+  return gulp.src(src)
     .pipe(gulp.dest('./build/assets'))
     .on('error', plugins.util.log);
 });

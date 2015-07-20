@@ -26,8 +26,12 @@ export default function (agreementListComponent) {
             </div>
           </div>
 
+
           <div className="content-section default-content-section space-bottom">
             <div className="container">
+              <div className="content-section-item">
+                <h3 className="content-section-header">Your Contracts</h3>
+              </div>
               <AgreementList agreements={this.props.agreements}/>
             </div>
           </div>

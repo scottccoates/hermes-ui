@@ -126,6 +126,12 @@
       }
     }
 
+    &.space-top-md {
+      @include at-least-small-screen-styles {
+        margin-top: $src-content-section-vertical-space-md; // Doesn't affect forms with margin collapse.
+      }
+    }
+
     &.space-top-sm {
       @include at-least-small-screen-styles {
         margin-top: $src-content-section-vertical-space-sm; // Doesn't affect forms with margin collapse.
@@ -141,6 +147,12 @@
     &.space-bottom-xl {
       @include at-least-small-screen-styles {
         margin-bottom: $src-content-section-vertical-space-xl;
+      }
+    }
+
+    &.space-bottom {
+      @include at-least-small-screen-styles {
+        margin-bottom: $src-content-section-vertical-space; // Doesn't affect forms with margin collapse.
       }
     }
 

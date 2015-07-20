@@ -1,9 +1,15 @@
 export default function () {
   return {
-    parseToken(token){
+    getTokenData(authData){
 
-      return token;
+      return {
+        idToken: 'fake-token',
+        profile: {
+          nickname:authData.username,
+          picture: '/assets/images/client-side/andy-profile-pic.jpg'
+        }
+      };
+
     }
   };
-
 };

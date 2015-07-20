@@ -5,7 +5,7 @@ import Router  from 'react-router';
 
 import DependencyProvider from '../../../../libs/dependency-injection/utils/dependency-provider';
 
-import Agreement from '../../models/agreement';
+import Agreement from '../../models/agreement-view-item';
 
 import Select from 'react-select';
 import Validation from 'rc-form-validation';
@@ -17,7 +17,7 @@ const {Validator} = Validation;
 export default function (agreementActions) {
 
   const component = React.createClass({
-    displayName: "AgreementForm",
+    displayName: "NewAgreementForm",
     mixins: [Validation.FieldMixin],
 
     getInitialState() {

@@ -1,0 +1,13 @@
+.search-result-item {
+
+  .search-result-agreement-name {
+    color: $src-very-dark;
+    text-transform: none;
+  }
+
+  .search-result-agreement-details {
+    @include at-least-small-screen-styles {
+      @include font-size($src-font-size-small);
+    }
+  }
+}

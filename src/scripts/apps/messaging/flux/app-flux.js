@@ -26,6 +26,7 @@ export default {
         this.createActions('reactJsActions', reactJsActions);
 
         this.createActions('sessionActions', sessionActions);
+        window.s = this.getActions('sessionActions');
 
         // The extra argument(s) are passed to the MessageStore constructor
         this.createStore('agreementStore', agreementStore, this);

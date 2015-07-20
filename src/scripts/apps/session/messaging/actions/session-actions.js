@@ -4,6 +4,7 @@ export default function (sessionService) {
 
     async login(token, user) {
       const newUserLoginInformation = await sessionService.login(token, user, this.resumeSession); // needs to be `this` because flummox converts this whole thing to a class
+
       return newUserLoginInformation;
     },
 
@@ -13,7 +14,7 @@ export default function (sessionService) {
     },
 
     async resumeSession(){
-      const loginInformation = await sessionService.resumeSession();
+      const loginInformation = await sessionService.resumeSession(this.resumeSession);
       return loginInformation;
     }
   };

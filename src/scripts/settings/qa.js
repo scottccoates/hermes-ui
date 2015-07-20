@@ -18,7 +18,6 @@ export default {
 
     container.register("Firebase", Firebase);
     container.register("APIRetrievalRepository", FirebaseRetrievalRepo);
-    container.register("AgreementFirebaseRetrievalRepo", AgreementFirebaseRetrievalRepo);
     container.register("FirebaseAppUrl", "/* @echo FIREBASE_APP_URL */");
 
     Lock.$inject = ["Auth0ClientID", "Auth0ClientDomain"]; // these are provided in the environment settings files
@@ -26,7 +25,6 @@ export default {
     Auth0AuthService.$inject    = ["Auth0Lock"];
 
     FirebaseRetrievalRepo.$inject          = ["FirebaseAppName", "FirebaseFactory"];
-    AgreementFirebaseRetrievalRepo.$inject = ["AppFlux"];
 
     return container;
   }

@@ -1,25 +1,20 @@
-.search-item {
+.agreement-view-item {
 
-  .search-result-counterparty-image {
+  .agreement-view-counterparty-image {
 
     @include at-least-small-screen-styles {
-      margin-right: 0;
-      margin-left: auto;
+      @include photo(70px);
     }
   }
 
-  .search-result-agreement-name {
+  .agreement-view-agreement-name {
     color: $src-very-dark;
     text-transform: none;
   }
 
-  .search-result-agreement-details {
+  .agreement-view-agreement-details {
     @include at-least-small-screen-styles {
       @include font-size($src-font-size-small);
-    }
-
-    .search-result-agreement-detail {
-
     }
   }
 }

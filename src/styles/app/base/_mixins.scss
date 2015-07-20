@@ -50,6 +50,20 @@
   }
 }
 
+@mixin photo($dimension) {
+  border: 1px solid $src-brighter;
+  border-radius: 1px;
+  width: $dimension;
+  height: $dimension;
+
+  box-sizing: content-box; // this will ensure the borders are always visible.
+
+  img {
+    max-width: $dimension;
+    max-height: $dimension;
+  }
+}
+
 // Font
 // --------------------------------------------------
 

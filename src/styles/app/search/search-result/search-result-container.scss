@@ -1,0 +1,15 @@
+#search-result-container-wrapper {
+
+  .search-header-section {
+    border-bottom: $bright-border;
+
+    .search-header-text {
+      color: $src-less-dark;
+      font-family: $src-font-family-heading;
+
+      @include at-least-small-screen-styles {
+        @include font-size(24px);
+      }
+    }
+  }
+}

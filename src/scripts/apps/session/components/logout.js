@@ -13,10 +13,10 @@ export default function () {
       router: React.PropTypes.func
     },
 
-    componentWillReceiveProps(nextProps){
+    async componentWillReceiveProps(nextProps){
       if (nextProps.loggedIn) {
         const sessionActions = this.props.flux.getActions('sessionActions');
-        sessionActions.logout();
+        await sessionActions.logout(); // unhandled not reported unless awaited
       }
       else {
         this.context.router.transitionTo('login');

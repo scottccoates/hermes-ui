@@ -1,0 +1,9 @@
+/*
+search-result-container is not always going to be the parent of search-result-list.
+
+It's possible the list to be placed in various pages, eg: dashboard, homepage, etc.
+
+However, if we did want a dedicated page for results, then we could use the container.
+*/
+@import "search-result-container";
+@import "search-result-list";

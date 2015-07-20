@@ -35,26 +35,15 @@ export default function (auth0Lock) {
       };
       const sessionActions = this.props.flux.getActions('sessionActions');
 
-      auth0Lock.show(lockOptions, async (error, profile, id_token)=> {
-        if (error) throw new Error(`Error authenticating: ${id_token}. Inner exception: ${error.stack}`);
+      auth0Lock.show(lockOptions, async (error, profile, idToken)=> {
+        if (error) throw new Error(`Error authenticating: ${idToken}. Inner exception: ${error.stack}`);
         try {
           log.info("Beginning: Log in user: %s", profile.nickname);
-          await sessionActions.login(id_token, profile);
+          await sessionActions.login(idToken, profile);
           log.info("Completed: Log in user: %s", profile.nickname);
         } catch (e) {
           throw new Error("Error completing the login process " + e.stack);
         }
-      });
-    },
-
-    onSubmit(event){
-      event.preventDefault();
-      var validation = this.refs.validation;
-
-      // it's important to remember that validation is async (consider database calls, apis, existence in db, etc).
-      validation.validate(valid => {
-        const sessionActions = this.props.flux.getActions('sessionActions');
-        sessionActions.login(this.state.formData);
       });
     },
 
