@@ -76,7 +76,7 @@ export default function (agreementActions, fileUploadProvider) {
                       </div>
                       <div className="content-section-item space-top-lg">
 
-                        <Link activeClassName={""} to="create-agreement" className="btn btn-default btn-lg">Generate New
+                        <Link activeClassName={""} to="createAgreement" className="btn btn-default btn-lg">Generate New
                           Contract
                           From
                           Template</Link>

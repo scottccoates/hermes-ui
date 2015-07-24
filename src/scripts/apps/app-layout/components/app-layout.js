@@ -35,11 +35,14 @@ export default function (authenticatedComponentFactory) {
     },
 
     render() {
-      var transitionWrapperHeight         = null;
-      var transitionContentWrapperOpacity = null;
+      // the transitionContent is an un-hindered DOM element, we can use it to measure what the size 'should' be.
+      // the transitionWrapper is a DOM element that manually change the height attrs of.
+
+      var transitionWrapperHeight  = null;
+      var transitionContentOpacity = null;
 
       if (this.props.loading) {
-        transitionContentWrapperOpacity = "0";
+        transitionContentOpacity = "0";
         if (this.transitionContent) {
           transitionWrapperHeight = this.transitionContent.clientHeight + "px";
         } else {
@@ -49,12 +52,12 @@ export default function (authenticatedComponentFactory) {
         }
       }
       else {
-        transitionContentWrapperOpacity = "1";
-        transitionWrapperHeight         = this.transitionContent.clientHeight + "px";
+        transitionContentOpacity = "1";
+        transitionWrapperHeight  = this.transitionContent.clientHeight + "px";
       }
 
       const transitionWrapperStyle = {height: transitionWrapperHeight};
-      const transitionContentStyle = {opacity: transitionContentWrapperOpacity};
+      const transitionContentStyle = {opacity: transitionContentOpacity};
 
       return (
         <div id="page-wrapper">

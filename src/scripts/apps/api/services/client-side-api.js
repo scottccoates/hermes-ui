@@ -3,6 +3,7 @@
 
 import ClientSideFlux from '../persistence/client-side/messaging/flux/client-side-flux';
 
+// todo textformmater should delegate to humps, our other references shoudl be updated.
 import TextFormatter from 'src/scripts/libs/js-utils/text/formatting/text-formatter';
 import DelayedResponse from '../../../libs/js-utils/async/delayed-response';
 

@@ -11,15 +11,15 @@ const {Link} = Router;
 export default function () {
 
   const component = React.createClass({
-    displayName: "AgreementViewItem",
+    displayName: "agreementListViewItem",
     render() {
       return (
-        <div className="agreement-view-item">
+        <div className="agreement-list-view-item">
           <div className='panel panel-default'>
             <div className='panel-body'>
               <div className="media">
                 <div className="media-left">
-                  <div className="agreement-view-counterparty-image">
+                  <div className="agreement-list-view-counterparty-image">
                     <a href="#">
                       <img className="media-object" src={this.props.agreement.image} alt="counterparty image"/>
                     </a>
@@ -30,10 +30,10 @@ export default function () {
                 <div className="media-body">
 
                   <h5 className="media-heading">
-                    <a className='agreement-view-agreement-name' href="#">{this.props.agreement.name}</a>
+                    <a className='agreement-list-view-agreement-name' href="#">{this.props.agreement.name}</a>
                   </h5>
 
-                  <div className='content-section-item space-top-sm agreement-view-agreement-details'>
+                  <div className='content-section-item space-top-sm agreement-list-view-agreement-details'>
 
                     <span>{this.props.agreement.counterparty}</span>
                     <i className='fa fa-circle middle space-left space-right'></i>

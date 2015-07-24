@@ -1,18 +1,18 @@
-.agreement-view-item {
+.agreement-list-view-item {
 
-  .agreement-view-counterparty-image {
+  .agreement-list-view-counterparty-image {
 
     @include at-least-small-screen-styles {
       @include photo(70px);
     }
   }
 
-  .agreement-view-agreement-name {
+  .agreement-list-view-agreement-name {
     color: $src-very-dark;
     text-transform: none;
   }
 
-  .agreement-view-agreement-details {
+  .agreement-list-view-agreement-details {
     @include at-least-small-screen-styles {
       @include font-size($src-font-size-small);
     }

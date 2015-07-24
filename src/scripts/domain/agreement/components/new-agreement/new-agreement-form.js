@@ -5,7 +5,7 @@ import Router  from 'react-router';
 
 import DependencyProvider from '../../../../libs/dependency-injection/utils/dependency-provider';
 
-import Agreement from '../../models/agreement-view-item';
+import Agreement from '../../models/agreement-list-view-item';
 
 import Select from 'react-select';
 import Validation from 'rc-form-validation';
