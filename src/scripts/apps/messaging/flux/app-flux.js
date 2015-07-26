@@ -4,7 +4,7 @@ import { Flux } from 'flummox';
 export default {
   init (container) {
 
-    const agreementStore   = container.get("AgreementStore").dependency;
+    const agreementListViewStore   = container.get("AgreementListViewStore").dependency;
     const agreementActions = container.get("AgreementActions");
 
     const reactJsActions = container.get("ReactJsActions");
@@ -21,19 +21,18 @@ export default {
 
         // follow the format (above)
         // import X ===== import x
-        this.createActions('agreementActions', agreementActions);
+        this.createActions('AgreementActions', agreementActions);
 
-        this.createActions('reactJsActions', reactJsActions);
+        this.createActions('ReactJsActions', reactJsActions);
 
-        this.createActions('sessionActions', sessionActions);
-        window.s = this.getActions('sessionActions');
+        this.createActions('SessionActions', sessionActions);
 
-        // The extra argument(s) are passed to the MessageStore constructor
-        this.createStore('agreementStore', agreementStore, this);
+        // The extra argument(s) are passed to the XYZStore constructor
+        this.createStore('AgreementListViewStore', agreementListViewStore, this);
 
-        this.createStore('loadingFeedbackStore', loadingFeedbackStore, this);
+        this.createStore('LoadingFeedbackStore', loadingFeedbackStore, this);
 
-        this.createStore('sessionStore', sessionStore, this);
+        this.createStore('SessionStore', sessionStore, this);
       }
     }
   }

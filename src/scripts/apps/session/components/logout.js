@@ -15,7 +15,7 @@ export default function () {
 
     async componentWillReceiveProps(nextProps){
       if (nextProps.loggedIn) {
-        const sessionActions = this.props.flux.getActions('sessionActions');
+        const sessionActions = this.props.flux.getActions('SessionActions');
         await sessionActions.logout(); // unhandled not reported unless awaited
       }
       else {

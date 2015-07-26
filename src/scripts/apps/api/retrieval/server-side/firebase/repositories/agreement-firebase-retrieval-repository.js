@@ -2,7 +2,7 @@ import FirebaseService from '../services/firebase-service.js';
 
 export default {
   init(appFlux, rootRef, user) {
-    const agreementActions = appFlux.getActions('agreementActions');
+    const agreementActions = appFlux.getActions('AgreementActions');
 
     this.child = rootRef.child(`users/${user.user_id}/agreements`);
     this.ref   = this.child.on("value", snapshot => {

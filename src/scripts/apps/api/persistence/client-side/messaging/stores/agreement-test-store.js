@@ -7,7 +7,7 @@ export default class AgreementStore extends Store {
   constructor(flux) {
     super();
 
-    const clientSideActions = flux.getActionIds('clientSide');
+    const clientSideActions = flux.getActionIds('ClientSideActions');
     this.register(clientSideActions.agreementSavedToClient, this.onSave);
   }
 

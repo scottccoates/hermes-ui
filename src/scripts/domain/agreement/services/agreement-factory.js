@@ -2,7 +2,7 @@ import agreementListViewItem from '../models/agreement-list-view-item';
 import * as normalizers from 'src/scripts/libs/domain/tcomb/normalizers';
 
 export default{
-  createagreementListViewItem(data){
+  createAgreementListViewItem(data){
 
     const agreementData = Object.assign({}, data);
 

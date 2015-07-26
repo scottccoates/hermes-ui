@@ -4,13 +4,13 @@ import React from 'react';
 import Router  from 'react-router';
 import FluxComponent from 'flummox/component';
 
-function getAsyncTransitionPromises(state) {
+function performAsyncTransition(flux, state) {
 
   var asyncTransitionRoutes = (
     state.routes
       .filter(route => route.handler.asyncTransition)
       .map(route =>
-        route.handler.asyncTransition(state.params))
+        route.handler.asyncTransition(flux, state.params))
   );
 
   //flatten http://stackoverflow.com/questions/10865025/merge-flatten-an-array-of-arrays-in-javascript
@@ -27,17 +27,16 @@ function getHandler(containerId, fluxInstance) {
 
     const handler = (
       <FluxComponent flux={fluxInstance}>
-        <Handler loading={loading}/>
+        <Handler/>
       </FluxComponent>
     );
 
     React.render(handler, document.getElementById(containerId));
   }
 
-  return async function (handler, state) {
-    renderHandler(handler, true);
-    await getAsyncTransitionPromises(state);
-    renderHandler(handler, false);
+  return function (handler, state) {
+    performAsyncTransition(fluxInstance, state);
+    renderHandler(handler);
   };
 }
 

@@ -1,6 +1,6 @@
 import Immutable from 'immutable';
 
-const path = "management-item";
+const path = "agreement";
 
 export default function (apiService) {
 

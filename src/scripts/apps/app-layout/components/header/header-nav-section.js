@@ -86,5 +86,5 @@ var headerNavSection = React.createClass({
   }
 });
 
-headerNavSection = ConnectToStores(headerNavSection, "sessionStore");
+headerNavSection = ConnectToStores(headerNavSection, "SessionStore");
 export default headerNavSection;

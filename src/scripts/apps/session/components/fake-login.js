@@ -43,7 +43,7 @@ export default function (tokenService) {
       // it's important to remember that validation is async (consider database calls, apis, existence in db, etc).
       validation.validate(async valid => {
         if (valid) {
-          const sessionActions = this.props.flux.getActions('sessionActions');
+          const sessionActions = this.props.flux.getActions('SessionActions');
           const tokenData      = tokenService.getTokenData(this.state.formData);
 
           try {

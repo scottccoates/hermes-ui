@@ -26,11 +26,11 @@ const data = [agreement1, agreement2];
 
 export default {
   init(appFlux) {
-    const agreementActions = appFlux.getActions('agreementActions');
+    const agreementActions = appFlux.getActions('AgreementActions');
 
     // can't do action call within store dispatch, so let's do it on the next tick.
     setTimeout(_=> {
-      agreementActions.agreementsReceived(data);
+      agreementActions.agreementListReceived(data);
     });
   },
   close(){

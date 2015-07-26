@@ -6,14 +6,14 @@ import DependencyProvider from 'src/scripts/libs/dependency-injection/utils/depe
 export default function () {
 
   const agreementDetailItem = React.createClass({
-    displayName: "AgreementDetailItem",
+    displayName: "AgreementDetailContainer",
 
     statics: {
-      async routerWillRun(state, flux) {
-        let { agreementId } = state.params;
-        let agreementActions = flux.getActions('AgreementActions');
+      asyncTransition(flux, params) {
+        const { agreementId } = state.params;
+        const agreementActions = flux.getActions('AgreementActions');
 
-        return await agreementActions.getAgreementDetails(agreementId);
+        return agreementActions.requestAgreementDetails(agreementId);
       }
     },
 

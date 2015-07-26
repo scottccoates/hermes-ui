@@ -33,7 +33,7 @@ export default function (auth0Lock) {
           scope: 'openid email user_metadata app_metadata picture'
         }
       };
-      const sessionActions = this.props.flux.getActions('sessionActions');
+      const sessionActions = this.props.flux.getActions('SessionActions');
 
       auth0Lock.show(lockOptions, async (error, profile, idToken)=> {
         if (error) throw new Error(`Error authenticating: ${idToken}. Inner exception: ${error.stack}`);

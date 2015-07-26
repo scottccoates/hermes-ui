@@ -24,7 +24,7 @@ container.register("AppFlux", appFlux);
 const retrievalRepo = container.get('APIRetrievalRepository');
 retrievalRepo.init(container);
 
-const sessionPromise = appFlux.getActions('sessionActions').resumeSession()
+const sessionPromise = appFlux.getActions('SessionActions').resumeSession()
   .catch(error => {
     // this will happen if we can't resume a session (first time here, logged out, etc). It's ok.
     log.info("session error:", error);

@@ -18,7 +18,7 @@ import LogoutComponent from 'src/scripts/apps/session/components/logout';
 import AuthenticatedComponent from 'src/scripts/apps/session/components/authenticated-component';
 
 import AgreementActions from '../domain/agreement/messaging/actions/agreement-actions';
-import AgreementStore from '../domain/agreement/messaging/stores/agreement-store';
+import AgreementListViewStore from '../domain/agreement/messaging/stores/agreement-list-view-store';
 import NewAgreementCreateComponent from '../domain/agreement/components/new-agreement/new-agreement-create.js';
 import NewAgreementFormComponent from '../domain/agreement/components/new-agreement/new-agreement-form.js';
 import AgreementListViewListComponent from '../domain/agreement/components/agreement-list-view/agreement-list-view-list';
@@ -64,7 +64,7 @@ export default {
     container.register("AgreementDetailItemComponent", AgreementDetailItemComponent);
 
     container.register("AgreementActions", AgreementActions);
-    container.register("AgreementStore", AgreementStore);
+    container.register("AgreementListViewStore", AgreementListViewStore);
     container.register("AgreementService", AgreementService);
     container.register("AgreementRepository", AgreementRepository);
 
@@ -88,17 +88,17 @@ export default {
 
     AppLayoutComponent.$inject = ["AuthenticatedComponent"];
 
-    NewAgreementCreateComponent.$inject = ["AgreementActions", "FileUpload"];
-    NewAgreementFormComponent.$inject   = ["AgreementActions"];
-    AgreementListViewListComponent.$inject   = ["AgreementListViewItemComponent"];
-    AgreementActions.$inject         = ["AgreementService"];
-    AgreementService.$inject         = ["AgreementRepository"];
-    AgreementRepository.$inject      = ["APIService"];
+    NewAgreementCreateComponent.$inject    = ["AgreementActions", "FileUpload"];
+    NewAgreementFormComponent.$inject      = ["AgreementActions"];
+    AgreementListViewListComponent.$inject = ["AgreementListViewItemComponent"];
+    AgreementActions.$inject               = ["AgreementService"];
+    AgreementService.$inject               = ["AgreementRepository"];
+    AgreementRepository.$inject            = ["APIService"];
 
     FileUpload.$inject = ["DropzoneFactory"];
 
-    SearchResultContainer.$inject       = ["SearchResultList"];
-    SearchResultList.$inject       = ["SearchResultItem"];
+    SearchResultContainer.$inject = ["SearchResultList"];
+    SearchResultList.$inject      = ["SearchResultItem"];
 
     SessionActions.$inject         = ["SessionService"];
     SessionService.$inject         = ["SessionRepository", "AuthService"];

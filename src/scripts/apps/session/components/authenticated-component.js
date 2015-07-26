@@ -8,7 +8,7 @@ export default function (appFlux) {
   // this sort of feels like a hack, but we'll have to get around it
   // with react-router v1
   // https://github.com/rackt/react-router/pull/590
-  const sessionStore = appFlux.getStore('sessionStore');
+  const sessionStore = appFlux.getStore('SessionStore');
 
   return function (Component) {
     const authenticatedComponent = React.createClass({

@@ -20,7 +20,7 @@ export default function () {
     constructor(flux) {
       super();
 
-      const reactJsActions = flux.getActionIds('reactJsActions');
+      const reactJsActions = flux.getActionIds('ReactJsActions');
       this.registerAsync(reactJsActions.performAsyncAction, this.onPerformAsyncAction, this.onPerformAsyncActionCompleted, this.onPerformAsyncActionCompleted);
 
       //noinspection JSUnnecessarySemicolon

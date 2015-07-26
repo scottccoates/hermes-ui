@@ -10,7 +10,7 @@ export default function () {
     constructor(flux) {
       super();
 
-      const taskActions = flux.getActionIds('activity');
+      const taskActions = flux.getActionIds('ActivityActions');
       this.register(taskActions.addToCollection, this.onSave);
 
       this.state = {

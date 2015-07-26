@@ -5,7 +5,7 @@ export default function () {
   return {
     init(container) {
       const appFlux      = container.get("AppFlux");
-      const sessionStore = appFlux.getStore("sessionStore");
+      const sessionStore = appFlux.getStore("SessionStore");
 
       var isAuthenticated = false;
 

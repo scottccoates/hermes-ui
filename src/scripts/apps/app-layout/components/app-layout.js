@@ -38,26 +38,28 @@ export default function (authenticatedComponentFactory) {
       // the transitionContent is an un-hindered DOM element, we can use it to measure what the size 'should' be.
       // the transitionWrapper is a DOM element that manually change the height attrs of.
 
-      var transitionWrapperHeight  = null;
-      var transitionContentOpacity = null;
+      //var transitionWrapperHeight  = null;
+      //var transitionContentOpacity = null;
+      //
+      //if (this.props.loading) {
+      //  transitionContentOpacity = "0";
+      //  if (this.transitionContent) {
+      //    transitionWrapperHeight = this.transitionContent.clientHeight + "px";
+      //  } else {
+      //    // this is the first time the page is loading, hence the node is missing
+      //    // first time loading async data, we want to ensure the height change is animated
+      //    transitionWrapperHeight = "500px";
+      //  }
+      //}
+      //else {
+      //  transitionContentOpacity = "1";
+      //  transitionWrapperHeight  = this.transitionContent.clientHeight + "px";
+      //}
 
-      if (this.props.loading) {
-        transitionContentOpacity = "0";
-        if (this.transitionContent) {
-          transitionWrapperHeight = this.transitionContent.clientHeight + "px";
-        } else {
-          // this is the first time the page is loading, hence the node is missing
-          // first time loading async data, we want to ensure the height change is animated
-          transitionWrapperHeight = "500px";
-        }
-      }
-      else {
-        transitionContentOpacity = "1";
-        transitionWrapperHeight  = this.transitionContent.clientHeight + "px";
-      }
-
-      const transitionWrapperStyle = {height: transitionWrapperHeight};
-      const transitionContentStyle = {opacity: transitionContentOpacity};
+      //const transitionWrapperStyle = {height: transitionWrapperHeight};
+      //const transitionContentStyle = {opacity: transitionContentOpacity};
+      const transitionWrapperStyle = {};
+      const transitionContentStyle = {};
 
       return (
         <div id="page-wrapper">

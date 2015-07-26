@@ -17,12 +17,8 @@ export default function (agreementRepository) {
       return agreementRepository.addToCollection(mi);
     },
 
-    async getAgreementDetails(agreementId) {
-      return agreementRepository.getAgreementDetails(mi);
-    },
-
-    processAgreementData(data){
-      var retVal = data.map(a => AgreementFactory.createagreementListViewItem(a));
+    processAgreementCollectionData(data){
+      var retVal = data.map(a => AgreementFactory.createAgreementListViewItem(a));
       retVal     = immutable.List(retVal);
 
       return retVal;
