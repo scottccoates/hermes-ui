@@ -5,7 +5,8 @@ export default {
   init (container) {
 
     const agreementListStore   = container.get("AgreementListStore").dependency;
-    const agreementActions = container.get("AgreementActions");
+    const agreementDetailStore = container.get("AgreementDetailStore").dependency;
+    const agreementActions     = container.get("AgreementActions");
 
     const reactJsActions = container.get("ReactJsActions");
 
@@ -29,6 +30,7 @@ export default {
 
         // The extra argument(s) are passed to the XYZStore constructor
         this.createStore('AgreementListStore', agreementListStore, this);
+        this.createStore('AgreementDetailStore', agreementDetailStore, this);
 
         this.createStore('LoadingFeedbackStore', loadingFeedbackStore, this);
 

@@ -19,6 +19,7 @@ import AuthenticatedComponent from 'src/scripts/apps/session/components/authenti
 
 import AgreementActions from '../domain/agreement/messaging/actions/agreement-actions';
 import AgreementListStore from '../domain/agreement/messaging/stores/agreement-list-store';
+import AgreementDetailStore from '../domain/agreement/messaging/stores/agreement-detail-store';
 import NewAgreementCreateComponent from '../domain/agreement/components/new-agreement/new-agreement-create.js';
 import NewAgreementFormComponent from '../domain/agreement/components/new-agreement/new-agreement-form.js';
 import AgreementListListComponent from '../domain/agreement/components/agreement-list/agreement-list-list';
@@ -65,6 +66,7 @@ export default {
 
     container.register("AgreementActions", AgreementActions);
     container.register("AgreementListStore", AgreementListStore);
+    container.register("AgreementDetailStore", AgreementDetailStore);
     container.register("AgreementService", AgreementService);
     container.register("AgreementRepository", AgreementRepository);
 

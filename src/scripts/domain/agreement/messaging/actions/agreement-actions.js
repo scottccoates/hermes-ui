@@ -22,12 +22,12 @@ export default function (agreementService) {
       return agreementService.processAgreementCollectionData(data);
     },
 
-    requestAgreementDetails(agreementId) {
+    requestAgreementDetail(agreementId) {
 
       return agreementId;
     },
 
-    agreementDetailDataReceived(data){
+    agreementDetailReceived(data){
       // in scone, we used 'from_attrs' when saving a prospect from arbitrary data structures
       // do we want free-floating data/json for rendering views? probably yes, very much.
       return agreementService.processAgreementCollectionData(data);
