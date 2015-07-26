@@ -1,9 +1,9 @@
 /*
-agreement-list-view-container is not always going to be the parent of agreement-list-view-list.
+agreement-list-container is not always going to be the parent of agreement-list-list.
 
 It's possible the list to be placed in various pages, eg: dashboard, homepage, etc.
 
 However, if we did want a dedicated page for agreements, then we could use the container.
 */
-@import "agreement-list-view-container";
-@import "agreement-list-view-list";
+@import "agreement-list-container";
+@import "agreement-list-list";

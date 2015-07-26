@@ -18,11 +18,11 @@ import LogoutComponent from 'src/scripts/apps/session/components/logout';
 import AuthenticatedComponent from 'src/scripts/apps/session/components/authenticated-component';
 
 import AgreementActions from '../domain/agreement/messaging/actions/agreement-actions';
-import AgreementListViewStore from '../domain/agreement/messaging/stores/agreement-list-view-store';
+import AgreementListStore from '../domain/agreement/messaging/stores/agreement-list-store';
 import NewAgreementCreateComponent from '../domain/agreement/components/new-agreement/new-agreement-create.js';
 import NewAgreementFormComponent from '../domain/agreement/components/new-agreement/new-agreement-form.js';
-import AgreementListViewListComponent from '../domain/agreement/components/agreement-list-view/agreement-list-view-list';
-import AgreementListViewItemComponent from '../domain/agreement/components/agreement-list-view/agreement-list-view-item';
+import AgreementListListComponent from '../domain/agreement/components/agreement-list/agreement-list-list';
+import AgreementListItemComponent from '../domain/agreement/components/agreement-list/agreement-list-item';
 import AgreementDetailItemComponent from '../domain/agreement/components/agreement-detail/agreement-detail-item';
 
 import AgreementService from '../domain/agreement/services/agreement-service';
@@ -59,12 +59,12 @@ export default {
 
     container.register("CreateAgreementComponent", NewAgreementCreateComponent);
     container.register("AgreementFormComponent", NewAgreementFormComponent);
-    container.register("AgreementListViewListComponent", AgreementListViewListComponent);
-    container.register("AgreementListViewItemComponent", AgreementListViewItemComponent);
+    container.register("AgreementListListComponent", AgreementListListComponent);
+    container.register("AgreementListItemComponent", AgreementListItemComponent);
     container.register("AgreementDetailItemComponent", AgreementDetailItemComponent);
 
     container.register("AgreementActions", AgreementActions);
-    container.register("AgreementListViewStore", AgreementListViewStore);
+    container.register("AgreementListStore", AgreementListStore);
     container.register("AgreementService", AgreementService);
     container.register("AgreementRepository", AgreementRepository);
 
@@ -84,13 +84,13 @@ export default {
 
     container.register("LoadingFeedbackStore", LoadingFeedbackStore);
 
-    DashboardComponent.$inject = ["AgreementListViewListComponent"];
+    DashboardComponent.$inject = ["AgreementListListComponent"];
 
     AppLayoutComponent.$inject = ["AuthenticatedComponent"];
 
     NewAgreementCreateComponent.$inject    = ["AgreementActions", "FileUpload"];
     NewAgreementFormComponent.$inject      = ["AgreementActions"];
-    AgreementListViewListComponent.$inject = ["AgreementListViewItemComponent"];
+    AgreementListListComponent.$inject = ["AgreementListItemComponent"];
     AgreementActions.$inject               = ["AgreementService"];
     AgreementService.$inject               = ["AgreementRepository"];
     AgreementRepository.$inject            = ["APIService"];

@@ -1,7 +1,7 @@
 import T from 'tcomb';
 
 //noinspection JSUnresolvedFunction
-const agreementListViewItem = T.struct({
+const agreementListItem = T.struct({
   id: T.Str,
   name: T.Str,
   counterparty: T.Str,
@@ -13,8 +13,8 @@ const agreementListViewItem = T.struct({
   documentCount: T.Num
 });
 
-agreementListViewItem._from_attrs = function (data) {
+agreementListItem._from_attrs = function (data) {
   return new this(data);
 };
 
-export default agreementListViewItem;
+export default agreementListItem;

@@ -45,5 +45,5 @@ export default function (agreementListComponent) {
       );
     }
   });
-  return new DependencyProvider(ConnectToStores(component, 'AgreementListViewStore'));
+  return new DependencyProvider(ConnectToStores(component, 'AgreementListStore'));
 };

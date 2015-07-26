@@ -18,7 +18,7 @@ export default function (agreementRepository) {
     },
 
     processAgreementCollectionData(data){
-      var retVal = data.map(a => AgreementFactory.createAgreementListViewItem(a));
+      var retVal = data.map(a => AgreementFactory.createAgreementListItem(a));
       retVal     = immutable.List(retVal);
 
       return retVal;

@@ -16,14 +16,7 @@ export default function (agreementService) {
     uploadContractCompleted(data){
     },
 
-    // todo rename this to agreementListViewDataReceived
     agreementListReceived(data){
-      // in scone, we used 'from_attrs' when saving a prospect from arbitrary data structures
-      // do we want free-floating data/json for rendering views? probably yes, very much.
-      return agreementService.processAgreementCollectionData(data);
-    },
-
-    agreementDetailDataReceived(data){
       // in scone, we used 'from_attrs' when saving a prospect from arbitrary data structures
       // do we want free-floating data/json for rendering views? probably yes, very much.
       return agreementService.processAgreementCollectionData(data);
@@ -32,7 +25,15 @@ export default function (agreementService) {
     requestAgreementDetails(agreementId) {
 
       return agreementId;
+    },
+
+    agreementDetailDataReceived(data){
+      // in scone, we used 'from_attrs' when saving a prospect from arbitrary data structures
+      // do we want free-floating data/json for rendering views? probably yes, very much.
+      return agreementService.processAgreementCollectionData(data);
     }
+
+
   };
 
   return agreementActions;

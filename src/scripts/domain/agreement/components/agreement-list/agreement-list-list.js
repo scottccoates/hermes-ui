@@ -9,12 +9,12 @@ import DependencyProvider from 'src/scripts/libs/dependency-injection/utils/depe
 
 const {Link} = router;
 
-export default function (agreementListViewItemComponent) {
+export default function (agreementListItemComponent) {
 
-  const AgreementListViewItem = agreementListViewItemComponent.dependency;
+  const AgreementListItem = agreementListItemComponent.dependency;
 
   const component = React.createClass({
-    displayName: "agreementListViewList",
+    displayName: "agreementListList",
 
     mixins: [
       immutableRenderMixin
@@ -24,13 +24,13 @@ export default function (agreementListViewItemComponent) {
       const agreementNodes = this.props.agreements.map(function (agreement) {
         return (
           <div className="content-section-item space-top-sm" key={agreement.id}>
-            <AgreementListViewItem agreement={agreement}/>
+            <AgreementListItem agreement={agreement}/>
           </div>
         );
       });
 
       return (
-        <div id="agreement-list-view-list-wrapper">
+        <div id="agreement-list-list-wrapper">
 
           <div className="content-section-item space-bottom">
             <button className="btn btn-info btn-sm" type="button">
@@ -39,7 +39,7 @@ export default function (agreementListViewItemComponent) {
             </button>
           </div>
 
-          <div className="agreement-list-view-items">
+          <div className="agreement-list-items">
             {agreementNodes}
           </div>
 

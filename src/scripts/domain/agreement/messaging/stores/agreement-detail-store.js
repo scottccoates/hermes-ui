@@ -5,7 +5,7 @@ import Immutable from 'immutable';
 import DependencyProvider from 'src/scripts/libs/dependency-injection/utils/dependency-provider';
 
 export default function () {
-  class AgreementListViewStore extends Store {
+  class AgreementListStore extends Store {
 
     constructor(flux) {
       super();
@@ -46,5 +46,5 @@ export default function () {
     }
   }
 
-  return new DependencyProvider(AgreementListViewStore);
+  return new DependencyProvider(AgreementListStore);
 }
