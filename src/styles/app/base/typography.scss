@@ -51,11 +51,10 @@ html, body {
 
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
-  text-transform: uppercase;
 }
 
 a {
-  color: $src-more-brighter;
+  color: $src-less-dark;
 
   &:hover {
     color: $src-more-brighter;
@@ -85,7 +84,6 @@ p {
 h1 {
 
   &.page-header {
-
     @include at-least-small-screen-styles {
       @include font-size(24px);
     }

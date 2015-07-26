@@ -1,3 +1,5 @@
+@import "../base/variables";
+
 // Content Layout
 // --------------------------------------------------
 #content-wrapper {
@@ -45,9 +47,14 @@
   }
 
   .content-section {
+
     @include at-least-small-screen-styles {
       padding-left: $src-content-section-horizontal-space;
       padding-right: $src-content-section-horizontal-space;
+    }
+
+    &.alt-content-section {
+      background: $src-very-bright;
     }
 
     &.space-top-lg {
@@ -93,20 +100,15 @@
     }
   }
 
-  .default-content-section {
-    background: $src-brighter;
-  }
-
-  .alt-content-section {
-    background: $src-very-bright;
-  }
-
   .content-section-header {
+
+    color: $src-bright;
+
+    text-transform: uppercase;
 
     @include at-least-small-screen-styles {
 
       @include font-size(18px);
-      color: $src-bright;
 
       margin-bottom: $src-content-section-vertical-space-sm; // Doesn't affect forms with margin collapse.
     }
@@ -184,6 +186,19 @@
       @include at-least-small-screen-styles {
         margin-right: $src-content-section-horizontal-space-sm;
       }
+    }
+  }
+
+  .alt-content-page {
+    //style fo background:. transition-wrapper already changes the height prop for the smooth transitions, so making its height 100 % won 't work there.
+    //however, it seems weird to make the .content-wrapper flex-grow:1 given that child components can dictate the bground color.
+    //we could use flux to allow the content-wrapper to determine its own style settings, but i feel like having multiple places (styles and scripts)
+    //determine the style could be too much confusion.
+
+    background: $src-very-bright;
+
+    @include at-least-small-screen-styles {
+      min-height: calc(100vh - #{$footer-height} - #{$header-height});
     }
   }
 }

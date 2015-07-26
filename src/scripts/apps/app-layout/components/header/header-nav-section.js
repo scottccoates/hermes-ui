@@ -38,7 +38,7 @@ var headerNavSection = React.createClass({
         <ul>
 
           <li className="header-item header-profile">
-            <a href="#" onClick={this.onClick}>
+            <a href="javascript:void(0)" onClick={this.onClick}>
               <img alt="header profile image" className="header-profile-image"
                    src={this.props.user.picture}/>
               <span className="header-profile-name">{this.props.user.nickname}
@@ -49,13 +49,13 @@ var headerNavSection = React.createClass({
               <DisplayContainer open={this.state.profileDropdownEnabled}>
                 <ul className="dropdown-menu dropdown-menu-right dropdown-menu-arrow dropdown-menu-arrow-right">
                   <li role="presentation">
-                    <a role="menuitem" href="#">Dashboard</a>
+                    <a role="menuitem" href="javascript:void(0)">Dashboard</a>
                   </li>
                   <li role="presentation">
-                    <a role="menuitem" href="#">Edit Profile</a>
+                    <a role="menuitem" href="javascript:void(0)">Edit Profile</a>
                   </li>
                   <li role="presentation">
-                    <a role="menuitem" href="#">Admin</a>
+                    <a role="menuitem" href="javascript:void(0)">Admin</a>
                   </li>
                   <li role="presentation" className="divider"></li>
                   <li role="presentation">

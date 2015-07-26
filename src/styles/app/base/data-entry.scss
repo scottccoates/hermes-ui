@@ -1,0 +1,10 @@
+// Data Entry Styles
+// --------------------------------------------------
+.edit-link {
+  font-weight: lighter;
+
+  @include at-least-small-screen-styles {
+    text-align: right;
+  }
+
+}

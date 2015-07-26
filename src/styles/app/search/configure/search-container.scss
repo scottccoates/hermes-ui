@@ -1,7 +1,7 @@
 .search-container {
   .search-list {
     // first layer
-    list-style: none;
+    @include list-unstyled;
 
     @include at-least-small-screen-styles {
       margin: 0;
@@ -14,7 +14,7 @@
 
     & > li > ul {
       // second layer
-      list-style: none;
+      @include list-unstyled;
 
       border-bottom: 1px solid $src-bright;
 

@@ -11,6 +11,9 @@ export default function (firebase) {
       var isAuthenticated = false;
 
       sessionStore.on('change', _=> {
+        // the 'change' event can be fired even when we haven't logged in or out.
+        // It could happen if a logged-out user visits the site. This is because we call sessionActions.resume
+        // and if that fails (expiration, logged out, etc), then sessionStore.onLoginFailed is called
 
         if (sessionStore.state.loggedIn) {
           const firebaseToken = sessionStore.state.user.firebaseData.token;
@@ -26,7 +29,6 @@ export default function (firebase) {
             log.info("Firebase authenticated");
           });
         } else {
-          // the 'change' event can be fired even when we haven't logged in or out
           if (isAuthenticated) {
             agreementRetrievalRepo.close();
             firebase.unauth();

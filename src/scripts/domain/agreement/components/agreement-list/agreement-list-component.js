@@ -14,7 +14,7 @@ export default function (agreementListItemComponent) {
   const AgreementListItem = agreementListItemComponent.dependency;
 
   const component = React.createClass({
-    displayName: "agreementListList",
+    displayName: "AgreementListComponent",
 
     mixins: [
       immutableRenderMixin

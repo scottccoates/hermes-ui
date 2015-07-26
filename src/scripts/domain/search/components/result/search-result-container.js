@@ -25,7 +25,7 @@ export default function (searchResultListProvider) {
             </div>
           </div>
 
-          <div className="content-section default-content-section space-bottom">
+          <div className="content-section  space-bottom">
             <div className="container">
               <SearchResultList/>
             </div>

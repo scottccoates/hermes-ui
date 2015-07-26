@@ -22,7 +22,8 @@ export default function () {
       this.registerAsync(sessionActions.login, this.onLoginBegan, this._saveUserState, this.onLoginFailed);
       this.registerAsync(sessionActions.resumeSession, null, this._saveUserState, this.onSessionResumeFailed);
       this.registerAsync(sessionActions.logout, this.onSessionEnded);
-      this.state           = defaultState;
+
+      this.state = defaultState;
     }
 
     _saveUserState(loginInformation) {

@@ -3,7 +3,7 @@
 
 import React from 'react/addons';
 
-import AgreementForm from '../../components/new-agreement/new-agreement-form';
+import AgreementForm from '../../components/new-agreement/new-agreement-form-component';
 
 import noop from '../../../../libs/js-utils/functions/noop';
 

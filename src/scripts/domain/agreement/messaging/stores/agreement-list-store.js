@@ -15,10 +15,12 @@ export default function () {
       this.register(agreementActions.uploadContractBegan, this.onUploadContractBegan);
       this.register(agreementActions.uploadContractProgressed, this.onUploadContractProgressed);
       this.register(agreementActions.uploadContractCompleted, this.onUploadContractCompleted);
+      this.register(agreementActions.requestAgreementList, this.onAgreementListRequested);
       this.register(agreementActions.agreementListReceived, this.onAgreementListReceived);
 
       this.state = {
-        agreements: Immutable.List()
+        agreements: Immutable.List(),
+        requestedAgreementList: {userId: null}
       };
     }
 
@@ -39,6 +41,14 @@ export default function () {
 
     onUploadContractCompleted() {
 
+    }
+
+    onAgreementListRequested(userId) {
+      this.setState({
+        requestedAgreementList: {
+          userId: userId
+        }
+      });
     }
 
     onAgreementListReceived(data) {

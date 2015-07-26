@@ -65,13 +65,13 @@ export default function (tokenService) {
       return (
         <div id="login-wrapper">
 
-          <div className="content-section default-content-section space-top space-bottom">
+          <div className="content-section  space-top space-bottom">
             <div className="container">
               <h1 className="page-header">Login</h1>
             </div>
           </div>
 
-          <div className="content-section default-content-section space-bottom">
+          <div className="content-section  space-bottom">
             <div className="container">
               <form className="form-horizontal agreement-form-data-entry" onSubmit={this.onSubmit}>
                 <Validation ref='validation' onValidate={this.handleValidate}>
@@ -118,6 +118,6 @@ export default function (tokenService) {
     }
   });
 
-  login = ConnectToStores(login, 'sessionStore');
+  login = ConnectToStores(login, 'SessionStore');
   return new DependencyProvider(login);
 };

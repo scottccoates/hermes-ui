@@ -20,16 +20,19 @@ import AuthenticatedComponent from 'src/scripts/apps/session/components/authenti
 import AgreementActions from '../domain/agreement/messaging/actions/agreement-actions';
 import AgreementListStore from '../domain/agreement/messaging/stores/agreement-list-store';
 import AgreementDetailStore from '../domain/agreement/messaging/stores/agreement-detail-store';
-import NewAgreementCreateComponent from '../domain/agreement/components/new-agreement/new-agreement-create.js';
-import NewAgreementFormComponent from '../domain/agreement/components/new-agreement/new-agreement-form.js';
-import AgreementListListComponent from '../domain/agreement/components/agreement-list/agreement-list-list';
-import AgreementListItemComponent from '../domain/agreement/components/agreement-list/agreement-list-item';
-import AgreementDetailItemComponent from '../domain/agreement/components/agreement-detail/agreement-detail-item';
+import NewAgreementCreateComponent from '../domain/agreement/components/new-agreement/new-agreement-create-component';
+import NewAgreementFormComponent from '../domain/agreement/components/new-agreement/new-agreement-form-component';
+import AgreementListComponent from '../domain/agreement/components/agreement-list/agreement-list-component';
+import AgreementListItemComponent from '../domain/agreement/components/agreement-list/agreement-list-item-component';
+import AgreementDetailContainerComponent from '../domain/agreement/components/agreement-detail/agreement-detail-container-component';
+import AgreementDetailGeneralInfoComponent from '../domain/agreement/components/agreement-detail/agreement-detail-general-info-component';
+import AgreementDetailLengthComponent from '../domain/agreement/components/agreement-detail/agreement-detail-length-component';
+import AgreementDetailDocumentsComponent from '../domain/agreement/components/agreement-detail/agreement-detail-documents-component';
 
 import AgreementService from '../domain/agreement/services/agreement-service';
 import AgreementRepository from '../domain/agreement/services/agreement-repository';
 
-import DashboardComponent from '../apps/dashboard/components/dashboard';
+import DashboardComponent from '../apps/dashboard/components/dashboard-component';
 
 import ClientSidePersistenceService from 'src/scripts/apps/persistence/services/client-side-persistence-service';
 
@@ -60,9 +63,12 @@ export default {
 
     container.register("CreateAgreementComponent", NewAgreementCreateComponent);
     container.register("AgreementFormComponent", NewAgreementFormComponent);
-    container.register("AgreementListListComponent", AgreementListListComponent);
+    container.register("AgreementListComponent", AgreementListComponent);
     container.register("AgreementListItemComponent", AgreementListItemComponent);
-    container.register("AgreementDetailItemComponent", AgreementDetailItemComponent);
+    container.register("AgreementDetailContainerComponent", AgreementDetailContainerComponent);
+    container.register("AgreementDetailGeneralInfoComponent", AgreementDetailGeneralInfoComponent);
+    container.register("AgreementDetailLengthComponent", AgreementDetailLengthComponent);
+    container.register("AgreementDetailDocumentsComponent", AgreementDetailDocumentsComponent);
 
     container.register("AgreementActions", AgreementActions);
     container.register("AgreementListStore", AgreementListStore);
@@ -86,16 +92,18 @@ export default {
 
     container.register("LoadingFeedbackStore", LoadingFeedbackStore);
 
-    DashboardComponent.$inject = ["AgreementListListComponent"];
+    DashboardComponent.$inject = ["AgreementListComponent"];
 
     AppLayoutComponent.$inject = ["AuthenticatedComponent"];
 
-    NewAgreementCreateComponent.$inject    = ["AgreementActions", "FileUpload"];
-    NewAgreementFormComponent.$inject      = ["AgreementActions"];
-    AgreementListListComponent.$inject = ["AgreementListItemComponent"];
-    AgreementActions.$inject               = ["AgreementService"];
-    AgreementService.$inject               = ["AgreementRepository"];
-    AgreementRepository.$inject            = ["APIService"];
+    NewAgreementCreateComponent.$inject       = ["AgreementActions", "FileUpload"];
+    NewAgreementFormComponent.$inject         = ["AgreementActions"];
+    AgreementListComponent.$inject            = ["AgreementListItemComponent"];
+    AgreementDetailContainerComponent.$inject = ["AgreementDetailGeneralInfoComponent", 'AgreementDetailLengthComponent', 'AgreementDetailDocumentsComponent'];
+
+    AgreementActions.$inject    = ["AgreementService"];
+    AgreementService.$inject    = ["AgreementRepository"];
+    AgreementRepository.$inject = ["APIService"];
 
     FileUpload.$inject = ["DropzoneFactory"];
 

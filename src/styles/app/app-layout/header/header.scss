@@ -1,11 +1,5 @@
 // Header Layout
 // --------------------------------------------------
-$header-height: 68px;
-
-$header-search-height: 40px;
-$header-search-width: 552px;
-
-$header-font-size: 18px;
 
 @mixin bright-header-color {
   color: $src-bright;
@@ -119,7 +113,7 @@ $header-font-size: 18px;
     @include dark-header-color;
 
     & > ul {
-      list-style: none;
+      @include list-unstyled;
 
       @include at-least-small-screen-styles {
 

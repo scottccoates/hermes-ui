@@ -31,7 +31,7 @@ export default function () {
             </div>
 
             <div className="col-sm-22 task-content">
-              <span>The <a href="#">{this.props.taskSubject}</a> {this.props.taskAction}</span>
+              <span>The <a href="javascript:void(0)">{this.props.taskSubject}</a> {this.props.taskAction}</span>
             </div>
 
             <div className="col-sm-3 task-action task-action-done">

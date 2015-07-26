@@ -11,7 +11,7 @@ const {Link} = Router;
 export default function () {
 
   const component = React.createClass({
-    displayName: "agreementListItem",
+    displayName: "AgreementListItemComponent",
     render() {
       return (
         <div className="agreement-list-item">
@@ -20,7 +20,7 @@ export default function () {
               <div className="media">
                 <div className="media-left">
                   <div className="agreement-list-counterparty-image">
-                    <a href="#">
+                    <a href="javascript:void(0)">
                       <img className="media-object" src={this.props.agreement.image} alt="counterparty image"/>
                     </a>
                   </div>
@@ -30,7 +30,10 @@ export default function () {
                 <div className="media-body">
 
                   <h5 className="media-heading">
-                    <a className='agreement-list-agreement-name' href="#">{this.props.agreement.name}</a>
+                    <Link to="agreementDetail" params={{agreementId: this.props.agreement.id}}
+                          className='agreement-list-agreement-name'>
+                      {this.props.agreement.name}
+                    </Link>
                   </h5>
 
                   <div className='content-section-item space-top-sm agreement-list-agreement-details'>
@@ -47,10 +50,10 @@ export default function () {
                     </span>
                     <i className='fa fa-circle middle space-left space-left space-right'></i>
 
-                    <span>Expires on {this.props.agreement.expirationDate.toTimeString()}</span>
+                    <span>Expires on {this.props.agreement.expirationDate}</span>
                     <i className='fa fa-circle middle space-left space-left space-right'></i>
 
-                    <span>Modified on {this.props.agreement.modifiedDate.toTimeString()}</span>
+                    <span>Modified on {this.props.agreement.modifiedDate}</span>
                     <i className='fa fa-circle middle space-left space-left space-right'></i>
 
                     <span>{this.props.agreement.documentCount} documents</span>

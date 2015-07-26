@@ -13,6 +13,8 @@ export default function (agreementActions, fileUploadProvider) {
   const FileUploader = fileUploadProvider.dependency;
 
   const component = React.createClass({
+    displayName: "NewAgreementCreateComponent",
+
     onAddedFile(file) {
       agreementActions.uploadContractBegan(file);
     },
@@ -29,13 +31,13 @@ export default function (agreementActions, fileUploadProvider) {
       return (
         <div id="new-agreement-wrapper">
           <div id="create-agreement-wrapper">
-            <div className="content-section default-content-section space-top space-bottom">
+            <div className="content-section  space-top space-bottom">
               <div className="container">
                 <h1 className="page-header">New Contract</h1>
               </div>
             </div>
 
-            <div className="content-section default-content-section">
+            <div className="content-section ">
               <div className="container-fluid">
                 <div className="row">
                   <div className="col-md-24">
@@ -63,7 +65,7 @@ export default function (agreementActions, fileUploadProvider) {
               </div>
             </div>
 
-            <div className="content-section default-content-section space-top-lg space-bottom">
+            <div className="content-section  space-top-lg space-bottom">
               <div className="container-fluid">
                 <section className="generate-agreement-section">
                   <div className="row">

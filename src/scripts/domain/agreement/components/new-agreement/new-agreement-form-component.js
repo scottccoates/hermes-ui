@@ -5,7 +5,7 @@ import Router  from 'react-router';
 
 import DependencyProvider from '../../../../libs/dependency-injection/utils/dependency-provider';
 
-import Agreement from '../../models/agreement-list-item';
+import Agreement from '../../models/agreement-list-item-model';
 
 import Select from 'react-select';
 import Validation from 'rc-form-validation';
@@ -17,7 +17,7 @@ const {Validator} = Validation;
 export default function (agreementActions) {
 
   const component = React.createClass({
-    displayName: "NewAgreementForm",
+    displayName: "NewAgreementFormComponent",
     mixins: [Validation.FieldMixin],
 
     getInitialState() {
@@ -88,13 +88,13 @@ export default function (agreementActions) {
         <div id="new-agreement-wrapper">
           <div id="agreement-form-wrapper">
 
-            <div className="content-section default-content-section space-top space-bottom">
+            <div className="content-section  space-top space-bottom">
               <div className="container">
                 <h1 className="page-header">New Contract</h1>
               </div>
             </div>
 
-            <div className="content-section default-content-section space-bottom">
+            <div className="content-section  space-bottom">
               <div className="container">
                 <form className="form-horizontal agreement-form-data-entry" onSubmit={this.onSubmit}>
                   <Validation ref='validation' onValidate={this.handleValidate}>
@@ -157,16 +157,16 @@ export default function (agreementActions) {
                               </button>
                               <ul className="dropdown-menu" role="menu" aria-labelledby="agreement-form-contract-type">
                                 <li role="presentation">
-                                  <a role="menuitem" tabindex="-1" href="#">Action</a>
+                                  <a role="menuitem" tabindex="-1" href="javascript:void(0)">Action</a>
                                 </li>
                                 <li role="presentation">
-                                  <a role="menuitem" tabindex="-1" href="#">Another action</a>
+                                  <a role="menuitem" tabindex="-1" href="javascript:void(0)">Another action</a>
                                 </li>
                                 <li role="presentation">
-                                  <a role="menuitem" tabindex="-1" href="#">Something else here</a>
+                                  <a role="menuitem" tabindex="-1" href="javascript:void(0)">Something else here</a>
                                 </li>
                                 <li role="presentation">
-                                  <a role="menuitem" tabindex="-1" href="#">Separated link</a>
+                                  <a role="menuitem" tabindex="-1" href="javascript:void(0)">Separated link</a>
                                 </li>
                               </ul>
                             </div>

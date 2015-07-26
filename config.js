@@ -1,5 +1,5 @@
 System.config({
-  "baseURL": /\/base\//.test(System.baseURL) ? System.baseURL : "/",
+  "baseURL": "/",
   "defaultJSExtensions": true,
   "transpiler": "babel",
   "babelOptions": {

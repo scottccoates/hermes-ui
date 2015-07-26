@@ -26,7 +26,7 @@ export default function () {
                 </div>
                 <div className='col-sm-20'>
                   <h5 className='content-section-item'>
-                    <a className='search-result-agreement-name' href="#">{this.props.searchResultSubject}</a>
+                    <a className='search-result-agreement-name' href="javascript:void(0)">{this.props.searchResultSubject}</a>
                   </h5>
 
                   <div className='search-result-agreement-details content-section-item space-top-xxs space-bottom-xxs'>

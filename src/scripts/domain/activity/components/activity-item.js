@@ -37,9 +37,9 @@ export default function () {
 
             <div className="col-sm-22 activity-content">
               <span>
-                <a href="#"><strong><span>{this.props.actorName}</span></strong></a>
+                <a href="javascript:void(0)"><strong><span>{this.props.actorName}</span></strong></a>
                 <span> {this.props.activityTypeDisplayName} </span>
-                <a href="#">{this.props.activitySubject}</a>
+                <a href="javascript:void(0)">{this.props.activitySubject}</a>
                 <span> {this.props.activityAction}</span>
               </span>
             </div>

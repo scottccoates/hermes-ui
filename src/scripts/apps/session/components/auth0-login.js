@@ -14,37 +14,48 @@ export default function (auth0Lock) {
       router: React.PropTypes.func
     },
 
-    componentWillReceiveProps(nextProps){
-      if (nextProps.loggedIn) {
+    _doLoginTransition(loggedIn){
+      if (loggedIn) {
         // I'm not sure if there's a better way to completely reset the history by this point.
         // It'd be bad to be able to click back and go back to the login screen
         this.context.router.transitionTo(this.props.query.nextPath || '/');
       }
     },
 
-    componentDidMount(){
-      // https://auth0.com/docs/libraries/lock/customization
-      const lockOptions    = {
-        sso: false,
-        rememberLastLogin: false,
-        closable: false,
-        icon: '/assets/images/medium-logo-no-text.svg',
-        authParams: {
-          scope: 'openid email user_metadata app_metadata picture'
-        }
-      };
-      const sessionActions = this.props.flux.getActions('SessionActions');
+    componentWillReceiveProps(nextProps){
+      if (nextProps.loggedIn) {
+        this._doLoginTransition(nextProps.loggedIn);
+      }
+    },
 
-      auth0Lock.show(lockOptions, async (error, profile, idToken)=> {
-        if (error) throw new Error(`Error authenticating: ${idToken}. Inner exception: ${error.stack}`);
-        try {
-          log.info("Beginning: Log in user: %s", profile.nickname);
-          await sessionActions.login(idToken, profile);
-          log.info("Completed: Log in user: %s", profile.nickname);
-        } catch (e) {
-          throw new Error("Error completing the login process " + e.stack);
-        }
-      });
+    componentDidMount(){
+      if (this.props.loggedIn) {
+        this._doLoginTransition(this.props.loggedIn);
+
+      } else {
+        // https://auth0.com/docs/libraries/lock/customization
+        const lockOptions    = {
+          sso: false,
+          rememberLastLogin: false,
+          closable: false,
+          icon: '/assets/images/medium-logo-no-text.svg',
+          authParams: {
+            scope: 'openid email user_metadata app_metadata picture'
+          }
+        };
+        const sessionActions = this.props.flux.getActions('SessionActions');
+
+        auth0Lock.show(lockOptions, async (error, profile, idToken)=> {
+          if (error) throw new Error(`Error authenticating: ${idToken}. Inner exception: ${error.stack}`);
+          try {
+            log.info("Beginning: Log in user: %s", profile.nickname);
+            await sessionActions.login(idToken, profile);
+            log.info("Completed: Log in user: %s", profile.nickname);
+          } catch (e) {
+            throw new Error("Error completing the login process " + e.stack);
+          }
+        });
+      }
     },
 
     render() {
@@ -55,6 +66,6 @@ export default function (auth0Lock) {
     }
   });
 
-  login = ConnectToStores(login, 'sessionStore');
+  login = ConnectToStores(login, 'SessionStore');
   return new DependencyProvider(login);
 };

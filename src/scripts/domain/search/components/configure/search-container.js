@@ -22,7 +22,7 @@ export default React.createClass({
             <ul>
               <li>
 
-                <a className="search-link" href="#" onClick={this.onAdvancedSearchClick}>
+                <a className="search-link" href="javascript:void(0)" onClick={this.onAdvancedSearchClick}>
                   <i className="fa fa-wrench"></i>
                   <span>Advanced Search</span>
                 </a>
@@ -34,13 +34,13 @@ export default React.createClass({
           <li className="agreement-search-link">
             <ul>
               <li>
-                <a className="search-link" href="#">
+                <a className="search-link" href="javascript:void(0)">
                   <i className="fa fa-edit"></i>
                   <span>Contracts Recently Edited</span>
                 </a>
               </li>
               <li>
-                <a className="search-link" href="#">
+                <a className="search-link" href="javascript:void(0)">
                   <i className="fa fa-calendar"></i>
                   <span>Contracts Expiring Soon</span>
                 </a>

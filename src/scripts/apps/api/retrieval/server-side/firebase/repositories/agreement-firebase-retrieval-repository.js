@@ -3,7 +3,7 @@ import FirebaseService from '../services/firebase-service.js';
 export default {
   init(appFlux, rootRef, user) {
     const agreementActions     = appFlux.getActions('AgreementActions');
-    const agreementDetailStore = appFlux.getActions('AgreementDetailStore');
+    const agreementDetailStore = appFlux.getStore('AgreementDetailStore');
 
     this.agreementDetailRef      = null;
     this.agreementDetailCallback = null;

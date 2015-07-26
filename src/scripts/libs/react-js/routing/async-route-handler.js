@@ -10,7 +10,7 @@ function performAsyncTransition(flux, state) {
     state.routes
       .filter(route => route.handler.asyncTransition)
       .map(route =>
-        route.handler.asyncTransition(flux, state.params))
+        route.handler.asyncTransition(flux, state))
   );
 
   //flatten http://stackoverflow.com/questions/10865025/merge-flatten-an-array-of-arrays-in-javascript
@@ -34,9 +34,12 @@ function getHandler(containerId, fluxInstance) {
     React.render(handler, document.getElementById(containerId));
   }
 
-  return function (handler, state) {
-    performAsyncTransition(fluxInstance, state);
-    renderHandler(handler);
+  return async function (handler, state) {
+    renderHandler(handler, true);
+    console.log("rendered handler. loading: ", true);
+    await performAsyncTransition(fluxInstance, state);
+    renderHandler(handler, false);
+    console.log("rendered handler. loading: ", false);
   };
 }
 

@@ -17,9 +17,15 @@ export default function (agreementRepository) {
       return agreementRepository.addToCollection(mi);
     },
 
-    processAgreementCollectionData(data){
-      var retVal = data.map(a => AgreementFactory.createAgreementListItem(a));
+    processAgreementListData(listData){
+      var retVal = listData.map(a => AgreementFactory.createAgreementListItem(a));
       retVal     = immutable.List(retVal);
+
+      return retVal;
+    },
+
+    processAgreementDetailData(detailData){
+      const retVal = AgreementFactory.createAgreementDetail(detailData);
 
       return retVal;
     }

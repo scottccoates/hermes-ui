@@ -8,19 +8,22 @@ import ConnectToStores from 'flummox/connect';
 
 export default function () {
   const logout = React.createClass({
-    displayName: "Logout",
+    displayName: "LogoutComponent",
     contextTypes: {
       router: React.PropTypes.func
     },
 
-    async componentWillReceiveProps(nextProps){
-      if (nextProps.loggedIn) {
-        const sessionActions = this.props.flux.getActions('SessionActions');
-        await sessionActions.logout(); // unhandled not reported unless awaited
-      }
-      else {
-        this.context.router.transitionTo('login');
-      }
+    async componentWillMount(){
+      const sessionActions = this.props.flux.getActions('SessionActions');
+
+      await sessionActions.logout(); // unhandled not reported unless awaited
+    },
+
+    componentWillReceiveProps(nextProps){
+      // this isn't called when visiting the '/logout' page directly. This is probably because the store is already
+      // done initializing by the time we get here.
+
+      this.context.router.transitionTo('login');
     },
 
     render() {
@@ -30,5 +33,5 @@ export default function () {
     }
   });
 
-  return new DependencyProvider(ConnectToStores(logout, 'sessionStore'));
+  return new DependencyProvider(ConnectToStores(logout, 'SessionStore'));
 };

@@ -4,6 +4,8 @@ import Immutable from 'immutable';
 
 import DependencyProvider from 'src/scripts/libs/dependency-injection/utils/dependency-provider';
 
+import log from 'loglevel';
+
 export default function () {
   class AgreementDetailStore extends Store {
 
@@ -12,14 +14,26 @@ export default function () {
 
       const agreementActions = flux.getActionIds('AgreementActions');
       this.register(agreementActions.requestAgreementDetail, this.onRequestAgreementDetail);
+      this.register(agreementActions.agreementDetailReceived, this.onAgreementDetailReceived);
 
       this.state = {
-        agreementId: null
+        agreement: {
+          id: null
+        },
+        requestedAgreementDetail: {id: null}
       };
     }
 
     onRequestAgreementDetail(agreementId) {
-      this.setState({agreementId: agreementId});
+      log.info("AgreementDetailStore: Agreement detail requested: %s", agreementId);
+
+      this.setState({requestedAgreementDetail: {id: agreementId}});
+    }
+
+    onAgreementDetailReceived(agreement) {
+      log.info("AgreementDetailStore: Agreement detail received: %s", agreement.id);
+
+      this.setState({agreement: agreement});
     }
   }
 

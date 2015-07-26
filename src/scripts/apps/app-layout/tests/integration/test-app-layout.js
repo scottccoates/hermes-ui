@@ -32,7 +32,7 @@
 //    const authenticatedComponentStub = {get: component => ({dependency: component})};
 //    const appLayoutComponent         = AppLayout(authenticatedComponentStub).dependency;
 //
-//    const storeStubs = {'sessionStore': SessionStubStore};
+//    const storeStubs = {'SessionStore': SessionStubStore};
 //    var Subject      = StubRouterContext(StubFlummoxContext(appLayoutComponent, {loading: true}, null, storeStubs));
 //
 //    // Ithink we'll need to just use FluxComponent: https://github.com/acdlite/flummox/issues/159

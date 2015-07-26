@@ -23,7 +23,7 @@ export default {
 
     const CreateAgreementComponent = container.get("CreateAgreementComponent").dependency;
     const AgreementFormComponent   = container.get("AgreementFormComponent").dependency;
-    const AgreementDetailComponent = container.get("AgreementDetailItemComponent").dependency;
+    const AgreementDetailContainerComponent = container.get("AgreementDetailContainerComponent").dependency;
 
     const SearchResultContainer = container.get("SearchResultContainer").dependency;
 
@@ -38,7 +38,7 @@ export default {
           <Route name="contracts">
             <Route name="createAgreement" path="step_1" handler={CreateAgreementComponent}/>
 
-            <Route name="agreementDetail" path="contracts/:agreementId" handler={AgreementDetailComponent}/>
+            <Route name="agreementDetail" path=":agreementId" handler={AgreementDetailContainerComponent}/>
 
             <Route name="agreementForm" path="step_2" handler={AgreementFormComponent}/>
           </Route>

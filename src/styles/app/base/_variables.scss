@@ -43,6 +43,7 @@ $src-font-size-base: 16px !default;
 $src-font-size-small: 14px !default;
 $src-font-family-heading: Montserrat, Helvetica, Arial, sans-serif !default;
 $src-font-family-content: 'Source Sans Pro', Helvetica, Arial, sans-serif !default;
+$src-line-height-base: 1.428571429 !default;
 
 // Container
 // --------------------------------------------------
@@ -68,6 +69,15 @@ $src-icon-horizontal-space-md: 6px !default;
 $container-border-radius: 3px !default;
 $container-color: $src-less-dark !default;
 
+// Header Layout
+// --------------------------------------------------
+$header-height: 68px;
+
+$header-search-height: 40px;
+$header-search-width: 552px;
+
+$header-font-size: 18px;
+
 // Footer
 // --------------------------------------------------
 $footer-height: 110px;
@@ -83,6 +93,10 @@ $bright-border: 2px solid $src-bright !default;
 // Separator
 // --------------------------------------------------
 $src-separator-margin: 22px !default;
+
+// Table
+// --------------------------------------------------
+$src-table-color: $src-less-dark !default;
 
 // Responsive Viewing
 // --------------------------------------------------

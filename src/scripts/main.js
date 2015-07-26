@@ -22,6 +22,7 @@ container.register("AppFlux", appFlux);
 
 // retrievalRepo will listen for events from  appflux
 const retrievalRepo = container.get('APIRetrievalRepository');
+
 retrievalRepo.init(container);
 
 const sessionPromise = appFlux.getActions('SessionActions').resumeSession()

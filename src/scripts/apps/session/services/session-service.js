@@ -1,3 +1,5 @@
+import Humps from 'humps';
+
 import log from 'loglevel';
 // Store this interval function in the module root, just in case we get references to multiple instances of this service.
 // If that happens, there'd be multiple timers running concurrently, surely to make debugging this difficult thing to debug.
@@ -5,8 +7,15 @@ var _renewSessionTimeout = null;
 export default function (sessionRepository, authService) {
 
   const sessionService = {
+    _prepareUserObject: function (user) {
+      // auth0 doesn't follow a convention, so user_id is diff than isSocial, etc.
+      const data = Humps.camelizeKeys(user);
+      return data;
+    },
+
     async login(token, user, keepAliveSessionFunc){
 
+      user = this._prepareUserObject(user);
       if (!keepAliveSessionFunc) {
         throw new Error('Missing keepAliveSessionFunc');
       }
@@ -14,7 +23,10 @@ export default function (sessionRepository, authService) {
       try {
 
         log.info("Beginning: Get third party auth for user: %s", user.nickname);
-        const thirdPartyAuthInformation = await authService.getThirdPartyAuth(token);
+
+        let thirdPartyAuthInformation = await authService.getThirdPartyAuth(token);
+        thirdPartyAuthInformation     = this._prepareUserObject(thirdPartyAuthInformation);
+
         log.info("Completed: Get third party auth for user: %s", user.nickname);
 
         var newUserInformation = Object.assign({}, user, thirdPartyAuthInformation);
@@ -48,7 +60,7 @@ export default function (sessionRepository, authService) {
       // prevent the auto refresh
       if (_renewSessionTimeout) {
         clearTimeout(_renewSessionTimeout);
-        _renewSessionTimeout  = null;
+        _renewSessionTimeout = null;
       }
 
       try {

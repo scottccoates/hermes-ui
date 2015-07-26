@@ -59,7 +59,7 @@
 
       ul {
         text-transform: uppercase;
-        @extend .list-unstyled;
+        @include list-unstyled;
 
         @include at-least-small-screen-styles {
           margin-top: 10px;

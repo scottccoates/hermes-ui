@@ -50,7 +50,6 @@
     }
 
     .task-action {
-      text-transform: uppercase;
       text-align: center;
 
       @include at-least-small-screen-styles {

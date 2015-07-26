@@ -1,0 +1,11 @@
+.agreement-detail-documents {
+  .agreement-detail-documents-list {
+    @include list-unstyled();
+
+    li {
+      @include at-least-small-screen-styles {
+        @include font-size(14px);
+      }
+    }
+  }
+}

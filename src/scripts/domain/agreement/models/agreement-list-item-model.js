@@ -8,8 +8,8 @@ const agreementListItem = T.struct({
   image: T.Str,
   status: T.Str,
   type: T.Str,
-  expirationDate: T.Dat,
-  modifiedDate: T.Dat,
+  expirationDate: T.Str,
+  modifiedDate: T.Str,
   documentCount: T.Num
 });
 
