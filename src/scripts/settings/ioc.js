@@ -14,7 +14,7 @@ import SessionService from 'src/scripts/apps/session/services/session-service';
 import SessionActions from 'src/scripts/apps/session/messaging/actions/session-actions';
 import SessionStore from 'src/scripts/apps/session/messaging/stores/session-store';
 
-import LogoutComponent from 'src/scripts/apps/session/components/logout';
+import LogoutComponent from 'src/scripts/apps/session/components/logout-component';
 import AuthenticatedComponent from 'src/scripts/apps/session/components/authenticated-component';
 
 import AgreementActions from '../domain/agreement/messaging/actions/agreement-actions';
@@ -42,8 +42,7 @@ import SearchResultItem from '../domain/search/components/result/search-result-i
 
 import LoadingFeedbackStore from 'src/scripts/apps/feedback/stores/loading-feedback-store';
 
-import ClientSideApi from '../apps/api/services/client-side-api';
-
+import ApiReadStore from 'src/scripts/apps/api/retrieval/messaging/stores/api-read-store';
 
 export default {
   init(){
@@ -91,6 +90,8 @@ export default {
     container.register("AuthenticatedComponent", AuthenticatedComponent);
 
     container.register("LoadingFeedbackStore", LoadingFeedbackStore);
+
+    container.register("ApiReadStore", ApiReadStore);
 
     DashboardComponent.$inject = ["AgreementListComponent"];
 

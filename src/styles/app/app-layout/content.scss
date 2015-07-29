@@ -112,6 +112,10 @@
 
       margin-bottom: $src-content-section-vertical-space-sm; // Doesn't affect forms with margin collapse.
     }
+
+    &.regular-text {
+      text-transform: none;
+    }
   }
 
   .content-section-item {

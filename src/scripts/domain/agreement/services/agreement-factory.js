@@ -3,18 +3,13 @@ import agreementDetail from '../models/agreement-detail-model';
 import * as normalizers from 'src/scripts/libs/domain/tcomb/normalizers';
 
 export default{
-  createAgreementListItem(listData){
-
-    const agreementData = Object.assign({}, listData);
-
-    const agreement = agreementListItem._from_attrs(agreementData);
+  createAgreementListItem(listItemData){
+    const agreement = agreementListItem._from_attrs(listItemData);
     return agreement;
   },
 
   createAgreementDetail(detailData){
-    const agreementData = Object.assign({}, detailData);
-
-    const agreement = agreementDetail._from_attrs(agreementData);
+    const agreement = agreementDetail._from_attrs(detailData);
     return agreement;
   }
 }

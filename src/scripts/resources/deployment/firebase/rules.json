@@ -1,5 +1,8 @@
 {
   "rules": {
+    "agreement-details": {
+      ".read": true
+    },
     "users": {
       "$userID": {
         ".read": "auth.uid == $userID"

@@ -1,7 +1,7 @@
 import config from 'src/scripts/settings/ioc';
 
 import Lock from 'auth0-lock';
-import Auth0LoginComponent from 'src/scripts/apps/session/components/auth0-login';
+import Auth0LoginComponent from 'src/scripts/apps/session/components/auth0-login-component';
 import Auth0AuthService from 'src/scripts/apps/session/services/auth0-auth-service';
 
 import Firebase from 'firebase';

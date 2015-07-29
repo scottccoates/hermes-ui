@@ -17,6 +17,28 @@ export default function (agreementListComponent) {
     displayName: "DashboardComponent",
 
     render() {
+      var agreementListContent = null;
+      if (this.props.agreements.size) {
+
+        agreementListContent = (
+          <div>
+            <h3 className="content-section-header">Your Contracts</h3>
+            <AgreementList agreements={this.props.agreements}/>
+          </div>
+        );
+      }
+      else {
+        agreementListContent = (
+          <div>
+            <h3 className="content-section-header regular-text">
+              Sorry, there are no contracts in the system.
+              <br />
+              Please <Link to="createAgreement" className='underline'>upload one</Link> to get started.
+            </h3>
+          </div>
+        );
+      }
+
       return (
         <div id="dashboard-wrapper">
 
@@ -28,8 +50,7 @@ export default function (agreementListComponent) {
 
           <div className="content-section  space-bottom">
             <div className="container">
-              <h3 className="content-section-header">Your Contracts</h3>
-              <AgreementList agreements={this.props.agreements}/>
+              {agreementListContent}
             </div>
           </div>
 
@@ -41,8 +62,6 @@ export default function (agreementListComponent) {
 
   // probably best way to make this func available to router: https://github.com/acdlite/flummox/issues/173
   dashboardComponent.asyncTransition = (flux, state) => {
-    console.log("doing async transition. state: ", state);
-
     const sessionStore = flux.getStore('SessionStore');
 
     const userId = sessionStore.state.user.userId;

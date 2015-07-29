@@ -54,9 +54,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 a {
-  color: $src-less-dark;
+  color: inherit;
 
-  &:hover {
+  &:hover, &:focus {
     color: $src-more-brighter;
   }
 }
@@ -101,5 +101,9 @@ h1 {
 
 .heavy-emphasis {
   font-weight: 900;
+  text-decoration: underline;
+}
+
+.underline {
   text-decoration: underline;
 }

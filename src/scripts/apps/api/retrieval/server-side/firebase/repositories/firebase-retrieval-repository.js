@@ -4,11 +4,9 @@ import agreementRetrievalRepo from'./agreement-firebase-retrieval-repository';
 
 export default function (firebase) {
   return {
-    init(container) {
-      const appFlux      = container.get("AppFlux");
+    init(appFlux) {
+      const apiReadStore = appFlux.getStore("ApiReadStore");
       const sessionStore = appFlux.getStore("SessionStore");
-
-      var isAuthenticated = false;
 
       sessionStore.on('change', _=> {
         // the 'change' event can be fired even when we haven't logged in or out.
@@ -21,18 +19,23 @@ export default function (firebase) {
           firebase.authWithCustomToken(firebaseToken, function (error, authData) {
             if (error) throw new Error("Error authenticating with firebase: " + error.stack);
 
-            if (!isAuthenticated) {
+            if (!apiReadStore.state.readApiReady) {
+              // the session store could change for many reasons (change of name, profile pic, etc).
+              // we don't want to run this code everytime something bland happens. we only care about logging in/out
               agreementRetrievalRepo.init(appFlux, firebase, sessionStore.state.user);
-            }
 
-            isAuthenticated = true;
-            log.info("Firebase authenticated");
+              // this will signal the routers to continue initializing
+              apiReadStore.setReadApiReadyState(true);
+
+              log.info("Firebase authenticated");
+            }
           });
-        } else {
-          if (isAuthenticated) {
+        }
+        else {
+          if (apiReadStore.state.readApiReady) {
             agreementRetrievalRepo.close();
             firebase.unauth();
-            isAuthenticated = false;
+            apiReadStore.setReadApiReadyState(false);
             log.info("Firebase unauthenticated");
           }
         }

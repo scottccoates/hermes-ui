@@ -128,6 +128,7 @@ gulp.task('serve', function () {
 
   runSequence(['browser-sync', 'js', 'sass', 'assets', 'html']);
 
+  gulp.watch('./index.html', ['html']);
   gulp.watch('./src/scripts/settings/**/*.js', ['js']);
   gulp.watch('./src/styles/**/*.scss', ['sass']);
 });

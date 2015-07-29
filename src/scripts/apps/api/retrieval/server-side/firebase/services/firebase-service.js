@@ -14,9 +14,16 @@ export default {
     return data;
   },
 
-  prepareObject(inputObject){
-    const data = Humps.camelizeKeys(inputObject.val());
+  prepareObject(inputObject, ...childCollections){
+    const inputObjectValue = inputObject.val();
+    inputObjectValue.id    = inputObject.key();
 
-    return data;
+    for (let child of childCollections) {
+      inputObjectValue[child] = this.prepareCollection(inputObject.child(child));
+    }
+
+    const retVal = Humps.camelizeKeys(inputObjectValue);
+
+    return retVal;
   }
 };

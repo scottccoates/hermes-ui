@@ -14,25 +14,19 @@ export default function (auth0Lock) {
       router: React.PropTypes.func
     },
 
-    _doLoginTransition(loggedIn){
-      if (loggedIn) {
-        // I'm not sure if there's a better way to completely reset the history by this point.
-        // It'd be bad to be able to click back and go back to the login screen
-        this.context.router.transitionTo(this.props.query.nextPath || '/');
-      }
-    },
-
-    componentWillReceiveProps(nextProps){
-      if (nextProps.loggedIn) {
-        this._doLoginTransition(nextProps.loggedIn);
-      }
+    _doLoginTransition(){
+      // I'm not sure if there's a better way to completely reset the history by this point.
+      // It'd be bad to be able to click back and go back to the login screen
+      this.context.router.transitionTo(this.props.query.nextPath || '/');
     },
 
     componentDidMount(){
+      // todo should this be handled by the router ?
       if (this.props.loggedIn) {
+        // if they're already logged in, but visiting /login
         this._doLoginTransition(this.props.loggedIn);
-
-      } else {
+      }
+      else {
         // https://auth0.com/docs/libraries/lock/customization
         const lockOptions    = {
           sso: false,
@@ -51,7 +45,9 @@ export default function (auth0Lock) {
             log.info("Beginning: Log in user: %s", profile.nickname);
             await sessionActions.login(idToken, profile);
             log.info("Completed: Log in user: %s", profile.nickname);
-          } catch (e) {
+            this._doLoginTransition();
+          }
+          catch (e) {
             throw new Error("Error completing the login process " + e.stack);
           }
         });

@@ -15,6 +15,8 @@ export default {
 
     const loadingFeedbackStore = container.get("LoadingFeedbackStore").dependency;
 
+    const apiReadStore = container.get("ApiReadStore").dependency;
+
     return class AppFlux extends Flux {
 
       constructor() {
@@ -33,6 +35,8 @@ export default {
         this.createStore('AgreementDetailStore', agreementDetailStore, this);
 
         this.createStore('LoadingFeedbackStore', loadingFeedbackStore, this);
+
+        this.createStore('ApiReadStore', apiReadStore, this);
 
         this.createStore('SessionStore', sessionStore, this);
       }

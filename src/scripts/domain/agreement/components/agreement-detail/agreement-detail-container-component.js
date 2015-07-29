@@ -95,7 +95,7 @@ export default function (agreementDetailGeneralInfoComponent, agreementDetailLen
   // probably best way to make this func available to router: https://github.com/acdlite/flummox/issues/173
   agreementDetailComponent.asyncTransition = (flux, state) => {
     const { agreementId } = state.params;
-    const agreementActions     = flux.getActions('AgreementActions');
+    const agreementActions = flux.getActions('AgreementActions');
 
     agreementActions.requestAgreementDetail(agreementId);
   };

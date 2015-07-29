@@ -23,12 +23,28 @@ container.register("AppFlux", appFlux);
 // retrievalRepo will listen for events from  appflux
 const retrievalRepo = container.get('APIRetrievalRepository');
 
-retrievalRepo.init(container);
+retrievalRepo.init(appFlux);
 
 const sessionPromise = appFlux.getActions('SessionActions').resumeSession()
   .catch(error => {
+    // we should catch this exception, flummox has no way of knowing this unhandled exception is ok.
+
     // this will happen if we can't resume a session (first time here, logged out, etc). It's ok.
     log.info("session error:", error);
   });
 
-sessionPromise.then(Routes.init.bind(Routes, container));
+sessionPromise.then(_=> {
+  const sessionStore = appFlux.getStore('SessionStore');
+  if (sessionStore.state.loggedIn) {
+    // wait for the apiReadStore to be ready (it'll take some time because it does wait the session.login action)
+    const apiReadStore = appFlux.getStore('ApiReadStore');
+    apiReadStore.once('change', _=> {
+      // it's important to wait for the apiReadStore. It waits for firebase.authWithCustomToken.
+      // Otherwise, things like agreementDetailStore could change before we're listening to it.
+      Routes.init(container);
+    });
+  }
+  else {
+    Routes.init(container);
+  }
+});
