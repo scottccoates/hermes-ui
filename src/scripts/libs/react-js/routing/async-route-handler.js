@@ -34,12 +34,9 @@ function getHandler(containerId, fluxInstance) {
     React.render(handler, document.getElementById(containerId));
   }
 
-  return async function (handler, state) {
-    renderHandler(handler, true);
-    console.log("rendered handler. loading: ", true);
-    await performAsyncTransition(fluxInstance, state);
-    renderHandler(handler, false);
-    console.log("rendered handler. loading: ", false);
+  return function (handler, state) {
+    renderHandler(handler);
+    performAsyncTransition(fluxInstance, state);
   };
 }
 

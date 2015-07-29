@@ -49,16 +49,7 @@ export default function (agreementListComponent) {
 
     const agreementActions = flux.getActions('AgreementActions');
 
-    const agreementListStore = flux.getStore('AgreementListStore');
-
     agreementActions.requestAgreementList(userId);
-
-    return new Promise((res, rej) => {
-      agreementListStore.once('change', _=> {
-        console.log("agreementListStore", agreementListStore);
-        res();
-      });
-    });
   };
 
   return new DependencyProvider(dashboardComponent);

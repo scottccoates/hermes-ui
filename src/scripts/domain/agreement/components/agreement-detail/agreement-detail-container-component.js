@@ -96,17 +96,8 @@ export default function (agreementDetailGeneralInfoComponent, agreementDetailLen
   agreementDetailComponent.asyncTransition = (flux, state) => {
     const { agreementId } = state.params;
     const agreementActions     = flux.getActions('AgreementActions');
-    const agreementDetailStore = flux.getStore('AgreementDetailStore');
 
     agreementActions.requestAgreementDetail(agreementId);
-
-    return new Promise((res, rej) => {
-      agreementDetailStore.once('change', _=> {
-        console.log("agreementDetailStore", agreementDetailStore);
-        res();
-      });
-    });
-
   };
 
   return new DependencyProvider(agreementDetailComponent);
