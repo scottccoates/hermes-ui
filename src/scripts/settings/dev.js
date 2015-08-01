@@ -5,7 +5,7 @@ import Auth0LoginComponent from 'src/scripts/apps/session/components/auth0-login
 import Auth0AuthService from 'src/scripts/apps/session/services/auth0-auth-service';
 
 import Firebase from 'firebase';
-import FirebaseRetrievalRepo from 'src/scripts/apps/api/retrieval/server-side/firebase/repositories/firebase-retrieval-repository';
+import FirebaseRetrievalApiService from 'src/scripts/apps/api/retrieval/server-side/firebase/services/firebase-retrieval-api-service';
 
 export default {
   init(){
@@ -20,7 +20,7 @@ export default {
     container.register("AuthService", Auth0AuthService);
 
     container.register("Firebase", Firebase);
-    container.register("APIRetrievalRepository", FirebaseRetrievalRepo);
+    container.register("RetrievalApiService", FirebaseRetrievalApiService);
     container.register("FirebaseAppUrl", "Firebase App Url");
 
     Lock.$inject = ["Auth0ClientID", "Auth0ClientDomain"]; // these are provided in the environment settings files
@@ -28,7 +28,7 @@ export default {
     Auth0AuthService.$inject    = ["Auth0Lock"];
 
     Firebase.$inject              = ["FirebaseAppUrl"];
-    FirebaseRetrievalRepo.$inject = ["Firebase"];
+    FirebaseRetrievalApiService.$inject = ["Firebase"];
 
     return container;
   }

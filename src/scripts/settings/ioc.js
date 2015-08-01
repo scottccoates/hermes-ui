@@ -104,7 +104,7 @@ export default {
 
     AgreementActions.$inject    = ["AgreementService"];
     AgreementService.$inject    = ["AgreementRepository"];
-    AgreementRepository.$inject = ["APIService"];
+    AgreementRepository.$inject = ["PersistenceApiService"];
 
     FileUpload.$inject = ["DropzoneFactory"];
 

@@ -1,6 +1,6 @@
 import log from 'loglevel';
 
-import agreementRetrievalRepo from'./agreement-firebase-retrieval-repository';
+import agreementRetrievalRepo from'./agreement-firebase-retrieval-api-service';
 
 export default function (firebase) {
   return {

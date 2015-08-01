@@ -1,5 +1,5 @@
 import log from 'loglevel';
-import agreementRetrievalRepo from './agreement-client-side-retrieval-repository';
+import agreementRetrievalRepo from './agreement-client-side-retrieval-api-service';
 
 export default function () {
   return {

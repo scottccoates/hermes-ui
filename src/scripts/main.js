@@ -20,10 +20,10 @@ const appFlux      = new appFluxClass();
 
 container.register("AppFlux", appFlux);
 
-// retrievalRepo will listen for events from  appflux
-const retrievalRepo = container.get('APIRetrievalRepository');
+// retrievalService will listen for events from  appflux
+const retrievalService = container.get('RetrievalApiService');
 
-retrievalRepo.init(appFlux);
+retrievalService.init(appFlux);
 
 const sessionPromise = appFlux.getActions('SessionActions').resumeSession()
   .catch(error => {

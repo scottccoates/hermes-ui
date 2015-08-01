@@ -6,8 +6,8 @@ import FakeAuthService from 'src/scripts/apps/session/services/fake-auth-service
 
 import NoOpDropzone from 'src/scripts/libs/file-upload/no-op-dropzone';
 
-import ClientSideApi from 'src/scripts/apps/api/services/client-side-api';
-import ClientSideRetrievalRepository from 'src/scripts/apps/api/retrieval/client-side/repositories/client-side-retrieval-repository';
+import ClientSidePersistenceApiService from 'src/scripts/apps/api/persistence/client-side/services/client-side-persistence-api-service';
+import ClientSideRetrievalApiService from 'src/scripts/apps/api/retrieval/client-side/services/client-side-retrieval-api-service';
 
 export default {
   init(){
@@ -18,8 +18,8 @@ export default {
 
     container.register("Dropzone", NoOpDropzone);
 
-    container.register("APIService", ClientSideApi);
-    container.register("APIRetrievalRepository", ClientSideRetrievalRepository);
+    container.register("PersistenceApiService", ClientSidePersistenceApiService);
+    container.register("RetrievalApiService", ClientSideRetrievalApiService);
 
     FakeLoginComponent.$inject = ["TokenService"];
 

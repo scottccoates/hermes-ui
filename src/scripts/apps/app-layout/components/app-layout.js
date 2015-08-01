@@ -35,6 +35,7 @@ export default function (authenticatedComponentFactory) {
     },
 
     render() {
+      console.log("render app layout:", this.props);
       // the transitionContent is an un-hindered DOM element, we can use it to measure what the size 'should' be.
       // the transitionWrapper is a DOM element that manually change the height attrs of.
 

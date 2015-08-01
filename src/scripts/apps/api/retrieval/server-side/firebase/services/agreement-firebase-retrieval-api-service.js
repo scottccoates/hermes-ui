@@ -1,4 +1,4 @@
-import FirebaseService from '../services/firebase-service.js';
+import FirebaseService from './firebase-service.js';
 
 export default {
   init(appFlux, rootRef, user) {
@@ -16,6 +16,7 @@ export default {
     // let's not worry about opening/closing connection for dashboard. just assume that we can always keep this open
     // because it's probably a frequently-visited screen.
     this.agreementListRef      = rootRef.child(`users/${user.userId}/agreements`);
+    // todo this is a problem because if they sign off, then on again, we have to listen.
     this.agreementListCallback = this.agreementListRef.on("value", snapshot => {
 
       try {

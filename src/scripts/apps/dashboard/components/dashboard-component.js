@@ -17,6 +17,8 @@ export default function (agreementListComponent) {
     displayName: "DashboardComponent",
 
     render() {
+      console.log("render dashboard:", this.props);
+
       var agreementListContent = null;
       if (this.props.agreements.size) {
 

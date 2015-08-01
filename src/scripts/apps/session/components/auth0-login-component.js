@@ -20,37 +20,74 @@ export default function (auth0Lock) {
       this.context.router.transitionTo(this.props.query.nextPath || '/');
     },
 
-    componentDidMount(){
-      // todo should this be handled by the router ?
-      if (this.props.loggedIn) {
-        // if they're already logged in, but visiting /login
-        this._doLoginTransition(this.props.loggedIn);
-      }
-      else {
-        // https://auth0.com/docs/libraries/lock/customization
-        const lockOptions    = {
-          sso: false,
-          rememberLastLogin: false,
-          closable: false,
-          icon: '/assets/images/medium-logo-no-text.svg',
-          authParams: {
-            scope: 'openid email user_metadata app_metadata picture'
-          }
-        };
-        const sessionActions = this.props.flux.getActions('SessionActions');
+    async componentDidMount(){
+      const sessionActions = this.props.flux.getActions('SessionActions');
 
-        auth0Lock.show(lockOptions, async (error, profile, idToken)=> {
-          if (error) throw new Error(`Error authenticating: ${idToken}. Inner exception: ${error.stack}`);
+      // tokens are not passed into the hash because we're not using a redirect mode. Right now the only reason
+      // auth info would be int he has is if we're impersonating someone.
+      const authInfo = auth0Lock.$auth0.parseHash(window.location.hash);
+      const idToken  = authInfo && authInfo.id_token;
+      if (idToken) {
+
+        if (this.props.loggedIn) {
+          // log out initial user  first
           try {
-            log.info("Beginning: Log in user: %s", profile.nickname);
+            const nickname = this.props.user.nickname;
+            log.info("Beginning: Logging out previous user: %s", nickname);
+            await sessionActions.logout();
+            log.info("Completed: Logging out previous user: %s", nickname);
+          }
+          catch (e) {
+            throw new Error("Error completing the impersonate process " + e.stack);
+          }
+        }
+
+        auth0Lock.$auth0.getProfile(idToken, async (error, profile)=> {
+          if (error) throw new Error(`Error authenticating: ${idToken}. Inner exception: ${error.stack}`);
+
+          try {
+            log.info("Beginning: Impersonate user: %s", profile.nickname);
             await sessionActions.login(idToken, profile);
-            log.info("Completed: Log in user: %s", profile.nickname);
+            log.info("Completed: Impersonate user: %s", profile.nickname);
             this._doLoginTransition();
           }
           catch (e) {
-            throw new Error("Error completing the login process " + e.stack);
+            throw new Error("Error completing the impersonate process " + e.stack);
           }
+
         });
+      }
+      else {
+        // todo should this be handled by the router ?
+        if (this.props.loggedIn) {
+          // if they're already logged in, but visiting /login
+          this._doLoginTransition(this.props.loggedIn);
+        }
+        else {
+          // https://auth0.com/docs/libraries/lock/customization
+          const lockOptions = {
+            sso: false,
+            rememberLastLogin: false,
+            closable: false,
+            icon: '/assets/images/medium-logo-no-text.svg',
+            authParams: {
+              scope: 'openid email user_metadata app_metadata picture'
+            }
+          };
+
+          auth0Lock.show(lockOptions, async (error, profile, idToken)=> {
+            if (error) throw new Error(`Error authenticating: ${idToken}. Inner exception: ${error.stack}`);
+            try {
+              log.info("Beginning: Log in user: %s", profile.nickname);
+              await sessionActions.login(idToken, profile);
+              log.info("Completed: Log in user: %s", profile.nickname);
+              this._doLoginTransition();
+            }
+            catch (e) {
+              throw new Error("Error completing the login process " + e.stack);
+            }
+          });
+        }
       }
     },
 
