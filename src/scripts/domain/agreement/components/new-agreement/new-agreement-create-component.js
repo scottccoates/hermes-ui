@@ -73,7 +73,7 @@ export default function (agreementActions, fileUploadProvider) {
 
                       <div className="content-section-item">
                         <h4>
-                          <span>Or</span>
+                          <span>OR</span>
                         </h4>
                       </div>
                       <div className="content-section-item space-top-lg">

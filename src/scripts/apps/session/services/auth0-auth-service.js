@@ -3,7 +3,7 @@ import log from 'loglevel';
 export default function (auth0Lock) {
 
   return {
-    getThirdPartyAuth(token){
+    getThirdPartyAuthInformation(token){
       const promise = new Promise((resolve, reject) => {
         const fbOptions = {
           id_token: token,    // The auth0 id_token you have now
@@ -16,7 +16,7 @@ export default function (auth0Lock) {
 
           if (error) {
             // error is not typeof Error
-            reject(`Error getting firebase token: ${delegationResult}. Inner exception: ${error.error_description}`);
+            reject(new Error(`Error getting firebase token: ${delegationResult}. Inner exception: ${error.error_description}`));
           }
           else {
             const newUser = {firebaseData: {token: delegationResult.id_token}};
@@ -29,22 +29,27 @@ export default function (auth0Lock) {
       return promise;
     },
 
-    renewAuth(idToken){
+    renewAuthToken(idToken){
       // https://auth0.com/docs/libraries/lock/using-a-refresh-token
       const promise = new Promise((resolve, reject) => {
         const client = auth0Lock.getClient();
 
         client.renewIdToken(idToken, function (error, delegationResult) {
 
-          // Get here the new JWT via delegationResult.id_token
           if (error) {
             // error is not typeof Error
-            reject(`Error getting new token: ${idToken}. Inner exception: ${error.error_description}`);
+            reject(new Error(`Error getting new token: ${idToken}. Inner exception: ${error.error_description}`));
           }
           else {
-            const token   = delegationResult.id_token;
-            const profile = client.decodeJwt(token);
-            resolve({token, profile});
+            // the reason we're not actually providing the new profile is because
+            // when we impersonate someone, the jwt has very little scope and there isn't a convenient way to expand it.
+            // however, I did check and it appears that renewIdToken doesn't actually fetch new data from auth0;
+            // const token   = delegationResult.id_token;
+            // const profile = client.decodeJwt(token);
+            // remember to change the session service to now use the newLoginInfo.token and newLoginInfo.profile
+
+            const token = delegationResult.id_token;
+            resolve(token);
           }
         });
       });

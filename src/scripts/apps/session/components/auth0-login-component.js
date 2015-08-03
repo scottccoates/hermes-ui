@@ -35,7 +35,8 @@ export default function (auth0Lock) {
           try {
             const nickname = this.props.user.nickname;
             log.info("Logging out previous user: %s", nickname);
-            this.context.router.transitionTo('logout', {}, {nextPath: this.props.path});
+
+            this.context.router.transitionTo('logout', {}, {nextPath: window.location.toString()});
           }
           catch (e) {
             throw new Error("Error completing the impersonate process " + e.stack);
@@ -43,6 +44,7 @@ export default function (auth0Lock) {
         }
         else {
           auth0Lock.$auth0.getProfile(idToken, async (error, profile)=> {
+
             if (error) throw new Error(`Error authenticating: ${idToken}. Inner exception: ${error.stack}`);
 
             try {
@@ -58,7 +60,6 @@ export default function (auth0Lock) {
         }
       }
       else {
-        // todo should this be handled by the router ?
         if (this.props.loggedIn) {
           // if they're already logged in, but visiting /login
           this._doLoginTransition();
@@ -77,6 +78,7 @@ export default function (auth0Lock) {
 
           auth0Lock.show(lockOptions, async (error, profile, idToken)=> {
             if (error) throw new Error(`Error authenticating: ${idToken}. Inner exception: ${error.stack}`);
+
             try {
               log.info("Beginning: Log in user: %s", profile.nickname);
               await sessionActions.login(idToken, profile);

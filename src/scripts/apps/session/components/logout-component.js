@@ -32,9 +32,8 @@ export default function () {
     },
 
     render() {
-      console.log("logout render");
       return (
-        <div id="logout-wrapper">OH HAI</div>
+        <div id="logout-wrapper"></div>
       );
     }
   });

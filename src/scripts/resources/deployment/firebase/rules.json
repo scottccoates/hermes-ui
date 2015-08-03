@@ -1,7 +1,9 @@
 {
   "rules": {
     "agreement-details": {
-      ".read": true
+      "$detail": {
+        ".read": "data.child('viewers').hasChildren([auth.uid])"
+      }
     },
     "users": {
       "$userID": {

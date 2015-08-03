@@ -2,7 +2,6 @@
 // --------------------------------------------------
 // This contains the stuff in the middle (header, main content)
 @import "main-layout";
-
 // The actual app layout components
 @import "sidebar";
 @import "header/header";
@@ -11,6 +10,8 @@
 
 #page-wrapper {
   min-height: 100vh; //http://philipwalton.github.io/solved-by-flexbox/demos/holy-grail/
+
+  min-width: 1233px; // this is a temporary hack to prevent any media queries from firing. hack: force large media query
 
   display: flex;
 }

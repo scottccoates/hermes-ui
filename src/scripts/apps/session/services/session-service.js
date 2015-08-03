@@ -24,7 +24,7 @@ export default function (sessionRepository, authService) {
 
         log.info("Beginning: Get third party auth for user: %s", user.nickname);
 
-        let thirdPartyAuthInformation = await authService.getThirdPartyAuth(token);
+        let thirdPartyAuthInformation = await authService.getThirdPartyAuthInformation(token);
         thirdPartyAuthInformation     = this._prepareUserObject(thirdPartyAuthInformation);
 
         log.info("Completed: Get third party auth for user: %s", user.nickname);
@@ -36,14 +36,14 @@ export default function (sessionRepository, authService) {
       }
 
       try {
-        await sessionRepository.saveLoginInfo(token, newUserInformation);
+        sessionRepository.saveLoginInfo(token, newUserInformation);
       }
       catch (e) {
         throw new Error("Cannot save login info: " + e.stack);
       }
 
       try {
-        var loginInfo = await sessionRepository.getLoginInfo();
+        var loginInfo = sessionRepository.getLoginInfo();
       }
       catch (e) {
         throw new Error("Cannot retrieve login info after saving: " + e.stack);
@@ -77,25 +77,24 @@ export default function (sessionRepository, authService) {
 
     async renewSession(keepAliveSessionFunc){
       try {
-        const loginInfo      = await sessionRepository.getLoginInfo();
-        const currentIdToken = loginInfo.token;
+        const loginInfo        = sessionRepository.getLoginInfo();
+        const currentIdToken   = loginInfo.token;
 
         log.info("Beginning: Renew auth for user: %s", loginInfo.user.nickname);
-        const newLoginInfo   = await authService.renewAuth(currentIdToken);
+        const renewedAuthToken = await authService.renewAuthToken(currentIdToken);
         log.info("Completed: Renew auth for user: %s", loginInfo.user.nickname);
 
-        return await sessionService.login(newLoginInfo.token, newLoginInfo.profile, keepAliveSessionFunc);
-
+        return await sessionService.login(renewedAuthToken, loginInfo.user, keepAliveSessionFunc);
       }
       catch (e) {
-        throw new Error("Cannot renew: " + e);
+        throw new Error("Cannot renew: " + e.stack);
       }
     },
 
     async resumeSession(keepAliveSessionFunc){
       try {
         await sessionService.renewSession(keepAliveSessionFunc);
-        var retVal = await sessionRepository.getLoginInfo();
+        var retVal = sessionRepository.getLoginInfo();
       }
       catch (e) {
         throw new Error("Cannot resume session: " + e.stack);
