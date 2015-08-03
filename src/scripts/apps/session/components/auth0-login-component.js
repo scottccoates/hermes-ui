@@ -71,7 +71,7 @@ export default function (auth0Lock) {
             closable: false,
             icon: '/assets/images/medium-logo-no-text.svg',
             authParams: {
-              scope: 'openid email user_metadata app_metadata picture'
+              scope: 'openid email user_metadata app_metadata picture nickname'
             }
           };
 
