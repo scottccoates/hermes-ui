@@ -1,23 +1,26 @@
 import FirebaseService from './firebase-service.js';
 
 export default {
-  init(appFlux, rootRef, user) {
+  init(appFlux, rootRef) {
     const agreementActions     = appFlux.getActions('AgreementActions');
     const agreementDetailStore = appFlux.getStore('AgreementDetailStore');
+
+    const sessionStore = appFlux.getStore('SessionStore');
+    const user         = sessionStore.state.user;
+
 
     // keep track of state as the store will emit multiple changes.
     this.currentRequestedAgreementDetail = {id: null};
 
-    this.agreementListRef        = null;
-    this.agreementListCallback   = null;
     this.agreementDetailRef      = null;
     this.agreementDetailCallback = null;
 
     // let's not worry about opening/closing connection for dashboard. just assume that we can always keep this open
     // because it's probably a frequently-visited screen.
-    this.agreementListRef      = rootRef.child(`users/${user.userId}/agreements`);
-    // todo this is a problem because if they sign off, then on again, we have to listen.
-    this.agreementListCallback = this.agreementListRef.on("value", snapshot => {
+    // also, we don't need to worry about users logging off, because the whole app will just be refreshed.
+    const agreementListRef = rootRef.child(`users/${user.userId}/agreements`);
+
+    agreementListRef.on("value", snapshot => {
 
       try {
         const data = FirebaseService.prepareCollection(snapshot);
@@ -60,10 +63,5 @@ export default {
         }
       }
     });
-  },
-
-  close(){
-    if (this.agreementListRef) this.agreementListRef.off('value', this.agreementListCallback);
-    if (this.agreementDetailRef) this.agreementDetailRef.off('value', this.agreementDetailCallback);
   }
 };

@@ -98,8 +98,5 @@ export default {
       }
     });
 
-  },
-  close(){
-    // not sure if we need this method
   }
 };

@@ -21,7 +21,7 @@ export default function () {
       const sessionActions = flux.getActionIds('SessionActions');
       this.registerAsync(sessionActions.login, this.onLoginBegan, this._saveUserState, this.onLoginFailed);
       this.registerAsync(sessionActions.resumeSession, null, this._saveUserState, this.onSessionResumeFailed);
-      this.registerAsync(sessionActions.logout, this.onSessionEnded);
+      this.register(sessionActions.logout, this.onSessionEnded);
 
       this.state = defaultState;
     }

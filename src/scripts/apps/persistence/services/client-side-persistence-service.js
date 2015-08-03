@@ -7,7 +7,7 @@ const namespace = 'hermes';
 const bb        = new BankersBox(0);
 
 export default {
-  async save(path, data){
+  save(path, data){
 
     const key = `${namespace}:${path}`;
 
@@ -18,7 +18,7 @@ export default {
     return retVal;
   },
 
-  async delete(path){
+  delete(path){
 
     const key = `${namespace}:${path}`;
 
@@ -29,7 +29,7 @@ export default {
     return retVal;
   },
 
-  async get(path){
+  get(path){
 
     const key = `${namespace}:${path}`;
 

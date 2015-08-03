@@ -20,11 +20,6 @@ const appFlux      = new appFluxClass();
 
 container.register("AppFlux", appFlux);
 
-// retrievalService will listen for events from  appflux
-const retrievalService = container.get('RetrievalApiService');
-
-retrievalService.init(appFlux);
-
 const sessionPromise = appFlux.getActions('SessionActions').resumeSession()
   .catch(error => {
     // we should catch this exception, flummox has no way of knowing this unhandled exception is ok.
@@ -33,18 +28,21 @@ const sessionPromise = appFlux.getActions('SessionActions').resumeSession()
     log.info("session error:", error);
   });
 
-sessionPromise.then(_=> {
+sessionPromise.then(async _=> {
   const sessionStore = appFlux.getStore('SessionStore');
+
   if (sessionStore.state.loggedIn) {
-    // wait for the apiReadStore to be ready (it'll take some time because it does wait the session.login action)
-    const apiReadStore = appFlux.getStore('ApiReadStore');
-    apiReadStore.once('change', _=> {
-      // it's important to wait for the apiReadStore. It waits for firebase.authWithCustomToken.
-      // Otherwise, things like agreementDetailStore could change before we're listening to it.
-      Routes.init(container);
-    });
+
+    // retrievalService will listen for events from  appflux
+    const retrievalService = container.get('RetrievalApiService');
+
+    try {
+      await retrievalService.init(appFlux);
+    }
+    catch (error) {
+      throw new Error(`Error initializing retrieval api service: Inner exception: ${error.stack}`);
+    }
   }
-  else {
-    Routes.init(container);
-  }
+
+  Routes.init(container);
 });

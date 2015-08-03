@@ -8,8 +8,8 @@ export default function (sessionService) {
       return newUserLoginInformation;
     },
 
-    async logout() {
-      const retVal = await sessionService.logout();
+    logout() {
+      const retVal = sessionService.logout();
       return retVal;
     },
 

@@ -13,22 +13,28 @@ export default function () {
       router: React.PropTypes.func
     },
 
-    async componentWillMount(){
+    _doLoginTransition(){
+      window.location = this.props.query.nextPath || 'login';
+    },
+
+    componentWillMount(){
       const sessionActions = this.props.flux.getActions('SessionActions');
 
-      await sessionActions.logout(); // unhandled not reported unless awaited
+      sessionActions.logout();
     },
 
     componentWillReceiveProps(nextProps){
       // this isn't called when visiting the '/logout' page directly. This is probably because the store is already
       // done initializing by the time we get here.
 
-      this.context.router.transitionTo('login');
+      // however, this is called when we invoke sessionActions.logout (because this will update sessionStore)
+      this._doLoginTransition();
     },
 
     render() {
+      console.log("logout render");
       return (
-        <div id="logout-wrapper"></div>
+        <div id="logout-wrapper">OH HAI</div>
       );
     }
   });

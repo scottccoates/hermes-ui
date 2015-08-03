@@ -8,20 +8,20 @@ export default function (clientSidePersistenceRepo) {
   // This repo chooses to store it locally
 
   return {
-    async saveLoginInfo(token, user){
-      const retVal = await clientSidePersistenceRepo.save(clientSidePersistencePath, {token, user});
+    saveLoginInfo(token, user){
+      const retVal = clientSidePersistenceRepo.save(clientSidePersistencePath, {token, user});
 
       return retVal;
     },
 
-    async deleteLoginInfo(){
-      const retVal = await clientSidePersistenceRepo.delete(clientSidePersistencePath);
+    deleteLoginInfo(){
+      const retVal = clientSidePersistenceRepo.delete(clientSidePersistencePath);
 
       return retVal;
     },
 
-    async getLoginInfo(){
-      const sessionInformation = await clientSidePersistenceRepo.get(clientSidePersistencePath);
+    getLoginInfo(){
+      const sessionInformation = clientSidePersistenceRepo.get(clientSidePersistencePath);
       return sessionInformation;
     }
   };

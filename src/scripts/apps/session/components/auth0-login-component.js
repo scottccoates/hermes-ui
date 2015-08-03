@@ -17,7 +17,7 @@ export default function (auth0Lock) {
     _doLoginTransition(){
       // I'm not sure if there's a better way to completely reset the history by this point.
       // It'd be bad to be able to click back and go back to the login screen
-      this.context.router.transitionTo(this.props.query.nextPath || '/');
+      window.location = this.props.query.nextPath || '/';
     },
 
     async componentDidMount(){
@@ -27,41 +27,41 @@ export default function (auth0Lock) {
       // auth info would be int he has is if we're impersonating someone.
       const authInfo = auth0Lock.$auth0.parseHash(window.location.hash);
       const idToken  = authInfo && authInfo.id_token;
+
       if (idToken) {
 
         if (this.props.loggedIn) {
           // log out initial user  first
           try {
             const nickname = this.props.user.nickname;
-            log.info("Beginning: Logging out previous user: %s", nickname);
-            await sessionActions.logout();
-            log.info("Completed: Logging out previous user: %s", nickname);
+            log.info("Logging out previous user: %s", nickname);
+            this.context.router.transitionTo('logout', {}, {nextPath: this.props.path});
           }
           catch (e) {
             throw new Error("Error completing the impersonate process " + e.stack);
           }
         }
+        else {
+          auth0Lock.$auth0.getProfile(idToken, async (error, profile)=> {
+            if (error) throw new Error(`Error authenticating: ${idToken}. Inner exception: ${error.stack}`);
 
-        auth0Lock.$auth0.getProfile(idToken, async (error, profile)=> {
-          if (error) throw new Error(`Error authenticating: ${idToken}. Inner exception: ${error.stack}`);
-
-          try {
-            log.info("Beginning: Impersonate user: %s", profile.nickname);
-            await sessionActions.login(idToken, profile);
-            log.info("Completed: Impersonate user: %s", profile.nickname);
-            this._doLoginTransition();
-          }
-          catch (e) {
-            throw new Error("Error completing the impersonate process " + e.stack);
-          }
-
-        });
+            try {
+              log.info("Beginning: Impersonate user: %s", profile.nickname);
+              await sessionActions.login(idToken, profile);
+              log.info("Completed: Impersonate user: %s", profile.nickname);
+              this._doLoginTransition();
+            }
+            catch (e) {
+              throw new Error("Error completing the impersonate process " + e.stack);
+            }
+          });
+        }
       }
       else {
         // todo should this be handled by the router ?
         if (this.props.loggedIn) {
           // if they're already logged in, but visiting /login
-          this._doLoginTransition(this.props.loggedIn);
+          this._doLoginTransition();
         }
         else {
           // https://auth0.com/docs/libraries/lock/customization

@@ -42,8 +42,6 @@ import SearchResultItem from '../domain/search/components/result/search-result-i
 
 import LoadingFeedbackStore from 'src/scripts/apps/feedback/stores/loading-feedback-store';
 
-import ApiReadStore from 'src/scripts/apps/api/retrieval/messaging/stores/api-read-store';
-
 export default {
   init(){
     const container = Intravenous.create({
@@ -90,8 +88,6 @@ export default {
     container.register("AuthenticatedComponent", AuthenticatedComponent);
 
     container.register("LoadingFeedbackStore", LoadingFeedbackStore);
-
-    container.register("ApiReadStore", ApiReadStore);
 
     DashboardComponent.$inject = ["AgreementListComponent"];
 

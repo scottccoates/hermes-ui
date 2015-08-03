@@ -56,7 +56,7 @@ export default function (sessionRepository, authService) {
       return loginInfo;
     },
 
-    async logout(){
+    logout(){
       // prevent the auto refresh
       if (_renewSessionTimeout) {
         clearTimeout(_renewSessionTimeout);
@@ -64,7 +64,7 @@ export default function (sessionRepository, authService) {
       }
 
       try {
-        var retVal = await sessionRepository.deleteLoginInfo();
+        var retVal = sessionRepository.deleteLoginInfo();
       } catch (e) {
         throw new Error("Cannot logout: " + e.stack);
       }
