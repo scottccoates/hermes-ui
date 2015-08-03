@@ -30,19 +30,22 @@ export default function (sessionRepository, authService) {
         log.info("Completed: Get third party auth for user: %s", user.nickname);
 
         var newUserInformation = Object.assign({}, user, thirdPartyAuthInformation);
-      } catch (e) {
+      }
+      catch (e) {
         throw new Error("Cannot get third party auth: " + e.stack);
       }
 
       try {
         await sessionRepository.saveLoginInfo(token, newUserInformation);
-      } catch (e) {
+      }
+      catch (e) {
         throw new Error("Cannot save login info: " + e.stack);
       }
 
       try {
         var loginInfo = await sessionRepository.getLoginInfo();
-      } catch (e) {
+      }
+      catch (e) {
         throw new Error("Cannot retrieve login info after saving: " + e.stack);
       }
 
@@ -65,7 +68,8 @@ export default function (sessionRepository, authService) {
 
       try {
         var retVal = sessionRepository.deleteLoginInfo();
-      } catch (e) {
+      }
+      catch (e) {
         throw new Error("Cannot logout: " + e.stack);
       }
       return retVal;
@@ -77,12 +81,13 @@ export default function (sessionRepository, authService) {
         const currentIdToken = loginInfo.token;
 
         log.info("Beginning: Renew auth for user: %s", loginInfo.user.nickname);
-        const newIdToken     = await authService.renewAuth(currentIdToken);
+        const newLoginInfo   = await authService.renewAuth(currentIdToken);
         log.info("Completed: Renew auth for user: %s", loginInfo.user.nickname);
 
-        return await sessionService.login(newIdToken, loginInfo.user, keepAliveSessionFunc);
+        return await sessionService.login(newLoginInfo.token, newLoginInfo.profile, keepAliveSessionFunc);
 
-      } catch (e) {
+      }
+      catch (e) {
         throw new Error("Cannot renew: " + e);
       }
     },
@@ -91,7 +96,8 @@ export default function (sessionRepository, authService) {
       try {
         await sessionService.renewSession(keepAliveSessionFunc);
         var retVal = await sessionRepository.getLoginInfo();
-      } catch (e) {
+      }
+      catch (e) {
         throw new Error("Cannot resume session: " + e.stack);
       }
       return retVal;

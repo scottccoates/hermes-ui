@@ -7,7 +7,7 @@ export default {
 
     const sessionStore = appFlux.getStore('SessionStore');
     const user         = sessionStore.state.user;
-
+    const userId       = user.appMetadata.hermes.userId;
 
     // keep track of state as the store will emit multiple changes.
     this.currentRequestedAgreementDetail = {id: null};
@@ -18,7 +18,7 @@ export default {
     // let's not worry about opening/closing connection for dashboard. just assume that we can always keep this open
     // because it's probably a frequently-visited screen.
     // also, we don't need to worry about users logging off, because the whole app will just be refreshed.
-    const agreementListRef = rootRef.child(`users/${user.userId}/agreements`);
+    const agreementListRef = rootRef.child(`users/${userId}/agreements`);
 
     agreementListRef.on("value", snapshot => {
 

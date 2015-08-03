@@ -32,7 +32,9 @@ export default function (auth0Lock) {
     renewAuth(idToken){
       // https://auth0.com/docs/libraries/lock/using-a-refresh-token
       const promise = new Promise((resolve, reject) => {
-        auth0Lock.getClient().renewIdToken(idToken, function (error, delegationResult) {
+        const client = auth0Lock.getClient();
+
+        client.renewIdToken(idToken, function (error, delegationResult) {
 
           // Get here the new JWT via delegationResult.id_token
           if (error) {
@@ -40,9 +42,10 @@ export default function (auth0Lock) {
             reject(`Error getting new token: ${idToken}. Inner exception: ${error.error_description}`);
           }
           else {
-            resolve(delegationResult.id_token);
+            const token   = delegationResult.id_token;
+            const profile = client.decodeJwt(token);
+            resolve({token, profile});
           }
-
         });
       });
 
