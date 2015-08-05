@@ -24,7 +24,7 @@ export default React.createClass({
             <span className='middle'>Calendar</span>
           </li>
           <li>
-            <i className="fa fa-bar-chart middle space-right"></i>
+            <i className="fa fa-bar-chart middle space-right-lg"></i>
             <span className='middle'>Reports</span>
           </li>
         </ul>
