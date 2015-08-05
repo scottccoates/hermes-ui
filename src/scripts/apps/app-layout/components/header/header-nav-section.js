@@ -42,7 +42,7 @@ var headerNavSection = React.createClass({
               <img alt="header profile image" className="header-profile-image"
                    src={this.props.user.picture}/>
               <span className="header-profile-name">{this.props.user.nickname}
-                <i className="fa fa-caret-down space-left"></i>
+                <i className="fa fa-caret-down space-left middle"></i>
               </span>
             </a>
             <FocusContainer inFocus={this.state.profileDropdownEnabled} onClose={this.onDropdownClose}>
@@ -68,12 +68,12 @@ var headerNavSection = React.createClass({
           </li>
 
           <li className="header-item header-alerts">
-            <i className="fa fa-bell-o"></i>
+            <i className="fa fa-bell-o middle"></i>
           </li>
 
           <li className="header-item header-help">
             <span>Help
-              <i className="fa fa-caret-down space-left"></i>
+              <i className="fa fa-caret-down space-left middle"></i>
             </span>
           </li>
 
