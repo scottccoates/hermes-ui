@@ -22,11 +22,11 @@
 <script src="/js/app.js"></script>
 <!-- @endif -->
 <script>
-  System.import('src/scripts/apps/feedback/components/loading/loading-feedback').then(function (loadingFeedback) {
-    loadingFeedback.default.start();
+  System.import('src/scripts/apps/feedback/services/loading-service').then(function (loadingService) {
+    loadingService.default.start();
     System.import('src/scripts/main')
 //        .catch(console.log.bind(console))
-        .then(loadingFeedback.default.done);
+        .then(loadingService.default.done);
   });
 </script>
 </body>
