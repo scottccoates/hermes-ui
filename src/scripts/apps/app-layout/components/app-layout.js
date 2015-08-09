@@ -35,32 +35,35 @@ export default function (authenticatedComponentFactory) {
     },
 
     render() {
-      console.log("render app layout:", this.props);
       // the transitionContent is an un-hindered DOM element, we can use it to measure what the size 'should' be.
       // the transitionWrapper is a DOM element that manually change the height attrs of.
 
-      //var transitionWrapperHeight  = null;
-      //var transitionContentOpacity = null;
-      //
-      //if (this.props.loading) {
-      //  transitionContentOpacity = "0";
-      //  if (this.transitionContent) {
-      //    transitionWrapperHeight = this.transitionContent.clientHeight + "px";
-      //  } else {
-      //    // this is the first time the page is loading, hence the node is missing
-      //    // first time loading async data, we want to ensure the height change is animated
-      //    transitionWrapperHeight = "500px";
-      //  }
-      //}
-      //else {
-      //  transitionContentOpacity = "1";
-      //  transitionWrapperHeight  = this.transitionContent.clientHeight + "px";
-      //}
+      var transitionWrapperHeight  = null;
+      var transitionContentOpacity = null;
+      var transitionContentNode    = null;
 
-      //const transitionWrapperStyle = {height: transitionWrapperHeight};
-      //const transitionContentStyle = {opacity: transitionContentOpacity};
-      const transitionWrapperStyle = {};
-      const transitionContentStyle = {};
+      if (this.props.loading) {
+        transitionContentOpacity = "0";
+        if (this.transitionContent) {
+          transitionWrapperHeight = this.transitionContent.clientHeight + "px";
+        }
+        else {
+          // this is the first time the page is loading, hence the node is missing
+          // first time loading async data, we want to ensure the height change is animated
+          transitionWrapperHeight = "500px";
+        }
+
+        transitionContentNode = (<div>Loading</div>);
+      }
+      else {
+        transitionContentOpacity = "1";
+        transitionWrapperHeight  = this.transitionContent.clientHeight + "px";
+
+        transitionContentNode = (<RouteHandler/>);
+      }
+
+      const transitionWrapperStyle = {height: transitionWrapperHeight};
+      const transitionContentStyle = {opacity: transitionContentOpacity};
 
       return (
         <div id="page-wrapper">
@@ -72,7 +75,7 @@ export default function (authenticatedComponentFactory) {
             <div id="content-wrapper">
               <div className="transition-content-wrapper" style={transitionWrapperStyle}>
                 <div ref="transitionContent" className="transition-content" style={transitionContentStyle}>
-                  <RouteHandler />
+                  {transitionContentNode}
                 </div>
               </div>
             </div>

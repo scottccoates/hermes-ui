@@ -17,8 +17,6 @@ export default function (agreementListComponent) {
     displayName: "DashboardComponent",
 
     render() {
-      console.log("render dashboard:", this.props);
-
       var agreementListContent = null;
       if (this.props.agreements.size) {
 
@@ -65,12 +63,17 @@ export default function (agreementListComponent) {
   // probably best way to make this func available to router: https://github.com/acdlite/flummox/issues/173
   dashboardComponent.asyncTransition = (flux, state) => {
     const sessionStore = flux.getStore('SessionStore');
+    const agreementListStore = flux.getStore('AgreementListStore');
 
     const userId = sessionStore.state.user.userId;
 
     const agreementActions = flux.getActions('AgreementActions');
 
     agreementActions.requestAgreementList(userId);
+
+    return new Promise((res, rej)=> {
+      agreementListStore.once('change', res);
+    });
   };
 
   return new DependencyProvider(dashboardComponent);

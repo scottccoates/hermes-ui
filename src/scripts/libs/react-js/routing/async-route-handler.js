@@ -15,7 +15,6 @@ function performAsyncTransition(flux, state) {
 
   //flatten http://stackoverflow.com/questions/10865025/merge-flatten-an-array-of-arrays-in-javascript
   asyncTransitionRoutes = [].concat.apply([], asyncTransitionRoutes);
-
   const asyncTransitionPromises = Promise.all(asyncTransitionRoutes);
 
   return asyncTransitionPromises;
@@ -26,7 +25,7 @@ function getHandler(containerId, fluxInstance) {
   function renderHandler(Handler, loading) {
 
     const handler = (
-      <FluxComponent flux={fluxInstance}>
+      <FluxComponent flux={fluxInstance} loading={loading}>
         <Handler/>
       </FluxComponent>
     );
@@ -34,9 +33,12 @@ function getHandler(containerId, fluxInstance) {
     React.render(handler, document.getElementById(containerId));
   }
 
-  return function (handler, state) {
-    renderHandler(handler);
-    performAsyncTransition(fluxInstance, state);
+  return async function (handler, state) {
+    renderHandler(handler, true);
+    await performAsyncTransition(fluxInstance, state);
+    setTimeout(_=> {
+      renderHandler(handler, false);
+    }, 5000);
   };
 }
 
