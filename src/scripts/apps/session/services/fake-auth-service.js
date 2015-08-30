@@ -1,10 +1,10 @@
 export default function () {
   return {
-    getThirdPartyAuth(token){
+    getThirdPartyAuthInformation(token){
       return {fakeThirdPartyAuth: {info: token.toUpperCase()}};
     },
 
-    renewAuth(token){
+    renewAuthToken(token){
       return token;
     }
   };

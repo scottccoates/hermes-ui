@@ -31,6 +31,7 @@ export default function (auth0Lock) {
 
     renewAuthToken(idToken){
       // https://auth0.com/docs/libraries/lock/using-a-refresh-token
+      // renewing a token doesn't fetch the data from their database, it simply reruns whatever was passed into the token.
       const promise = new Promise((resolve, reject) => {
         const client = auth0Lock.getClient();
 

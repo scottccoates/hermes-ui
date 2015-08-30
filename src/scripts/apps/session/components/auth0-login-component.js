@@ -66,14 +66,13 @@ export default function (auth0Lock) {
         }
         else {
           // https://auth0.com/docs/libraries/lock/customization
+          // https://auth0.com/docs/libraries/lock/sending-authentication-parameters
+          // we can omit authParams.scope because we don't actually care about storing anything in the token.
           const lockOptions = {
             sso: false,
             rememberLastLogin: false,
             closable: false,
-            icon: '/assets/images/medium-logo-no-text.svg',
-            authParams: {
-              scope: 'openid email user_metadata app_metadata picture nickname'
-            }
+            icon: '/assets/images/medium-logo-no-text.svg'
           };
 
           auth0Lock.show(lockOptions, async (error, profile, idToken)=> {
