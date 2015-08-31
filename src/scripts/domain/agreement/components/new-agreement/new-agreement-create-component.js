@@ -27,11 +27,13 @@ export default function (persistenceApiServiceUrl, fileUploadProvider) {
     },
 
     onProgressed(progress) {
-      agreementActions.uploadContractProgressed(progress);
+      const agreementActions = this.context.flux.getActions('AgreementActions');
+      agreementActions.contractUploadProgressed(progress);
     },
 
     onComplete(file) {
-      agreementActions.uploadContractCompleted(file);
+      const agreementActions = this.context.flux.getActions('AgreementActions');
+      agreementActions.contractUploadCompleted(file);
     },
 
     render() {
@@ -56,7 +58,9 @@ export default function (persistenceApiServiceUrl, fileUploadProvider) {
 
                         <FileUploader url={contractUrl} onAddedFile={this.onAddedFile} onProgressed={this.onProgressed}
                                       onComplete={this.onComplete}
-                                      className="import-agreement-container dropzone">
+                                      className="import-agreement-container dropzone"
+                                      paramName="contract"
+                                      acceptedFiles=".pdf">
                           <i className="fa fa-cloud-upload"></i>
 
                           <div className="primary-import-text">Select a file to upload</div>

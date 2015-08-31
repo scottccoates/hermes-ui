@@ -15,6 +15,8 @@ export default function (dropzoneFactory) {
   const component = React.createClass({
     propTypes: {
       url: React.PropTypes.string.isRequired,
+      paramName: React.PropTypes.string,
+      acceptedFiles: React.PropTypes.string,
       onAddedFile: React.PropTypes.func,
       onProgressed: React.PropTypes.func,
       onComplete: React.PropTypes.func,

@@ -1,33 +1,32 @@
 System.config({
-  "baseURL": "/",
-  "defaultJSExtensions": true,
-  "transpiler": "babel",
-  "babelOptions": {
+  baseURL: "/",
+  defaultJSExtensions: true,
+  transpiler: "babel",
+  babelOptions: {
     "optional": [
       "runtime"
     ],
     "stage": 0
   },
-  "paths": {
+  paths: {
     "github:*": "jspm_packages/github/*",
     "npm:*": "jspm_packages/npm/*"
   },
-  "packages": {
+
+  packages: {
     "github:twilio/BankersBox@0.1.0": {
       "main": "bankersbox"
     }
-  }
-});
+  },
 
-System.config({
-  "map": {
+  map: {
     "auth0-lock": "github:auth0/lock@7.5.6",
-    "babel": "npm:babel-core@5.8.3",
-    "babel-runtime": "npm:babel-runtime@5.8.3",
+    "babel": "npm:babel-core@5.8.23",
+    "babel-runtime": "npm:babel-runtime@5.8.20",
     "bacon": "npm:baconjs@0.7.53",
     "bankers-box": "github:twilio/BankersBox@0.1.0",
     "classnames": "github:JedWatson/classnames@2.1.2",
-    "core-js": "npm:core-js@0.9.18",
+    "core-js": "npm:core-js@1.1.3",
     "dropzone": "npm:dropzone@4.0.1",
     "firebase": "github:firebase/firebase-bower@2.2.7",
     "flummox": "npm:flummox@3.5.2",
@@ -108,7 +107,7 @@ System.config({
     "npm:assert@1.3.0": {
       "util": "npm:util@0.10.3"
     },
-    "npm:babel-runtime@5.8.3": {
+    "npm:babel-runtime@5.8.20": {
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
     "npm:baconjs@0.7.53": {
@@ -150,7 +149,7 @@ System.config({
       "path": "github:jspm/nodelibs-path@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
-    "npm:core-js@0.9.18": {
+    "npm:core-js@1.1.3": {
       "fs": "github:jspm/nodelibs-fs@0.1.2",
       "process": "github:jspm/nodelibs-process@0.1.1",
       "systemjs-json": "github:systemjs/plugin-json@0.1.0"
@@ -306,4 +305,3 @@ System.config({
     }
   }
 });
-

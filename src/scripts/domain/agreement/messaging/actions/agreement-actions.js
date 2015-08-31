@@ -13,10 +13,10 @@ export default function (agreementService) {
 
     },
 
-    uploadContractProgressed(progress){
+    contractUploadProgressed(progress){
     },
 
-    uploadContractCompleted(data){
+    contractUploadCompleted(data){
     },
 
     requestAgreementList(userId) {
