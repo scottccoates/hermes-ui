@@ -14,7 +14,7 @@ const {Link} = Router;
 
 const {Validator} = Validation;
 
-export default function (agreementActions) {
+export default function () {
 
   const component = React.createClass({
     displayName: "NewAgreementFormComponent",
@@ -50,7 +50,7 @@ export default function (agreementActions) {
     },
 
     render() {
-
+      console.log("render form");
       const formData = this.state.formData;
       const status   = this.state.status;
 

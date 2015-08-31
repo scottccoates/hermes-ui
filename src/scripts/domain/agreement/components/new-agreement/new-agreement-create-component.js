@@ -18,7 +18,8 @@ export default function (persistenceApiServiceUrl, fileUploadProvider) {
     displayName: "NewAgreementCreateComponent",
 
     contextTypes: {
-      flux: React.PropTypes.instanceOf(Flummox)
+      flux: React.PropTypes.instanceOf(Flummox),
+      router: React.PropTypes.func.isRequired
     },
 
     onAddedFile(file) {
@@ -32,8 +33,9 @@ export default function (persistenceApiServiceUrl, fileUploadProvider) {
     },
 
     onComplete(file) {
-      const agreementActions = this.context.flux.getActions('AgreementActions');
-      agreementActions.contractUploadCompleted(file);
+      this.context.router.transitionTo('agreementForm');
+      //const agreementActions = this.context.flux.getActions('AgreementActions');
+      //agreementActions.contractUploadCompleted(file);
     },
 
     render() {
