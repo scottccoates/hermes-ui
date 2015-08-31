@@ -93,8 +93,7 @@ export default {
 
     AppLayoutComponent.$inject = ["AuthenticatedComponent"];
 
-    NewAgreementCreateComponent.$inject       = ["AgreementActions", "FileUpload"];
-    NewAgreementFormComponent.$inject         = ["AgreementActions"];
+    NewAgreementCreateComponent.$inject       = ["PersistenceApiServiceUrl", "FileUpload"];
     AgreementListComponent.$inject            = ["AgreementListItemComponent"];
     AgreementDetailContainerComponent.$inject = ["AgreementDetailGeneralInfoComponent", 'AgreementDetailLengthComponent', 'AgreementDetailDocumentsComponent'];
 

@@ -19,7 +19,9 @@ export default {
     container.register("Dropzone", NoOpDropzone);
 
     container.register("PersistenceApiService", ClientSidePersistenceApiService);
+    container.register("PersistenceApiServiceURL", "https://localhost"); // NoOpDropzone will never actually use this url anyway.
     container.register("RetrievalApiService", ClientSideRetrievalApiService);
+
 
     FakeLoginComponent.$inject = ["TokenService"];
 

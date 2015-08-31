@@ -9,7 +9,8 @@ export default function (agreementService) {
       return retVal;
     },
 
-    uploadContractBegan(data){
+    contractUploadBegan(data){
+
     },
 
     uploadContractProgressed(progress){

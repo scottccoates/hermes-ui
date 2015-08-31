@@ -3,20 +3,27 @@
 import React from 'react';
 import Router  from 'react-router';
 
+import Flummox from 'flummox';
+
 import DependencyProvider from '../../../../libs/dependency-injection/utils/dependency-provider';
 
 const {Link} = Router;
 
-export default function (agreementActions, fileUploadProvider) {
+export default function (persistenceApiServiceUrl, fileUploadProvider) {
 
-  //todo remove agreementActions, use this.flux instead
+  const contractUrl  = `${persistenceApiServiceUrl}/api/agreements/`;
   const FileUploader = fileUploadProvider.dependency;
 
   const component = React.createClass({
     displayName: "NewAgreementCreateComponent",
 
+    contextTypes: {
+      flux: React.PropTypes.instanceOf(Flummox)
+    },
+
     onAddedFile(file) {
-      agreementActions.uploadContractBegan(file);
+      const agreementActions = this.context.flux.getActions('AgreementActions');
+      agreementActions.contractUploadBegan(file);
     },
 
     onProgressed(progress) {
@@ -47,7 +54,7 @@ export default function (agreementActions, fileUploadProvider) {
                       </div>
                       <div className="panel-body">
 
-                        <FileUploader url="test/test" onAddedFile={this.onAddedFile} onProgressed={this.onProgressed}
+                        <FileUploader url={contractUrl} onAddedFile={this.onAddedFile} onProgressed={this.onProgressed}
                                       onComplete={this.onComplete}
                                       className="import-agreement-container dropzone">
                           <i className="fa fa-cloud-upload"></i>
