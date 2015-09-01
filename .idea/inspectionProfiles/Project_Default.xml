@@ -499,11 +499,7 @@
     <inspection_tool class="UnnecessaryLabelOnContinueStatementJS" enabled="true" level="WARNING" enabled_by_default="true">
       <scope name="Build" level="WARNING" enabled="false" />
     </inspection_tool>
-    <inspection_tool class="UnnecessaryLocalVariableJS" enabled="true" level="WARNING" enabled_by_default="false">
-      <scope name="Build" level="WARNING" enabled="false">
-        <option name="m_ignoreImmediatelyReturnedVariables" value="false" />
-        <option name="m_ignoreAnnotatedVariables" value="false" />
-      </scope>
+    <inspection_tool class="UnnecessaryLocalVariableJS" enabled="false" level="UNUSED ENTRY" enabled_by_default="false">
       <option name="m_ignoreImmediatelyReturnedVariables" value="false" />
       <option name="m_ignoreAnnotatedVariables" value="false" />
     </inspection_tool>

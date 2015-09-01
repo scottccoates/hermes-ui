@@ -44,9 +44,12 @@ System.config({
     "react-dnd": "npm:react-dnd@0.9.8",
     "react-highlighter": "github:helior/react-highlighter@0.2.1",
     "react-immutable-render-mixin": "npm:react-immutable-render-mixin@0.8.1",
+    "react-redux": "npm:react-redux@2.0.0",
     "react-router": "npm:react-router@0.13.3",
     "react-select": "npm:react-select@0.4.9",
     "react-tagsinput": "github:olahol/react-tagsinput@1.2.0",
+    "redux": "npm:redux@2.0.0",
+    "redux-thunk": "npm:redux-thunk@0.1.0",
     "tcomb": "npm:tcomb@2.0.1",
     "github:jamesflorentino/nanoScrollerJS@0.8.4": {
       "css": "github:systemjs/plugin-css@0.1.12",
@@ -56,7 +59,7 @@ System.config({
       "assert": "npm:assert@1.3.0"
     },
     "github:jspm/nodelibs-buffer@0.1.0": {
-      "buffer": "npm:buffer@3.3.1"
+      "buffer": "npm:buffer@3.4.3"
     },
     "github:jspm/nodelibs-events@0.1.1": {
       "events": "npm:events@1.0.2"
@@ -98,7 +101,7 @@ System.config({
       "fs": "github:jspm/nodelibs-fs@0.1.2",
       "path": "github:jspm/nodelibs-path@0.1.0"
     },
-    "npm:amdefine@0.1.1": {
+    "npm:amdefine@1.0.0": {
       "fs": "github:jspm/nodelibs-fs@0.1.2",
       "module": "github:jspm/nodelibs-module@0.1.0",
       "path": "github:jspm/nodelibs-path@0.1.0",
@@ -117,7 +120,7 @@ System.config({
       "path": "github:jspm/nodelibs-path@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
-    "npm:buffer@3.3.1": {
+    "npm:buffer@3.4.3": {
       "base64-js": "npm:base64-js@0.0.8",
       "ieee754": "npm:ieee754@1.1.6",
       "is-array": "npm:is-array@1.0.1"
@@ -163,7 +166,7 @@ System.config({
     "npm:envify@3.4.0": {
       "jstransform": "npm:jstransform@10.1.0",
       "process": "github:jspm/nodelibs-process@0.1.1",
-      "through": "npm:through@2.3.7"
+      "through": "npm:through@2.3.8"
     },
     "npm:esprima-fb@13001.1001.0-dev-harmony-fb": {
       "fs": "github:jspm/nodelibs-fs@0.1.2",
@@ -186,6 +189,10 @@ System.config({
     },
     "npm:inherits@2.0.1": {
       "util": "github:jspm/nodelibs-util@0.1.0"
+    },
+    "npm:invariant@2.1.0": {
+      "envify": "npm:envify@3.4.0",
+      "process": "github:jspm/nodelibs-process@0.1.1"
     },
     "npm:jstransform@10.1.0": {
       "base62": "npm:base62@0.1.1",
@@ -237,6 +244,11 @@ System.config({
     "npm:react-input-autosize@0.4.4": {
       "react": "npm:react@0.13.3"
     },
+    "npm:react-redux@2.0.0": {
+      "invariant": "npm:invariant@2.1.0",
+      "process": "github:jspm/nodelibs-process@0.1.1",
+      "redux": "npm:redux@2.0.0"
+    },
     "npm:react-router@0.13.3": {
       "object-assign": "npm:object-assign@2.0.0",
       "process": "github:jspm/nodelibs-process@0.1.1",
@@ -263,14 +275,17 @@ System.config({
       "stream-browserify": "npm:stream-browserify@1.0.0",
       "string_decoder": "npm:string_decoder@0.10.31"
     },
+    "npm:redux@2.0.0": {
+      "process": "github:jspm/nodelibs-process@0.1.1"
+    },
     "npm:source-map@0.1.31": {
-      "amdefine": "npm:amdefine@0.1.1",
+      "amdefine": "npm:amdefine@1.0.0",
       "fs": "github:jspm/nodelibs-fs@0.1.2",
       "path": "github:jspm/nodelibs-path@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
     "npm:source-map@0.1.43": {
-      "amdefine": "npm:amdefine@0.1.1",
+      "amdefine": "npm:amdefine@1.0.0",
       "fs": "github:jspm/nodelibs-fs@0.1.2",
       "path": "github:jspm/nodelibs-path@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.1"
@@ -286,7 +301,7 @@ System.config({
     "npm:tcomb@2.0.1": {
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
-    "npm:through@2.3.7": {
+    "npm:through@2.3.8": {
       "process": "github:jspm/nodelibs-process@0.1.1",
       "stream": "github:jspm/nodelibs-stream@0.1.0"
     },

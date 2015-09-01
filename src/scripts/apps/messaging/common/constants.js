@@ -1,0 +1,1 @@
+export const RESUME_SESSION = 'RESUME_SESSION';
