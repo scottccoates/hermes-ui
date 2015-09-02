@@ -1,7 +1,7 @@
 import FirebaseService from './firebase-service.js';
 
 export default {
-  init(appFlux, rootRef) {
+  init(store, rootRef) {
     const agreementActions     = appFlux.getActions('AgreementActions');
     const agreementDetailStore = appFlux.getStore('AgreementDetailStore');
 

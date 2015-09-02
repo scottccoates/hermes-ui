@@ -1,11 +1,11 @@
 import log from 'loglevel';
-import agreementRetrievalRepo from './agreement-client-side-retrieval-api-service';
+import agreementRetrievalApiService from './agreement-client-side-retrieval-api-service';
 
 export default function () {
   return {
-    init(appFlux) {
+    init(store) {
 
-      agreementRetrievalRepo.init(appFlux);
+      //agreementRetrievalApiService.init(store);
 
       return Promise.resolve(); // callers expect this method to be async (in case hooking up to firebse, for example)
     }

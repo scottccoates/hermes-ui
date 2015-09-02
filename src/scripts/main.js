@@ -12,14 +12,31 @@ const container = Container.init();
 // https://github.com/pimterry/loglevel#documentation
 log.setLevel(container.get('LogLevel'), false); // false means don't persist this to client storage
 
-import {configureStore} from 'src/scripts/apps/messaging/redux/store';
+import appStore from 'src/scripts/apps/messaging/redux/store';
 
-const store = configureStore();
+const store = appStore.init(container);
 
 const sessionActions = container.get('SessionActions');
 
 store.dispatch(sessionActions.resumeSession());
 
+const unSub = store.subscribe(async _=> {
+  unSub();
+  debugger
+  const state = store.getState();
+  if (state.session.loggedIn) {
+
+    // retrievalService will listen for events from  appflux
+    const retrievalService = container.get('RetrievalApiService');
+
+    try {
+      await retrievalService.init(store);
+    }
+    catch (error) {
+      throw new Error(`Error initializing retrieval api service: Inner exception: ${error.stack}`);
+    }
+  }
+});
 //// the appFlux module will use the container (above) to register its actions and stores, it needs to be registered before routes (below)
 //const appFluxClass = AppFlux.init(container);
 //const appFlux      = new appFluxClass();

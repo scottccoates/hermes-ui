@@ -1,4 +1,3 @@
-// todo rename this to be apireadservice
 const agreementListItem1 = {
   id: "wd4SUp",
   name: "Licensing Agreement Between Microsoft and Hermes, Inc. for Microsoft Office Suite Products",
@@ -70,9 +69,9 @@ const detailData = [agreementDetail1, agreementDetail2];
 
 export default {
 
-  init(appFlux) {
-    const agreementActions     = appFlux.getActions('AgreementActions');
-    const agreementDetailStore = appFlux.getStore('AgreementDetailStore');
+  init(store) {
+    const agreementActions     = store.getActions('AgreementActions');
+    const agreementDetailStore = store.getStore('AgreementDetailStore');
 
     // keep track of state as the store will emit multiple changes.
     this.currentRequestedAgreementDetail = {id: null};

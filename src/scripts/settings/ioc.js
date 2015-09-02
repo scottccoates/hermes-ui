@@ -12,7 +12,7 @@ import AppLayoutComponent from 'src/scripts/apps/app-layout/components/app-layou
 import SessionRepository from 'src/scripts/apps/session/services/session-repository';
 import SessionService from 'src/scripts/apps/session/services/session-service';
 import SessionActions from 'src/scripts/apps/session/messaging/actions/session-actions';
-import SessionStore from 'src/scripts/apps/session/messaging/stores/session-store';
+import SessionReducer from 'src/scripts/apps/session/messaging/reducers/session-reducer';
 
 import LogoutComponent from 'src/scripts/apps/session/components/logout-component';
 import AuthenticatedComponent from 'src/scripts/apps/session/components/authenticated-component';
@@ -81,7 +81,7 @@ export default {
 
     container.register("SessionRepository", SessionRepository);
     container.register("SessionService", SessionService);
-    container.register("SessionStore", SessionStore);
+    container.register("SessionReducer", SessionReducer);
     container.register("SessionActions", SessionActions);
     container.register("LogoutComponent", LogoutComponent);
 
