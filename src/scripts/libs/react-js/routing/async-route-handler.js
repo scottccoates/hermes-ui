@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Router  from 'react-router';
-import FluxComponent from 'flummox/component';
+import { Provider } from 'react-redux';
 
 function performAsyncTransition(flux, state) {
 
@@ -21,17 +21,10 @@ function performAsyncTransition(flux, state) {
   return asyncTransitionPromises;
 }
 
-function getHandler(containerId, fluxInstance) {
+function getHandler(containerId, store) {
 
   function renderHandler(Handler, loading) {
-
-    const handler = (
-      <FluxComponent flux={fluxInstance}>
-        <Handler/>
-      </FluxComponent>
-    );
-
-    React.render(handler, document.getElementById(containerId));
+    React.render(<Handler/>, document.getElementById(containerId));
   }
 
   return function (handler, state) {

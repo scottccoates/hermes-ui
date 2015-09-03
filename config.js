@@ -30,6 +30,7 @@ System.config({
     "dropzone": "npm:dropzone@4.0.1",
     "firebase": "github:firebase/firebase-bower@2.2.7",
     "flummox": "npm:flummox@3.5.2",
+    "history": "npm:history@1.8.4",
     "humps": "github:domchristie/humps@0.6.0",
     "immutable": "npm:immutable@3.7.4",
     "intravenous": "github:willow/intravenous@master",
@@ -45,7 +46,7 @@ System.config({
     "react-highlighter": "github:helior/react-highlighter@0.2.1",
     "react-immutable-render-mixin": "npm:react-immutable-render-mixin@0.8.1",
     "react-redux": "npm:react-redux@2.0.0",
-    "react-router": "npm:react-router@0.13.3",
+    "react-router": "npm:react-router@1.0.0-beta4",
     "react-select": "npm:react-select@0.4.9",
     "react-tagsinput": "github:olahol/react-tagsinput@1.2.0",
     "redux": "npm:redux@2.0.0",
@@ -184,6 +185,12 @@ System.config({
       "process": "github:jspm/nodelibs-process@0.1.1",
       "uniqueid": "npm:uniqueid@0.1.0"
     },
+    "npm:history@1.8.4": {
+      "deep-equal": "npm:deep-equal@1.0.1",
+      "invariant": "npm:invariant@2.1.0",
+      "qs": "npm:qs@4.0.0",
+      "warning": "npm:warning@2.0.0"
+    },
     "npm:https-browserify@0.0.0": {
       "http": "github:jspm/nodelibs-http@1.7.1"
     },
@@ -249,11 +256,10 @@ System.config({
       "process": "github:jspm/nodelibs-process@0.1.1",
       "redux": "npm:redux@2.0.0"
     },
-    "npm:react-router@0.13.3": {
-      "object-assign": "npm:object-assign@2.0.0",
-      "process": "github:jspm/nodelibs-process@0.1.1",
-      "qs": "npm:qs@2.4.1",
-      "react": "npm:react@0.13.3"
+    "npm:react-router@1.0.0-beta4": {
+      "history": "npm:history@1.8.4",
+      "invariant": "npm:invariant@2.1.0",
+      "warning": "npm:warning@2.0.0"
     },
     "npm:react-select@0.4.9": {
       "classnames": "npm:classnames@2.1.2",
@@ -316,6 +322,10 @@ System.config({
     },
     "npm:util@0.10.3": {
       "inherits": "npm:inherits@2.0.1",
+      "process": "github:jspm/nodelibs-process@0.1.1"
+    },
+    "npm:warning@2.0.0": {
+      "envify": "npm:envify@3.4.0",
       "process": "github:jspm/nodelibs-process@0.1.1"
     }
   }

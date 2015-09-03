@@ -29,6 +29,7 @@ export default function (sessionService) {
           dispatch(_sessionResumedSuccessAction(loginInformation));
         }
         catch (e) {
+          // this will happen if we can't resume a session (first time here, logged out, etc). It's ok.
           dispatch(_sessionResumedFailureAction(e));
         }
 
