@@ -18,6 +18,7 @@ export default function () {
 
     switch (action.type) {
 
+      case constants.LOGIN_SUCCESS:
       case constants.RESUME_SESSION_SUCCESS:
         retVal = Object.assign({}, state, action.loginInformation, {loggedIn: true});
         break;

@@ -3,6 +3,13 @@ import log from 'loglevel';
 
 export default function (sessionService) {
 
+  function _loginSuccessAction(loginInformation) {
+    return {
+      type: constants.LOGIN_SUCCESS,
+      loginInformation
+    };
+  }
+
   function _sessionResumedSuccessAction(loginInformation) {
     return {
       type: constants.RESUME_SESSION_SUCCESS,
@@ -21,11 +28,18 @@ export default function (sessionService) {
 
   const sessionActions = {
 
+    login(token, user){
+      return async dispatch => {
+        const newUserLoginInformation = await sessionService.login(token, user, sessionActions.resumeSession);
+        dispatch(_loginSuccessAction(newUserLoginInformation));
+      };
+    },
+
     resumeSession(){
       return async dispatch => {
 
         try {
-          const loginInformation = await sessionService.resumeSession(this.resumeSession);
+          const loginInformation = await sessionService.resumeSession(sessionActions.resumeSession);
           dispatch(_sessionResumedSuccessAction(loginInformation));
         }
         catch (e) {

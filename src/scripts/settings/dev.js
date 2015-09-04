@@ -30,10 +30,10 @@ export default {
     container.register("PersistenceApiServiceUrl", "http://127.0.0.1:8000");
 
     Lock.$inject = ["Auth0ClientID", "Auth0ClientDomain"]; // these are provided in the environment settings files
-    Auth0LoginComponent.$inject = ["Auth0Lock"];
+    Auth0LoginComponent.$inject = ['SessionActions', "Auth0Lock"];
     Auth0AuthService.$inject    = ["Auth0Lock"];
 
-    Firebase.$inject              = ["FirebaseAppUrl"];
+    Firebase.$inject                    = ["FirebaseAppUrl"];
     FirebaseRetrievalApiService.$inject = ["Firebase"];
 
     return container;

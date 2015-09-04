@@ -23,7 +23,7 @@ export default {
     container.register("RetrievalApiService", ClientSideRetrievalApiService);
 
 
-    FakeLoginComponent.$inject = ["TokenService"];
+    FakeLoginComponent.$inject = ['SessionActions', "TokenService"];
 
     return container;
   }

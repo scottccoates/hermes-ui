@@ -10,7 +10,7 @@ import log from 'loglevel';
 
 const {Validator} = Validation;
 
-export default function (tokenService) {
+export default function (sessionActions, tokenService) {
 
   var login = React.createClass({
     displayName: "FakeLogin",
@@ -41,21 +41,21 @@ export default function (tokenService) {
       event.preventDefault();
       var validation = this.refs.validation;
 
+      const props = this.props;
+
       // it's important to remember that validation is async (consider database calls, apis, existence in db, etc).
-      validation.validate(async valid => {
+      validation.validate(valid => {
         if (valid) {
-          const sessionActions = this.props.flux.getActions('SessionActions');
-          const tokenData      = tokenService.getTokenData(this.state.formData);
+          const tokenData = tokenService.getTokenData(this.state.formData);
 
           try {
             log.info("Beginning: Log in user: %s", tokenData.profile.username);
-            await sessionActions.login(tokenData.idToken, tokenData.profile);
+            props.login(tokenData.idToken, tokenData.profile);
             log.info("Completed: Log in user: %s", tokenData.profile.username);
           }
           catch (e) {
             throw new Error("Error completing the login process " + e.stack);
           }
-          sessionActions.login();
         }
       });
     },
@@ -120,7 +120,7 @@ export default function (tokenService) {
     }
   });
 
-  login = connect(x=> x.session)(login);
+  login = connect(x=> x.session, sessionActions)(login);
 
   return new DependencyProvider(login);
 };
