@@ -10,12 +10,12 @@ import { createHistory } from 'history';
 
 export default {
   init(container){
-    //const AppLayoutComponent = container.get("AppLayoutComponent").dependency;
+    const AppLayoutComponent = container.get("AppLayoutComponent").dependency;
     //const DashboardComponent = container.get("DashboardComponent").dependency;
-    //
-    //const LoginComponent  = container.get("LoginComponent").dependency;
-    //const LogoutComponent = container.get("LogoutComponent").dependency;
-    //
+
+    const LoginComponent  = container.get("LoginComponent").dependency;
+    const LogoutComponent = container.get("LogoutComponent").dependency;
+
     //const CreateAgreementComponent = container.get("CreateAgreementComponent").dependency;
     //const AgreementFormComponent   = container.get("AgreementFormComponent").dependency;
     //const AgreementDetailContainerComponent = container.get("AgreementDetailContainerComponent").dependency;
@@ -49,13 +49,10 @@ export default {
     //  </Route>
     //);
 
-    const App = React.createClass({
-      displayName: "App",
-      render() {
-        return ( <span>"hi"</span>);
-      }
-    });
-
+    function requireAuth(nextState, redirectTo) {
+      if (!store.getState().session.loggedIn)
+        redirectTo('/login', null, {nextPath: nextState.location.pathname});
+    }
 
     React.render((
 
@@ -65,7 +62,9 @@ export default {
           // https://github.com/rackt/redux/blob/master/examples/real-world/index.js
           // http://rackt.github.io/redux/docs/basics/UsageWithReact.html#connecting-to-redux
           <Router history={history}>
-            <Route path='/' component={App}/>
+            <Route path='/' component={AppLayoutComponent} onEnter={requireAuth}/>
+            <Route path='login' component={LoginComponent}/>
+            <Route path='logout' component={LogoutComponent}/>
           </Router>
         }
       </Provider>

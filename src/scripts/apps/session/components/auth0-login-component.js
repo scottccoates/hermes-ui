@@ -1,5 +1,6 @@
 import React from 'react';
-import ConnectToStores from 'flummox/connect';
+
+import { connect } from 'react-redux';
 
 import DependencyProvider from 'src/scripts/libs/dependency-injection/utils/dependency-provider';
 
@@ -21,7 +22,7 @@ export default function (auth0Lock) {
     },
 
     async componentDidMount(){
-      const sessionActions = this.props.flux.getActions('SessionActions');
+      //const sessionActions = this.props.flux.getActions('SessionActions');
 
       // tokens are not passed into the hash because we're not using a redirect mode. Right now the only reason
       // auth info would be int he has is if we're impersonating someone.
@@ -100,6 +101,7 @@ export default function (auth0Lock) {
     }
   });
 
-  login = ConnectToStores(login, 'SessionStore');
+  login = connect(x=> x.session)(login);
+
   return new DependencyProvider(login);
 };

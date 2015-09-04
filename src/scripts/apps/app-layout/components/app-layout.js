@@ -9,13 +9,9 @@ import Footer from './footer/footer';
 
 import DependencyProvider from 'src/scripts/libs/dependency-injection/utils/dependency-provider';
 
-import AuthenticatedComponent from '../../session/components/authenticated-component';
+export default function () {
 
-const {RouteHandler} = Router;
-
-export default function (authenticatedComponentFactory) {
-
-  var component = React.createClass({
+  const component = React.createClass({
     displayName: "AppLayout",
     contextTypes: {
       router: React.PropTypes.func
@@ -35,7 +31,6 @@ export default function (authenticatedComponentFactory) {
     },
 
     render() {
-      console.log("render app layout:", this.props);
       // the transitionContent is an un-hindered DOM element, we can use it to measure what the size 'should' be.
       // the transitionWrapper is a DOM element that manually change the height attrs of.
 
@@ -64,26 +59,23 @@ export default function (authenticatedComponentFactory) {
 
       return (
         <div id="page-wrapper">
-          <Sidebar />
 
           <div id="main-wrapper">
-            <Header />
 
             <div id="content-wrapper">
               <div className="transition-content-wrapper" style={transitionWrapperStyle}>
                 <div ref="transitionContent" className="transition-content" style={transitionContentStyle}>
-                  <RouteHandler />
+                  hi
                 </div>
               </div>
             </div>
-            <Footer />
+            <Footer/>
           </div>
         </div>
       );
     }
   });
 
-  component = authenticatedComponentFactory.get(component).dependency;
 
   return new DependencyProvider(component);
 };

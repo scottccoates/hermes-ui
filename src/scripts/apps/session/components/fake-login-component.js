@@ -1,5 +1,6 @@
 import React from 'react';
-import ConnectToStores from 'flummox/connect';
+
+import { connect } from 'react-redux';
 
 import DependencyProvider from 'src/scripts/libs/dependency-injection/utils/dependency-provider';
 
@@ -50,7 +51,8 @@ export default function (tokenService) {
             log.info("Beginning: Log in user: %s", tokenData.profile.username);
             await sessionActions.login(tokenData.idToken, tokenData.profile);
             log.info("Completed: Log in user: %s", tokenData.profile.username);
-          } catch (e) {
+          }
+          catch (e) {
             throw new Error("Error completing the login process " + e.stack);
           }
           sessionActions.login();
@@ -118,6 +120,7 @@ export default function (tokenService) {
     }
   });
 
-  login = ConnectToStores(login, 'SessionStore');
+  login = connect(x=> x.session)(login);
+
   return new DependencyProvider(login);
 };

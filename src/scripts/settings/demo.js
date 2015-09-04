@@ -1,6 +1,6 @@
 import config from 'src/scripts/settings/ioc';
 
-import FakeLoginComponent from 'src/scripts/apps/session/comonents/fake-login';
+import FakeLoginComponent from 'src/scripts/apps/session/comonents/fake-login-component';
 import FakeTokenService from 'src/scripts/apps/session/services/fake-token-service';
 import FakeAuthService from 'src/scripts/apps/session/services/fake-auth-service';
 

@@ -15,7 +15,6 @@ import SessionActions from 'src/scripts/apps/session/messaging/actions/session-a
 import SessionReducer from 'src/scripts/apps/session/messaging/reducers/session-reducer';
 
 import LogoutComponent from 'src/scripts/apps/session/components/logout-component';
-import AuthenticatedComponent from 'src/scripts/apps/session/components/authenticated-component';
 
 import AgreementActions from '../domain/agreement/messaging/actions/agreement-actions';
 import AgreementListStore from '../domain/agreement/messaging/stores/agreement-list-store';
@@ -85,13 +84,9 @@ export default {
     container.register("SessionActions", SessionActions);
     container.register("LogoutComponent", LogoutComponent);
 
-    container.register("AuthenticatedComponent", AuthenticatedComponent);
-
     container.register("LoadingFeedbackStore", LoadingFeedbackStore);
 
     DashboardComponent.$inject = ["AgreementListComponent"];
-
-    AppLayoutComponent.$inject = ["AuthenticatedComponent"];
 
     NewAgreementCreateComponent.$inject       = ["PersistenceApiServiceUrl", "FileUpload"];
     AgreementListComponent.$inject            = ["AgreementListItemComponent"];
@@ -109,7 +104,6 @@ export default {
     SessionActions.$inject         = ["SessionService"];
     SessionService.$inject         = ["SessionRepository", "AuthService"];
     SessionRepository.$inject      = ["ClientSidePersistenceService"];
-    AuthenticatedComponent.$inject = ["AppFlux"]; // AppFlux is registered in ../main.js
 
     return container;
   }
