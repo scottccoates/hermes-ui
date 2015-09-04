@@ -2,14 +2,11 @@
 'use strict';
 
 import React from 'react';
+
+import { Provider } from 'react-redux';
+
 import { Router, Route } from 'react-router';
 import { createHistory } from 'history';
-
-import container from './ioc';
-
-import App from '../apps/app-layout/components/app';
-
-// Named exports only work for es6, react-router uses common. So we have to use Destructuring instead.
 
 export default {
   init(container){
@@ -52,12 +49,27 @@ export default {
     //  </Route>
     //);
 
-    React.render((
-      <Router history={history}>
-        <Route path="/" component={App}>
+    const App = React.createClass({
+      displayName: "App",
+      render() {
+        return ( <span>"hi"</span>);
+      }
+    });
 
-        </Route>
-      </Router>
+
+    React.render((
+
+      <Provider store={store}>
+        {() =>
+          // http://ngokevin.com/blog/redux-react-router/
+          // https://github.com/rackt/redux/blob/master/examples/real-world/index.js
+          // http://rackt.github.io/redux/docs/basics/UsageWithReact.html#connecting-to-redux
+          <Router history={history}>
+            <Route path='/' component={App}/>
+          </Router>
+        }
+      </Provider>
+
     ), document.getElementById('app'));
   }
 };

@@ -1,9 +1,9 @@
 {
   "jspm": {
     "dependencies": {
-      "auth0-lock": "github:auth0/lock@^7.5.6",
+      "auth0-lock": "github:auth0/lock@7.5.6",
       "bacon": "npm:baconjs@0.7.53",
-      "bankers-box": "github:twilio/BankersBox@^0.1.0",
+      "bankers-box": "github:twilio/BankersBox@0.1.0",
       "classnames": "github:JedWatson/classnames@2.1.2",
       "dropzone": "npm:dropzone@4.0.1",
       "firebase": "github:firebase/firebase-bower@2.2.7",
