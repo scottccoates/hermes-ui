@@ -2,6 +2,8 @@
 'use strict';
 import log from 'loglevel';
 
+import { bindActionCreators } from 'redux';
+
 import container from 'build/js/container';
 
 import routes from 'src/scripts/settings/routes';
@@ -20,9 +22,14 @@ const store = appStore.init(containerInstance);
 // "singleton" would mean that the result of a function is used every single time `container.get` is called.
 containerInstance.register("AppStore", store);
 
-const sessionActions = containerInstance.get('SessionActions');
-
-store.dispatch(sessionActions.resumeSession());
+// ok so here's what's going on:
+// typically, you need to call store.dispatch(someActionCreator.action());
+// our sessionService is special in that it will renew the session token every x min.
+// we do this by passing in a param called `keepAliveSessionFunc`. That param must be bound (or have access to our store)
+// so that it can dispatch the action.
+// http://rackt.github.io/redux/docs/api/bindActionCreators.html
+const sessionActions = bindActionCreators(containerInstance.get('SessionActions'), store.dispatch);
+sessionActions.resumeSession(sessionActions.resumeSession);
 
 const unSub = store.subscribe(async _=> {
   unSub();

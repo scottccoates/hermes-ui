@@ -28,18 +28,18 @@ export default function (sessionService) {
 
   const sessionActions = {
 
-    login(token, user){
+    login(token, user, keepAliveSessionFunc){
       return async dispatch => {
-        const newUserLoginInformation = await sessionService.login(token, user, sessionActions.resumeSession);
+        const newUserLoginInformation = await sessionService.login(token, user, keepAliveSessionFunc);
         dispatch(_loginSuccessAction(newUserLoginInformation));
       };
     },
 
-    resumeSession(){
+    resumeSession(keepAliveSessionFunc){
       return async dispatch => {
 
         try {
-          const loginInformation = await sessionService.resumeSession(sessionActions.resumeSession);
+          const loginInformation = await sessionService.resumeSession(keepAliveSessionFunc);
           dispatch(_sessionResumedSuccessAction(loginInformation));
         }
         catch (e) {

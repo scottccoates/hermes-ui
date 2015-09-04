@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Navigation } from 'react-router';
+
 import { connect } from 'react-redux';
 
 import DependencyProvider from 'src/scripts/libs/dependency-injection/utils/dependency-provider';
@@ -14,10 +16,13 @@ export default function (sessionActions, tokenService) {
 
   var login = React.createClass({
     displayName: "FakeLogin",
-    mixins: [Validation.FieldMixin],
+    mixins: [
+      Validation.FieldMixin,
+      Navigation
+    ],
 
     contextTypes: {
-      router: React.PropTypes.func
+      router: React.PropTypes.object
     },
 
     getInitialState() {
@@ -34,7 +39,7 @@ export default function (sessionActions, tokenService) {
     },
     componentWillReceiveProps(nextProps){
       if (nextProps.loggedIn) {
-        this.context.router.transitionTo(this.props.query.nextPath || 'dashboard');
+        this.transitionTo(this.props.location.query.nextPath || 'dashboard');
       }
     },
     onSubmit(event){
@@ -50,7 +55,7 @@ export default function (sessionActions, tokenService) {
 
           try {
             log.info("Beginning: Log in user: %s", tokenData.profile.username);
-            props.login(tokenData.idToken, tokenData.profile);
+            props.login(tokenData.idToken, tokenData.profile, props.resumeSession);
             log.info("Completed: Log in user: %s", tokenData.profile.username);
           }
           catch (e) {
