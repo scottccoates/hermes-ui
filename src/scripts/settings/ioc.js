@@ -101,9 +101,10 @@ export default {
     SearchResultContainer.$inject = ["SearchResultList"];
     SearchResultList.$inject      = ["SearchResultItem"];
 
-    SessionActions.$inject         = ["SessionService"];
-    SessionService.$inject         = ["SessionRepository", "AuthService"];
-    SessionRepository.$inject      = ["ClientSidePersistenceService"];
+    SessionActions.$inject    = ["SessionService"];
+    SessionService.$inject    = ["SessionRepository", "AuthService"];
+    SessionRepository.$inject = ["ClientSidePersistenceService"];
+    LogoutComponent.$inject   = ['SessionActions'];
 
     return container;
   }

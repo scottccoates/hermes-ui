@@ -3,13 +3,11 @@
 import React from 'react';
 import ReactBacon from 'react-bacon';
 
-import Router  from 'react-router';
-import ConnectToStores from 'flummox/connect';
+import {Link}  from 'react-router';
+import { connect } from 'react-redux';
 
 import FocusContainer from '../../../../libs/react-js/components/focus-container';
 import DisplayContainer from '../../../../libs/react-js/components/display-container';
-
-const {Link} = Router;
 
 var headerNavSection = React.createClass({
   displayName: "HeaderNavSection",
@@ -59,7 +57,7 @@ var headerNavSection = React.createClass({
                   </li>
                   <li role="presentation" className="divider"></li>
                   <li role="presentation">
-                    <Link to="logout">Logout</Link>
+                    <Link to="/logout">Logout</Link>
                   </li>
                 </ul>
               </DisplayContainer>
@@ -78,7 +76,6 @@ var headerNavSection = React.createClass({
           </li>
 
           <li className="header-item header-new-agreement">
-            <Link activeClassName="" to="createAgreement" className="btn btn-primary btn-xs">New Contract</Link>
           </li>
         </ul>
       </section>
@@ -86,5 +83,6 @@ var headerNavSection = React.createClass({
   }
 });
 
-headerNavSection = ConnectToStores(headerNavSection, "SessionStore");
+headerNavSection = connect(x=> x.session)(headerNavSection);
+
 export default headerNavSection;

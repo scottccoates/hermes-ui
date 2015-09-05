@@ -10,6 +10,12 @@ export default function (sessionService) {
     };
   }
 
+  function _logoutSuccessAction() {
+    return {
+      type: constants.LOGOUT_SUCCESS
+    };
+  }
+
   function _sessionResumedSuccessAction(loginInformation) {
     return {
       type: constants.RESUME_SESSION_SUCCESS,
@@ -46,26 +52,16 @@ export default function (sessionService) {
           // this will happen if we can't resume a session (first time here, logged out, etc). It's ok.
           dispatch(_sessionResumedFailureAction(e));
         }
+      };
+    },
 
+    logout()
+    {
+      return dispatch => {
+        sessionService.logout();
+        dispatch(_logoutSuccessAction());
       };
     }
-
-    //async login(token, user) {
-    //  const newUserLoginInformation = await sessionService.login(token, user, this.resumeSession); // needs to be `this` because flummox converts this whole thing to a class
-    //
-    //  return newUserLoginInformation;
-    //},
-    //
-    //logout() {
-    //  const retVal = sessionService.logout();
-    //  return retVal;
-    //},
-    //
-    //async resumeSession(){
-    //  const loginInformation = await sessionService.resumeSession(this.resumeSession);
-    //  return loginInformation;
-    //}
-
 
   };
 

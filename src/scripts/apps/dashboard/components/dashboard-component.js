@@ -1,25 +1,27 @@
 'use strict';
 
 import React from 'react';
-import Router  from 'react-router';
+import {Link} from 'react-router';
 
-import ConnectToStores from 'flummox/connect';
+import Immutable from 'immutable';
 
 import DependencyProvider from '../../../libs/dependency-injection/utils/dependency-provider';
-
-const {Link} = Router;
 
 export default function (agreementListComponent) {
   const AgreementList = agreementListComponent.dependency;
 
-  const component          = React.createClass({
+  const component = React.createClass({
 
     displayName: "DashboardComponent",
 
+    getDefaultProps() {
+      return {"agreements": Immutable.List()}
+    },
+
     render() {
-      console.log("render dashboard:", this.props);
 
       var agreementListContent = null;
+
       if (this.props.agreements.size) {
 
         agreementListContent = (
@@ -60,18 +62,18 @@ export default function (agreementListComponent) {
       );
     }
   });
-  const dashboardComponent = ConnectToStores(component, 'AgreementListStore');
+  //const dashboardComponent = ConnectToStores(component, 'AgreementListStore');
+  //
+  //// probably best way to make this func available to router: https://github.com/acdlite/flummox/issues/173
+  //dashboardComponent.asyncTransition = (flux, state) => {
+  //  const sessionStore = flux.getStore('SessionStore');
+  //
+  //  const userId = sessionStore.state.user.userId;
+  //
+  //  const agreementActions = flux.getActions('AgreementActions');
+  //
+  //  agreementActions.requestAgreementList(userId);
+  //};
 
-  // probably best way to make this func available to router: https://github.com/acdlite/flummox/issues/173
-  dashboardComponent.asyncTransition = (flux, state) => {
-    const sessionStore = flux.getStore('SessionStore');
-
-    const userId = sessionStore.state.user.userId;
-
-    const agreementActions = flux.getActions('AgreementActions');
-
-    agreementActions.requestAgreementList(userId);
-  };
-
-  return new DependencyProvider(dashboardComponent);
+  return new DependencyProvider(component);
 };

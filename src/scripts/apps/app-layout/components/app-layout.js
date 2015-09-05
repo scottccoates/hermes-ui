@@ -61,11 +61,12 @@ export default function () {
         <div id="page-wrapper">
 
           <div id="main-wrapper">
+            <Header />
 
             <div id="content-wrapper">
               <div className="transition-content-wrapper" style={transitionWrapperStyle}>
                 <div ref="transitionContent" className="transition-content" style={transitionContentStyle}>
-                  hi
+                  {this.props.children}
                 </div>
               </div>
             </div>

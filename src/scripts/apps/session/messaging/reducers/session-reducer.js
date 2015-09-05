@@ -23,6 +23,10 @@ export default function () {
         retVal = Object.assign({}, state, action.loginInformation, {loggedIn: true});
         break;
 
+      case constants.LOGOUT_SUCCESS:
+        retVal = defaultState;
+        break;
+
       default:
         retVal = state;
         break;

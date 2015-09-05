@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { Navigation } from 'react-router';
-
 import { connect } from 'react-redux';
 
 import DependencyProvider from 'src/scripts/libs/dependency-injection/utils/dependency-provider';
@@ -16,9 +14,9 @@ export default function (sessionActions, tokenService) {
 
   var login = React.createClass({
     displayName: "FakeLogin",
+
     mixins: [
-      Validation.FieldMixin,
-      Navigation
+      Validation.FieldMixin
     ],
 
     contextTypes: {
@@ -37,11 +35,19 @@ export default function (sessionActions, tokenService) {
         }
       };
     },
+
+    _doLoginTransition(){
+      // I'm not sure if there's a better way to completely reset the history by this point.
+      // It'd be bad to be able to click back and go back to the login screen
+      window.location = this.props.location.query.nextPath || '/';
+    },
+
     componentWillReceiveProps(nextProps){
       if (nextProps.loggedIn) {
-        this.transitionTo(this.props.location.query.nextPath || 'dashboard');
+        this._doLoginTransition();
       }
     },
+
     onSubmit(event){
       event.preventDefault();
       var validation = this.refs.validation;

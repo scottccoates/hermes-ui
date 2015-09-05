@@ -4,23 +4,26 @@ import React from 'react';
 
 import DependencyProvider from 'src/scripts/libs/dependency-injection/utils/dependency-provider';
 
-import ConnectToStores from 'flummox/connect';
+import { connect } from 'react-redux';
 
-export default function () {
-  const logout = React.createClass({
+export default function (sessionActions) {
+  var logout = React.createClass({
     displayName: "LogoutComponent",
     contextTypes: {
       router: React.PropTypes.func
     },
 
     _doLoginTransition(){
-      window.location = this.props.query.nextPath || 'login';
+      window.location = 'login';
     },
 
     componentWillMount(){
-      const sessionActions = this.props.flux.getActions('SessionActions');
-
-      sessionActions.logout();
+      if (this.props.loggedIn) {
+        this.props.logout();
+      }
+      else {
+        this._doLoginTransition();
+      }
     },
 
     componentWillReceiveProps(nextProps){
@@ -38,5 +41,6 @@ export default function () {
     }
   });
 
-  return new DependencyProvider(ConnectToStores(logout, 'SessionStore'));
+  logout = connect(x=>x.session, sessionActions)(logout);
+  return new DependencyProvider(logout);
 };
