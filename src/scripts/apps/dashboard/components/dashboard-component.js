@@ -37,7 +37,7 @@ export default function (agreementListComponent) {
             <h3 className="content-section-header regular-text">
               Sorry, there are no contracts in the system.
               <br />
-              Please <Link to="createAgreement" className='underline'>upload one</Link> to get started.
+              Please <Link to="/contracts/step_1" className='underline'>upload one</Link> to get started.
             </h3>
           </div>
         );

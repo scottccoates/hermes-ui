@@ -16,10 +16,10 @@ export default {
     const LoginComponent  = container.get("LoginComponent").dependency;
     const LogoutComponent = container.get("LogoutComponent").dependency;
 
-    //const CreateAgreementComponent = container.get("CreateAgreementComponent").dependency;
-    //const AgreementFormComponent   = container.get("AgreementFormComponent").dependency;
+    const CreateAgreementComponent = container.get("CreateAgreementComponent").dependency;
+    const AgreementFormComponent   = container.get("AgreementFormComponent").dependency;
     //const AgreementDetailContainerComponent = container.get("AgreementDetailContainerComponent").dependency;
-    //
+
     //const SearchResultContainer = container.get("SearchResultContainer").dependency;
 
     // http://rackt.github.io/history/stable/GettingStarted.html
@@ -63,11 +63,16 @@ export default {
           // http://rackt.github.io/redux/docs/basics/UsageWithReact.html#connecting-to-redux
           <Router history={history}>
             <Route path='/' component={AppLayoutComponent} onEnter={requireAuth}>
-              <Redirect from="/" to="/dashboard"/>
-              <Route path='/dashboard' component={DashboardComponent}/>
+              <Redirect from='/' to='/dashboard'/>
+              <Route path='dashboard' component={DashboardComponent}/>
+
+              <Route path='contracts'>
+                <Route path='step_1' component={CreateAgreementComponent}/>
+                <Route path='step_2' component={AgreementFormComponent}/>
+              </Route>
             </Route>
 
-            <Route path='/login' component={LoginComponent}/>
+            < Route path='/login' component={LoginComponent}/>
             <Route path='/logout' component={LogoutComponent}/>
           </Router>
         }

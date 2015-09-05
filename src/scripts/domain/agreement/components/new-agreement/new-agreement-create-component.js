@@ -1,11 +1,8 @@
 'use strict';
 
 import React from 'react';
-import Router  from 'react-router';
 
 import DependencyProvider from '../../../../libs/dependency-injection/utils/dependency-provider';
-
-const {Link} = Router;
 
 export default function (persistenceApiServiceUrl, fileUploadProvider) {
 
@@ -14,11 +11,6 @@ export default function (persistenceApiServiceUrl, fileUploadProvider) {
 
   const component = React.createClass({
     displayName: "NewAgreementCreateComponent",
-
-    contextTypes: {
-      flux: React.PropTypes.instanceOf(Flummox),
-      router: React.PropTypes.func.isRequired
-    },
 
     onAddedFile(file) {
       const agreementActions = this.context.flux.getActions('AgreementActions');
@@ -89,10 +81,10 @@ export default function (persistenceApiServiceUrl, fileUploadProvider) {
                       </div>
                       <div className="content-section-item space-top-lg">
 
-                        <Link activeClassName={""} to="createAgreement" className="btn btn-default btn-lg">Generate New
+                        <a href="javascript:void(0)" className="btn btn-default btn-lg">Generate New
                           Contract
                           From
-                          Template</Link>
+                          Template</a>
                       </div>
                     </div>
                   </div>
