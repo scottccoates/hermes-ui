@@ -17,8 +17,6 @@ import SessionReducer from 'src/scripts/apps/session/messaging/reducers/session-
 import LogoutComponent from 'src/scripts/apps/session/components/logout-component';
 
 import AgreementActions from '../domain/agreement/messaging/actions/agreement-actions';
-import AgreementListStore from '../domain/agreement/messaging/stores/agreement-list-store';
-import AgreementDetailStore from '../domain/agreement/messaging/stores/agreement-detail-store';
 import NewAgreementCreateComponent from '../domain/agreement/components/new-agreement/new-agreement-create-component';
 import NewAgreementFormComponent from '../domain/agreement/components/new-agreement/new-agreement-form-component';
 import AgreementListComponent from '../domain/agreement/components/agreement-list/agreement-list-component';
@@ -39,7 +37,6 @@ import SearchResultContainer from '../domain/search/components/result/search-res
 import SearchResultList from '../domain/search/components/result/search-result-list';
 import SearchResultItem from '../domain/search/components/result/search-result-item';
 
-import LoadingFeedbackStore from 'src/scripts/apps/feedback/stores/loading-feedback-store';
 
 export default {
   init(){
@@ -67,8 +64,6 @@ export default {
     container.register("AgreementDetailDocumentsComponent", AgreementDetailDocumentsComponent);
 
     container.register("AgreementActions", AgreementActions);
-    container.register("AgreementListStore", AgreementListStore);
-    container.register("AgreementDetailStore", AgreementDetailStore);
     container.register("AgreementService", AgreementService);
     container.register("AgreementRepository", AgreementRepository);
 
@@ -83,8 +78,6 @@ export default {
     container.register("SessionReducer", SessionReducer);
     container.register("SessionActions", SessionActions);
     container.register("LogoutComponent", LogoutComponent);
-
-    container.register("LoadingFeedbackStore", LoadingFeedbackStore);
 
     DashboardComponent.$inject = ["AgreementListComponent"];
 

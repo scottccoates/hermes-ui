@@ -1,7 +1,5 @@
 import React from 'react';
 
-import ConnectToStores from 'flummox/connect';
-
 import DependencyProvider from 'src/scripts/libs/dependency-injection/utils/dependency-provider';
 
 export default function (agreementDetailGeneralInfoComponent, agreementDetailLengthComponent, agreementDetailDocumentsComponent) {

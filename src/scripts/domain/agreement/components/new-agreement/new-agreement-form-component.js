@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import Router  from 'react-router';
+import {Link}  from 'react-router';
 
 import DependencyProvider from '../../../../libs/dependency-injection/utils/dependency-provider';
 
@@ -9,8 +9,6 @@ import Agreement from '../../models/agreement-list-item-model';
 
 import Select from 'react-select';
 import Validation from 'rc-form-validation';
-
-const {Link} = Router;
 
 const {Validator} = Validation;
 

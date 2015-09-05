@@ -3,8 +3,6 @@
 import React from 'react';
 import Router  from 'react-router';
 
-import Flummox from 'flummox';
-
 import DependencyProvider from '../../../../libs/dependency-injection/utils/dependency-provider';
 
 const {Link} = Router;

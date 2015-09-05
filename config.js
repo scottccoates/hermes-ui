@@ -29,7 +29,6 @@ System.config({
     "core-js": "npm:core-js@1.1.3",
     "dropzone": "npm:dropzone@4.0.1",
     "firebase": "github:firebase/firebase-bower@2.2.7",
-    "flummox": "npm:flummox@3.5.2",
     "history": "npm:history@1.8.4",
     "humps": "github:domchristie/humps@0.6.0",
     "immutable": "npm:immutable@3.7.4",
@@ -173,18 +172,6 @@ System.config({
       "fs": "github:jspm/nodelibs-fs@0.1.2",
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
-    "npm:eventemitter3@0.1.6": {
-      "process": "github:jspm/nodelibs-process@0.1.1",
-      "util": "github:jspm/nodelibs-util@0.1.0"
-    },
-    "npm:flummox@3.5.2": {
-      "eventemitter3": "npm:eventemitter3@0.1.6",
-      "flux": "npm:flux@2.0.3",
-      "object-assign": "npm:object-assign@2.0.0",
-      "path": "github:jspm/nodelibs-path@0.1.0",
-      "process": "github:jspm/nodelibs-process@0.1.1",
-      "uniqueid": "npm:uniqueid@0.1.0"
-    },
     "npm:history@1.8.4": {
       "deep-equal": "npm:deep-equal@1.0.1",
       "invariant": "npm:invariant@2.1.0",
@@ -310,9 +297,6 @@ System.config({
     "npm:through@2.3.8": {
       "process": "github:jspm/nodelibs-process@0.1.1",
       "stream": "github:jspm/nodelibs-stream@0.1.0"
-    },
-    "npm:uniqueid@0.1.0": {
-      "assert": "github:jspm/nodelibs-assert@0.1.0"
     },
     "npm:url@0.10.3": {
       "assert": "github:jspm/nodelibs-assert@0.1.0",
