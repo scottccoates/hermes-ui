@@ -2,18 +2,18 @@ import React from 'react';
 
 import { connect } from 'react-redux';
 
+import { Navigation } from 'react-router';
+
 import DependencyProvider from 'src/scripts/libs/dependency-injection/utils/dependency-provider';
 
 import log from 'loglevel';
 
-export default function (auth0Lock) {
+export default function (sessionActions, auth0Lock) {
 
   var login = React.createClass({
     displayName: "AuthLogin",
 
-    contextTypes: {
-      router: React.PropTypes.func
-    },
+    mixins: [Navigation],
 
     _doLoginTransition(){
       // I'm not sure if there's a better way to completely reset the history by this point.
@@ -21,13 +21,18 @@ export default function (auth0Lock) {
       window.location = this.props.location.query.nextPath || '/';
     },
 
-    async componentDidMount(){
-      //const sessionActions = this.props.flux.getActions('SessionActions');
+    componentWillReceiveProps(nextProps){
+      if (nextProps.loggedIn) {
+        this._doLoginTransition();
+      }
+    },
 
+    componentDidMount(){
       // tokens are not passed into the hash because we're not using a redirect mode. Right now the only reason
       // auth info would be int he has is if we're impersonating someone.
       const authInfo = auth0Lock.$auth0.parseHash(window.location.hash);
       const idToken  = authInfo && authInfo.id_token;
+      const props    = this.props;
 
       if (idToken) {
 
@@ -36,23 +41,20 @@ export default function (auth0Lock) {
           try {
             const nickname = this.props.user.nickname;
             log.info("Logging out previous user: %s", nickname);
-
-            this.context.router.transitionTo('logout', {}, {nextPath: window.location.toString()});
+            this.transitionTo('/logout', {}, {nextPath: window.location.toString()});
           }
           catch (e) {
             throw new Error("Error completing the impersonate process " + e.stack);
           }
         }
         else {
-          auth0Lock.$auth0.getProfile(idToken, async (error, profile)=> {
+          auth0Lock.$auth0.getProfile(idToken, (error, profile)=> {
 
             if (error) throw new Error(`Error authenticating: ${idToken}. Inner exception: ${error.stack}`);
 
             try {
               log.info("Beginning: Impersonate user: %s", profile.nickname);
-              await sessionActions.login(idToken, profile);
-              log.info("Completed: Impersonate user: %s", profile.nickname);
-              this._doLoginTransition();
+              props.login(idToken, profile, props.resumeSession);
             }
             catch (e) {
               throw new Error("Error completing the impersonate process " + e.stack);
@@ -76,14 +78,12 @@ export default function (auth0Lock) {
             icon: '/assets/images/medium-logo-no-text.svg'
           };
 
-          auth0Lock.show(lockOptions, async (error, profile, idToken)=> {
+          auth0Lock.show(lockOptions, (error, profile, idToken)=> {
             if (error) throw new Error(`Error authenticating: ${idToken}. Inner exception: ${error.stack}`);
 
             try {
               log.info("Beginning: Log in user: %s", profile.nickname);
-              await sessionActions.login(idToken, profile);
-              log.info("Completed: Log in user: %s", profile.nickname);
-              this._doLoginTransition();
+              props.login(idToken, profile, props.resumeSession);
             }
             catch (e) {
               throw new Error("Error completing the login process " + e.stack);
@@ -101,7 +101,7 @@ export default function (auth0Lock) {
     }
   });
 
-  login = connect(x=> x.session)(login);
+  login = connect(x=> x.session, sessionActions)(login);
 
   return new DependencyProvider(login);
 };

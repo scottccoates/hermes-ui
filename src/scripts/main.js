@@ -33,7 +33,6 @@ sessionActions.resumeSession(sessionActions.resumeSession);
 
 const unSub = store.subscribe(async _=> {
   unSub();
-  debugger
   const state = store.getState();
 
   if (state.session.loggedIn) {

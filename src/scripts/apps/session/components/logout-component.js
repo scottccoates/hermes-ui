@@ -9,9 +9,6 @@ import { connect } from 'react-redux';
 export default function (sessionActions) {
   var logout = React.createClass({
     displayName: "LogoutComponent",
-    contextTypes: {
-      router: React.PropTypes.func
-    },
 
     _doLoginTransition(){
       window.location = 'login';
