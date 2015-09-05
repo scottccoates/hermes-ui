@@ -59,6 +59,7 @@ export default function () {
 
       return (
         <div id="page-wrapper">
+          <Sidebar />
 
           <div id="main-wrapper">
             <Header />
