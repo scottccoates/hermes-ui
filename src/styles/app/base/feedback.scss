@@ -6,6 +6,8 @@
 
 body #nprogress {
   .bar {
+    height: $src-progress-bar-height;
+    border-radius: 3px;
     background: $src-more-brighter;
   }
 

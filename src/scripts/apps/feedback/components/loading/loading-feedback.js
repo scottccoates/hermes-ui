@@ -34,6 +34,5 @@ offStream.subscribe(()=> {
   NProgress.done();
 });
 
-
 export default {start, done, setProgress};
 export default {start,done};

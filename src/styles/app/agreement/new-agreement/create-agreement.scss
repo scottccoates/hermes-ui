@@ -53,6 +53,30 @@
             }
           }
         }
+
+        .important-agreement-feedback {
+          .feedback-text {
+            @include at-least-small-screen-styles {
+              @include font-size(18px);
+            }
+          }
+
+          #important-agreement-feedback-progress {
+            @include at-least-small-screen-styles {
+              height: $src-progress-bar-height;
+              width: 255px;
+              margin: 0 auto;
+              margin-top: $src-content-section-vertical-space-md;
+            }
+
+            #nprogress {
+              .bar {
+                background: $src-bright;
+              }
+            }
+          }
+
+        }
       }
     }
   }

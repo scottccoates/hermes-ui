@@ -2,33 +2,64 @@
 
 import React from 'react';
 
+import cx from 'classnames';
+
+import NProgress from 'nprogress';
+
+import {Navigation} from 'react-router';
+
 import DependencyProvider from '../../../../libs/dependency-injection/utils/dependency-provider';
 
-export default function (persistenceApiServiceUrl, fileUploadProvider) {
+export default function (persistenceApiServiceUrl, fileUploadProvider, nprogressBarFactory) {
 
   const contractUrl  = `${persistenceApiServiceUrl}/api/agreements/`;
   const FileUploader = fileUploadProvider.dependency;
 
-  const component = React.createClass({
+  var component = React.createClass({
     displayName: "NewAgreementCreateComponent",
 
-    onAddedFile(file) {
-      const agreementActions = this.context.flux.getActions('AgreementActions');
-      agreementActions.contractUploadBegan(file);
+    mixins: [Navigation],
+
+    getInitialState(){
+      return {uploading: false};
+    },
+
+    componentWillMount(){
+      debugger
+      this.nprogressBar = nprogressBarFactory.get({
+        parent: '#important-agreement-feedback-progress',
+        showSpinner: false,
+        trickleRate: .02,
+        trickleSpeed: 800,
+        speed: 200
+      });
+    },
+
+    componentWillUnmount() {
+      debugger
+      nprogressBarFactory.dispose(this.nprogressBar);
+      this.nprogressBar = null;
+    },
+
+    onAddedFile() {
+      this.setState({uploading: true});
+      this.nprogressBar.updateProgress();
     },
 
     onProgressed(progress) {
-      const agreementActions = this.context.flux.getActions('AgreementActions');
-      agreementActions.contractUploadProgressed(progress);
+      this.nprogressBar.updateProgress(progress);
     },
 
-    onComplete(file) {
-      this.context.router.transitionTo('agreementForm');
-      //const agreementActions = this.context.flux.getActions('AgreementActions');
-      //agreementActions.contractUploadCompleted(file);
+    onComplete() {
+      this.nprogressBar.updateProgress(100);
+      //this.transitionTo('/agreements/step_2');
+      console.log("done");
     },
 
     render() {
+      const dropzoneClasses = cx({'dropzone': true, 'hidden': this.state.uploading});
+      const feedbackClasses = cx({'important-agreement-feedback': true, 'hidden': !this.state.uploading});
+
       return (
         <div id="new-agreement-wrapper">
           <div id="create-agreement-wrapper">
@@ -47,20 +78,30 @@ export default function (persistenceApiServiceUrl, fileUploadProvider) {
                         Import Contract
                       </div>
                       <div className="panel-body">
+                        <div className="import-agreement-container">
+                          <FileUploader url={contractUrl} onAddedFile={this.onAddedFile}
+                                        onProgressed={this.onProgressed}
+                                        onComplete={this.onComplete}
+                                        className={dropzoneClasses}
+                                        paramName="contract"
+                                        acceptedFiles=".pdf">
+                            <i className="fa fa-cloud-upload"></i>
 
-                        <FileUploader url={contractUrl} onAddedFile={this.onAddedFile} onProgressed={this.onProgressed}
-                                      onComplete={this.onComplete}
-                                      className="import-agreement-container dropzone"
-                                      paramName="contract"
-                                      acceptedFiles=".pdf">
-                          <i className="fa fa-cloud-upload"></i>
+                            <div className="primary-import-text">Select a file to upload</div>
+                            <div className="secondary-import-text">
+                              <span>Or drag and drop a file</span>
+                            </div>
+                          </FileUploader>
 
-                          <div className="primary-import-text">Select a file to upload</div>
-                          <div className="secondary-import-text">
-                            <span>Or drag and drop a file</span>
+                          <div className={feedbackClasses}>
+
+                            <h3 className="feedback-text">Importing Contract</h3>
+
+                            <div id="important-agreement-feedback-progress">
+                            </div>
+
                           </div>
-                        </FileUploader>
-
+                        </div>
                       </div>
                     </div>
                   </div>

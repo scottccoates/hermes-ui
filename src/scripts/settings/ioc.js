@@ -5,7 +5,7 @@ import Intravenous from 'intravenous';
 
 import FileUpload from '../libs/react-js/components/file-upload';
 
-import ReactJsActions from 'src/scripts/libs/react-js/actions/react-js-actions';
+import NprogressBar from 'src/scripts/apps/feedback/components/loading/nprogress-bar';
 
 import AppLayoutComponent from 'src/scripts/apps/app-layout/components/app-layout';
 
@@ -71,17 +71,17 @@ export default {
 
     container.register("ClientSidePersistenceService", ClientSidePersistenceService);
 
-    container.register("ReactJsActions", ReactJsActions);
-
     container.register("SessionRepository", SessionRepository);
     container.register("SessionService", SessionService);
     container.register("SessionReducer", SessionReducer);
     container.register("SessionActions", SessionActions);
     container.register("LogoutComponent", LogoutComponent);
 
+    container.register("NprogressBar", NprogressBar);
+
     DashboardComponent.$inject = ["AgreementListComponent"];
 
-    NewAgreementCreateComponent.$inject       = ["PersistenceApiServiceUrl", "FileUpload"];
+    NewAgreementCreateComponent.$inject       = ["PersistenceApiServiceUrl", "FileUpload", "NprogressBarFactory"];
     AgreementListComponent.$inject            = ["AgreementListItemComponent"];
     AgreementDetailContainerComponent.$inject = ["AgreementDetailGeneralInfoComponent", 'AgreementDetailLengthComponent', 'AgreementDetailDocumentsComponent'];
 
