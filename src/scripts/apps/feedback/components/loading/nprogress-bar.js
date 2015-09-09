@@ -6,12 +6,7 @@ NprogressBar.prototype.updateProgress = function (progress) {
   NProgress.configure(this._config);
 
   if (progress) {
-    if (progress >= 100) {
-      NProgress.done();
-    }
-    else {
-      NProgress.set(progress / 100);
-    }
+    NProgress.set(progress / 100);
   }
   else {
     NProgress.start();

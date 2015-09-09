@@ -25,7 +25,6 @@ export default function (persistenceApiServiceUrl, fileUploadProvider, nprogress
     },
 
     componentWillMount(){
-      debugger
       this.nprogressBar = nprogressBarFactory.get({
         parent: '#important-agreement-feedback-progress',
         showSpinner: false,
@@ -36,7 +35,6 @@ export default function (persistenceApiServiceUrl, fileUploadProvider, nprogress
     },
 
     componentWillUnmount() {
-      debugger
       nprogressBarFactory.dispose(this.nprogressBar);
       this.nprogressBar = null;
     },
@@ -52,7 +50,8 @@ export default function (persistenceApiServiceUrl, fileUploadProvider, nprogress
 
     onComplete() {
       this.nprogressBar.updateProgress(100);
-      this.transitionTo('/dashboard');
+      // https://app.asana.com/0/10235149247647/48987687687033
+      setTimeout(_=> this.transitionTo('/dashboard'), 500);
     },
 
     render() {
