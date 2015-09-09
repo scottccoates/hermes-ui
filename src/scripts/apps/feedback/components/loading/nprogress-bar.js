@@ -1,10 +1,10 @@
 import NProgress from 'nprogress';
 
 NprogressBar.prototype.updateProgress = function (progress) {
+
   // do this every call, because nprogress is a singleton and since the last call (to this instance), nprogress may have been re-configured
   NProgress.configure(this._config);
 
-  console.log("progress", progress);
   if (progress) {
     if (progress >= 100) {
       NProgress.done();

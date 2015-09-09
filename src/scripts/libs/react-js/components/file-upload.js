@@ -62,6 +62,14 @@ export default function (dropzoneFactory) {
 
     componentWillUnmount() {
       dropzoneFactory.dispose(this.dropzone);
+
+      // I was running into an issue where calling `destroy` below would trigger (in dropzone) file.remove
+      // which would further trigger `updateTotalUploadProgress` which would cause issues in react components that were un-mounted.
+      // I would not expect `updateTotalUploadProgress` to be triggered simply be calling `destroy`.
+      this.dropzone.off('addedfile', this.props.onAddedFile);
+      this.dropzone.off('totaluploadprogress', this.props.onProgressed);
+      this.dropzone.off('queuecomplete', this.props.onComplete);
+
       this.dropzone.destroy();
       this.dropzone = null;
     },

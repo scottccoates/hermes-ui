@@ -52,8 +52,7 @@ export default function (persistenceApiServiceUrl, fileUploadProvider, nprogress
 
     onComplete() {
       this.nprogressBar.updateProgress(100);
-      //this.transitionTo('/agreements/step_2');
-      console.log("done");
+      this.transitionTo('/dashboard');
     },
 
     render() {
