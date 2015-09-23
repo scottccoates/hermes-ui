@@ -23,7 +23,7 @@
       "react-highlighter": "github:helior/react-highlighter@0.2.1",
       "react-immutable-render-mixin": "npm:react-immutable-render-mixin@0.8.1",
       "react-redux": "npm:react-redux@2.0.0",
-      "react-router": "npm:react-router@1.0.0-beta4",
+      "react-router": "npm:react-router@1.0.0-rc1",
       "react-select": "npm:react-select@0.4.9",
       "react-tagsinput": "github:olahol/react-tagsinput@1.2.0",
       "redux": "npm:redux@2.0.0",

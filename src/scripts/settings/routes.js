@@ -62,8 +62,8 @@ export default {
           // https://github.com/rackt/redux/blob/master/examples/real-world/index.js
           // http://rackt.github.io/redux/docs/basics/UsageWithReact.html#connecting-to-redux
           <Router history={history}>
-            <Route path='/' component={AppLayoutComponent} onEnter={requireAuth}>
-              <Redirect from='/' to='/dashboard'/>
+            <Route component={AppLayoutComponent} onEnter={requireAuth}>
+              <Redirect from='/' to='/dashboard'/> // https://github.com/rackt/react-router/issues/1675
               <Route path='dashboard' component={DashboardComponent}/>
 
               <Route path='contracts'>
@@ -72,8 +72,8 @@ export default {
               </Route>
             </Route>
 
-            < Route path='/login' component={LoginComponent}/>
-            <Route path='/logout' component={LogoutComponent}/>
+            <Route path='login' component={LoginComponent}/>
+            <Route path='logout' component={LogoutComponent}/>
           </Router>
         }
       </Provider>

@@ -45,7 +45,7 @@ System.config({
     "react-highlighter": "github:helior/react-highlighter@0.2.1",
     "react-immutable-render-mixin": "npm:react-immutable-render-mixin@0.8.1",
     "react-redux": "npm:react-redux@2.0.0",
-    "react-router": "npm:react-router@1.0.0-beta4",
+    "react-router": "npm:react-router@1.0.0-rc1",
     "react-select": "npm:react-select@0.4.9",
     "react-tagsinput": "github:olahol/react-tagsinput@1.2.0",
     "redux": "npm:redux@2.0.0",
@@ -59,7 +59,7 @@ System.config({
       "assert": "npm:assert@1.3.0"
     },
     "github:jspm/nodelibs-buffer@0.1.0": {
-      "buffer": "npm:buffer@3.4.3"
+      "buffer": "npm:buffer@3.5.0"
     },
     "github:jspm/nodelibs-events@0.1.1": {
       "events": "npm:events@1.0.2"
@@ -120,7 +120,7 @@ System.config({
       "path": "github:jspm/nodelibs-path@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
-    "npm:buffer@3.4.3": {
+    "npm:buffer@3.5.0": {
       "base64-js": "npm:base64-js@0.0.8",
       "ieee754": "npm:ieee754@1.1.6",
       "is-array": "npm:is-array@1.0.1"
@@ -172,9 +172,15 @@ System.config({
       "fs": "github:jspm/nodelibs-fs@0.1.2",
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
+    "npm:history@1.10.1": {
+      "deep-equal": "npm:deep-equal@1.0.1",
+      "invariant": "npm:invariant@2.1.1",
+      "qs": "npm:qs@4.0.0",
+      "warning": "npm:warning@2.0.0"
+    },
     "npm:history@1.8.4": {
       "deep-equal": "npm:deep-equal@1.0.1",
-      "invariant": "npm:invariant@2.1.0",
+      "invariant": "npm:invariant@2.1.1",
       "qs": "npm:qs@4.0.0",
       "warning": "npm:warning@2.0.0"
     },
@@ -184,8 +190,12 @@ System.config({
     "npm:inherits@2.0.1": {
       "util": "github:jspm/nodelibs-util@0.1.0"
     },
-    "npm:invariant@2.1.0": {
-      "envify": "npm:envify@3.4.0",
+    "npm:invariant@2.1.1": {
+      "loose-envify": "npm:loose-envify@1.0.0",
+      "process": "github:jspm/nodelibs-process@0.1.1"
+    },
+    "npm:js-tokens@1.0.1": {
+      "fs": "github:jspm/nodelibs-fs@0.1.2",
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
     "npm:jstransform@10.1.0": {
@@ -201,6 +211,12 @@ System.config({
     },
     "npm:loglevel@1.3.1": {
       "process": "github:jspm/nodelibs-process@0.1.1"
+    },
+    "npm:loose-envify@1.0.0": {
+      "js-tokens": "npm:js-tokens@1.0.1",
+      "process": "github:jspm/nodelibs-process@0.1.1",
+      "stream": "github:jspm/nodelibs-stream@0.1.0",
+      "util": "github:jspm/nodelibs-util@0.1.0"
     },
     "npm:os-browserify@0.1.2": {
       "os": "github:jspm/nodelibs-os@0.1.0"
@@ -239,13 +255,13 @@ System.config({
       "react": "npm:react@0.13.3"
     },
     "npm:react-redux@2.0.0": {
-      "invariant": "npm:invariant@2.1.0",
+      "invariant": "npm:invariant@2.1.1",
       "process": "github:jspm/nodelibs-process@0.1.1",
       "redux": "npm:redux@2.0.0"
     },
-    "npm:react-router@1.0.0-beta4": {
-      "history": "npm:history@1.8.4",
-      "invariant": "npm:invariant@2.1.0",
+    "npm:react-router@1.0.0-rc1": {
+      "history": "npm:history@1.10.1",
+      "invariant": "npm:invariant@2.1.1",
       "warning": "npm:warning@2.0.0"
     },
     "npm:react-select@0.4.9": {
