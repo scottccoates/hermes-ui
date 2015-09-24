@@ -76,7 +76,7 @@ var headerNavSection = React.createClass({
           </li>
 
           <li className="header-item header-new-agreement">
-            <Link activeClassName="" to="/contracts/step_1/" className="btn btn-primary btn-xs">New Contract</Link>
+            <Link activeClassName="" to="/contracts/step-1/" className="btn btn-primary btn-xs">New Contract</Link>
           </li>
         </ul>
       </section>

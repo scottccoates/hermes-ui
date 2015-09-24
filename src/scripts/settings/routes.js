@@ -67,8 +67,8 @@ export default {
               <Route path='dashboard' component={DashboardComponent}/>
 
               <Route path='contracts'>
-                <Route path='step_1' component={CreateAgreementComponent}/>
-                <Route path='step_2' component={AgreementFormComponent}/>
+                <Route path='step-1' component={CreateAgreementComponent}/>
+                <Route path='step-2' component={AgreementFormComponent}/>
               </Route>
             </Route>
 
