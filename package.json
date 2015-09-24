@@ -7,7 +7,7 @@
       "classnames": "github:JedWatson/classnames@2.1.2",
       "dropzone": "npm:dropzone@4.0.1",
       "firebase": "github:firebase/firebase-bower@2.2.7",
-      "history": "npm:history@1.8.4",
+      "history": "npm:history@1.10.1",
       "humps": "github:domchristie/humps@0.6.0",
       "immutable": "npm:immutable@3.7.4",
       "intravenous": "github:willow/intravenous@master",

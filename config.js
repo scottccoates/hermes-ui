@@ -29,7 +29,7 @@ System.config({
     "core-js": "npm:core-js@1.1.3",
     "dropzone": "npm:dropzone@4.0.1",
     "firebase": "github:firebase/firebase-bower@2.2.7",
-    "history": "npm:history@1.8.4",
+    "history": "npm:history@1.10.1",
     "humps": "github:domchristie/humps@0.6.0",
     "immutable": "npm:immutable@3.7.4",
     "intravenous": "github:willow/intravenous@master",
@@ -173,12 +173,6 @@ System.config({
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
     "npm:history@1.10.1": {
-      "deep-equal": "npm:deep-equal@1.0.1",
-      "invariant": "npm:invariant@2.1.1",
-      "qs": "npm:qs@4.0.0",
-      "warning": "npm:warning@2.0.0"
-    },
-    "npm:history@1.8.4": {
       "deep-equal": "npm:deep-equal@1.0.1",
       "invariant": "npm:invariant@2.1.1",
       "qs": "npm:qs@4.0.0",
