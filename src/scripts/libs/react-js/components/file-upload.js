@@ -19,7 +19,7 @@ export default function (dropzoneFactory) {
       acceptedFiles: React.PropTypes.string,
       onAddedFile: React.PropTypes.func,
       onProgressed: React.PropTypes.func,
-      onComplete: React.PropTypes.func,
+      onSuccess: React.PropTypes.func,
       style: React.PropTypes.object
     },
 
@@ -29,7 +29,7 @@ export default function (dropzoneFactory) {
         },
         onProgressed: (progress)=> {
         },
-        onComplete: ()=> {
+        onSuccess: ()=> {
         }
       }
     },
@@ -57,7 +57,7 @@ export default function (dropzoneFactory) {
 
       this.dropzone.on('addedfile', this.props.onAddedFile);
       this.dropzone.on('totaluploadprogress', this.props.onProgressed);
-      this.dropzone.on('queuecomplete', this.props.onComplete);
+      this.dropzone.on('success', this.props.onSuccess);
     },
 
     componentWillUnmount() {
@@ -68,7 +68,7 @@ export default function (dropzoneFactory) {
       // I would not expect `updateTotalUploadProgress` to be triggered simply be calling `destroy`.
       this.dropzone.off('addedfile', this.props.onAddedFile);
       this.dropzone.off('totaluploadprogress', this.props.onProgressed);
-      this.dropzone.off('queuecomplete', this.props.onComplete);
+      this.dropzone.off('success', this.props.onSuccess);
 
       this.dropzone.destroy();
       this.dropzone = null;

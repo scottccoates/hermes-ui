@@ -44,10 +44,10 @@ export default function (persistenceApiServiceUrl, fileUploadProvider, nprogress
       this.nprogressBar.updateProgress(progress);
     },
 
-    onComplete() {
+    onSuccess(file, response) {
       this.nprogressBar.updateProgress(100);
       // https://app.asana.com/0/10235149247647/48987687687033
-      setTimeout(_=> this.props.history.pushState(null, '/dashboard'), 500);
+      setTimeout(_=> this.props.history.pushState(null, `/contracts/${response.potential_agreement_id}/step-2`), 500);
     },
 
     render() {
@@ -75,7 +75,7 @@ export default function (persistenceApiServiceUrl, fileUploadProvider, nprogress
                         <div className="import-agreement-container">
                           <FileUploader url={contractUrl} onAddedFile={this.onAddedFile}
                                         onProgressed={this.onProgressed}
-                                        onComplete={this.onComplete}
+                                        onSuccess={this.onSuccess}
                                         className={dropzoneClasses}
                                         paramName="contract"
                                         acceptedFiles=".pdf">
