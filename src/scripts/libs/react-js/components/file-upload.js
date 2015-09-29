@@ -20,6 +20,7 @@ export default function (dropzoneFactory) {
       onAddedFile: React.PropTypes.func,
       onProgressed: React.PropTypes.func,
       onSuccess: React.PropTypes.func,
+      onError: React.PropTypes.func,
       style: React.PropTypes.object
     },
 
@@ -30,6 +31,8 @@ export default function (dropzoneFactory) {
         onProgressed: (progress)=> {
         },
         onSuccess: ()=> {
+        },
+        onError: ()=> {
         }
       }
     },
@@ -58,6 +61,7 @@ export default function (dropzoneFactory) {
       this.dropzone.on('addedfile', this.props.onAddedFile);
       this.dropzone.on('totaluploadprogress', this.props.onProgressed);
       this.dropzone.on('success', this.props.onSuccess);
+      this.dropzone.on('error', this.props.onError);
     },
 
     componentWillUnmount() {
@@ -69,6 +73,7 @@ export default function (dropzoneFactory) {
       this.dropzone.off('addedfile', this.props.onAddedFile);
       this.dropzone.off('totaluploadprogress', this.props.onProgressed);
       this.dropzone.off('success', this.props.onSuccess);
+      this.dropzone.off('error', this.props.onError);
 
       this.dropzone.destroy();
       this.dropzone = null;

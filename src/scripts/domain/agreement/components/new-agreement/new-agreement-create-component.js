@@ -50,6 +50,10 @@ export default function (persistenceApiServiceUrl, fileUploadProvider, nprogress
       setTimeout(_=> this.props.history.pushState(null, `/contracts/${response.potential_agreement_id}/step-2`), 500);
     },
 
+    onError(file, errorMessage) {
+      alert('There was an error processing your file.');
+    },
+
     render() {
       const dropzoneClasses = cx({'dropzone': true, 'hidden': this.state.uploading});
       const feedbackClasses = cx({'important-agreement-feedback': true, 'hidden': !this.state.uploading});
@@ -76,6 +80,7 @@ export default function (persistenceApiServiceUrl, fileUploadProvider, nprogress
                           <FileUploader url={contractUrl} onAddedFile={this.onAddedFile}
                                         onProgressed={this.onProgressed}
                                         onSuccess={this.onSuccess}
+                                        onError={this.onError}
                                         className={dropzoneClasses}
                                         paramName="contract"
                                         acceptedFiles=".pdf">
