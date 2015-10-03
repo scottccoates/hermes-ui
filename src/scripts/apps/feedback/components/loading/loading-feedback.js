@@ -1,6 +1,6 @@
 import NProgress from 'nprogress';
 
-import Bacon from 'bacon';
+import Bacon from 'baconjs';
 
 NProgress.configure({ease: 'ease', speed: 100, trickleRate: .2, trickleSpeed: 200});
 

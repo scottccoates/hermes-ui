@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import Bacon from 'bacon';
+import Bacon from 'baconjs';
 import ReactBacon from 'react-bacon';
 
 export default React.createClass({

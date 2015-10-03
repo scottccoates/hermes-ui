@@ -2,7 +2,7 @@
   "jspm": {
     "dependencies": {
       "auth0-lock": "github:auth0/lock@7.5.6",
-      "bacon": "npm:baconjs@0.7.53",
+      "baconjs": "npm:baconjs@0.7.74",
       "bankers-box": "github:twilio/BankersBox@0.1.0",
       "classnames": "github:JedWatson/classnames@2.1.2",
       "dropzone": "npm:dropzone@4.0.1",
@@ -22,18 +22,18 @@
       "react-dnd": "npm:react-dnd@0.9.8",
       "react-highlighter": "github:helior/react-highlighter@0.2.1",
       "react-immutable-render-mixin": "npm:react-immutable-render-mixin@0.8.1",
-      "react-redux": "npm:react-redux@2.0.0",
+      "react-redux": "npm:react-redux@3.0.1",
       "react-router": "npm:react-router@1.0.0-rc1",
       "react-select": "npm:react-select@0.4.9",
       "react-tagsinput": "github:olahol/react-tagsinput@1.2.0",
-      "redux": "npm:redux@2.0.0",
-      "redux-thunk": "npm:redux-thunk@0.1.0",
+      "redux": "npm:redux@3.0.2",
+      "redux-thunk": "npm:redux-thunk@1.0.0",
       "tcomb": "npm:tcomb@2.0.1"
     },
     "devDependencies": {
-      "babel": "npm:babel-core@^5.8.22",
-      "babel-runtime": "npm:babel-runtime@^5.8.20",
-      "core-js": "npm:core-js@^1.1.0"
+      "babel": "npm:babel-core@5.8.24",
+      "babel-runtime": "npm:babel-runtime@5.8.24",
+      "core-js": "npm:core-js@1.1.4"
     }
   },
   "devDependencies": {
@@ -61,7 +61,7 @@
     "gulp-sourcemaps": "1.5.2",
     "gulp-uglify": "1.2.0",
     "gulp-util": "3.0.2",
-    "jspm": "0.16.2",
+    "jspm": "0.16.11",
     "karma": "0.12.31",
     "karma-chrome-launcher": "0.2.0",
     "karma-firefox-launcher": "0.1.4",
