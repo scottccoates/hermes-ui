@@ -51,7 +51,7 @@ export default {
 
     function requireAuth(nextState, redirectTo) {
       if (!store.getState().session.loggedIn)
-        redirectTo('/login', null, {nextPath: nextState.location.pathname});
+        redirectTo('/login', null, {'next-path': nextState.location.pathname});
     }
 
     React.render((

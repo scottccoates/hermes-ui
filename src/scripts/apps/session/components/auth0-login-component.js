@@ -18,7 +18,7 @@ export default function (sessionActions, auth0Lock) {
     _doLoginTransition(){
       // I'm not sure if there's a better way to completely reset the history by this point.
       // It'd be bad to be able to click back and go back to the login screen
-      window.location = this.props.location.query.nextPath || '/';
+      window.location = this.props.location.query['next-path'] || '/';
     },
 
     componentWillReceiveProps(nextProps){
@@ -41,7 +41,7 @@ export default function (sessionActions, auth0Lock) {
           try {
             const nickname = this.props.user.nickname;
             log.info("Logging out previous user: %s", nickname);
-            this.transitionTo('/logout', {}, {nextPath: window.location.toString()});
+            this.transitionTo('/logout', {}, {'next-path': window.location.toString()});
           }
           catch (e) {
             throw new Error("Error completing the impersonate process " + e.stack);

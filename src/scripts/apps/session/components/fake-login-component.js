@@ -39,7 +39,7 @@ export default function (sessionActions, tokenService) {
     _doLoginTransition(){
       // I'm not sure if there's a better way to completely reset the history by this point.
       // It'd be bad to be able to click back and go back to the login screen
-      window.location = this.props.location.query.nextPath || '/';
+      window.location = this.props.location.query['next-path'] || '/';
     },
 
     componentWillReceiveProps(nextProps){
