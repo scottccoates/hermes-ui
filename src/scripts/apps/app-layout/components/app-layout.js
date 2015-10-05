@@ -70,7 +70,11 @@ export default function () {
             <div id="content-wrapper">
               <div className="transition-content-wrapper" style={transitionWrapperStyle}>
                 <div ref="transitionContent" className="transition-content" style={transitionContentStyle}>
-                  {this.props.children}
+                  {/*
+                   https://facebook.github.io/react/docs/top-level-api.html#react.cloneelement
+                   https://github.com/rackt/react-router/blob/15b05b4f2ca8b4ade5f7378ed1839b752a62babc/examples/passing-props-to-children/app.js
+                   */}
+                  {React.cloneElement(this.props.children, {user: {token: this.props.token}})}
                 </div>
               </div>
             </div>

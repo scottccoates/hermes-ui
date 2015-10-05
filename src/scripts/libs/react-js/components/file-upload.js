@@ -17,6 +17,7 @@ export default function (dropzoneFactory) {
       url: React.PropTypes.string.isRequired,
       paramName: React.PropTypes.string,
       acceptedFiles: React.PropTypes.string,
+      headers: React.PropTypes.object,
       onAddedFile: React.PropTypes.func,
       onProgressed: React.PropTypes.func,
       onSuccess: React.PropTypes.func,
@@ -38,9 +39,11 @@ export default function (dropzoneFactory) {
     },
 
     _configureProps() {
-      const propsMap = Immutable.Map(this.props);
+      const propsMap                         = Immutable.Map(this.props);
+      const additionalDefaultDropzoneOptions = {"headers": null};
+      const defaultOptions                   = Object.assign({}, additionalDefaultDropzoneOptions, Dropzone.prototype.defaultOptions);
 
-      var dropzoneOptions = propsMap.filter((v, k)=>k in Dropzone.prototype.defaultOptions);
+      var dropzoneOptions = propsMap.filter((v, k)=>k in defaultOptions);
 
       // For some stupid reason, they provide a default implementation of 'addedfile'.
       // It results in a <div> tag containing an image preview.

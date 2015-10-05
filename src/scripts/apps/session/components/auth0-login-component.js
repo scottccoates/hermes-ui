@@ -75,7 +75,8 @@ export default function (sessionActions, auth0Lock) {
             sso: false,
             rememberLastLogin: false,
             closable: false,
-            icon: '/assets/images/medium-logo-no-text.svg'
+            icon: '/assets/images/medium-logo-no-text.svg',
+            authParams: {scope: 'openid app_metadata'}
           };
 
           auth0Lock.show(lockOptions, (error, profile, idToken)=> {
