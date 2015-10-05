@@ -7,11 +7,14 @@ import Sidebar from './sidebar/sidebar';
 import Header from './header/header';
 import Footer from './footer/footer';
 
+import { connect } from 'react-redux';
+
+
 import DependencyProvider from 'src/scripts/libs/dependency-injection/utils/dependency-provider';
 
 export default function () {
 
-  const component = React.createClass({
+  var appLayout = React.createClass({
     displayName: "AppLayout",
     contextTypes: {
       router: React.PropTypes.func
@@ -62,7 +65,7 @@ export default function () {
           <Sidebar />
 
           <div id="main-wrapper">
-            <Header />
+            <Header user={this.props.user}/>
 
             <div id="content-wrapper">
               <div className="transition-content-wrapper" style={transitionWrapperStyle}>
@@ -78,6 +81,7 @@ export default function () {
     }
   });
 
+  appLayout = connect(x=> x.session)(appLayout);
 
-  return new DependencyProvider(component);
+  return new DependencyProvider(appLayout);
 };

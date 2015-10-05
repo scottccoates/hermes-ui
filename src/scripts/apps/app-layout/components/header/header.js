@@ -8,10 +8,10 @@ export default React.createClass({
 
   render() {
     return (
-        <header id="header-wrapper">
-          <HeaderSearch/>
-          <HeaderNavSection/>
-        </header>
+      <header id="header-wrapper">
+        <HeaderSearch/>
+        <HeaderNavSection user={this.props.user}/>
+      </header>
     );
   }
 });

@@ -4,7 +4,6 @@ import React from 'react';
 import ReactBacon from 'react-bacon';
 
 import {Link}  from 'react-router';
-import { connect } from 'react-redux';
 
 import FocusContainer from '../../../../libs/react-js/components/focus-container';
 import DisplayContainer from '../../../../libs/react-js/components/display-container';
@@ -83,7 +82,5 @@ var headerNavSection = React.createClass({
     );
   }
 });
-
-headerNavSection = connect(x=> x.session)(headerNavSection);
 
 export default headerNavSection;
