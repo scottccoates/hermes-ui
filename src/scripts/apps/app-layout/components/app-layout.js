@@ -1,6 +1,7 @@
 'use strict';
 
 import React from 'react';
+import ReactDOM from 'react-dom';
 import Router from 'react-router';
 
 import Sidebar from './sidebar/sidebar';
@@ -22,7 +23,7 @@ export default function () {
 
     setTransitionContent() {
       // accessing refs or DOM from render is not recommended.
-      this.transitionContent = React.findDOMNode(this.refs.transitionContent);
+      this.transitionContent = ReactDOM.findDOMNode(this.refs.transitionContent);
     },
 
     componentDidMount() {

@@ -1,7 +1,7 @@
 /* jshint -W030 */
 'use strict';
 
-import React from 'react/addons';
+import React from 'react';
 
 import StubRouterContext from '../../../../libs/react-js/testing/router/stub-router-context'
 

@@ -1,6 +1,6 @@
 'use strict';
 
-import React from 'react/addons';
+import React from 'react';
 import Bacon from 'baconjs';
 import ReactBacon from 'react-bacon';
 
@@ -14,7 +14,7 @@ import cx from 'classnames';
 
 export default React.createClass({
   displayName: "AdvancedApolloSearchField",
-  mixins: [React.addons.LinkedStateMixin, ReactBacon.BaconMixin],
+  mixins: [ReactBacon.BaconMixin],
   getInitialState() {
     return {
       tags: [],
@@ -49,8 +49,8 @@ export default React.createClass({
   },
 
   createSearchGroup(token1, token2) {
-    const keys = [token1, token2];
-    const oldTags = this.state.tags;
+    const keys          = [token1, token2];
+    const oldTags       = this.state.tags;
     const remainingTags = oldTags.filter(tagItem => keys.indexOf(tagItem.key) < 0);
 
     this.setState({tags: remainingTags});
@@ -88,8 +88,8 @@ export default React.createClass({
           <span className="search-field-label">{this.props.fieldLabel}</span>
 
         <span className="search-field-value">
-          <TagsInput ref="fieldInput" valueLink={this.linkState('tags')} classNamespace={tokenClassName}
-                     placeholder={""} onBlur={this.onBlur} transform={this.transform} validate={this.tagsValidate}/>
+          {/*<TagsInput ref="fieldInput" valueLink={this.linkState('tags')} classNamespace={tokenClassName}
+           placeholder={""} onBlur={this.onBlur} transform={this.transform} validate={this.tagsValidate}/>*/}
         </span>
 
         </div>

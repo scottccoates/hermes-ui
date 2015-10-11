@@ -2,6 +2,7 @@
 'use strict';
 
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 import { Provider } from 'react-redux';
 
@@ -54,28 +55,23 @@ export default {
         redirectTo('/login', null, {'next-path': nextState.location.pathname});
     }
 
-    React.render((
+    ReactDOM.render((
 
       <Provider store={store}>
-        {() =>
-          // http://ngokevin.com/blog/redux-react-router/
-          // https://github.com/rackt/redux/blob/master/examples/real-world/index.js
-          // http://rackt.github.io/redux/docs/basics/UsageWithReact.html#connecting-to-redux
-          <Router history={history}>
-            <Route component={AppLayoutComponent} onEnter={requireAuth}>
-              <Redirect from='/' to='/dashboard'/> // https://github.com/rackt/react-router/issues/1675
-              <Route path='dashboard' component={DashboardComponent}/>
+        <Router history={history}>
+          <Route component={AppLayoutComponent} onEnter={requireAuth}>
+            <Redirect from='/' to='/dashboard'/> // https://github.com/rackt/react-router/issues/1675
+            <Route path='dashboard' component={DashboardComponent}/>
 
-              <Route path='contracts'>
-                <Route path='step-1' component={CreateAgreementComponent}/>
-                <Route path=':id/step-2' component={AgreementFormComponent}/>
-              </Route>
+            <Route path='contracts'>
+              <Route path='step-1' component={CreateAgreementComponent}/>
+              <Route path=':id/step-2' component={AgreementFormComponent}/>
             </Route>
+          </Route>
 
-            <Route path='login' component={LoginComponent}/>
-            <Route path='logout' component={LogoutComponent}/>
-          </Router>
-        }
+          <Route path='login' component={LoginComponent}/>
+          <Route path='logout' component={LogoutComponent}/>
+        </Router>
       </Provider>
 
     ), document.getElementById('app'));

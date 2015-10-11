@@ -1,7 +1,7 @@
 ///* jshint -W030 */
 //'use strict';
 //
-//import React from 'react/addons';
+//import React from 'react';
 //
 //import TestUtilsHelpers from '../../../../libs/react-js/testing/react-js/react-test-utils-helper';
 //import StubRouterContext from '../../../../libs/react-js/testing/router/stub-router-context'

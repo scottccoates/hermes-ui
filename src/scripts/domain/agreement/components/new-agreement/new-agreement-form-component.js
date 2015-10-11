@@ -128,7 +128,6 @@ export default function () {
                                  className="col-sm-6 control-label">Counterparty</label>
 
                           <div className="col-sm-18">
-                            <SelectedValuesField label="Clickable labels (labels as links):"/>
                           </div>
                         </div>
                         <div className="form-group content-section-item">
@@ -155,16 +154,16 @@ export default function () {
                               </button>
                               <ul className="dropdown-menu" role="menu" aria-labelledby="agreement-form-contract-type">
                                 <li role="presentation">
-                                  <a role="menuitem" tabindex="-1" href="javascript:void(0)">Action</a>
+                                  <a role="menuitem" href="javascript:void(0)">Action</a>
                                 </li>
                                 <li role="presentation">
-                                  <a role="menuitem" tabindex="-1" href="javascript:void(0)">Another action</a>
+                                  <a role="menuitem" href="javascript:void(0)">Another action</a>
                                 </li>
                                 <li role="presentation">
-                                  <a role="menuitem" tabindex="-1" href="javascript:void(0)">Something else here</a>
+                                  <a role="menuitem" href="javascript:void(0)">Something else here</a>
                                 </li>
                                 <li role="presentation">
-                                  <a role="menuitem" tabindex="-1" href="javascript:void(0)">Separated link</a>
+                                  <a role="menuitem"  href="javascript:void(0)">Separated link</a>
                                 </li>
                               </ul>
                             </div>

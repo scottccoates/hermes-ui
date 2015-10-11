@@ -1,6 +1,7 @@
 'use strict';
 
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 import DependencyProvider from './../../dependency-injection/utils/dependency-provider';
 
@@ -59,7 +60,7 @@ export default function (dropzoneFactory) {
 
     componentDidMount() {
       // remember to use non-arrow function here because that would bind it to undefined and then `this` wouldn't work.
-      this.dropzone = dropzoneFactory.get(React.findDOMNode(this), this._dropzoneOptions.toJS());
+      this.dropzone = dropzoneFactory.get(ReactDOM.findDOMNode(this), this._dropzoneOptions.toJS());
 
       this.dropzone.on('addedfile', this.props.onAddedFile);
       this.dropzone.on('totaluploadprogress', this.props.onProgressed);

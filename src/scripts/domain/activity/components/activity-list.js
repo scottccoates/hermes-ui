@@ -1,6 +1,6 @@
 'use strict';
 
-import React from 'react/addons';
+import React from 'react';
 
 import Router  from 'react-router';
 import ImmutableRenderMixin from 'react-immutable-render-mixin';

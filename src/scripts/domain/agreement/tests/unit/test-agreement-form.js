@@ -1,7 +1,7 @@
 /* jshint -W030 */
 'use strict';
 
-import React from 'react/addons';
+import React from 'react';
 
 import AgreementForm from '../../components/new-agreement/new-agreement-form-component';
 
