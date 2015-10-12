@@ -16,6 +16,23 @@
   border: 1px solid rgba(0, 0, 0, 0.10);
 }
 
+@mixin section-dividing-line {
+  // the parent container must be relative and the psuedo element must be absolute instated of display:block
+  // because any padding would push this border away.
+  position: relative;
+
+  border-top: 2px solid $src-super-dark;
+
+  &:before {
+    content: '';
+    border-bottom: solid 2px $src-dark;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
 // Responsive Viewing
 // --------------------------------------------------
 
@@ -81,26 +98,6 @@
   font-size: calculate-rem($pixel-size);
 }
 
-// Containers
-// --------------------------------------------------
-
-@mixin section-dividing-line {
-  // the parent container must be relative and the psuedo element must be absolute instated of display:block
-  // because any padding would push this border away.
-  position: relative;
-
-  border-top: 2px solid $src-super-dark;
-
-  &:before {
-    content: '';
-    border-bottom: solid 2px $src-dark;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-}
-
 // Buttons
 // --------------------------------------------------
 @mixin btn($btn-color, $shadow-color, $inset-shadow-alpha: .20) {
@@ -119,4 +116,16 @@
     background: $active-background;
     box-shadow: 0 1px 3px 0 rgba($shadow-color, 0.55), inset 0 3px 6px $src-very-dark;
   }
+}
+
+// Form
+// --------------------------------------------------
+@mixin form-input(){
+  text-align: start; //dropdown buttons, for example, should have text all the way over.
+
+  color: $src-less-dark;
+
+  border: 1px solid $src-bright;
+  box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.10);
+  border-radius: 3px;
 }

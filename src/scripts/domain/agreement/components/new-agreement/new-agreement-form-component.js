@@ -6,7 +6,6 @@ import {Link}  from 'react-router';
 import DependencyProvider from '../../../../libs/dependency-injection/utils/dependency-provider';
 
 import Agreement from '../../models/agreement-list-item-model';
-
 import Select from 'react-select';
 import Validation from 'rc-form-validation';
 
@@ -48,40 +47,18 @@ export default function () {
     },
 
     render() {
-      console.log("render form");
+      var ops = [
+        {label: 'Chocolate', value: 'chocolate'},
+        {label: 'Vanilla', value: 'vanilla'},
+        {label: 'Strawberry', value: 'strawberry'},
+        {label: 'Caramel', value: 'caramel'},
+        {label: 'Cookies and Cream', value: 'cookiescream'},
+        {label: 'Peppermint', value: 'peppermint'}
+      ];
+
       const formData = this.state.formData;
       const status   = this.state.status;
 
-      function logChange(val) {
-        console.log("Selected:", val, arguments);
-      }
-
-      var SelectedValuesField = React.createClass({
-
-        onLabelClick: function (data, event) {
-          console.log(data, event);
-        },
-
-        render: function () {
-          var ops = [
-            {label: 'Chocolate', value: 'chocolate'},
-            {label: 'Vanilla', value: 'vanilla'},
-            {label: 'Strawberry', value: 'strawberry'},
-            {label: 'Caramel', value: 'caramel'},
-            {label: 'Cookies and Cream', value: 'cookiescream'},
-            {label: 'Peppermint', value: 'peppermint'}
-          ];
-          return (
-            <Select
-              onOptionLabelClick={this.onLabelClick}
-              value="chocolate,vanilla,strawberry"
-              multi={true}
-              placeholder="Select your favourite(s)"
-              options={ops}
-              onChange={logChange}/>
-          );
-        }
-      });
       return (
         <div id="new-agreement-wrapper">
           <div id="agreement-form-wrapper">
@@ -120,7 +97,6 @@ export default function () {
                           <div className="col-sm-18">
                             <input type="text" className="form-control" id="agreement-form-counterparty"
                                    defaultValue="Microsoft"/>
-
                           </div>
                         </div>
                         <div className="form-group content-section-item">
@@ -128,6 +104,21 @@ export default function () {
                                  className="col-sm-6 control-label">Counterparty</label>
 
                           <div className="col-sm-18">
+                            <select className="form-control" defaultValue="2">
+                              <option>1</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div className="form-group content-section-item">
+                          <label htmlFor="agreement-form-counterparty"
+                                 className="col-sm-6 control-label">Counterparty</label>
+
+                          <div className="col-sm-18">
+                            <Select className="" placeholder={null} options={ops} searchable={false}/>
                           </div>
                         </div>
                         <div className="form-group content-section-item">
@@ -163,7 +154,7 @@ export default function () {
                                   <a role="menuitem" href="javascript:void(0)">Something else here</a>
                                 </li>
                                 <li role="presentation">
-                                  <a role="menuitem"  href="javascript:void(0)">Separated link</a>
+                                  <a role="menuitem" href="javascript:void(0)">Separated link</a>
                                 </li>
                               </ul>
                             </div>

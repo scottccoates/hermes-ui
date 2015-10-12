@@ -8,6 +8,13 @@ System.config({
     ],
     "stage": 0
   },
+
+  meta: {
+    "npm:react-select@0.7.0/lib/Select": {
+      deps: ['../dist/default.css!']
+    }
+  },
+
   paths: {
     "github:*": "jspm_packages/github/*",
     "npm:*": "jspm_packages/npm/*"
@@ -27,6 +34,7 @@ System.config({
     "bankers-box": "github:twilio/BankersBox@0.1.0",
     "classnames": "github:JedWatson/classnames@2.1.2",
     "core-js": "npm:core-js@1.2.1",
+    "css": "github:systemjs/plugin-css@0.1.18",
     "dropzone": "npm:dropzone@4.0.1",
     "firebase": "github:firebase/firebase-bower@2.2.7",
     "history": "npm:history@1.10.1",
@@ -47,7 +55,7 @@ System.config({
     "react-immutable-render-mixin": "npm:react-immutable-render-mixin@0.8.1",
     "react-redux": "npm:react-redux@3.0.1",
     "react-router": "npm:react-router@1.0.0-rc1",
-    "react-select": "npm:react-select@0.4.9",
+    "react-select": "npm:react-select@0.7.0",
     "react-tagsinput": "github:olahol/react-tagsinput@1.2.0",
     "redux": "npm:redux@3.0.2",
     "redux-thunk": "npm:redux-thunk@1.0.0",
@@ -136,7 +144,7 @@ System.config({
     "npm:classnames@1.2.2": {
       "assert": "github:jspm/nodelibs-assert@0.1.0"
     },
-    "npm:classnames@2.1.2": {
+    "npm:classnames@2.1.5": {
       "assert": "github:jspm/nodelibs-assert@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.2",
       "systemjs-json": "github:systemjs/plugin-json@0.1.0"
@@ -273,8 +281,8 @@ System.config({
     "npm:react-immutable-render-mixin@0.8.1": {
       "immutable": "npm:immutable@3.7.4"
     },
-    "npm:react-input-autosize@0.4.4": {
-      "react": "npm:react@0.13.3"
+    "npm:react-input-autosize@0.6.1": {
+      "react": "npm:react@0.14.0"
     },
     "npm:react-redux@3.0.1": {
       "invariant": "npm:invariant@2.1.1",
@@ -286,10 +294,11 @@ System.config({
       "invariant": "npm:invariant@2.1.1",
       "warning": "npm:warning@2.0.0"
     },
-    "npm:react-select@0.4.9": {
-      "classnames": "npm:classnames@2.1.2",
-      "react": "npm:react@0.13.3",
-      "react-input-autosize": "npm:react-input-autosize@0.4.4"
+    "npm:react-select@0.7.0": {
+      "classnames": "npm:classnames@2.1.5",
+      "react": "npm:react@0.14.0",
+      "react-dom": "npm:react-dom@0.14.0",
+      "react-input-autosize": "npm:react-input-autosize@0.6.1"
     },
     "npm:react@0.13.3": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",

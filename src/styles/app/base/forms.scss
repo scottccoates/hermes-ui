@@ -53,13 +53,7 @@ parent: forms
   // it is probably good for form controls to be this opinionated, given that the color will probably always work
   // on a white background.
 
-  text-align: start; //dropdown buttons, for example, should have text all the way over.
-
-  color: $src-less-dark;
-
-  border: 1px solid $src-bright;
-  box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.10);
-  border-radius: 3px;
+  @include form-input();
 
   &:focus, &.focus {
     @include input-focus();
@@ -72,4 +66,39 @@ parent: forms
 
 .control-label {
   font-weight: lighter;
+}
+
+// React-Select Select Input Element
+// --------------------------------------------------
+.Select {
+  .Select-control {
+    @include form-input();
+
+    padding: $padding-base-vertical $padding-base-horizontal;
+
+    .Select-clear {
+      color: $src-bright;
+
+      &:hover {
+        color: $src-more-bright;
+      }
+    }
+
+    .Select-arrow {
+      border-color: $src-bright transparent;
+    }
+  }
+
+  &.has-value > .Select-control > .Select-placeholder {
+    color: $src-less-dark;
+  }
+
+  .Select-option {
+    color: $src-less-dark;
+
+    &.is-focused {
+      background-color: $src-brighter;
+      color: $src-very-dark;
+    }
+  }
 }
