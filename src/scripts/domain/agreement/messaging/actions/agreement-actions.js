@@ -1,46 +1,15 @@
+import * as constants from 'src/scripts/apps/messaging/common/constants'
 import log from 'loglevel';
 
-export default function (agreementService) {
+export default function () {
 
   const agreementActions = {
 
-    async save(data) {
-      const retVal = await agreementService.create(data);
-      return retVal;
-    },
-
-    contractUploadBegan(data){
-
-    },
-
-    contractUploadProgressed(progress){
-    },
-
-    contractUploadCompleted(data){
-    },
-
-    requestAgreementList(userId) {
-      log.info("AgreementActions: Request agreement list for user: %s", userId);
-
-      return userId;
-    },
-
-    agreementListReceived(data){
-      // in scone, we used 'from_attrs' when saving a prospect from arbitrary data structures
-      // do we want free-floating data/json for rendering views? probably yes, very much.
-      return agreementService.processAgreementListData(data);
-    },
-
-    requestAgreementDetail(agreementId) {
-      log.info("AgreementActions: Request agreement detail: %s", agreementId);
-
-      return agreementId;
-    },
-
-    agreementDetailReceived(agreementDetail){
-      log.info("AgreementActions: Received agreement detail: %s", agreementDetail.id);
-
-      return agreementService.processAgreementDetailData(agreementDetail);
+    requestAgreementEdit(agreementId){
+      return {
+        type: constants.AGREEMENT_EDIT_REQUESTED,
+        agreementId
+      };
     }
 
   };

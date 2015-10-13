@@ -3,6 +3,8 @@
 import React from 'react';
 import {Link}  from 'react-router';
 
+import { connect } from 'react-redux';
+
 import DependencyProvider from '../../../../libs/dependency-injection/utils/dependency-provider';
 
 import Agreement from '../../models/agreement-list-item-model';
@@ -11,9 +13,9 @@ import Validation from 'rc-form-validation';
 
 const {Validator} = Validation;
 
-export default function () {
+export default function (agreementActions) {
 
-  const component = React.createClass({
+  var component = React.createClass({
     displayName: "NewAgreementFormComponent",
     mixins: [Validation.FieldMixin],
 
@@ -33,6 +35,10 @@ export default function () {
         onValidate: ()=> {
         }
       }
+    },
+
+    componentWillMount(){
+      debugger
     },
 
     onSubmit(event){
@@ -372,6 +378,8 @@ export default function () {
       );
     }
   });
+
+  component = connect(x=> x.session, agreementActions)(component);
 
   return new DependencyProvider(component);
 };

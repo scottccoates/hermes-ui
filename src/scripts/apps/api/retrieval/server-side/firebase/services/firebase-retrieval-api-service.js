@@ -6,12 +6,12 @@ export default function (firebase) {
   return {
     init(store) {
       const promise = new Promise((res, rej)=> {
-        const firebaseToken = store.session.user.firebaseData.token;
+        const firebaseToken = store.getState().session.user.firebaseData.token;
 
         firebase.authWithCustomToken(firebaseToken, function (error) {
           if (error) rej("Error authenticating with firebase: " + error.stack);
 
-          //agreementRetrievalApiService.init(store, firebase);
+          //8agreementRetrievalApiService.init(store, firebase);
           log.info("Firebase authenticated");
 
           res();

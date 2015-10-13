@@ -28,6 +28,7 @@ import AgreementDetailDocumentsComponent from '../domain/agreement/components/ag
 
 import AgreementService from '../domain/agreement/services/agreement-service';
 import AgreementRepository from '../domain/agreement/services/agreement-repository';
+import AgreementEditReducer from 'src/scripts/domain/agreement/messaging/reducers/agreement-edit-reducer';
 
 import DashboardComponent from '../apps/dashboard/components/dashboard-component';
 
@@ -66,6 +67,7 @@ export default {
     container.register("AgreementActions", AgreementActions);
     container.register("AgreementService", AgreementService);
     container.register("AgreementRepository", AgreementRepository);
+    container.register("AgreementEditReducer", AgreementEditReducer);
 
     container.register("FileUpload", FileUpload);
 
@@ -82,6 +84,7 @@ export default {
     DashboardComponent.$inject = ["AgreementListComponent"];
 
     NewAgreementCreateComponent.$inject       = ["PersistenceApiServiceUrl", "FileUpload", "NprogressBarFactory"];
+    NewAgreementFormComponent.$inject         = ["AgreementActions"];
     AgreementListComponent.$inject            = ["AgreementListItemComponent"];
     AgreementDetailContainerComponent.$inject = ["AgreementDetailGeneralInfoComponent", 'AgreementDetailLengthComponent', 'AgreementDetailDocumentsComponent'];
 
