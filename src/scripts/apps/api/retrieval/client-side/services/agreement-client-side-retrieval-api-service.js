@@ -74,7 +74,7 @@ export default {
     const agreementDetailStore = store.getStore('AgreementDetailStore');
 
     // keep track of state as the store will emit multiple changes.
-    this.currentRequestedAgreementDetail = {id: null};
+    this.currentRequestedAgreementEdit = {id: null};
 
     // let's not worry about opening/closing connection for dashboard. just assume that we can always keep this open
     // because it's probably a frequently-visited screen.
@@ -86,11 +86,11 @@ export default {
 
         // we only care when the store emits a requestedAgreement change.
         // the store will simply change state as a result of this action, and we don't really need to worry about that.
-        if (this.currentRequestedAgreementDetail.id !== agreementDetailStore.state.requestedAgreementDetail.id) {
+        if (this.currentRequestedAgreementEdit.id !== agreementDetailStore.state.requestedAgreementDetail.id) {
 
-          this.currentRequestedAgreementDetail.id = agreementDetailStore.state.requestedAgreementDetail.id;
+          this.currentRequestedAgreementEdit.id = agreementDetailStore.state.requestedAgreementDetail.id;
 
-          const detail = Array.find(detailData, d => d.id === this.currentRequestedAgreementDetail.id);
+          const detail = Array.find(detailData, d => d.id === this.currentRequestedAgreementEdit.id);
 
           setTimeout(agreementActions.agreementDetailReceived.bind(agreementActions, detail));
         }

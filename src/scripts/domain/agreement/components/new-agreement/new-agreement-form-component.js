@@ -38,7 +38,7 @@ export default function (agreementActions) {
     },
 
     componentWillMount(){
-      debugger
+      this.props.requestAgreementEdit(this.props.params.agreementId);
     },
 
     onSubmit(event){
@@ -379,7 +379,7 @@ export default function (agreementActions) {
     }
   });
 
-  component = connect(x=> x.session, agreementActions)(component);
+  component = connect(x=> x.agreementEdit, agreementActions)(component);
 
   return new DependencyProvider(component);
 };

@@ -1,19 +1,19 @@
 import FirebaseService from './firebase-service.js';
 
 export default {
-  init(store, rootRef) {
-    const agreementActions     = appFlux.getActions('AgreementActions');
-    const agreementDetailStore = appFlux.getStore('AgreementDetailStore');
+  init(container, store, rootRef) {
+    //const agreementActions     = appFlux.getActions('AgreementActions');
+    //const agreementDetailStore = appFlux.getStore('AgreementDetailStore');
+    const state  = store.getState();
+    const user   = state.session.user;
+    const userId = user.appMetadata.hermes.userId;
 
-    const sessionStore = appFlux.getStore('SessionStore');
-    const user         = sessionStore.state.user;
-    const userId       = user.appMetadata.hermes.userId;
-
+    const agreementActions = container.get('AgreementActions');
     // keep track of state as the store will emit multiple changes.
-    this.currentRequestedAgreementDetail = {id: null};
+    this.currentRequestedAgreementEdit = {id: null};
 
-    this.agreementDetailRef      = null;
-    this.agreementDetailCallback = null;
+    this.agreementEditRef      = null;
+    this.agreementEditCallback = null;
 
     // let's not worry about opening/closing connection for dashboard. just assume that we can always keep this open
     // because it's probably a frequently-visited screen.
@@ -25,7 +25,7 @@ export default {
       try {
         const data = FirebaseService.prepareCollection(snapshot);
 
-        agreementActions.agreementListReceived(data);
+        //agreementActions.agreementListReceived(data);
       }
       catch (error) {
         throw new Error(`Error providing agreement list data from firebase: Inner exception: ${error.stack}`);
@@ -35,30 +35,31 @@ export default {
     });
 
     // todo figure out how to do cleanup before creating a new conn.
-    agreementDetailStore.on('change', _=> {
-      // we don't need to do this the very first time (store.state will be null).
-      if (agreementDetailStore.state.requestedAgreementDetail.id) {
-        // we only care when the store emits a requestedAgreement change.
-        // the store will simply change state as a result of this action, and we don't really need to worry about that.
-        if (this.currentRequestedAgreementDetail.id !== agreementDetailStore.state.requestedAgreementDetail.id) {
+    store.subscribe(_=> {
+      const state = store.getState();
 
-          // clean up old connection (this will happen if we look at different agreement details)
-          if (this.agreementDetailRef) this.agreementDetailRef.off('value', this.agreementDetailCallback);
+      // we need to do this the very first time (requestedAgreement will be null).
+      const requestedAgreementEditId = state.agreementEdit.requestedAgreement.id;
 
-          this.currentRequestedAgreementDetail.id = agreementDetailStore.state.requestedAgreementDetail.id;
+      if (requestedAgreementEditId) {
+        if (this.currentRequestedAgreementEdit.id !== requestedAgreementEditId) {
+          // clean up old connection (this will happen if we look at different agreement edits)
+          if (this.agreementEditRef) this.agreementEditRef.off('value', this.agreementEditCallback);
 
-          this.agreementDetailRef = rootRef.child(`agreement-details/${this.currentRequestedAgreementDetail.id}`);
+          this.currentRequestedAgreementEdit.id = requestedAgreementEditId;
 
-          this.agreementDetailCallback = this.agreementDetailRef.on('value', snapshot=> {
+          this.agreementEditRef = rootRef.child(`agreement-edits/${this.currentRequestedAgreementEdit.id}`);
+
+          this.agreementEditCallback = this.agreementEditRef.on('value', snapshot=> {
             try {
-              const agreementDetail = FirebaseService.prepareObject(snapshot, "documents");
-              agreementActions.agreementDetailReceived(agreementDetail);
+              const agreementEdit = FirebaseService.prepareObject(snapshot, "documents");
+              store.dispatch(agreementActions.agreementEditReceived(agreementEdit));
             }
             catch (error) {
-              throw new Error(`Error providing agreement detail data from firebase: Inner exception: ${error.stack}`);
+              throw new Error(`Error providing agreement edit data from firebase: Inner exception: ${error.stack}`);
             }
           }, error => {
-            throw new Error(`Error retrieving agreement detail data from firebase: Inner exception: ${error.stack}`);
+            throw new Error(`Error retrieving agreement edit data from firebase: Inner exception: ${error.stack}`);
           });
         }
       }

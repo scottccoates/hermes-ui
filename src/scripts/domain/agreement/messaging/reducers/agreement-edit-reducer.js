@@ -18,7 +18,11 @@ export default function () {
     switch (action.type) {
 
       case constants.AGREEMENT_EDIT_REQUESTED:
-        retVal = Object.assign({}, state, {requestedAgreement: {id: agreementId}});
+        retVal = Object.assign({}, state, {requestedAgreement: {id: action.agreementId}});
+        break;
+
+      case constants.AGREEMENT_EDIT_RECEIVED:
+        retVal = Object.assign({}, state, {agreement: action.agreement});
         break;
 
       default:

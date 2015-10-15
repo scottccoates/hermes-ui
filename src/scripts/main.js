@@ -41,7 +41,7 @@ const unSub = store.subscribe(async _=> {
     const retrievalService = containerInstance.get('RetrievalApiService');
 
     try {
-      await retrievalService.init(store);
+      await retrievalService.init(containerInstance, store);
     }
     catch (error) {
       throw new Error(`Error initializing retrieval api service: Inner exception: ${error.stack}`);

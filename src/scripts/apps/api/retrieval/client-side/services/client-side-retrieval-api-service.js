@@ -3,7 +3,7 @@ import agreementRetrievalApiService from './agreement-client-side-retrieval-api-
 
 export default function () {
   return {
-    init(store) {
+    init(container, store) {
 
       //agreementRetrievalApiService.init(store);
 

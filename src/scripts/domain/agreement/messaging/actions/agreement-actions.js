@@ -10,6 +10,13 @@ export default function () {
         type: constants.AGREEMENT_EDIT_REQUESTED,
         agreementId
       };
+    },
+
+    agreementEditReceived(agreementEdit){
+      return {
+        type: constants.AGREEMENT_EDIT_RECEIVED,
+        agreement: agreementEdit
+      };
     }
 
   };

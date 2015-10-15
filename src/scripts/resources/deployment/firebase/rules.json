@@ -5,6 +5,11 @@
         ".read": "data.child('viewers').hasChildren([auth.uid])"
       }
     },
+    "agreement-edits": {
+      "$edit": {
+        ".read": "data.child('viewers').hasChildren([auth.uid])"
+      }
+    },
     "users": {
       "$userID": {
         ".read": "auth.uid == $userID"
