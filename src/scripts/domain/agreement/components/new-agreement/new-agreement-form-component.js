@@ -11,6 +11,8 @@ import Agreement from '../../models/agreement-list-item-model';
 import Select from 'react-select';
 import Validation from 'rc-form-validation';
 
+import cx from 'classnames';
+
 const {Validator} = Validation;
 
 export default function (agreementActions) {
@@ -25,7 +27,7 @@ export default function (agreementActions) {
           name: {}
         },
         formData: {
-          name: 'heya'
+          name: null
         }
       };
     },
@@ -39,6 +41,12 @@ export default function (agreementActions) {
 
     componentWillMount(){
       this.props.requestAgreementEdit(this.props.params.agreementId);
+    },
+
+    componentWillReceiveProps: function (nextProps) {
+      this.setState({
+        formData: {name: nextProps.agreement.name}
+      });
     },
 
     onSubmit(event){
@@ -65,6 +73,9 @@ export default function (agreementActions) {
       const formData = this.state.formData;
       const status   = this.state.status;
 
+      const defaultFormClasses = cx('form-group', 'content-section-item');
+      const nameFormClasses    = cx(defaultFormClasses, {'has-error': status.name.errors});
+
       return (
         <div id="new-agreement-wrapper">
           <div id="agreement-form-wrapper">
@@ -84,16 +95,18 @@ export default function (agreementActions) {
                         <h3 className="content-section-header">General Contract Information</h3>
 
 
-                        <div className="form-group content-section-item">
-                          <label htmlFor="agreement-form-contract-name" className="col-sm-6 control-label">Contract
+                        <div className={nameFormClasses}>
+                          <label htmlFor="agreement-form-name" className="col-sm-6 control-label">Contract
                             Name</label>
 
                           <div className="col-sm-18">
-                            <Validator rules={{required:true, message: 'WTF'}} value={formData.name}>
-                              <input type="text" name="name" className="form-control" id="agreement-form-contract-name"
+                            <Validator rules={{required:true, message: 'Name is required'}}>
+                              <input autoFocus type="text" name="name" className="form-control"
+                                     id="agreement-form-name"
                                      value={formData.name}/>
                             </Validator>
-                            {status.name.errors ? <span> {status.name.errors.join(', ')}</span> : null}
+                            {status.name.errors ?
+                              <div className="help-block">{status.name.errors.join(', ')}</div> : null}
                           </div>
                         </div>
                         <div className="form-group content-section-item">
@@ -101,30 +114,7 @@ export default function (agreementActions) {
                                  className="col-sm-6 control-label">Counterparty</label>
 
                           <div className="col-sm-18">
-                            <input type="text" className="form-control" id="agreement-form-counterparty"
-                                   defaultValue="Microsoft"/>
-                          </div>
-                        </div>
-                        <div className="form-group content-section-item">
-                          <label htmlFor="agreement-form-counterparty"
-                                 className="col-sm-6 control-label">Counterparty</label>
-
-                          <div className="col-sm-18">
-                            <select className="form-control" defaultValue="2">
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
-                            </select>
-                          </div>
-                        </div>
-                        <div className="form-group content-section-item">
-                          <label htmlFor="agreement-form-counterparty"
-                                 className="col-sm-6 control-label">Counterparty</label>
-
-                          <div className="col-sm-18">
-                            <Select className="" placeholder={null} options={ops} searchable={false}/>
+                            <input type="text" className="form-control" id="agreement-form-counterparty"/>
                           </div>
                         </div>
                         <div className="form-group content-section-item">
@@ -136,47 +126,12 @@ export default function (agreementActions) {
                           </div>
                         </div>
                         <div className="form-group content-section-item">
-                          <label htmlFor="agreement-form-contract-type" className="col-sm-6 control-label">Contract
-                            Type</label>
+                          <label className="col-sm-6 control-label">Agreement Type</label>
 
                           <div className="col-sm-18">
-                            <div className="dropdown-wrapper">
-                              <button type='button' className="form-control dropdown-toggle"
-                                      id="agreement-form-contract-type"
-                                      data-toggle="dropdown" aria-expanded="true">
-                          <span>
-                            Licensing Agreement
-                            <i className="fa fa-caret-down space-left"></i>
-                          </span>
-                              </button>
-                              <ul className="dropdown-menu" role="menu" aria-labelledby="agreement-form-contract-type">
-                                <li role="presentation">
-                                  <a role="menuitem" href="javascript:void(0)">Action</a>
-                                </li>
-                                <li role="presentation">
-                                  <a role="menuitem" href="javascript:void(0)">Another action</a>
-                                </li>
-                                <li role="presentation">
-                                  <a role="menuitem" href="javascript:void(0)">Something else here</a>
-                                </li>
-                                <li role="presentation">
-                                  <a role="menuitem" href="javascript:void(0)">Separated link</a>
-                                </li>
-                              </ul>
-                            </div>
+                            <Select placeholder={null} options={ops} searchable={false}/>
                           </div>
                         </div>
-                        <div className="form-group content-section-item space-top">
-                          <div className="col-sm-6">
-                            <button type='button'
-                                    className="btn btn-xs btn-info agreement-form-button agreement-form-advanced-field-button">
-                              Advanced
-                              Fields
-                              <i className="fa fa-caret-down space-left"></i>
-                            </button>
-                          </div>
-                        </div>
-
                       </div>
 
                     </section>
@@ -244,17 +199,6 @@ export default function (agreementActions) {
                           </div>
                         </div>
 
-                        <div className="form-group content-section-item space-top">
-                          <div className="col-sm-6">
-                            <button type='button'
-                                    className="btn btn-xs btn-info agreement-form-button agreement-form-advanced-field-button">
-                              Advanced
-                              Fields
-                              <i className="fa fa-caret-down space-left"></i>
-                            </button>
-                          </div>
-                        </div>
-
                       </div>
                     </section>
                     <section className="row agreement-form-section content-section-item space-top-sm space-bottom-xl">
@@ -289,16 +233,6 @@ export default function (agreementActions) {
 
                           <div className="col-sm-18">
                             <textarea rows="5" className="form-control" id="agreement-form-description"/>
-                          </div>
-                        </div>
-                        <div className="form-group content-section-item space-top">
-                          <div className="col-sm-6">
-                            <button type='button'
-                                    className="btn btn-xs btn-info agreement-form-button agreement-form-advanced-field-button">
-                              Advanced
-                              Fields
-                              <i className="fa fa-caret-down space-left"></i>
-                            </button>
                           </div>
                         </div>
 

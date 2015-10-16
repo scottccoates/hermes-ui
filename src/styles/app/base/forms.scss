@@ -87,6 +87,10 @@ parent: forms
     .Select-arrow {
       border-color: $src-bright transparent;
     }
+
+    .Select-placeholder{
+      padding: $padding-base-vertical $padding-base-horizontal;
+    }
   }
 
   &.has-value > .Select-control > .Select-placeholder {

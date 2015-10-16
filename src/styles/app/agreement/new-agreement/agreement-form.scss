@@ -12,12 +12,6 @@
         }
       }
 
-      &:hover {
-        .agreement-form-advanced-field-button {
-          visibility: visible !important;
-        }
-      }
-
       .form-group {
         .control-label {
           color: $src-less-dark;
@@ -39,18 +33,10 @@
         }
 
         .agreement-form-button {
-          &.agreement-form-action-button, &.agreement-form-expand-button, &.agreement-form-advanced-field-button {
+          &.agreement-form-action-button, &.agreement-form-expand-button {
 
             @include at-least-small-screen-styles {
               float: right;
-            }
-          }
-
-          &.agreement-form-advanced-field-button {
-            @include at-least-small-screen-styles {
-              margin-top: 25px;
-
-              visibility: hidden;
             }
           }
 

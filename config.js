@@ -8,13 +8,6 @@ System.config({
     ],
     "stage": 0
   },
-
-  meta: {
-    "npm:react-select@0.7.0/lib/Select": {
-      deps: ['../dist/default.css!']
-    }
-  },
-
   paths: {
     "github:*": "jspm_packages/github/*",
     "npm:*": "jspm_packages/npm/*"
@@ -23,6 +16,14 @@ System.config({
   packages: {
     "github:twilio/BankersBox@0.1.0": {
       "main": "bankersbox"
+    }
+  },
+
+  meta: {
+    "npm:react-select@0.7.0/lib/Select": {
+      "deps": [
+        "../dist/default.css!"
+      ]
     }
   },
 
@@ -45,7 +46,7 @@ System.config({
     "loglevel": "npm:loglevel@1.3.1",
     "nanoscroller": "github:jamesflorentino/nanoScrollerJS@0.8.4",
     "nprogress": "github:rstacruz/nprogress@0.1.6",
-    "rc-form-validation": "npm:rc-form-validation@2.3.2",
+    "rc-form-validation": "npm:rc-form-validation@2.4.13",
     "react": "npm:react@0.14.0",
     "react-bacon": "npm:react-bacon@0.0.4",
     "react-bootstrap": "npm:react-bootstrap@0.21.1",
@@ -59,7 +60,7 @@ System.config({
     "react-tagsinput": "github:olahol/react-tagsinput@1.2.0",
     "redux": "npm:redux@3.0.2",
     "redux-thunk": "npm:redux-thunk@1.0.0",
-    "tcomb": "npm:tcomb@2.0.1",
+    "tcomb": "npm:tcomb@2.5.1",
     "github:jamesflorentino/nanoScrollerJS@0.8.4": {
       "css": "github:systemjs/plugin-css@0.1.12",
       "jquery": "github:components/jquery@2.1.3"
@@ -254,8 +255,9 @@ System.config({
     "npm:punycode@1.3.2": {
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
-    "npm:rc-form-validation@2.3.2": {
-      "async-validator": "npm:async-validator@1.1.5",
+    "npm:rc-form-validation@2.4.13": {
+      "async-validator": "npm:async-validator@1.3.3",
+      "object-assign": "npm:object-assign@4.0.1",
       "rc-util": "npm:rc-util@2.0.3"
     },
     "npm:react-bacon@0.0.4": {
@@ -343,7 +345,7 @@ System.config({
     "npm:string_decoder@0.10.31": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0"
     },
-    "npm:tcomb@2.0.1": {
+    "npm:tcomb@2.5.1": {
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:through@2.3.8": {
