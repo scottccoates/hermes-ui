@@ -210,8 +210,6 @@ parent: patterns
 
   font-size: inherit;
 
-  display: block; // override bootstrap
-
   @include at-least-small-screen-styles {
     padding: 11px 0;
     min-width: 0;

@@ -1,14 +1,12 @@
 'use strict';
 
 import React from 'react';
-import ReactBootstrap from 'react-bootstrap';
+import {DropdownButton, MenuItem} from 'react-bootstrap';
 import ReactDND from 'react-dnd';
 
 const {DragDropMixin} = ReactDND;
 
 import cx from 'classnames';
-
-const {DropdownButton, MenuItem} = ReactBootstrap;
 
 export default React.createClass({
   displayName: "AdvancedApolloSearchFieldToken",

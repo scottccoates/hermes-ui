@@ -16,6 +16,7 @@ export default function (dropzoneFactory) {
   const component = React.createClass({
     propTypes: {
       url: React.PropTypes.string.isRequired,
+      className: React.PropTypes.string,
       paramName: React.PropTypes.string,
       acceptedFiles: React.PropTypes.string,
       headers: React.PropTypes.object,
@@ -84,8 +85,11 @@ export default function (dropzoneFactory) {
     },
 
     render() {
+      // pass in just the className (as opposed to ...props)
+      // because some props are acceptable tag names (like headers)
+      // https://facebook.github.io/react/docs/tags-and-attributes.html
       return (
-        <form {...this.props}>
+        <form className={this.props.className}>
           <div className="dz-message">
             {this.props.children}
           </div>

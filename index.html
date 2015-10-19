@@ -23,8 +23,10 @@
   System.import('src/scripts/apps/feedback/components/loading/loading-feedback').then(function (loadingFeedback) {
     loadingFeedback.default.start();
     System.import('src/scripts/main')
-//        .catch(console.log.bind(console))
-        .then(loadingFeedback.default.done);
+        .then(loadingFeedback.default.done)
+        .then(function () {
+          System.import('bootstrap');
+        });
   });
 </script>
 </body>

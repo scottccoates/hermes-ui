@@ -120,7 +120,7 @@
 
 // Form
 // --------------------------------------------------
-@mixin form-input(){
+@mixin form-input() {
   text-align: start; //dropdown buttons, for example, should have text all the way over.
 
   color: $src-less-dark;
@@ -128,4 +128,10 @@
   border: 1px solid $src-bright;
   box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.10);
   border-radius: 3px;
+}
+
+@mixin input-focus {
+  border-color: $src-more-brighter;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba($src-more-brighter, 0.6);
+  outline: 0;
 }

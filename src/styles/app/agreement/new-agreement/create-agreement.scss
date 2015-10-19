@@ -20,9 +20,11 @@
           }
         }
 
-        &.dz-drag-hover {
-          .secondary-import-text span {
-            @extend .btn-primary;
+        .dropzone {
+          &.dz-drag-hover {
+            .secondary-import-text span {
+              @extend .btn-primary;
+            }
           }
         }
 

@@ -13,7 +13,12 @@ import Validation from 'rc-form-validation';
 
 import cx from 'classnames';
 
+import ButtonSelect from 'src/scripts/libs/react-js/components/button-select'
+
+import {toNumber} from 'src/scripts/libs/js-utils/validation/validation-utils';
+
 const {Validator} = Validation;
+
 
 export default function (agreementActions) {
 
@@ -24,10 +29,12 @@ export default function (agreementActions) {
     getInitialState() {
       return {
         status: {
-          name: {}
+          name: {},
+          termLength: {}
         },
         formData: {
-          name: null
+          name: null,
+          termLength: null
         }
       };
     },
@@ -61,19 +68,27 @@ export default function (agreementActions) {
     },
 
     render() {
-      var ops = [
-        {label: 'Chocolate', value: 'chocolate'},
-        {label: 'Vanilla', value: 'vanilla'},
-        {label: 'Strawberry', value: 'strawberry'},
-        {label: 'Caramel', value: 'caramel'},
-        {label: 'Cookies and Cream', value: 'cookiescream'},
-        {label: 'Peppermint', value: 'peppermint'}
+      var agreementTypes = [
+        {label: 'Consulting Agreement', value: 'consulting'},
+        {label: 'Licensing Agreement', value: 'licensing'},
+        {label: 'Sales Agreement', value: 'sales'}
+      ];
+
+      var durationTypes = [
+        {label: 'Years', value: 'year'},
+        {label: 'Months', value: 'month'},
+        {label: 'Days', value: 'day'}
+      ];
+
+      var renewTypes = [
+        {label: 'Yes', value: 1},
+        {label: 'No', value: 0}
       ];
 
       const formData = this.state.formData;
       const status   = this.state.status;
 
-      const defaultFormClasses = cx('form-group', 'content-section-item');
+      const defaultFormClasses = ['form-group', 'content-section-item'];
       const nameFormClasses    = cx(defaultFormClasses, {'has-error': status.name.errors});
 
       return (
@@ -109,6 +124,7 @@ export default function (agreementActions) {
                               <div className="help-block">{status.name.errors.join(', ')}</div> : null}
                           </div>
                         </div>
+
                         <div className="form-group content-section-item">
                           <label htmlFor="agreement-form-counterparty"
                                  className="col-sm-6 control-label">Counterparty</label>
@@ -117,6 +133,15 @@ export default function (agreementActions) {
                             <input type="text" className="form-control" id="agreement-form-counterparty"/>
                           </div>
                         </div>
+
+                        <div className="form-group content-section-item">
+                          <label className="col-sm-6 control-label">Agreement Type</label>
+
+                          <div className="col-sm-18">
+                            <Select placeholder={null} options={agreementTypes} searchable={false}/>
+                          </div>
+                        </div>
+
                         <div className="form-group content-section-item">
                           <label htmlFor="agreement-form-description" className="col-sm-6 control-label">Brief
                             Description</label>
@@ -125,13 +150,7 @@ export default function (agreementActions) {
                             <textarea rows="5" className="form-control" id="agreement-form-description"/>
                           </div>
                         </div>
-                        <div className="form-group content-section-item">
-                          <label className="col-sm-6 control-label">Agreement Type</label>
 
-                          <div className="col-sm-18">
-                            <Select placeholder={null} options={ops} searchable={false}/>
-                          </div>
-                        </div>
                       </div>
 
                     </section>
@@ -141,45 +160,47 @@ export default function (agreementActions) {
 
 
                         <div className="form-group content-section-item">
-                          <label htmlFor="agreement-form-contract-term-length" className="col-sm-6 control-label">Initial
+                          <label htmlFor="agreement-form-term-length" className="col-sm-6 control-label">Initial
                             Term
                             Length</label>
 
                           <div className="col-sm-3">
-                            <input type="text" className="form-control" id="agreement-form-contract-term-length"
-                                   defaultValue="2"/>
+                            <Validator
+                              rules={{required:true, type:'number', transform:toNumber, message: 'Term length requires a number'}}>
+                              <input type="text" className="form-control" name="termLength"
+                                     id="agreement-form-term-length"
+                                     value={formData.termLength}/>
+                            </Validator>
                           </div>
                           <div className="col-sm-6">
-                            <button type='button'
-                                    className="btn btn-sm btn-info agreement-form-button agreement-form-field-button">
-                              Years
-                            </button>
+                            <ButtonSelect items={durationTypes} defaultValue="year"
+                                          className="btn btn-sm btn-info agreement-form-button agreement-form-field-button"/>
+                          </div>
+                          <div className="row">
+                            <div className="col-sm-offset-6 col-sm-18">
+                              {status.termLength.errors ?
+                                <div className="help-block">{status.termLength.errors.join(', ')}</div> : null}</div>
                           </div>
                         </div>
                         <div className="form-group content-section-item">
-                          <label htmlFor="agreement-form-contract-term-length"
+                          <label htmlFor="agreement-form-term-length"
                                  className="col-sm-6 control-label">Auto-Renew?</label>
 
                           <div className="col-sm-6">
-                            <button type='button'
-                                    className="btn btn-sm btn-info agreement-form-button agreement-form-field-button">
-                              Yes
-                            </button>
+                            <ButtonSelect items={renewTypes} defaultValue={1}
+                                          className="btn btn-sm btn-info agreement-form-button agreement-form-field-button"/>
                           </div>
                         </div>
                         <div className="form-group content-section-item">
-                          <label htmlFor="agreement-form-contract-term-length" className="col-sm-6 control-label">Renewal
+                          <label htmlFor="agreement-form-term-length" className="col-sm-6 control-label">Renewal
                             Notice</label>
 
                           <div className="col-sm-3">
-                            <input type="text" className="form-control" id="agreement-form-contract-term-length"
-                                   defaultValue="60"/>
+                            <input type="text" className="form-control" id="agreement-form-term-length"/>
                           </div>
                           <div className="col-sm-10">
-                            <button type='button'
-                                    className="btn btn-sm btn-info agreement-form-button agreement-form-field-button">
-                              Days
-                            </button>
+                            <ButtonSelect items={durationTypes} defaultValue="day"
+                                          className="btn btn-sm btn-info agreement-form-button agreement-form-field-button"/>
                         <span
                           className="control-label content-section-item space-left-sm space-right-sm agreement-form-control-text">before
                         </span>
@@ -199,99 +220,6 @@ export default function (agreementActions) {
                           </div>
                         </div>
 
-                      </div>
-                    </section>
-                    <section className="row agreement-form-section content-section-item space-top-sm space-bottom-xl">
-                      <div className="col-md-24">
-                        <h3 className="content-section-header">Financial Details</h3>
-
-
-                        <div className="form-group content-section-item">
-                          <label htmlFor="agreement-form-contract-term-length" className="col-sm-6 control-label">Cash
-                            Flow</label>
-
-                          <div className="col-sm-6">
-                            <div className="btn-group" role="group" aria-label="...">
-                              <button type='button'
-                                      className="btn btn-sm btn-info agreement-form-button agreement-form-field-button">
-                                In
-                              </button>
-                              <button type='button'
-                                      className="btn btn-sm btn-info active agreement-form-button agreement-form-field-button">
-                                Out
-                              </button>
-                              <button type='button'
-                                      className="btn btn-sm btn-info agreement-form-button agreement-form-field-button">
-                                None
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="form-group content-section-item">
-                          <label htmlFor="agreement-form-description" className="col-sm-6 control-label">Other
-                            Details</label>
-
-                          <div className="col-sm-18">
-                            <textarea rows="5" className="form-control" id="agreement-form-description"/>
-                          </div>
-                        </div>
-
-                      </div>
-                    </section>
-                    <section className="row agreement-form-section content-section-item space-top-sm space-bottom-xl">
-                      <div className="col-md-24">
-                        <h3 className="content-section-header">Contract Alerts</h3>
-
-
-                        <div className="form-group content-section-item">
-                          <label htmlFor="agreement-form-contract-term-length" className="col-sm-6 control-label">Notify
-                            Me</label>
-
-                          <div className="col-sm-3">
-                            <input type="text" className="form-control" id="agreement-form-contract-term-length"
-                                   defaultValue="30"/>
-                          </div>
-                          <div className="col-sm-10">
-                            <button type='button'
-                                    className="btn btn-sm btn-info agreement-form-button agreement-form-field-button">
-                              Days
-                            </button>
-                        <span
-                          className="control-label content-section-item space-left-sm space-right-sm agreement-form-control-text">before
-                        </span>
-                            <button type='button'
-                                    className="btn btn-sm btn-info agreement-form-button agreement-form-field-button">
-                              Renewal Notice
-                            </button>
-                          </div>
-
-                        </div>
-                        <div className="form-group content-section-item">
-                          <div className="col-sm-6">
-                            <button type='button'
-                                    className="btn btn-xs btn-info agreement-form-button agreement-form-action-button">
-                              Add
-                              New Alert
-                            </button>
-                          </div>
-                        </div>
-
-                      </div>
-                    </section>
-                    <section className="row agreement-form-section content-section-item space-top-sm space-bottom-xl">
-                      <div className="col-md-24">
-                        <h3 className="content-section-header">Advanced Contract Categories</h3>
-
-
-                        <div className="form-group content-section-item">
-                          <div className="col-sm-6">
-                            <button type='button'
-                                    className="btn btn-xs btn-info agreement-form-button agreement-form-expand-button">
-                              Categories
-                              <i className="fa fa-caret-down space-left"></i>
-                            </button>
-                          </div>
-                        </div>
                       </div>
                     </section>
                     <section className="row agreement-form-section agreement-form-section-save content-section-item">

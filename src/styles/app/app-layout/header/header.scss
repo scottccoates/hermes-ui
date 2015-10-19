@@ -1,18 +1,5 @@
 // Header Layout
 // --------------------------------------------------
-
-@mixin bright-header-color {
-  color: $src-bright;
-}
-
-@mixin dark-header-color {
-  color: $src-less-dark;
-
-  a {
-    color: $src-less-dark;
-  }
-}
-
 #header-wrapper {
   border-bottom: $bright-border;
 
@@ -33,7 +20,7 @@
   .header-search {
     flex-grow: 1;
 
-    @include bright-header-color;
+    color: $src-bright;
 
     // the search icon child is absolute position
     position: relative;
@@ -63,7 +50,7 @@
       }
 
       &::placeholder {
-        @include bright-header-color;
+        color: $src-bright;
       }
 
       &:focus {
@@ -110,10 +97,14 @@
 
   .header-nav-section {
 
-    @include dark-header-color;
+    color: $src-less-dark;
 
     & > ul {
       @include list-unstyled;
+
+      a:hover, a:focus {
+        color: $src-less-dark;
+      }
 
       @include at-least-small-screen-styles {
 
@@ -163,7 +154,7 @@
           }
 
           i {
-            @include dark-header-color;
+            color: $src-less-dark;
 
             @include at-least-small-screen-styles {
               @include font-size(20px);
@@ -192,7 +183,7 @@
         }
 
         i {
-          @include bright-header-color;
+          color: $src-bright;
         }
 
         & > a {
