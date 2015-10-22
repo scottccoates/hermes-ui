@@ -15,7 +15,7 @@ export default React.createClass({
           </li>
           <li>
             <i className="fa fa-file-text middle space-right-lg"></i>
-            <span className='middle'>Contracts</span>
+            <span className='middle'>Agreements</span>
           </li>
           <li>
             <i className="fa fa-calendar middle space-right-lg"></i>

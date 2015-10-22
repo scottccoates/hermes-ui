@@ -1,4 +1,4 @@
-import Humps from 'humps';
+import humps from 'humps';
 
 export default {
   prepareCollection(collection){
@@ -22,7 +22,7 @@ export default {
       inputObjectValue[child] = this.prepareCollection(inputObject.child(child));
     }
 
-    const retVal = Humps.camelizeKeys(inputObjectValue);
+    const retVal = humps.camelizeKeys(inputObjectValue);
 
     return retVal;
   }

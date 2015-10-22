@@ -50,7 +50,7 @@ export default React.createClass({
           <FocusContainer inFocus={this.state.advancedSearchDropdownEnabled} onClose={this.onAdvancedSearchClose}>
             <DisplayContainer open={this.state.advancedSearchDropdownEnabled}>
               <div className="popover advanced-search-popover">
-                <div className="popover-title">Find Contracts</div>
+                <div className="popover-title">Find Agreements</div>
                 <div className="popover-content">
                   <AdvancedSearchContainer close={this.onHeaderAdvancedSearchClose}/>
                 </div>

@@ -1,12 +1,11 @@
-import Immutable from 'immutable';
-
-const path = "agreement";
+const agreementPath = 'agreements';
 
 export default function (apiService) {
 
   const repository = {
     async save(agreement) {
-      return apiService.saveData(path, agreement);
+      const path = `${agreementPath}/${agreement.agreementId}`;
+      return await apiService.update(path, agreement);
     }
   };
 

@@ -5,10 +5,10 @@ import DependencyProvider from 'src/scripts/libs/dependency-injection/utils/depe
 export default function () {
 
   const agreementDetailDocuments = React.createClass({
-    displayName: "AgreementDetailDocumentsComponent",
+    displayName: "AgreementDetailArtifactsComponent",
 
     render() {
-      const documentNodes = this.props.agreement.documents.map(document=> {
+      const documentNodes = this.props.agreement.artifacts.map(document=> {
         return (
           <li className="content-section-item space-bottom-sm" key={document.id}>
             <a href="javascript:void(0)">

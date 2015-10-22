@@ -6,15 +6,18 @@ export default React.createClass({
   displayName: "ButtonSelect",
   propTypes: {
     className: React.PropTypes.string.isRequired,
-    defaultValue: React.PropTypes.any.isRequired
-  },
-
-  getInitialState() {
-    return {selectedValue: this.props.defaultValue};
+    value: React.PropTypes.any.isRequired,
+    onChange: React.PropTypes.func
   },
 
   setItem(item){
-    this.setState({selectedValue: item.value});
+    // follow react-select logic - they fire onChange before setting state
+    // https://github.com/JedWatson/react-select/blob/master/src/Select.js
+    const value = item.value;
+
+    if (this.props.onChange) {
+      this.props.onChange(value);
+    }
   },
 
   render() {
@@ -23,12 +26,13 @@ export default React.createClass({
         <li key={item.value}><a href="javascript:void(0);" onClick={this.setItem.bind(this,item)}>{item.label}</a></li>
     );
 
-    const defaultLabel = this.props.items.find(item => item.value === this.state.selectedValue);
+    const selectedItem = this.props.items.find(item => item.value === this.props.value);
+
     return (
       <div className="btn-group">
         <button type='button' data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                 className={this.props.className}>
-          {defaultLabel.label}
+          {selectedItem.label}
         </button>
         <ul className="dropdown-menu">
           {items}

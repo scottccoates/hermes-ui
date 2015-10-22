@@ -33,7 +33,7 @@ export default React.createClass({
           <li><TextSearchField iconClass='fa-building' fieldLabel="Counterparty"/></li>
           <li><TextSearchField iconClass='fa-tag' fieldLabel="All of the tags"/></li>
           <li><TextSearchField iconClass='fa-user' fieldLabel="Owner"/></li>
-          <li><TextSearchField iconClass='fa-file' fieldLabel="Type of contract"/></li>
+          <li><TextSearchField iconClass='fa-file' fieldLabel="Type of agreement"/></li>
           <li><DateSearchField iconClass='fa-calendar' fieldLabel='Notifactions due in the next'/></li>
           <li><DateSearchField iconClass='fa-clock-o' fieldLabel='Expires in the next'/></li>
           <li className="search-field more-fields-link">

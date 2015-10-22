@@ -20,7 +20,7 @@ export default function (searchResultListProvider) {
           <div className="content-section alt-content-section search-header-section space-bottom-sm space-top-sm">
             <div className="container">
               <p className='search-header-text'>
-                Contracts containing licensee within the same sentence as terminate
+                Agreements containing licensee within the same sentence as terminate
               </p>
             </div>
           </div>

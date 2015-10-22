@@ -36,13 +36,13 @@ export default React.createClass({
               <li>
                 <a className="search-link" href="javascript:void(0)">
                   <i className="fa fa-edit"></i>
-                  <span>Contracts Recently Edited</span>
+                  <span>Agreements Recently Edited</span>
                 </a>
               </li>
               <li>
                 <a className="search-link" href="javascript:void(0)">
                   <i className="fa fa-calendar"></i>
-                  <span>Contracts Expiring Soon</span>
+                  <span>Agreements Expiring Soon</span>
                 </a>
               </li>
             </ul>

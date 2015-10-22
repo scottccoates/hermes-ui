@@ -29,12 +29,29 @@ export default function (agreementActions) {
     getInitialState() {
       return {
         status: {
+          autoRenew: {},
+          counterparty: {},
+          description: {},
+          durationDetails: {},
+          executionDate: {},
           name: {},
-          termLength: {}
+          renewalNoticeAmount: {},
+          renewalNoticeType: {},
+          termLengthAmount: {},
+          termLengthType: {}
         },
         formData: {
+          autoRenew: false,
+          counterparty: null,
+          description: null,
+          durationDetails: null,
+          executionDate: null,
           name: null,
-          termLength: null
+          renewalNoticeAmount: null,
+          renewalNoticeType: 'day',
+          termLengthAmount: null,
+          termLengthType: 'year',
+          type: null
         }
       };
     },
@@ -50,10 +67,29 @@ export default function (agreementActions) {
       this.props.requestAgreementEdit(this.props.params.agreementId);
     },
 
-    componentWillReceiveProps: function (nextProps) {
-      this.setState({
-        formData: {name: nextProps.agreement.name}
-      });
+    componentWillReceiveProps (nextProps) {
+      // reset old form data if we switch from one agreement to another
+      this._setFormData(Object.assign({}, this.getInitialState().formData, nextProps.agreement));
+    },
+
+    _setFormData(val){
+      this.setState({formData: Object.assign({}, this.state.formData, val)});
+    },
+
+    onChangeAgreementType (newVal){
+      this._setFormData({type: newVal});
+    },
+
+    onChangeTermLengthType (newVal){
+      this._setFormData({termLengthType: newVal});
+    },
+
+    onChangeAutoRenew (newVal){
+      this._setFormData({autoRenew: newVal});
+    },
+
+    onChangeRenewalNoticeType (newVal){
+      this._setFormData({renewalNoticeType: newVal});
     },
 
     onSubmit(event){
@@ -62,8 +98,14 @@ export default function (agreementActions) {
 
       // it's important to remember that validation is async (consider database calls, apis, existence in db, etc).
       validation.validate(valid => {
-        this.props.onValidate(valid);
-        agreementActions.addToCollection(this.state.formData);
+
+        if (valid) {
+          this.props.onValidate(valid);
+          this.props.editAgreement(Object.assign({}, this.state.formData, {
+            agreementId: this.props.params.agreementId
+          }));
+        }
+
       });
     },
 
@@ -81,15 +123,19 @@ export default function (agreementActions) {
       ];
 
       var renewTypes = [
-        {label: 'Yes', value: 1},
-        {label: 'No', value: 0}
+        {label: 'Yes', value: true},
+        {label: 'No', value: false}
       ];
 
       const formData = this.state.formData;
       const status   = this.state.status;
 
-      const defaultFormClasses = ['form-group', 'content-section-item'];
-      const nameFormClasses    = cx(defaultFormClasses, {'has-error': status.name.errors});
+      const defaultFormClasses       = ['form-group', 'content-section-item'];
+      const nameFormClasses          = cx(defaultFormClasses, {'has-error': status.name.errors});
+      const counterpartyFormClasses  = cx(defaultFormClasses, {'has-error': status.counterparty.errors});
+      const executionDateFormClasses = cx(defaultFormClasses, {'has-error': status.executionDate.errors});
+      const termLengthFormClasses    = cx(defaultFormClasses, {'has-error': status.termLengthAmount.errors});
+      const renewalNoticeFormClasses = cx(defaultFormClasses, {'has-error': status.renewalNoticeAmount.errors});
 
       return (
         <div id="new-agreement-wrapper">
@@ -97,7 +143,7 @@ export default function (agreementActions) {
 
             <div className="content-section  space-top space-bottom">
               <div className="container">
-                <h1 className="page-header">New Contract</h1>
+                <h1 className="page-header">New Agreement</h1>
               </div>
             </div>
 
@@ -107,11 +153,10 @@ export default function (agreementActions) {
                   <Validation ref='validation' onValidate={this.handleValidate}>
                     <section className="row agreement-form-section content-section-item space-bottom-xl">
                       <div className="space-top-sm col-md-24">
-                        <h3 className="content-section-header">General Contract Information</h3>
-
+                        <h3 className="content-section-header">General Agreement Information</h3>
 
                         <div className={nameFormClasses}>
-                          <label htmlFor="agreement-form-name" className="col-sm-6 control-label">Contract
+                          <label htmlFor="agreement-form-name" className="col-sm-6 control-label">Agreement
                             Name</label>
 
                           <div className="col-sm-18">
@@ -125,12 +170,17 @@ export default function (agreementActions) {
                           </div>
                         </div>
 
-                        <div className="form-group content-section-item">
+                        <div className={counterpartyFormClasses}>
                           <label htmlFor="agreement-form-counterparty"
                                  className="col-sm-6 control-label">Counterparty</label>
 
                           <div className="col-sm-18">
-                            <input type="text" className="form-control" id="agreement-form-counterparty"/>
+                            <Validator rules={{required:true, message: 'Counterparty is required'}}>
+                              <input type="text" className="form-control" id="agreement-form-counterparty"
+                                     name="counterparty" value={formData.counterparty}/>
+                            </Validator>
+                            {status.counterparty.errors ?
+                              <div className="help-block">{status.counterparty.errors.join(', ')}</div> : null}
                           </div>
                         </div>
 
@@ -138,7 +188,8 @@ export default function (agreementActions) {
                           <label className="col-sm-6 control-label">Agreement Type</label>
 
                           <div className="col-sm-18">
-                            <Select placeholder={null} options={agreementTypes} searchable={false}/>
+                            <Select placeholder={null} options={agreementTypes} searchable={false} value={formData.type}
+                                    onChange={this.onChangeAgreementType}/>
                           </div>
                         </div>
 
@@ -147,7 +198,10 @@ export default function (agreementActions) {
                             Description</label>
 
                           <div className="col-sm-18">
-                            <textarea rows="5" className="form-control" id="agreement-form-description"/>
+                            <Validator rules={{required:false}}>
+                            <textarea rows="5" className="form-control" id="agreement-form-description"
+                                      name="description" value={formData.description}/>
+                            </Validator>
                           </div>
                         </div>
 
@@ -156,50 +210,75 @@ export default function (agreementActions) {
                     </section>
                     <section className="row agreement-form-section content-section-item space-top-sm space-bottom-xl">
                       <div className="col-md-24">
-                        <h3 className="content-section-header">Contract Duration and Renewal Information</h3>
+                        <h3 className="content-section-header">Agreement Duration and Renewal Information</h3>
 
+                        <div className={executionDateFormClasses}>
+                          <label htmlFor="agreement-form-execution-date" className="col-sm-6 control-label">Execution
+                            Date</label>
 
-                        <div className="form-group content-section-item">
-                          <label htmlFor="agreement-form-term-length" className="col-sm-6 control-label">Initial
+                          <div className="col-sm-6">
+                            <Validator
+                              rules={{required:true, message: 'Execution date is required'}}>
+                              <input type="date" className="form-control" name="executionDate"
+                                     id="agreement-form-execution-date"
+                                     value={formData.executionDate}/>
+                            </Validator>
+                          </div>
+                          <div className="row">
+                            <div className="col-sm-offset-6 col-sm-18">
+                              {status.executionDate.errors ?
+                                <div className="help-block">{status.executionDate.errors.join(', ')}</div> : null}</div>
+                          </div>
+                        </div>
+
+                        <div className={termLengthFormClasses}>
+                          <label htmlFor="agreement-form-d-length-amount" className="col-sm-6 control-label">Initial
                             Term
                             Length</label>
 
                           <div className="col-sm-3">
                             <Validator
-                              rules={{required:true, type:'number', transform:toNumber, message: 'Term length requires a number'}}>
-                              <input type="text" className="form-control" name="termLength"
-                                     id="agreement-form-term-length"
-                                     value={formData.termLength}/>
+                              rules={{required:false, type:'number', transform:toNumber, message: 'Term length must be a number'}}>
+                              <input type="text" className="form-control" name="termLengthAmount"
+                                     id="agreement-form-term-length-amount"
+                                     value={formData.termLengthAmount}/>
                             </Validator>
                           </div>
                           <div className="col-sm-6">
-                            <ButtonSelect items={durationTypes} defaultValue="year"
+                            <ButtonSelect items={durationTypes} value={formData.termLengthType}
+                                          onChange={this.onChangeTermLengthType}
                                           className="btn btn-sm btn-info agreement-form-button agreement-form-field-button"/>
                           </div>
                           <div className="row">
                             <div className="col-sm-offset-6 col-sm-18">
-                              {status.termLength.errors ?
-                                <div className="help-block">{status.termLength.errors.join(', ')}</div> : null}</div>
+                              {status.termLengthAmount.errors ?
+                                <div
+                                  className="help-block">{status.termLengthAmount.errors.join(', ')}</div> : null}</div>
                           </div>
                         </div>
                         <div className="form-group content-section-item">
-                          <label htmlFor="agreement-form-term-length"
-                                 className="col-sm-6 control-label">Auto-Renew?</label>
+                          <label className="col-sm-6 control-label">Auto-Renew?</label>
 
                           <div className="col-sm-6">
-                            <ButtonSelect items={renewTypes} defaultValue={1}
+                            <ButtonSelect items={renewTypes} value={formData.autoRenew}
+                                          onChange={this.onChangeAutoRenew}
                                           className="btn btn-sm btn-info agreement-form-button agreement-form-field-button"/>
                           </div>
                         </div>
-                        <div className="form-group content-section-item">
-                          <label htmlFor="agreement-form-term-length" className="col-sm-6 control-label">Renewal
+                        <div className={renewalNoticeFormClasses}>
+                          <label htmlFor="agreement-form-renewal-notice-amount" className="col-sm-6 control-label">Renewal
                             Notice</label>
 
                           <div className="col-sm-3">
-                            <input type="text" className="form-control" id="agreement-form-term-length"/>
+                            <Validator
+                              rules={{required:false,type:'number', transform:toNumber, message: 'Renewal notice must be a number'}}>
+                              <input type="text" className="form-control" id="agreement-form-renewal-notice-amount"
+                                     name="renewalNoticeAmount" value={formData.renewalNoticeAmount}/>
+                            </Validator>
                           </div>
                           <div className="col-sm-10">
-                            <ButtonSelect items={durationTypes} defaultValue="day"
+                            <ButtonSelect items={durationTypes} value={formData.renewalNoticeType}
+                                          onChange={this.onChangeRenewalNoticeType}
                                           className="btn btn-sm btn-info agreement-form-button agreement-form-field-button"/>
                         <span
                           className="control-label content-section-item space-left-sm space-right-sm agreement-form-control-text">before
@@ -209,14 +288,22 @@ export default function (agreementActions) {
                               Expiration
                             </button>
                           </div>
-
+                          <div className="row">
+                            <div className="col-sm-offset-6 col-sm-18">
+                              {status.renewalNoticeAmount.errors ?
+                                <div
+                                  className="help-block">{status.renewalNoticeAmount.errors.join(', ')}</div> : null}</div>
+                          </div>
                         </div>
                         <div className="form-group content-section-item">
-                          <label htmlFor="agreement-form-description" className="col-sm-6 control-label">Other
+                          <label htmlFor="agreement-form-durations-details" className="col-sm-6 control-label">Other
                             Details</label>
 
                           <div className="col-sm-18">
-                            <textarea rows="5" className="form-control" id="agreement-form-description"/>
+                            <Validator rules={{required:false}}>
+                              <textarea rows="5" className="form-control" id="agreement-form-durations-details"
+                                        name="durationDetails" value={formData.durationDetails}/>
+                            </Validator>
                           </div>
                         </div>
 
@@ -224,10 +311,8 @@ export default function (agreementActions) {
                     </section>
                     <section className="row agreement-form-section agreement-form-section-save content-section-item">
                       <div className="col-md-24">
-                        <button type='submit' className="btn btn-default">Save
+                        <button type='submit' className="btn btn-primary">Save and Close
                         </button>
-                        <Link to="dashboard" className="btn btn-primary">Save and Close
-                        </Link>
                       </div>
                     </section>
                   </Validation>

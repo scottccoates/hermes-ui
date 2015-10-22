@@ -1,6 +1,6 @@
-import AgreementFactory from './agreement-factory';
+import agreementFactory from './agreement-factory';
 
-import AgreementActions from '../messaging/actions/agreement-actions';
+import {toTimestamp} from 'src/scripts/libs/js-utils/type/type-utils';
 
 import immutable from 'immutable';
 
@@ -9,7 +9,7 @@ export default function (agreementRepository) {
 
   return {
     async create(data){
-      const agreement = AgreementFactory.create(data);
+      const agreement = agreementFactory.create(data);
       return this.addToCollection(agreement);
     },
 
@@ -18,16 +18,23 @@ export default function (agreementRepository) {
     },
 
     processAgreementListData(listData){
-      var retVal = listData.map(a => AgreementFactory.createAgreementListItem(a));
+      var retVal = listData.map(a => agreementFactory.createAgreementListItem(a));
       retVal     = immutable.List(retVal);
 
       return retVal;
     },
 
     processAgreementDetailData(detailData){
-      const retVal = AgreementFactory.createAgreementDetail(detailData);
+      const retVal = agreementFactory.createAgreementDetail(detailData);
 
       return retVal;
+    },
+
+    async editAgreement(agreementData){
+      const executionDate = toTimestamp(agreementData.executionDate);
+      const newData       = Object.assign({}, agreementData, {executionDate});
+
+      return await agreementRepository.save(newData);
     }
   };
 

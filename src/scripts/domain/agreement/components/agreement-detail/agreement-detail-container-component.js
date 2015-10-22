@@ -2,13 +2,21 @@ import React from 'react';
 
 import DependencyProvider from 'src/scripts/libs/dependency-injection/utils/dependency-provider';
 
-export default function (agreementDetailGeneralInfoComponent, agreementDetailLengthComponent, agreementDetailDocumentsComponent) {
+import { connect } from 'react-redux';
+
+import {Link}  from 'react-router';
+
+export default function (agreementActions, agreementDetailGeneralInfoComponent, agreementDetailLengthComponent, agreementDetailArtifactsComponent) {
   const AgreementDetailGeneralInfo = agreementDetailGeneralInfoComponent.dependency;
   const AgreementDetailLength      = agreementDetailLengthComponent.dependency;
-  const AgreementDetailDocuments   = agreementDetailDocumentsComponent.dependency;
+  const AgreementDetailArtifacts   = agreementDetailArtifactsComponent.dependency;
 
-  const agreementDetailItem = React.createClass({
+  var component = React.createClass({
     displayName: "AgreementDetailContainerComponent",
+
+    componentWillMount(){
+      this.props.requestAgreementDetail(this.props.params.agreementId);
+    },
 
     render() {
       var retVal = null;
@@ -29,7 +37,7 @@ export default function (agreementDetailGeneralInfoComponent, agreementDetailLen
                 <div className='col-sm-18'>
                   <div className="content-section space-top">
 
-                    <h3 className="content-section-header">General Contract Information</h3>
+                    <h3 className="content-section-header">General Agreement Information</h3>
 
                     <div className='row'>
                       <div className="content-section">
@@ -38,12 +46,13 @@ export default function (agreementDetailGeneralInfoComponent, agreementDetailLen
                         </div>
 
                         <div className='col-sm-4 edit-link'>
-                          <a href="javascript:void(0)">
+                          <Link to={`/agreements/${this.props.agreement.id}/step-2`}>
                             <div>
+                              {/*the div makes the entire space hoverable*/}
                               <i className="fa fa-pencil space-right-md"></i>
                               <span>edit</span>
                             </div>
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     </div>
@@ -51,7 +60,7 @@ export default function (agreementDetailGeneralInfoComponent, agreementDetailLen
 
                   <div className="content-section space-top space-bottom">
 
-                    <h3 className="content-section-header">Contract Duration and Renewal Information</h3>
+                    <h3 className="content-section-header">Agreement Duration and Renewal Information</h3>
 
                     <div className='row'>
                       <div className="content-section">
@@ -60,12 +69,13 @@ export default function (agreementDetailGeneralInfoComponent, agreementDetailLen
                         </div>
 
                         <div className='col-sm-4 edit-link'>
-                          <a href="javascript:void(0)">
+                          <Link to={`/agreements/${this.props.agreement.id}/step-2`}>
                             <div>
+                              {/*the div makes the entire space hoverable*/}
                               <i className="fa fa-pencil space-right-md"></i>
                               <span>edit</span>
                             </div>
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     </div>
@@ -75,7 +85,7 @@ export default function (agreementDetailGeneralInfoComponent, agreementDetailLen
                   <div className='panel panel-alt'>
                     <div className='panel-body'>
                       <h3 className="content-section-header">Documents</h3>
-                      <AgreementDetailDocuments agreement={this.props.agreement}/>
+                      <AgreementDetailArtifacts agreement={this.props.agreement}/>
                     </div>
                   </div>
                 </div>
@@ -88,15 +98,7 @@ export default function (agreementDetailGeneralInfoComponent, agreementDetailLen
     }
   });
 
-  const agreementDetailComponent = ConnectToStores(agreementDetailItem, 'AgreementDetailStore');
+  component = connect(x=> x.agreementDetail, agreementActions)(component);
 
-  // probably best way to make this func available to router: https://github.com/acdlite/flummox/issues/173
-  agreementDetailComponent.asyncTransition = (flux, state) => {
-    const { agreementId } = state.params;
-    const agreementActions = flux.getActions('AgreementActions');
-
-    agreementActions.requestAgreementDetail(agreementId);
-  };
-
-  return new DependencyProvider(agreementDetailComponent);
+  return new DependencyProvider(component);
 };

@@ -60,8 +60,10 @@ System.config({
     "react-select": "npm:react-select@0.7.0",
     "react-tagsinput": "github:olahol/react-tagsinput@1.2.0",
     "redux": "npm:redux@3.0.2",
+    "redux-history-transitions": "npm:redux-history-transitions@1.0.0",
     "redux-thunk": "npm:redux-thunk@1.0.0",
     "tcomb": "npm:tcomb@2.5.1",
+    "whatwg-fetch": "npm:whatwg-fetch@0.10.0",
     "github:jamesflorentino/nanoScrollerJS@0.8.4": {
       "css": "github:systemjs/plugin-css@0.1.12",
       "jquery": "github:components/jquery@2.1.3"

@@ -9,6 +9,8 @@ import Dropzone from 'dropzone';
 import Firebase from 'firebase';
 import FirebaseRetrievalApiService from 'src/scripts/apps/api/retrieval/server-side/firebase/services/firebase-retrieval-api-service';
 
+import ServerSidePersistenceApiService from 'src/scripts/apps/api/persistence/server-side/services/server-side-persistence-api-service';
+
 export default {
   init(){
     const container = config.init();
@@ -27,12 +29,17 @@ export default {
     container.register("RetrievalApiService", FirebaseRetrievalApiService);
     container.register("FirebaseAppUrl", "/* @echo FIREBASE_APP_URL */");
 
+    container.register("PersistenceApiService", ServerSidePersistenceApiService);
+    container.register("PersistenceApiServiceUrl", "http://127.0.0.1:8000/api");
+
     Lock.$inject = ["Auth0ClientID", "Auth0ClientDomain"]; // these are provided in the environment settings files
     Auth0LoginComponent.$inject = ["Auth0Lock"];
     Auth0AuthService.$inject    = ["Auth0Lock"];
 
     Firebase.$inject                    = ["FirebaseAppUrl"];
     FirebaseRetrievalApiService.$inject = ["Firebase"];
+
+    ServerSidePersistenceApiService.$inject = ['PersistenceApiServiceUrl', 'AppStore'];
 
     return container;
   }

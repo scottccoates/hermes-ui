@@ -3,30 +3,26 @@
 import React from 'react';
 import {Link} from 'react-router';
 
-import Immutable from 'immutable';
+import { connect } from 'react-redux';
 
 import DependencyProvider from '../../../libs/dependency-injection/utils/dependency-provider';
 
 export default function (agreementListComponent) {
   const AgreementList = agreementListComponent.dependency;
 
-  const component = React.createClass({
+  var component = React.createClass({
 
     displayName: "DashboardComponent",
-
-    getDefaultProps() {
-      return {"agreements": Immutable.List()}
-    },
 
     render() {
 
       var agreementListContent = null;
 
-      if (this.props.agreements.size) {
+      if (this.props.agreements.length) {
 
         agreementListContent = (
           <div>
-            <h3 className="content-section-header">Your Contracts</h3>
+            <h3 className="content-section-header">Your Agreements</h3>
             <AgreementList agreements={this.props.agreements}/>
           </div>
         );
@@ -35,9 +31,9 @@ export default function (agreementListComponent) {
         agreementListContent = (
           <div>
             <h3 className="content-section-header regular-text">
-              Sorry, there are no contracts in the system.
+              Sorry, there are no agreements in the system.
               <br />
-              Please <Link to="/contracts/step-1" className='underline'>upload one</Link> to get started.
+              Please <Link to="/agreements/step-1" className='underline'>upload one</Link> to get started.
             </h3>
           </div>
         );
@@ -62,18 +58,7 @@ export default function (agreementListComponent) {
       );
     }
   });
-  //const dashboardComponent = ConnectToStores(component, 'AgreementListStore');
-  //
-  //// probably best way to make this func available to router: https://github.com/acdlite/flummox/issues/173
-  //dashboardComponent.asyncTransition = (flux, state) => {
-  //  const sessionStore = flux.getStore('SessionStore');
-  //
-  //  const userId = sessionStore.state.user.userId;
-  //
-  //  const agreementActions = flux.getActions('AgreementActions');
-  //
-  //  agreementActions.requestAgreementList(userId);
-  //};
 
+  component = connect(x=> x.userAgreements)(component);
   return new DependencyProvider(component);
 };

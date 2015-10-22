@@ -10,9 +10,13 @@ $brand-heading: $src-less-dark !default;
 $brand-success: $src-medium-bright !default;
 $brand-nav: $src-very-bright !default;
 $brand-button: $src-less-dark !default;
-$brand-warning: #f0ad4e !default;
-$brand-danger: #d9534f !default;
+$brand-warning: $src-more-bright !default;
+$brand-danger: $triplet !default;
 $brand-info: $src-less-dark !default;
+
+$state-warning-text: $src-more-bright !default;
+
+$state-danger-text: $triplet !default;
 
 // Components
 // --------------------------------------------------

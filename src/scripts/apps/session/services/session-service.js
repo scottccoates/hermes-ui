@@ -1,4 +1,4 @@
-import Humps from 'humps';
+import humps from 'humps';
 
 import log from 'loglevel';
 // Store this interval function in the module root, just in case we get references to multiple instances of this service.
@@ -9,7 +9,7 @@ export default function (sessionRepository, authService) {
   const sessionService = {
     _prepareUserObject: function (user) {
       // auth0 doesn't follow a convention, so user_id is diff than isSocial, etc.
-      const data = Humps.camelizeKeys(user);
+      const data = humps.camelizeKeys(user);
       return data;
     },
 

@@ -17,7 +17,7 @@
 //  id: 2,
 //  actorName: 'Bob Hen',
 //  actorImage: '/build/assets/images/bob-profile-pic.jpg',
-//  activitySubject: 'Service Contract for Design and Branding',
+//  activitySubject: 'Service Agreement for Design and Branding',
 //  activityAction: 'today at 9:58 AM.',
 //  activityType: 'amend',
 //  activityTypeDisplayName: 'amended the'
@@ -27,7 +27,7 @@
 //  id: 3,
 //  actorName: 'Holly Scheuring',
 //  actorImage: '/build/assets/images/holly-profile-pic.jpg',
-//  activitySubject: 'Sales Contract Between Hermes Inc. and Jake’s Down Home Restaurant',
+//  activitySubject: 'Sales Agreement Between Hermes Inc. and Jake’s Down Home Restaurant',
 //  activityAction: 'yesterday at 11:06AM.',
 //  activityType: 'comment',
 //  activityTypeDisplayName: 'commented on the'
@@ -36,7 +36,7 @@
 //  id: 4,
 //  actorName: 'Bob Hen',
 //  actorImage: '/build/assets/images/bob-profile-pic.jpg',
-//  activitySubject: 'Sales Contract Between Hermes Inc. and Jake’s Down Home Restaurant',
+//  activitySubject: 'Sales Agreement Between Hermes Inc. and Jake’s Down Home Restaurant',
 //  activityAction: 'two days ago.',
 //  activityType: 'create',
 //  activityTypeDisplayName: 'created the'

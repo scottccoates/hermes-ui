@@ -24,11 +24,13 @@ import AgreementListItemComponent from '../domain/agreement/components/agreement
 import AgreementDetailContainerComponent from '../domain/agreement/components/agreement-detail/agreement-detail-container-component';
 import AgreementDetailGeneralInfoComponent from '../domain/agreement/components/agreement-detail/agreement-detail-general-info-component';
 import AgreementDetailLengthComponent from '../domain/agreement/components/agreement-detail/agreement-detail-length-component';
-import AgreementDetailDocumentsComponent from '../domain/agreement/components/agreement-detail/agreement-detail-documents-component';
+import AgreementDetailArtifactsComponent from '../domain/agreement/components/agreement-detail/agreement-detail-artifacts-component';
 
 import AgreementService from '../domain/agreement/services/agreement-service';
 import AgreementRepository from '../domain/agreement/services/agreement-repository';
 import AgreementEditReducer from 'src/scripts/domain/agreement/messaging/reducers/agreement-edit-reducer';
+import AgreementDetailReducer from 'src/scripts/domain/agreement/messaging/reducers/agreement-detail-reducer';
+import UserAgreementsReducer from 'src/scripts/domain/agreement/messaging/reducers/user-agreements-reducer';
 
 import DashboardComponent from '../apps/dashboard/components/dashboard-component';
 
@@ -38,6 +40,7 @@ import SearchResultContainer from '../domain/search/components/result/search-res
 import SearchResultList from '../domain/search/components/result/search-result-list';
 import SearchResultItem from '../domain/search/components/result/search-result-item';
 
+import { createHistory } from 'history';
 
 export default {
   init(){
@@ -62,12 +65,14 @@ export default {
     container.register("AgreementDetailContainerComponent", AgreementDetailContainerComponent);
     container.register("AgreementDetailGeneralInfoComponent", AgreementDetailGeneralInfoComponent);
     container.register("AgreementDetailLengthComponent", AgreementDetailLengthComponent);
-    container.register("AgreementDetailDocumentsComponent", AgreementDetailDocumentsComponent);
+    container.register("AgreementDetailArtifactsComponent", AgreementDetailArtifactsComponent);
 
     container.register("AgreementActions", AgreementActions);
     container.register("AgreementService", AgreementService);
     container.register("AgreementRepository", AgreementRepository);
     container.register("AgreementEditReducer", AgreementEditReducer);
+    container.register("AgreementDetailReducer", AgreementDetailReducer);
+    container.register("UserAgreementsReducer", UserAgreementsReducer);
 
     container.register("FileUpload", FileUpload);
 
@@ -81,12 +86,15 @@ export default {
 
     container.register("NprogressBar", NprogressBar);
 
+    const history = createHistory();
+    container.register("History", history);
+
     DashboardComponent.$inject = ["AgreementListComponent"];
 
     NewAgreementCreateComponent.$inject       = ["PersistenceApiServiceUrl", "FileUpload", "NprogressBarFactory"];
     NewAgreementFormComponent.$inject         = ["AgreementActions"];
     AgreementListComponent.$inject            = ["AgreementListItemComponent"];
-    AgreementDetailContainerComponent.$inject = ["AgreementDetailGeneralInfoComponent", 'AgreementDetailLengthComponent', 'AgreementDetailDocumentsComponent'];
+    AgreementDetailContainerComponent.$inject = ['AgreementActions', "AgreementDetailGeneralInfoComponent", 'AgreementDetailLengthComponent', 'AgreementDetailArtifactsComponent'];
 
     AgreementActions.$inject    = ["AgreementService"];
     AgreementService.$inject    = ["AgreementRepository"];

@@ -10,7 +10,7 @@ import DependencyProvider from '../../../../libs/dependency-injection/utils/depe
 
 export default function (persistenceApiServiceUrl, fileUploadProvider, nprogressBarFactory) {
 
-  const contractUrl  = `${persistenceApiServiceUrl}/api/agreements/`;
+  const agreementUrl  = `${persistenceApiServiceUrl}/agreements/`;
   const FileUploader = fileUploadProvider.dependency;
 
   var component = React.createClass({
@@ -41,13 +41,16 @@ export default function (persistenceApiServiceUrl, fileUploadProvider, nprogress
     },
 
     onProgressed(progress) {
-      this.nprogressBar.updateProgress(progress);
+      // if we hit 100 here, it'll appear to finish twice
+      var newProgress = progress >= 100 ? 99 : progress;
+
+      this.nprogressBar.updateProgress(newProgress);
     },
 
     onSuccess(file, response) {
       this.nprogressBar.updateProgress(100);
       // https://app.asana.com/0/10235149247647/48987687687033
-      setTimeout(_=> this.props.history.pushState(null, `/contracts/${response.potential_agreement_id}/step-2`), 500);
+      setTimeout(_=> this.props.history.pushState(null, `/agreements/${response.potential_agreement_id}/step-2`), 500);
     },
 
     onError(file, errorMessage) {
@@ -63,7 +66,7 @@ export default function (persistenceApiServiceUrl, fileUploadProvider, nprogress
           <div id="create-agreement-wrapper">
             <div className="content-section  space-top space-bottom">
               <div className="container">
-                <h1 className="page-header">New Contract</h1>
+                <h1 className="page-header">New Agreement</h1>
               </div>
             </div>
 
@@ -73,11 +76,11 @@ export default function (persistenceApiServiceUrl, fileUploadProvider, nprogress
                   <div className="col-md-24">
                     <div className="panel panel-default import-agreement-panel">
                       <div className="panel-heading">
-                        Import Contract
+                        Import Agreement
                       </div>
                       <div className="panel-body">
                         <div className="import-agreement-container">
-                          <FileUploader url={contractUrl} onAddedFile={this.onAddedFile}
+                          <FileUploader url={agreementUrl} onAddedFile={this.onAddedFile}
                                         onProgressed={this.onProgressed}
                                         onSuccess={this.onSuccess}
                                         onError={this.onError}
@@ -95,7 +98,7 @@ export default function (persistenceApiServiceUrl, fileUploadProvider, nprogress
 
                           <div className={feedbackClasses}>
 
-                            <h3 className="feedback-text">Importing Contract</h3>
+                            <h3 className="feedback-text">Importing Agreement</h3>
 
                             <div id="important-agreement-feedback-progress">
                             </div>
@@ -123,7 +126,7 @@ export default function (persistenceApiServiceUrl, fileUploadProvider, nprogress
                       <div className="content-section-item space-top-lg">
 
                         <a href="javascript:void(0)" className="btn btn-default btn-lg">Generate New
-                          Contract
+                          Agreement
                           From
                           Template</a>
                       </div>

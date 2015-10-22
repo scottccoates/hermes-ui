@@ -1,7 +1,6 @@
 // Form Styles
 // --------------------------------------------------
 
-
 // Form Input
 // --------------------------------------------------
 /*doc
@@ -64,6 +63,14 @@ parent: forms
   font-weight: lighter;
 }
 
+.form-group {
+  .help-block {
+    @include at-least-small-screen-styles {
+      margin: 2px 0;
+    }
+  }
+}
+
 // React-Select Select Input Element
 // --------------------------------------------------
 .Select {
@@ -84,7 +91,7 @@ parent: forms
       border-color: $src-bright transparent;
     }
 
-    .Select-placeholder{
+    .Select-placeholder {
       padding: $padding-base-vertical $padding-base-horizontal;
     }
   }
