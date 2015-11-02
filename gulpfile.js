@@ -39,7 +39,8 @@ if (!deployDemoAssets) {
   // The reason I am setting the env var here is so that other tools, like gulp-preprocessor
   deployDemoAssets = process.env.DEPLOY_DEMO_ASSETS = false;
   console.warn("Missing DEPLOY_DEMO_ASSETS environment variable. Assuming " + deployDemoAssets + ".");
-} else {
+}
+else {
   // cast to bool
   deployDemoAssets = deployDemoAssets === "true";
 }
@@ -192,7 +193,7 @@ gulp.task('assets-dist', function () {
 // https://github.com/jspm/jspm-cli/blob/b454d33c8a53bfd871f9c03c9a47122a0719016f/docs/api.md
 gulp.task('bundle', function () {
   jspm.setPackagePath('.');
-  return jspm.bundle('./src/scripts/main + src/scripts/apps/feedback/components/loading/loading-feedback', './build/js/app.js', { // this returns a promise, which gulp can interpret
+  return jspm.bundle('./src/scripts/main + src/scripts/apps/feedback/components/loading/loading-feedback + bootstrap', './build/js/app.js', { // this returns a promise, which gulp can interpret
     mangle: false, minify: false,
     sourceMaps: true, lowResSourceMaps: true
   });

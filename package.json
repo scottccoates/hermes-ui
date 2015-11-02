@@ -6,6 +6,7 @@
       "bankers-box": "github:twilio/BankersBox@0.1.0",
       "bootstrap": "github:twbs/bootstrap@3.3.5",
       "classnames": "github:JedWatson/classnames@2.1.2",
+      "clean-css": "npm:clean-css@3.4.6",
       "css": "github:systemjs/plugin-css@0.1.18",
       "dropzone": "npm:dropzone@4.0.1",
       "firebase": "github:firebase/firebase-bower@2.2.7",
