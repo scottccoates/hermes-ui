@@ -30,7 +30,7 @@ export default {
     container.register("FirebaseAppUrl", "/* @echo FIREBASE_APP_URL */");
 
     container.register("PersistenceApiService", ServerSidePersistenceApiService);
-    container.register("PersistenceApiServiceUrl", "http://127.0.0.1:8000/api");
+    container.register("PersistenceApiServiceUrl", "/* @echo PERSISTENCE_API_SERVICE_URL */");
 
     Lock.$inject = ["Auth0ClientID", "Auth0ClientDomain"]; // these are provided in the environment settings files
     Auth0LoginComponent.$inject = ["Auth0Lock"];
