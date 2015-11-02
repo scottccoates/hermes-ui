@@ -16,6 +16,7 @@ import cx from 'classnames';
 import ButtonSelect from 'src/scripts/libs/react-js/components/button-select'
 
 import {toNumber} from 'src/scripts/libs/js-utils/validation/validation-utils';
+import {normalizeFormValues} from 'src/scripts/libs/js-utils/form/form-utils';
 
 const {Validator} = Validation;
 
@@ -42,16 +43,16 @@ export default function (agreementActions) {
         },
         formData: {
           autoRenew: false,
-          counterparty: null,
-          description: null,
-          durationDetails: null,
-          executionDate: null,
-          name: null,
-          renewalNoticeAmount: null,
+          counterparty: '',
+          description: '',
+          durationDetails: '',
+          executionDate: '',
+          name: '',
+          renewalNoticeAmount: '',
           renewalNoticeType: 'day',
-          termLengthAmount: null,
+          termLengthAmount: '',
           termLengthType: 'year',
-          type: null
+          type: ''
         }
       };
     },
@@ -69,7 +70,6 @@ export default function (agreementActions) {
 
     componentWillReceiveProps (nextProps) {
       // reset old form data if we switch from one agreement to another
-      debugger
       this._setFormData(Object.assign({}, this.getInitialState().formData, nextProps.agreement));
     },
 
@@ -102,7 +102,10 @@ export default function (agreementActions) {
 
         if (valid) {
           this.props.onValidate(valid);
-          this.props.editAgreement(Object.assign({}, this.state.formData, {
+
+          const formData = normalizeFormValues(this.state.formData);
+
+          this.props.editAgreement(Object.assign({}, formData, {
             agreementId: this.props.params.agreementId
           }));
         }

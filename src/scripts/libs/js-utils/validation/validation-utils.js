@@ -7,6 +7,7 @@ export function toNumber(v) {
   }
   else {
     if (!v || !v.trim()) {
+      // react-validation expects undefined
       retVal = undefined;
     }
     else {
@@ -30,6 +31,7 @@ export function toDate(v) {
   }
   else {
     if (!v || !v.trim()) {
+      // react-validation expects undefined
       retVal = undefined;
     }
     else {

@@ -23,44 +23,44 @@ export default function () {
                       <img className="media-object" src='/assets/images/medium-logo-no-text.svg'
                            alt="counterparty image"/>
                     </Link>
+                  </div>
+
                 </div>
 
-              </div>
+                <div className="media-body">
 
-              <div className="media-body">
+                  <h5 className="media-heading">
+                    <Link to={`/agreements/${this.props.agreement.id}`} className='agreement-list-agreement-name'>
+                      {this.props.agreement.name}
+                    </Link>
+                  </h5>
 
-                <h5 className="media-heading">
-                  <Link to={`/agreements/${this.props.agreement.id}`} className='agreement-list-agreement-name'>
-                    {this.props.agreement.name}
-                  </Link>
-                </h5>
+                  <div className='content-section-item space-top-sm agreement-list-agreement-details'>
 
-                <div className='content-section-item space-top-sm agreement-list-agreement-details'>
-
-                  <span>{this.props.agreement.counterparty}</span>
-                  <i className='fa fa-circle middle space-left space-right'></i>
+                    <span>{this.props.agreement.counterparty}</span>
+                    <i className='fa fa-circle middle space-left space-right'></i>
 
                     <span>
                       <i className='fa fa-file space-right-md'></i>
                       {this.props.agreement.type}
                     </span>
 
-                  <i className='fa fa-circle middle space-left space-left space-right'></i>
+                    <i className='fa fa-circle middle space-left space-left space-right'></i>
 
-                  <span>Executed on {this.props.agreement.executionDate}</span>
-                  <i className='fa fa-circle middle space-left space-left space-right'></i>
+                    <span>Executed on {this.props.agreement.executionDate}</span>
+                    <i className='fa fa-circle middle space-left space-left space-right'></i>
 
-                  <span>Modified on {this.props.agreement.modificationDate}</span>
-                  <i className='fa fa-circle middle space-left space-left space-right'></i>
+                    <span>Modified on {this.props.agreement.modificationDate}</span>
+                    <i className='fa fa-circle middle space-left space-left space-right'></i>
 
-                  <span>{this.props.agreement.artifactCount} documents</span>
+                    <span>{this.props.agreement.artifactCount} documents</span>
+                  </div>
+
                 </div>
-
               </div>
             </div>
           </div>
         </div>
-        < / div >
 
       );
     }
