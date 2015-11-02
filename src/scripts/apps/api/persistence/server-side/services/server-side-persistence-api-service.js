@@ -4,18 +4,28 @@ import 'whatwg-fetch';
 export default function (persistenceApiServiceUrl, appStore) {
 
   const serverSideAPI = {
-    async update(path, data){
-      const url   = `${persistenceApiServiceUrl}/${path}/`;
-      const state = appStore.getState();
-      const token = state.session.token;
+    _getPath(path) {
+      return `${persistenceApiServiceUrl}/${path}/`;
+    },
 
-      const body = JSON.stringify(humps.decamelizeKeys(data), (k, v)=> v == undefined ? null : v);
+    _getState(){
+      return appStore.getState();
+    },
+
+    _getBody(data) {
       // replace undefined with null because stringify will just simply remove undefined from the payload (which we don't want)
       // we want to explicitly send a null value to the api
+      return JSON.stringify(humps.decamelizeKeys(data), (k, v)=> v == undefined ? null : v);
+    },
 
+    async _getResponse(method, url, body) {
       // http://blog.gospodarets.com/fetch_in_action/
+
+      const state = this._getState();
+      const token = state.session.token;
+
       const response = await fetch(url, {
-        method: 'PUT',
+        method: method,
         body: body,
         headers: {
           'Authorization': `JWT ${token}`,
@@ -29,6 +39,32 @@ export default function (persistenceApiServiceUrl, appStore) {
       if (status < 200 || status > 299) {
         throw new Error(response.statusText)
       }
+
+      // don't call .json (if response has empty string
+      var retVal = await response.text();
+      if (retVal) {
+        retVal = JSON.parse(retVal);
+      }
+
+      return retVal;
+    },
+
+    async retrieve(path){
+      const url = this._getPath(path);
+
+      const body = null;
+
+      const response = await this._getResponse('GET', url, body);
+
+      return response;
+    },
+
+    async update(path, data){
+      const url = this._getPath(path);
+
+      const body = this._getBody(data);
+
+      const response = await this._getResponse('PUT', url, body);
 
       return response;
     }

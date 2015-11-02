@@ -2,19 +2,24 @@ import React from 'react';
 
 import DependencyProvider from 'src/scripts/libs/dependency-injection/utils/dependency-provider';
 
-export default function () {
+export default function (agreementService) {
 
   const agreementDetailDocuments = React.createClass({
     displayName: "AgreementDetailArtifactsComponent",
 
+    async downloadArtifact(artifactId){
+      const url = await agreementService.getAgreementArtifactSignedUrl(this.props.agreement.id, artifactId);
+      window.open(url, '_blank');
+    },
+
     render() {
-      const documentNodes = this.props.agreement.artifacts.map(document=> {
+      const documentNodes = this.props.agreement.artifacts.map(artifact=> {
         return (
-          <li className="content-section-item space-bottom-sm" key={document.id}>
-            <a href="javascript:void(0)">
+          <li className="content-section-item space-bottom-sm" key={artifact.id}>
+            <a href="javascript:void(0)" onClick={this.downloadArtifact.bind(this, artifact.id)}>
               <div>
                 <i className="fa fa-file-pdf-o space-right"></i>
-                <span>{document.name}</span>
+                <span>{artifact.name}</span>
               </div>
             </a>
           </li>

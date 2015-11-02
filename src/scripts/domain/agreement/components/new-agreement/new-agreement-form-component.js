@@ -69,6 +69,7 @@ export default function (agreementActions) {
 
     componentWillReceiveProps (nextProps) {
       // reset old form data if we switch from one agreement to another
+      debugger
       this._setFormData(Object.assign({}, this.getInitialState().formData, nextProps.agreement));
     },
 

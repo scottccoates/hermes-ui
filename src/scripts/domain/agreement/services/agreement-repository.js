@@ -6,6 +6,11 @@ export default function (apiService) {
     async save(agreement) {
       const path = `${agreementPath}/${agreement.agreementId}`;
       return await apiService.update(path, agreement);
+    },
+
+    async getAgreementArtifactSignedObject(agreementId, artifactId) {
+      const path = `${agreementPath}/${agreementId}/artifacts/${artifactId}`;
+      return await apiService.retrieve(path);
     }
   };
 

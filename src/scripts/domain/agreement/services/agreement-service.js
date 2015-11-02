@@ -35,6 +35,12 @@ export default function (agreementRepository) {
       const newData       = Object.assign({}, agreementData, {executionDate});
 
       return await agreementRepository.save(newData);
+    },
+
+    async getAgreementArtifactSignedUrl(agreementId, artifactId){
+      const retVal = await agreementRepository.getAgreementArtifactSignedObject(agreementId, artifactId);
+
+      return retVal.url;
     }
   };
 

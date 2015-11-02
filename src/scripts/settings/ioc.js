@@ -95,6 +95,7 @@ export default {
     NewAgreementFormComponent.$inject         = ["AgreementActions"];
     AgreementListComponent.$inject            = ["AgreementListItemComponent"];
     AgreementDetailContainerComponent.$inject = ['AgreementActions', "AgreementDetailGeneralInfoComponent", 'AgreementDetailLengthComponent', 'AgreementDetailArtifactsComponent'];
+    AgreementDetailArtifactsComponent.$inject = ['AgreementService'];
 
     AgreementActions.$inject    = ["AgreementService"];
     AgreementService.$inject    = ["AgreementRepository"];
