@@ -40,7 +40,7 @@ System.config({
     "css": "github:systemjs/plugin-css@0.1.18",
     "dropzone": "npm:dropzone@4.0.1",
     "firebase": "github:firebase/firebase-bower@2.2.7",
-    "history": "npm:history@1.10.1",
+    "history": "npm:history@1.13.0",
     "humps": "github:domchristie/humps@0.6.0",
     "immutable": "npm:immutable@3.7.4",
     "intravenous": "github:willow/intravenous@master",
@@ -57,7 +57,7 @@ System.config({
     "react-highlighter": "github:helior/react-highlighter@0.2.1",
     "react-immutable-render-mixin": "npm:react-immutable-render-mixin@0.8.1",
     "react-redux": "npm:react-redux@3.0.1",
-    "react-router": "npm:react-router@1.0.0-rc1",
+    "react-router": "npm:react-router@1.0.0-rc3",
     "react-select": "npm:react-select@0.7.0",
     "react-tagsinput": "github:olahol/react-tagsinput@1.2.0",
     "redux": "npm:redux@3.0.2",
@@ -228,11 +228,19 @@ System.config({
     "npm:graceful-readlink@1.0.1": {
       "fs": "github:jspm/nodelibs-fs@0.1.2"
     },
-    "npm:history@1.10.1": {
+    "npm:history@1.12.3": {
       "deep-equal": "npm:deep-equal@1.0.1",
-      "invariant": "npm:invariant@2.1.1",
+      "invariant": "npm:invariant@2.1.2",
       "qs": "npm:qs@4.0.0",
-      "warning": "npm:warning@2.0.0"
+      "warning": "npm:warning@2.1.0"
+    },
+    "npm:history@1.13.0": {
+      "child_process": "github:jspm/nodelibs-child_process@0.1.0",
+      "deep-equal": "npm:deep-equal@1.0.1",
+      "fs": "github:jspm/nodelibs-fs@0.1.2",
+      "invariant": "npm:invariant@2.1.2",
+      "qs": "npm:qs@4.0.0",
+      "warning": "npm:warning@2.1.0"
     },
     "npm:https-browserify@0.0.0": {
       "http": "github:jspm/nodelibs-http@1.7.1"
@@ -242,6 +250,10 @@ System.config({
     },
     "npm:invariant@2.1.1": {
       "loose-envify": "npm:loose-envify@1.0.0",
+      "process": "github:jspm/nodelibs-process@0.1.2"
+    },
+    "npm:invariant@2.1.2": {
+      "loose-envify": "npm:loose-envify@1.1.0",
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:js-tokens@1.0.1": {
@@ -267,6 +279,12 @@ System.config({
     },
     "npm:loose-envify@1.0.0": {
       "js-tokens": "npm:js-tokens@1.0.1",
+      "process": "github:jspm/nodelibs-process@0.1.2",
+      "stream": "github:jspm/nodelibs-stream@0.1.0",
+      "util": "github:jspm/nodelibs-util@0.1.0"
+    },
+    "npm:loose-envify@1.1.0": {
+      "js-tokens": "npm:js-tokens@1.0.2",
       "process": "github:jspm/nodelibs-process@0.1.2",
       "stream": "github:jspm/nodelibs-stream@0.1.0",
       "util": "github:jspm/nodelibs-util@0.1.0"
@@ -346,10 +364,10 @@ System.config({
       "process": "github:jspm/nodelibs-process@0.1.2",
       "redux": "npm:redux@3.0.2"
     },
-    "npm:react-router@1.0.0-rc1": {
-      "history": "npm:history@1.10.1",
-      "invariant": "npm:invariant@2.1.1",
-      "warning": "npm:warning@2.0.0"
+    "npm:react-router@1.0.0-rc3": {
+      "history": "npm:history@1.12.3",
+      "invariant": "npm:invariant@2.1.2",
+      "warning": "npm:warning@2.1.0"
     },
     "npm:react-select@0.7.0": {
       "classnames": "npm:classnames@2.1.5",
@@ -429,12 +447,8 @@ System.config({
       "inherits": "npm:inherits@2.0.1",
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
-    "npm:warning@2.0.0": {
-      "envify": "npm:envify@3.4.0",
-      "process": "github:jspm/nodelibs-process@0.1.2"
-    },
     "npm:warning@2.1.0": {
-      "loose-envify": "npm:loose-envify@1.0.0",
+      "loose-envify": "npm:loose-envify@1.1.0",
       "process": "github:jspm/nodelibs-process@0.1.2"
     }
   }
