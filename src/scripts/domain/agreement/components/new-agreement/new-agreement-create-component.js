@@ -10,7 +10,7 @@ import DependencyProvider from '../../../../libs/dependency-injection/utils/depe
 
 export default function (persistenceApiServiceUrl, fileUploadProvider, nprogressBarFactory) {
 
-  const agreementUrl  = `${persistenceApiServiceUrl}/agreements/`;
+  const agreementUrl = `${persistenceApiServiceUrl}/agreements/`;
   const FileUploader = fileUploadProvider.dependency;
 
   var component = React.createClass({
@@ -87,7 +87,7 @@ export default function (persistenceApiServiceUrl, fileUploadProvider, nprogress
                                         className={dropzoneClasses}
                                         paramName="contract"
                                         headers={{"Authorization": "JWT " + this.props.user.token}}
-                                        acceptedFiles=".pdf">
+                                        acceptedFiles=".pdf, .doc, .docx">
                             <i className="fa fa-cloud-upload"></i>
 
                             <div className="primary-import-text">Select a file to upload</div>
