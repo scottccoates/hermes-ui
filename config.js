@@ -48,6 +48,7 @@ System.config({
     "loglevel": "npm:loglevel@1.3.1",
     "nanoscroller": "github:jamesflorentino/nanoScrollerJS@0.8.4",
     "nprogress": "github:rstacruz/nprogress@0.1.6",
+    "raygun4js": "github:MindscapeHQ/raygun4js@2.0.3",
     "rc-form-validation": "npm:rc-form-validation@2.4.13",
     "react": "npm:react@0.14.0",
     "react-bacon": "npm:react-bacon@0.0.4",

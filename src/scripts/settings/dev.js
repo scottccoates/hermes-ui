@@ -11,6 +11,8 @@ import FirebaseRetrievalApiService from 'src/scripts/apps/api/retrieval/server-s
 
 import ServerSidePersistenceApiService from 'src/scripts/apps/api/persistence/server-side/services/server-side-persistence-api-service';
 
+import LoglevelErrorLogger from 'src/scripts/libs/js-utils/logging/loglevel-error-logger';
+
 export default {
   init(){
     const container = config.init();
@@ -29,9 +31,10 @@ export default {
     container.register("RetrievalApiService", FirebaseRetrievalApiService);
     container.register("FirebaseAppUrl", "Firebase App Url");
 
-
     container.register("PersistenceApiService", ServerSidePersistenceApiService);
     container.register("PersistenceApiServiceUrl", "http://127.0.0.1:8000/api");
+
+    container.register("ErrorLogger", LoglevelErrorLogger);
 
     Lock.$inject = ["Auth0ClientID", "Auth0ClientDomain"]; // these are provided in the environment settings files
     Auth0LoginComponent.$inject = ['SessionActions', "Auth0Lock"];
@@ -41,7 +44,6 @@ export default {
     FirebaseRetrievalApiService.$inject = ["Firebase"];
 
     ServerSidePersistenceApiService.$inject = ['PersistenceApiServiceUrl', 'AppStore'];
-
     return container;
   }
 }

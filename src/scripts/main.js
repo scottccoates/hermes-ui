@@ -10,6 +10,9 @@ import routes from 'src/scripts/settings/routes';
 
 const containerInstance = container.init();
 
+const errorLogger = containerInstance.get('ErrorLogger');
+errorLogger.init();
+
 // https://github.com/pimterry/loglevel#documentation
 log.setLevel(containerInstance.get('LogLevel'), false); // false means don't persist this to client storage
 

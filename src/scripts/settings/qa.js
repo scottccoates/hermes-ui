@@ -11,6 +11,8 @@ import FirebaseRetrievalApiService from 'src/scripts/apps/api/retrieval/server-s
 
 import ServerSidePersistenceApiService from 'src/scripts/apps/api/persistence/server-side/services/server-side-persistence-api-service';
 
+import RaygunErrorLogger from 'src/scripts/libs/js-utils/logging/raygun-error-logger';
+
 export default {
   init(){
     const container = config.init();
@@ -31,6 +33,11 @@ export default {
 
     container.register("PersistenceApiService", ServerSidePersistenceApiService);
     container.register("PersistenceApiServiceUrl", "/* @echo PERSISTENCE_API_SERVICE_URL */");
+
+    container.register("ErrorLogger", RaygunErrorLogger);
+    container.register("RaygunApiKey", "/* @echo RAYGUN_API_KEY */");
+
+    RaygunErrorLogger.$inject = ['RaygunApiKey'];
 
     Lock.$inject = ["Auth0ClientID", "Auth0ClientDomain"]; // these are provided in the environment settings files
     Auth0LoginComponent.$inject = ["Auth0Lock"];
