@@ -109,7 +109,22 @@ export default function (agreementActions) {
             agreementId: this.props.params.agreementId
           }));
         }
+        else {
+          // give some time for render to do it's thing and provide has-error class
+          setTimeout(
+              _=> {
+              const firstErrorElementGroup = document.querySelector('.has-error');
 
+              if (firstErrorElementGroup) {
+
+                firstErrorElementGroup.scrollIntoView(firstErrorElementGroup, {
+                  block: 'start',
+                  behavior: 'smooth'
+                });
+              }
+
+            }, 100);
+        }
       });
     },
 
