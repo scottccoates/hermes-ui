@@ -7,6 +7,10 @@ export default function (apiKey) {
       rg4js.Raygun.init(apiKey).attach();
     },
 
+    setUser(userId, userEmail, userFullName, userFirstName){
+      rg4js.Raygun.setUser(userId, false, userEmail, userFullName, userFirstName);
+    },
+
     log(){
     }
   };

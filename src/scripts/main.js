@@ -40,6 +40,8 @@ const unSub = store.subscribe(async _=> {
 
   if (state.session.loggedIn) {
 
+    errorLogger.setUser(state.session.user.email, state.session.user.email, state.session.user.name, state.session.user.nickname);
+
     // retrievalService will listen for events from the store
     const retrievalService = containerInstance.get('RetrievalApiService');
 
