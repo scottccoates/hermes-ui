@@ -80,14 +80,19 @@ export default function (sessionActions, auth0Lock) {
           };
 
           auth0Lock.show(lockOptions, (error, profile, idToken)=> {
-            if (error) throw new Error(`Error authenticating: ${idToken}. Inner exception: ${error.stack}`);
-
-            try {
-              log.info("Beginning: Log in user: %s", profile.nickname);
-              props.login(idToken, profile, props.resumeSession);
+            if (error) {
+              if (error.status && error.status != 401) {
+                throw new Error(`Error authenticating: ${idToken}. Inner exception: ${error.stack}`);
+              }
             }
-            catch (e) {
-              throw new Error("Error completing the login process " + e.stack);
+            else {
+              try {
+                log.info("Beginning: Log in user: %s", profile.nickname);
+                props.login(idToken, profile, props.resumeSession);
+              }
+              catch (e) {
+                throw new Error("Error completing the login process " + e.stack);
+              }
             }
           });
         }
