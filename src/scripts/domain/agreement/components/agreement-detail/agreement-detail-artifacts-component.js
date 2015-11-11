@@ -27,8 +27,8 @@ export default function (agreementService) {
       });
 
       return (
-        <div className="agreement-detail-documents">
-          <ul className="agreement-detail-documents-list">
+        <div className="agreement-detail-artifacts">
+          <ul className="agreement-detail-artifacts-list">
             {documentNodes}
           </ul>
         </div>
