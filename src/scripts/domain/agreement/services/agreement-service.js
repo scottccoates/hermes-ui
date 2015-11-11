@@ -37,8 +37,8 @@ export default function (agreementRepository) {
       return await agreementRepository.save(newData);
     },
 
-    async getAgreementArtifactSignedUrl(agreementId, artifactId){
-      const retVal = await agreementRepository.getAgreementArtifactSignedObject(agreementId, artifactId);
+    async getAgreementArtifactSignedUrl(artifactId){
+      const retVal = await agreementRepository.getAgreementArtifactSignedObject(artifactId);
 
       return retVal.url;
     }

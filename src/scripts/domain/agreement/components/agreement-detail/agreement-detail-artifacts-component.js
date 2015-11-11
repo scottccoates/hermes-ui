@@ -8,7 +8,7 @@ export default function (agreementService) {
     displayName: "AgreementDetailArtifactsComponent",
 
     async downloadArtifact(artifactId){
-      const url = await agreementService.getAgreementArtifactSignedUrl(this.props.agreement.id, artifactId);
+      const url = await agreementService.getAgreementArtifactSignedUrl(artifactId);
       window.open(url, '_blank');
     },
 

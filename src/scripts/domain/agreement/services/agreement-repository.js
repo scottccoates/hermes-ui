@@ -1,4 +1,5 @@
 const agreementPath = 'agreements';
+const assetPath     = 'assets';
 
 export default function (apiService) {
 
@@ -8,8 +9,8 @@ export default function (apiService) {
       return await apiService.update(path, agreement);
     },
 
-    async getAgreementArtifactSignedObject(agreementId, artifactId) {
-      const path = `${agreementPath}/${agreementId}/artifacts/${artifactId}`;
+    async getAgreementArtifactSignedObject(artifactId) {
+      const path = `${assetPath}/${artifactId}`;
       return await apiService.retrieve(path);
     }
   };
