@@ -46,6 +46,7 @@ System.config({
     "intravenous": "github:willow/intravenous@master",
     "jquery": "github:components/jquery@2.1.3",
     "loglevel": "npm:loglevel@1.3.1",
+    "moment": "npm:moment@2.10.6",
     "nanoscroller": "github:jamesflorentino/nanoScrollerJS@0.8.4",
     "nprogress": "github:rstacruz/nprogress@0.1.6",
     "raygun4js": "github:MindscapeHQ/raygun4js@2.0.3",
@@ -289,6 +290,9 @@ System.config({
       "process": "github:jspm/nodelibs-process@0.1.2",
       "stream": "github:jspm/nodelibs-stream@0.1.0",
       "util": "github:jspm/nodelibs-util@0.1.0"
+    },
+    "npm:moment@2.10.6": {
+      "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:os-browserify@0.1.2": {
       "os": "github:jspm/nodelibs-os@0.1.0"
