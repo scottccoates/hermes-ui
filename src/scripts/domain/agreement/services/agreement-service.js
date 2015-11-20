@@ -1,6 +1,6 @@
 import agreementFactory from './agreement-factory';
 
-import {toTimestamp} from 'src/scripts/libs/js-utils/type/type-utils';
+import {stringToTimestamp} from 'src/scripts/libs/js-utils/type/date-utils';
 
 import immutable from 'immutable';
 
@@ -31,7 +31,7 @@ export default function (agreementRepository) {
     },
 
     async editAgreement(agreementData){
-      const executionDate = toTimestamp(agreementData.executionDate);
+      const executionDate = stringToTimestamp(agreementData.executionDate);
       const newData       = Object.assign({}, agreementData, {executionDate});
 
       return await agreementRepository.save(newData);

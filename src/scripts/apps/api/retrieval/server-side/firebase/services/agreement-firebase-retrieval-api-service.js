@@ -1,5 +1,8 @@
 import FirebaseService from './firebase-service.js';
+
 import storeObserver from 'src/scripts/libs/redux-js/store/store-observer';
+
+import {dateFromTimestamp, ymdFormat} from 'src/scripts/libs/js-utils/type/date-utils';
 
 export default {
   init(container, store, rootRef) {
@@ -45,6 +48,7 @@ export default {
 
         try {
           const agreementEdit = FirebaseService.prepareObject(snapshot);
+          if (agreementEdit.executionDate) agreementEdit.executionDate = ymdFormat(dateFromTimestamp(agreementEdit.executionDate));
           store.dispatch(agreementActions.agreementEditReceived(agreementEdit));
         }
         catch (error) {
@@ -65,6 +69,7 @@ export default {
       this.agreementDetailCallback = this.agreementDetailRef.on('value', snapshot=> {
         try {
           const agreementDetail = FirebaseService.prepareObject(snapshot, "artifacts");
+          if (agreementDetail.executionDate) agreementDetail.executionDate = ymdFormat(dateFromTimestamp(agreementDetail.executionDate));
           store.dispatch(agreementActions.agreementDetailReceived(agreementDetail));
         }
         catch (error) {
