@@ -18,8 +18,12 @@ import ButtonSelect from 'src/scripts/libs/react-js/components/button-select'
 import {toNumber} from 'src/scripts/libs/js-utils/validation/validation-utils';
 import {normalizeFormValues} from 'src/scripts/libs/js-utils/form/form-utils';
 
+import agreementValueLabel from 'src/scripts/apps/formatting/agreement/agreement-value-label';
+
+
 const {Validator} = Validation;
 
+const {agreementTypes, durationTypes, renewTypes} = agreementValueLabel;
 
 export default function (agreementActions) {
 
@@ -129,23 +133,6 @@ export default function (agreementActions) {
     },
 
     render() {
-      var agreementTypes = [
-        {label: 'Consulting Agreement', value: 'consulting'},
-        {label: 'Licensing Agreement', value: 'licensing'},
-        {label: 'Sales Agreement', value: 'sales'}
-      ];
-
-      var durationTypes = [
-        {label: 'Years', value: 'year'},
-        {label: 'Months', value: 'month'},
-        {label: 'Days', value: 'day'}
-      ];
-
-      var renewTypes = [
-        {label: 'Yes', value: true},
-        {label: 'No', value: false}
-      ];
-
       const formData = this.state.formData;
       const status   = this.state.status;
 
