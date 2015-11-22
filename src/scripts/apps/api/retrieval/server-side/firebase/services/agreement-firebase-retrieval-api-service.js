@@ -4,6 +4,8 @@ import storeObserver from 'src/scripts/libs/redux-js/store/store-observer';
 
 import {dateFromTimestamp, ymdFormat} from 'src/scripts/libs/js-utils/type/date-utils';
 
+import agreementEnums from 'src/scripts/apps/formatting/agreement/agreement-enums';
+
 export default {
   init(container, store, rootRef) {
     const state  = store.getState();
@@ -26,9 +28,21 @@ export default {
     agreementListRef.on("value", snapshot => {
 
       try {
-        const data = FirebaseService.prepareCollection(snapshot);
+        const dashboardAgreements = FirebaseService.prepareCollection(snapshot);
 
-        store.dispatch(agreementActions.userAgreementsReceived(data));
+        dashboardAgreements.forEach(dashboardAgreement=> {
+          dashboardAgreement.executionDate    = ymdFormat(dateFromTimestamp(dashboardAgreement.executionDate));
+          dashboardAgreement.modificationDate = ymdFormat(dateFromTimestamp(dashboardAgreement.modificationDate));
+
+          if (dashboardAgreement.type) {
+            dashboardAgreement.type = agreementEnums.agreementTypes[dashboardAgreement.type];
+          }
+          else {
+            dashboardAgreement.type = 'Agreement type not specified';
+          }
+        });
+
+        store.dispatch(agreementActions.userAgreementsReceived(dashboardAgreements));
       }
       catch (error) {
         throw new Error(`Error providing agreement list data from firebase: Inner exception: ${error.stack}`);
@@ -48,7 +62,9 @@ export default {
 
         try {
           const agreementEdit = FirebaseService.prepareObject(snapshot);
+
           if (agreementEdit.executionDate) agreementEdit.executionDate = ymdFormat(dateFromTimestamp(agreementEdit.executionDate));
+
           store.dispatch(agreementActions.agreementEditReceived(agreementEdit));
         }
         catch (error) {
@@ -69,7 +85,24 @@ export default {
       this.agreementDetailCallback = this.agreementDetailRef.on('value', snapshot=> {
         try {
           const agreementDetail = FirebaseService.prepareObject(snapshot, "artifacts");
-          if (agreementDetail.executionDate) agreementDetail.executionDate = ymdFormat(dateFromTimestamp(agreementDetail.executionDate));
+
+          agreementDetail.executionDate = ymdFormat(dateFromTimestamp(agreementDetail.executionDate));
+
+          if (agreementDetail.type) {
+            agreementDetail.type = agreementEnums.agreementTypes[agreementDetail.type];
+          }
+          else {
+            agreementDetail.type = 'Agreement type not specified';
+          }
+
+          if (agreementDetail.termLengthAmount && agreementDetail.termLengthType) {
+            const termLengthType       = agreementEnums.durationTypes[agreementDetail.termLengthType];
+            agreementDetail.termLength = `${agreementDetail.termLengthAmount} ${termLengthType}`;
+          }
+          else {
+            agreementDetail.termLength = 'Term length not specified';
+          }
+
           store.dispatch(agreementActions.agreementDetailReceived(agreementDetail));
         }
         catch (error) {
