@@ -2,15 +2,15 @@
 
 import React from 'react';
 import {DropdownButton, MenuItem} from 'react-bootstrap';
-import ReactDND from 'react-dnd';
-
-const {DragDropMixin} = ReactDND;
+//import ReactDND from 'react-dnd';
+//
+//const {DragDropMixin} = ReactDND;
 
 import cx from 'classnames';
 
 export default React.createClass({
   displayName: "AdvancedApolloSearchFieldToken",
-  mixins: [DragDropMixin],
+  //mixins: [DragDropMixin],
 
   statics: {
     configureDragDrop(register) {

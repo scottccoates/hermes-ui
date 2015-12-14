@@ -73,39 +73,23 @@ parent: forms
 
 // React-Select Select Input Element
 // --------------------------------------------------
+$select-text-color: $src-less-dark;
+$select-option-color: $src-less-dark;
+$select-padding-horizontal: $src-container-horizontal-space;
+$select-input-placeholder: $src-less-dark;
+$select-option-focused-color: $src-very-dark;
+$select-clear-hover-color: $src-more-bright;
+@import "../../../../jspm_packages/npm/react-select@1.0.0-beta6/scss/default";
+
 .Select {
   .Select-control {
     @include form-input();
 
-    padding: $padding-base-vertical $padding-base-horizontal;
+    padding: 1px 0;
 
-    .Select-clear {
-      color: $src-bright;
-
-      &:hover {
-        color: $src-more-bright;
-      }
+    .Select-arrow-zone {
+      vertical-align: baseline;
     }
 
-    .Select-arrow {
-      border-color: $src-bright transparent;
-    }
-
-    .Select-placeholder {
-      padding: $padding-base-vertical $padding-base-horizontal;
-    }
-  }
-
-  &.has-value > .Select-control > .Select-placeholder {
-    color: $src-less-dark;
-  }
-
-  .Select-option {
-    color: $src-less-dark;
-
-    &.is-focused {
-      background-color: $src-brighter;
-      color: $src-very-dark;
-    }
   }
 }
