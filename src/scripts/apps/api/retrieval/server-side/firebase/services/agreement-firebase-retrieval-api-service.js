@@ -1,4 +1,4 @@
-import FirebaseService from './firebase-service.js';
+import firebaseService from './firebase-service.js';
 
 import storeObserver from 'src/scripts/libs/redux-js/store/store-observer';
 
@@ -23,23 +23,19 @@ export default {
     // let's not worry about opening/closing connection for dashboard. just assume that we can always keep this open
     // because it's probably a frequently-visited screen.
     // also, we don't need to worry about users logging off, because the whole app will just be refreshed.
-    const agreementListRef = rootRef.child(`users/${userId}/dashboard-agreements`);
+    const agreementListRef = rootRef.child(`users-dashboard-agreements/${userId}/`);
 
     agreementListRef.on("value", snapshot => {
 
       try {
-        const dashboardAgreements = FirebaseService.prepareCollection(snapshot);
+        const dashboardAgreements = firebaseService.prepareCollection(snapshot);
 
         dashboardAgreements.forEach(dashboardAgreement=> {
           dashboardAgreement.executionDate    = ymdFormat(dateFromTimestamp(dashboardAgreement.executionDate));
           dashboardAgreement.modificationDate = ymdFormat(dateFromTimestamp(dashboardAgreement.modificationDate));
 
-          if (dashboardAgreement.type) {
-            dashboardAgreement.type = agreementEnums.agreementTypes[dashboardAgreement.type];
-          }
-          else {
-            dashboardAgreement.type = 'Agreement type not specified';
-          }
+          dashboardAgreement.type = dashboardAgreement.type || 'Agreement type not specified';
+
         });
 
         store.dispatch(agreementActions.userAgreementsReceived(dashboardAgreements));
@@ -61,7 +57,7 @@ export default {
       this.agreementEditCallback = this.agreementEditRef.on('value', snapshot=> {
 
         try {
-          const agreementEdit = FirebaseService.prepareObject(snapshot);
+          const agreementEdit = firebaseService.prepareObject(snapshot);
 
           if (agreementEdit.executionDate) agreementEdit.executionDate = ymdFormat(dateFromTimestamp(agreementEdit.executionDate));
 
@@ -84,16 +80,11 @@ export default {
       this.agreementDetailRef      = rootRef.child(`agreement-details/${requestedAgreementDetailId}`);
       this.agreementDetailCallback = this.agreementDetailRef.on('value', snapshot=> {
         try {
-          const agreementDetail = FirebaseService.prepareObject(snapshot, "artifacts");
+          const agreementDetail = firebaseService.prepareObject(snapshot, 'artifacts');
 
           agreementDetail.executionDate = ymdFormat(dateFromTimestamp(agreementDetail.executionDate));
 
-          if (agreementDetail.type) {
-            agreementDetail.type = agreementEnums.agreementTypes[agreementDetail.type];
-          }
-          else {
-            agreementDetail.type = 'Agreement type not specified';
-          }
+          agreementDetail.type = agreementDetail.type || 'Agreement type not specified';
 
           if (agreementDetail.termLengthAmount && agreementDetail.termLengthType) {
             const termLengthType       = agreementEnums.durationTypes[agreementDetail.termLengthType];

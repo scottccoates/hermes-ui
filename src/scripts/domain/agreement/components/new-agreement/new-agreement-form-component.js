@@ -3,6 +3,7 @@
 import React from 'react';
 import {Link}  from 'react-router';
 
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import DependencyProvider from '../../../../libs/dependency-injection/utils/dependency-provider';
@@ -20,12 +21,13 @@ import {normalizeFormValues} from 'src/scripts/libs/js-utils/form/form-utils';
 
 import agreementValueLabel from 'src/scripts/apps/formatting/agreement/agreement-value-label';
 
+import formattingService from 'src/scripts/apps/formatting/services/formatting-service';
 
 const {Validator} = Validation;
 
-const {agreementTypes, durationTypes, renewTypes} = agreementValueLabel;
+const {durationTypes, renewTypes} = agreementValueLabel;
 
-export default function (agreementActions) {
+export default function (agreementActions, agreementTypeActions) {
 
   var component = React.createClass({
     displayName: "NewAgreementFormComponent",
@@ -56,7 +58,7 @@ export default function (agreementActions) {
           renewalNoticeType: 'day',
           termLengthAmount: '',
           termLengthType: 'year',
-          type: ''
+          typeId: null
         }
       };
     },
@@ -69,12 +71,12 @@ export default function (agreementActions) {
     },
 
     componentWillMount(){
-      this.props.requestAgreementEdit(this.props.params.agreementId);
+      this.props.agreementActions.requestAgreementEdit(this.props.params.agreementId);
     },
 
     componentWillReceiveProps (nextProps) {
       // reset old form data if we switch from one agreement to another
-      this._setFormData(Object.assign({}, this.getInitialState().formData, nextProps.agreement));
+      this._setFormData(Object.assign({}, this.getInitialState().formData, nextProps.agreementEdit.agreement));
     },
 
     _setFormData(val){
@@ -82,7 +84,7 @@ export default function (agreementActions) {
     },
 
     onChangeAgreementType (newVal){
-      this._setFormData({type: newVal});
+      this._setFormData({typeId: newVal.value});
     },
 
     onChangeTermLengthType (newVal){
@@ -109,7 +111,7 @@ export default function (agreementActions) {
 
           const formData = normalizeFormValues(this.state.formData);
 
-          this.props.editAgreement(Object.assign({}, formData, {
+          this.props.agreementActions.editAgreement(Object.assign({}, formData, {
             agreementId: this.props.params.agreementId
           }));
         }
@@ -133,6 +135,12 @@ export default function (agreementActions) {
     },
 
     render() {
+      var agreementTypesValues = [];
+      var userAgreementTypes   = this.props.userAgreementTypes.agreementTypes;
+      if (userAgreementTypes) {
+        agreementTypesValues = formattingService.getValueLabelFromArray(userAgreementTypes);
+      }
+
       const formData = this.state.formData;
       const status   = this.state.status;
 
@@ -194,7 +202,8 @@ export default function (agreementActions) {
                           <label className="col-sm-6 control-label">Agreement Type</label>
 
                           <div className="col-sm-18">
-                            <Select placeholder={null} options={agreementTypes} searchable={false} value={formData.type}
+                            <Select placeholder={null} options={agreementTypesValues} allowCreate
+                                    value={formData.typeId}
                                     onChange={this.onChangeAgreementType}/>
                           </div>
                         </div>
@@ -332,7 +341,21 @@ export default function (agreementActions) {
     }
   });
 
-  component = connect(x=> x.agreementEdit, agreementActions)(component);
+  function extracted(state) {
+    return {
+      agreementEdit: state.agreementEdit,
+      userAgreementTypes: state.userAgreementTypes
+    };
+  }
+
+  function mapDispatchToProps(dispatch) {
+    return {
+      agreementActions: bindActionCreators(agreementActions, dispatch),
+      agreementTypeActions: bindActionCreators(agreementActions, dispatch)
+    };
+  }
+
+  component = connect(extracted, mapDispatchToProps)(component);
 
   return new DependencyProvider(component);
 };

@@ -42,7 +42,7 @@ export default function () {
 
                     <span>
                       <i className='fa fa-file space-right-md'></i>
-                      {this.props.agreement.type}
+                      {this.props.agreement.typeName}
                     </span>
 
                     <i className='fa fa-circle middle space-left space-left space-right'></i>

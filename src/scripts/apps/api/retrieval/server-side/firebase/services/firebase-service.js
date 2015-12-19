@@ -5,6 +5,7 @@ export default {
     const data         = [];
     var camelizedChild = null;
 
+    // collection is a type of firebase snapshot (`map` is not a member)
     collection.forEach(child => {
       // remember the retval of forEach has a meaning: https://www.firebase.com/docs/web/guide/retrieving-data.html#section-event-types
       camelizedChild = this.prepareObject(child);

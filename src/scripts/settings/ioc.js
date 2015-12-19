@@ -16,7 +16,6 @@ import SessionReducer from 'src/scripts/apps/session/messaging/reducers/session-
 
 import LogoutComponent from 'src/scripts/apps/session/components/logout-component';
 
-import AgreementActions from '../domain/agreement/messaging/actions/agreement-actions';
 import NewAgreementCreateComponent from '../domain/agreement/components/new-agreement/new-agreement-create-component';
 import NewAgreementFormComponent from '../domain/agreement/components/new-agreement/new-agreement-form-component';
 import AgreementListComponent from '../domain/agreement/components/agreement-list/agreement-list-component';
@@ -26,11 +25,17 @@ import AgreementDetailGeneralInfoComponent from '../domain/agreement/components/
 import AgreementDetailLengthComponent from '../domain/agreement/components/agreement-detail/agreement-detail-length-component';
 import AgreementDetailArtifactsComponent from '../domain/agreement/components/agreement-detail/agreement-detail-artifacts-component';
 
+import AgreementActions from '../domain/agreement/messaging/actions/agreement-actions';
 import AgreementService from '../domain/agreement/services/agreement-service';
 import AgreementRepository from '../domain/agreement/services/agreement-repository';
 import AgreementEditReducer from 'src/scripts/domain/agreement/messaging/reducers/agreement-edit-reducer';
 import AgreementDetailReducer from 'src/scripts/domain/agreement/messaging/reducers/agreement-detail-reducer';
 import UserAgreementsReducer from 'src/scripts/domain/agreement/messaging/reducers/user-agreements-reducer';
+
+import AgreementTypeActions from '../domain/agreement-type/messaging/actions/agreement-type-actions';
+import AgreementTypeService from '../domain/agreement-type/services/agreement-type-service';
+import AgreementTypeRepository from '../domain/agreement-type/services/agreement-type-repository';
+import UserAgreementTypesReducer from 'src/scripts/domain/agreement-type/messaging/reducers/user-agreement-types-reducer';
 
 import DashboardComponent from '../apps/dashboard/components/dashboard-component';
 
@@ -74,6 +79,11 @@ export default {
     container.register("AgreementDetailReducer", AgreementDetailReducer);
     container.register("UserAgreementsReducer", UserAgreementsReducer);
 
+    container.register("AgreementTypeActions", AgreementTypeActions);
+    container.register("AgreementTypeService", AgreementTypeService);
+    container.register("AgreementTypeRepository", AgreementTypeRepository);
+    container.register("UserAgreementTypesReducer", UserAgreementTypesReducer);
+
     container.register("FileUpload", FileUpload);
 
     container.register("ClientSidePersistenceService", ClientSidePersistenceService);
@@ -92,7 +102,7 @@ export default {
     DashboardComponent.$inject = ["AgreementListComponent"];
 
     NewAgreementCreateComponent.$inject       = ["PersistenceApiServiceUrl", "FileUpload", "NprogressBarFactory"];
-    NewAgreementFormComponent.$inject         = ["AgreementActions"];
+    NewAgreementFormComponent.$inject         = ["AgreementActions", 'AgreementTypeActions'];
     AgreementListComponent.$inject            = ["AgreementListItemComponent"];
     AgreementDetailContainerComponent.$inject = ['AgreementActions', "AgreementDetailGeneralInfoComponent", 'AgreementDetailLengthComponent', 'AgreementDetailArtifactsComponent'];
     AgreementDetailArtifactsComponent.$inject = ['AgreementService'];
@@ -100,6 +110,10 @@ export default {
     AgreementActions.$inject    = ["AgreementService"];
     AgreementService.$inject    = ["AgreementRepository"];
     AgreementRepository.$inject = ["PersistenceApiService"];
+
+    AgreementTypeActions.$inject    = ["AgreementTypeService"];
+    AgreementTypeService.$inject    = ["AgreementTypeRepository"];
+    AgreementTypeRepository.$inject = ["PersistenceApiService"];
 
     FileUpload.$inject = ["DropzoneFactory"];
 

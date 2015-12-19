@@ -1,6 +1,6 @@
 export default {
   getValueLabelFromObject(obj){
-    const formData = Object.keys(obj).map(origKey=> {
+    const valueLabel = Object.keys(obj).map(origKey=> {
 
       var newKey;
 
@@ -18,6 +18,29 @@ export default {
 
       return retVal;
     });
-    return formData;
+    return valueLabel;
+  },
+
+  getValueLabelFromArray(array){
+
+    const valueLabel = array.map(item=> {
+
+      var newValue;
+
+      if (item.id === 'true') {
+        newValue = true;
+      }
+      else if (item.id === 'false') {
+        newValue = false;
+      }
+      else {
+        newValue = item.id;
+      }
+
+      const retVal = {label: item.name, value: newValue};
+
+      return retVal;
+    });
+    return valueLabel;
   }
 };

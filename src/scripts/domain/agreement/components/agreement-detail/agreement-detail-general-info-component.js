@@ -26,7 +26,7 @@ export default function () {
             </div>
             <div className="data-row">
               <div className="name">Agreement Type</div>
-              <div className="value">{this.props.agreement.type}</div>
+              <div className="value">{this.props.agreement.typeName}</div>
             </div>
           </div>
 
