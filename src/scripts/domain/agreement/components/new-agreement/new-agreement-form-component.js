@@ -84,7 +84,13 @@ export default function (agreementActions, agreementTypeActions) {
     },
 
     onChangeAgreementType (newVal){
-      this._setFormData({typeId: newVal.value});
+      let typeId = null;
+
+      if (newVal) {
+        typeId = newVal.value;
+      }
+
+      this._setFormData({typeId: typeId});
     },
 
     onChangeTermLengthType (newVal){

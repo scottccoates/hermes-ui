@@ -9,6 +9,10 @@ import NprogressBar from 'src/scripts/apps/feedback/components/loading/nprogress
 
 import AppLayoutComponent from 'src/scripts/apps/app-layout/components/app-layout';
 
+import HeaderComponent from 'src/scripts/apps/app-layout/components/header/header-component';
+import HeaderNavSectionComponent from 'src/scripts/apps/app-layout/components/header/header-nav-section-component';
+import HeaderSearchComponent from 'src/scripts/apps/app-layout/components/header/header-search-component';
+
 import SessionRepository from 'src/scripts/apps/session/services/session-repository';
 import SessionService from 'src/scripts/apps/session/services/session-service';
 import SessionActions from 'src/scripts/apps/session/messaging/actions/session-actions';
@@ -41,7 +45,10 @@ import DashboardComponent from '../apps/dashboard/components/dashboard-component
 
 import ClientSidePersistenceService from 'src/scripts/apps/persistence/services/client-side-persistence-service';
 
-import SearchResultContainer from '../domain/search/components/result/search-result-container.js';
+import SearchQueryContainer from '../domain/search/components/query/search-query-container';
+import SearchQueryInputBox from '../domain/search/components/query/search-query-input-box';
+
+import SearchResultContainer from '../domain/search/components/result/search-result-container';
 import SearchResultList from '../domain/search/components/result/search-result-list';
 import SearchResultItem from '../domain/search/components/result/search-result-item';
 
@@ -57,8 +64,14 @@ export default {
 
     container.register("AppLayoutComponent", AppLayoutComponent);
 
+    container.register("HeaderComponent", HeaderComponent);
+    container.register("HeaderNavSectionComponent", HeaderNavSectionComponent);
+    container.register("HeaderSearchComponent", HeaderSearchComponent);
+
     container.register("DashboardComponent", DashboardComponent);
 
+    container.register("SearchQueryContainer", SearchQueryContainer);
+    container.register("SearchQueryInputBox", SearchQueryInputBox);
     container.register("SearchResultContainer", SearchResultContainer);
     container.register("SearchResultList", SearchResultList);
     container.register("SearchResultItem", SearchResultItem);
@@ -99,7 +112,11 @@ export default {
     const history = createHistory();
     container.register("History", history);
 
-    DashboardComponent.$inject = ["AgreementListComponent"];
+    AppLayoutComponent.$inject = ['HeaderComponent'];
+
+    HeaderComponent.$inject       = ['HeaderSearchComponent', 'HeaderNavSectionComponent'];
+    HeaderSearchComponent.$inject = ['SearchQueryContainer', 'SearchQueryInputBox'];
+    DashboardComponent.$inject    = ["AgreementListComponent"];
 
     NewAgreementCreateComponent.$inject       = ["PersistenceApiServiceUrl", "FileUpload", "NprogressBarFactory"];
     NewAgreementFormComponent.$inject         = ["AgreementActions", 'AgreementTypeActions'];

@@ -63,6 +63,8 @@
         top: $header-search-height;
         width: $header-search-width;
         @include font-size($header-font-size);
+        padding: 0;
+        margin: 0;
       }
 
       .popover-content {

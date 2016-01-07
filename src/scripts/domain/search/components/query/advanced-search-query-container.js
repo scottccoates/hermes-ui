@@ -10,7 +10,7 @@ import ApolloSearchField from './advanced-apollo-search-field';
 import DateSearchField from './advanced-date-search-field';
 
 export default React.createClass({
-  displayName: "AdvancedSearchContainer",
+  displayName: "AdvancedSearchQueryContainerComponent",
 
   contextTypes: {
     router: React.PropTypes.func

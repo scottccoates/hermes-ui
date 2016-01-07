@@ -34,7 +34,7 @@ export default {
           dashboardAgreement.executionDate    = ymdFormat(dateFromTimestamp(dashboardAgreement.executionDate));
           dashboardAgreement.modificationDate = ymdFormat(dateFromTimestamp(dashboardAgreement.modificationDate));
 
-          dashboardAgreement.type = dashboardAgreement.type || 'Agreement type not specified';
+          dashboardAgreement.typeName = dashboardAgreement.typeName || 'Agreement type not specified';
 
         });
 
@@ -84,7 +84,7 @@ export default {
 
           agreementDetail.executionDate = ymdFormat(dateFromTimestamp(agreementDetail.executionDate));
 
-          agreementDetail.type = agreementDetail.type || 'Agreement type not specified';
+          agreementDetail.typeName = agreementDetail.typeName || 'Agreement type not specified';
 
           if (agreementDetail.termLengthAmount && agreementDetail.termLengthType) {
             const termLengthType       = agreementEnums.durationTypes[agreementDetail.termLengthType];

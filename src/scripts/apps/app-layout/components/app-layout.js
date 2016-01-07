@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import Router from 'react-router';
 
 import Sidebar from './sidebar/sidebar';
-import Header from './header/header';
+import Header from './header/header-component';
 import Footer from './footer/footer';
 
 import { connect } from 'react-redux';
@@ -13,7 +13,9 @@ import { connect } from 'react-redux';
 
 import DependencyProvider from 'src/scripts/libs/dependency-injection/utils/dependency-provider';
 
-export default function () {
+export default function (headerComponent) {
+
+  const Header = headerComponent.dependency;
 
   var appLayout = React.createClass({
     displayName: "AppLayout",
