@@ -25,7 +25,7 @@ export default React.createClass({
 
   render() {
     return (
-      <div className="advanced-search-container">
+      <div className="advanced-search-query-container">
 
         <ul className="advanced-search-list">
           <li><TextSearchField iconClass='fa-search' fieldLabel="Contains the words"/></li>

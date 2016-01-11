@@ -19,7 +19,7 @@ export default function () {
 
     render() {
       return (
-        <div className="search-container">
+        <div className="search-query-container">
 
           <ul className="search-list">
             <li className="agreement-search-link">

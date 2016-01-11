@@ -48,6 +48,9 @@ import ClientSidePersistenceService from 'src/scripts/apps/persistence/services/
 import SearchQueryContainer from '../domain/search/components/query/search-query-container';
 import SearchQueryInputBox from '../domain/search/components/query/search-query-input-box';
 
+import SearchService from 'src/scripts/domain/search/services/search-service';
+import SearchRepository from 'src/scripts/domain/search/services/search-repository';
+
 import SearchResultContainer from '../domain/search/components/result/search-result-container';
 import SearchResultList from '../domain/search/components/result/search-result-list';
 import SearchResultItem from '../domain/search/components/result/search-result-item';
@@ -75,6 +78,8 @@ export default {
     container.register("SearchResultContainer", SearchResultContainer);
     container.register("SearchResultList", SearchResultList);
     container.register("SearchResultItem", SearchResultItem);
+    container.register("SearchService", SearchService);
+    container.register("SearchRepository", SearchRepository);
 
     container.register("CreateAgreementComponent", NewAgreementCreateComponent);
     container.register("AgreementFormComponent", NewAgreementFormComponent);
@@ -134,8 +139,13 @@ export default {
 
     FileUpload.$inject = ["DropzoneFactory"];
 
+    SearchQueryInputBox.$inject = ["SearchService"];
+
     SearchResultContainer.$inject = ["SearchResultList"];
     SearchResultList.$inject      = ["SearchResultItem"];
+
+    SearchService.$inject    = ["SearchRepository"];
+    SearchRepository.$inject = ["PersistenceApiService"];
 
     SessionActions.$inject    = ["SessionService"];
     SessionService.$inject    = ["SessionRepository", "AuthService"];

@@ -41,6 +41,7 @@ System.config({
     "moment": "npm:moment@2.10.6",
     "nanoscroller": "github:jamesflorentino/nanoScrollerJS@0.8.4",
     "nprogress": "github:rstacruz/nprogress@0.1.6",
+    "query-string": "npm:querystring@0.2.0",
     "raygun4js": "github:MindscapeHQ/raygun4js@2.0.3",
     "rc-form-validation": "npm:rc-form-validation@2.4.13",
     "react": "npm:react@0.14.3",
@@ -374,11 +375,6 @@ System.config({
       "react": "npm:react@0.14.3",
       "react-dom": "npm:react-dom@0.14.0",
       "react-input-autosize": "npm:react-input-autosize@0.6.6"
-    },
-    "npm:react@0.14.3": {
-      "envify": "npm:envify@3.4.0",
-      "fbjs": "npm:fbjs@0.3.2",
-      "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:react@0.14.3": {
       "envify": "npm:envify@3.4.0",

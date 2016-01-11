@@ -6,15 +6,15 @@ import Bacon from 'baconjs';
 
 import DependencyProvider from 'src/scripts/libs/dependency-injection/utils/dependency-provider';
 
-export default function () {
+export default function (searchService) {
 
   const headerSearch = React.createClass({
     displayName: "SearchQueryInputBoxComponent",
     mixins: [BaconMixin],
 
     componentWillMount() {
-      function search(query) {
-        return Bacon.later(1500, [{title: 'test'}]);
+      async function search(searchText) {
+        return Bacon.fromPromise(await searchService.search(searchText));
       }
 
       const inputStream = this.eventStream('onInputChanged')
@@ -24,7 +24,7 @@ export default function () {
         .skipDuplicates(); // ex would be copy/pasting the same thing in the text box.
 
       const searchResults = inputStream.flatMapLatest(search);
-      searchResults.onValue(v=>this.setState({results: v}));
+      searchResults.onValue(v=>console.log('v', v));
 
     },
 
@@ -32,7 +32,6 @@ export default function () {
 
       return (
         <span>
-          <i className="fa fa-search search-icon header-icon"></i>
           <input type="text" className="search-box" placeholder="Search" data-toggle="dropdown"
                  aria-haspopup="true" aria-expanded="false" onChange={this.onInputChanged}/>
         </span>

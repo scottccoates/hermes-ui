@@ -18,7 +18,10 @@ export default function (searchQueryContainerComponent, searchQueryInputBoxCompo
 
       return (
         <div className="header-search">
-          <SearchQueryInputBox/>
+          <span>
+            <i className="fa fa-search search-icon header-icon"></i>
+            <SearchQueryInputBox/>
+          </span>
 
           <div className="dropdown-menu popover search-popover">
             <div className="popover-content">
