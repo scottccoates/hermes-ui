@@ -43,7 +43,7 @@ export default {
     Firebase.$inject                    = ["FirebaseAppUrl"];
     FirebaseRetrievalApiService.$inject = ["Firebase"];
 
-    ServerSidePersistenceApiService.$inject = ['PersistenceApiServiceUrl', 'AppStore'];
+    ServerSidePersistenceApiService.$inject = ['PersistenceApiServiceUrl', 'AppStore', 'RoutingService'];
     return container;
   }
 }

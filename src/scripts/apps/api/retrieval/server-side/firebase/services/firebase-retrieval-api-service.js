@@ -2,6 +2,7 @@ import log from 'loglevel';
 
 import agreementRetrievalApiService from'./agreement-firebase-retrieval-api-service';
 import agreementTypeRetrievalApiService from'./agreement-type-firebase-retrieval-api-service';
+import counterPartyRetrievalApiService from'./counterparty-firebase-retrieval-api-service';
 
 export default function (firebase) {
   return {
@@ -16,6 +17,7 @@ export default function (firebase) {
           else {
             agreementRetrievalApiService.init(container, store, firebase);
             agreementTypeRetrievalApiService.init(container, store, firebase);
+            counterPartyRetrievalApiService.init(container, store, firebase);
             log.info("Firebase authenticated");
 
             res();

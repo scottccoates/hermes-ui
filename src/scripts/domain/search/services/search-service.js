@@ -1,8 +1,18 @@
-export default function (searchRepository) {
+const routerSearchPath = 'search';
+
+export default function (searchRepository, routingService) {
 
   return {
-    async search(searchText){
-      return searchRepository.search(searchText);
+    transitionToAdvancedSearchPage(parameters){
+      routingService.transition(routerSearchPath, parameters);
+    },
+
+    async simpleSearch(query){
+      const resultSet = await searchRepository.simpleSearch(query);
+
+      resultSet.query = query;
+
+      return resultSet;
     }
   };
 

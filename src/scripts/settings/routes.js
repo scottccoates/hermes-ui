@@ -21,7 +21,7 @@ export default {
     const AgreementFormComponent            = container.get("AgreementFormComponent").dependency;
     const AgreementDetailContainerComponent = container.get("AgreementDetailContainerComponent").dependency;
 
-    //const SearchResultContainer = container.get("SearchResultContainer").dependency;
+    const SearchResultContainer = container.get("SearchResultContainer").dependency;
 
     // http://rackt.github.io/history/stable/GettingStarted.html
     // react-router started using a new history dep: https://github.com/rackt/react-router/blob/master/CHANGELOG.md#v100-beta4---mon-31-aug-2015-061934-gmt
@@ -69,6 +69,8 @@ export default {
               <Route path=':agreementId/step-2' component={AgreementFormComponent}/>
               <Route path=':agreementId' component={AgreementDetailContainerComponent}/>
             </Route>
+
+            <Route path='search' component={SearchResultContainer}/>
           </Route>
 
           <Route path='login' component={LoginComponent}/>

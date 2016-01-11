@@ -7,8 +7,10 @@ import ReactBacon from 'react-bacon';
 
 import cx from 'classnames';
 
+import Select from 'react-select';
+
 export default React.createClass({
-  displayName: "AdvancedTextSearchField",
+  displayName: "AdvancedSelectSearchField",
   mixins: [ReactBacon.BaconMixin],
 
   getInitialState() {
@@ -19,32 +21,42 @@ export default React.createClass({
 
   componentWillMount() {
     const clickStream = this.eventStream('onClick');
-    clickStream.subscribe(()=> {
+    clickStream.onValue(event=> {
       this.setState({isFocused: true});
-
-      // we need to wait until render has finished before we can set focus to this as its currently hidden.
-      setTimeout(()=>this.refs.fieldInput.focus());
+      setTimeout(_=> {
+        const fieldInput = this.refs.fieldInput;
+        if (!fieldInput.state.isOpen) {
+          fieldInput.handleMouseDown(event);
+        }
+      });
     });
 
     const blurStream = this.eventStream('onBlur');
     blurStream.subscribe(()=>this.setState({isFocused: false}));
   },
 
-  onChange(e){
-    this.props.onChange(e.target.value);
-  },
-
   render() {
     const classes     = cx({'search-field': true, 'focused': this.state.isFocused, 'empty': !this.props.value});
     const iconClasses = cx('fa', this.props.iconClass);
+
+    var valueLabel;
+    if (this.props.value) {
+      valueLabel = this.props.options.find(item => item.value === this.props.value).label;
+    }
+
     return (
       <div className={classes} onClick={this.onClick}>
         <i className={iconClasses}></i>
         <span className="search-field-label">{this.props.fieldLabel}</span>
         <span className="search-field-value">
-          <span className="search-field-text-value">{this.props.value}</span>
-          <input type="text" ref="fieldInput" className="search-field-text-input-value form-control"
-                 onBlur={this.onBlur} onChange={this.onChange} value={this.props.value}/>
+          <span className="search-field-text-value">{valueLabel}</span>
+          <Select ref='fieldInput'
+                  className='search-field-text-input-value'
+                  placeholder={null}
+                  options={this.props.options} allowCreate
+                  value={this.props.value}
+                  onBlur={this.onBlur}
+                  onChange={this.props.onChange}/>
         </span>
       </div>
     );

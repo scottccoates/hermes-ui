@@ -37,24 +37,10 @@
     }
 
     .search-box {
-      border: solid 1px $src-brighter;
-      background: none;
-
-      border-radius: 3px;
-
       @include at-least-small-screen-styles {
         height: $header-search-height;
         padding-left: 50px;
-
         width: $header-search-width;
-      }
-
-      &::placeholder {
-        color: $src-bright;
-      }
-
-      &:focus {
-        @include input-focus();
       }
     }
 
@@ -77,8 +63,7 @@
 
     .advanced-search-popover {
       @include at-least-small-screen-styles {
-        top: $header-search-height;
-        width: 798px; // should be $header-search-width?
+        width: $header-advanced-search-width;
         @include font-size($src-font-size-small);
       }
 

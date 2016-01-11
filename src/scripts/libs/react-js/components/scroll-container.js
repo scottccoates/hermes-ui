@@ -7,11 +7,13 @@ import $ from 'jquery';
 
 export default React.createClass({
   componentDidMount() {
-    // remember to use non-arrow function here because that would bind it to undefined and then `this` wouldn't work.
+    this.scrollContainer = $(ReactDOM.findDOMNode(this.refs['scroll-container']));
 
-    var scrollContainer = $(ReactDOM.findDOMNode(this.refs['scroll-container']));
+    this.scrollContainer.nanoScroller();
+  },
 
-    scrollContainer.nanoScroller();
+  componentWillUnmount() {
+    this.scrollContainer.nanoScroller({destroy: true});
   },
 
   render() {

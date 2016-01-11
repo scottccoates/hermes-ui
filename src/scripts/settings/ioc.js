@@ -5,6 +5,8 @@ import Intravenous from 'intravenous';
 
 import FileUpload from '../libs/react-js/components/file-upload';
 
+import RoutingService from 'src/scripts/libs/routing/services/routing-service';
+
 import NprogressBar from 'src/scripts/apps/feedback/components/loading/nprogress-bar';
 
 import AppLayoutComponent from 'src/scripts/apps/app-layout/components/app-layout';
@@ -41,15 +43,24 @@ import AgreementTypeService from '../domain/agreement-type/services/agreement-ty
 import AgreementTypeRepository from '../domain/agreement-type/services/agreement-type-repository';
 import UserAgreementTypesReducer from 'src/scripts/domain/agreement-type/messaging/reducers/user-agreement-types-reducer';
 
+import CounterpartyActions from '../domain/counterparty/messaging/actions/counterparty-actions';
+import CounterpartyService from '../domain/counterparty/services/counterparty-service';
+import CounterpartyRepository from '../domain/counterparty/services/counterparty-repository';
+import UserCounterpartiesReducer from 'src/scripts/domain/counterparty/messaging/reducers/user-counterparties-reducer';
+
 import DashboardComponent from '../apps/dashboard/components/dashboard-component';
 
 import ClientSidePersistenceService from 'src/scripts/apps/persistence/services/client-side-persistence-service';
 
-import SearchQueryContainer from '../domain/search/components/query/search-query-container';
-import SearchQueryInputBox from '../domain/search/components/query/search-query-input-box';
+import SimpleSearchQueryList from '../domain/search/components/query/simple-search-query-list';
+import SimpleSearchQueryListItem from '../domain/search/components/query/simple-search-query-list-item.js';
+import SimpleSearchQueryInputBox from '../domain/search/components/query/simple-search-query-input-box';
+import AdvancedSearchQueryContainer from '../domain/search/components/query/advanced-search-query-container';
 
 import SearchService from 'src/scripts/domain/search/services/search-service';
 import SearchRepository from 'src/scripts/domain/search/services/search-repository';
+import SearchActions from 'src/scripts/domain/search/messaging/actions/search-actions';
+import AdvancedSearchReducer from 'src/scripts/domain/search/messaging/reducers/advanced-search-reducer';
 
 import SearchResultContainer from '../domain/search/components/result/search-result-container';
 import SearchResultList from '../domain/search/components/result/search-result-list';
@@ -73,13 +84,19 @@ export default {
 
     container.register("DashboardComponent", DashboardComponent);
 
-    container.register("SearchQueryContainer", SearchQueryContainer);
-    container.register("SearchQueryInputBox", SearchQueryInputBox);
+    container.register("SimpleSearchQueryList", SimpleSearchQueryList);
+    container.register("SimpleSearchQueryListItem", SimpleSearchQueryListItem);
+    container.register("SimpleSearchQueryInputBox", SimpleSearchQueryInputBox);
+    container.register("AdvancedSearchQueryContainer", AdvancedSearchQueryContainer);
+
     container.register("SearchResultContainer", SearchResultContainer);
     container.register("SearchResultList", SearchResultList);
     container.register("SearchResultItem", SearchResultItem);
+
     container.register("SearchService", SearchService);
     container.register("SearchRepository", SearchRepository);
+    container.register("SearchActions", SearchActions);
+    container.register("AdvancedSearchReducer", AdvancedSearchReducer);
 
     container.register("CreateAgreementComponent", NewAgreementCreateComponent);
     container.register("AgreementFormComponent", NewAgreementFormComponent);
@@ -102,7 +119,14 @@ export default {
     container.register("AgreementTypeRepository", AgreementTypeRepository);
     container.register("UserAgreementTypesReducer", UserAgreementTypesReducer);
 
+    container.register("CounterpartyActions", CounterpartyActions);
+    container.register("CounterpartyService", CounterpartyService);
+    container.register("CounterpartyRepository", CounterpartyRepository);
+    container.register("UserCounterpartiesReducer", UserCounterpartiesReducer);
+
     container.register("FileUpload", FileUpload);
+
+    container.register("RoutingService", RoutingService);
 
     container.register("ClientSidePersistenceService", ClientSidePersistenceService);
 
@@ -120,11 +144,11 @@ export default {
     AppLayoutComponent.$inject = ['HeaderComponent'];
 
     HeaderComponent.$inject       = ['HeaderSearchComponent', 'HeaderNavSectionComponent'];
-    HeaderSearchComponent.$inject = ['SearchQueryContainer', 'SearchQueryInputBox'];
+    HeaderSearchComponent.$inject = ['SimpleSearchQueryInputBox', 'SimpleSearchQueryList', 'AdvancedSearchQueryContainer', 'SearchActions', 'SearchService'];
     DashboardComponent.$inject    = ["AgreementListComponent"];
 
     NewAgreementCreateComponent.$inject       = ["PersistenceApiServiceUrl", "FileUpload", "NprogressBarFactory"];
-    NewAgreementFormComponent.$inject         = ["AgreementActions", 'AgreementTypeActions'];
+    NewAgreementFormComponent.$inject         = ["AgreementActions"];
     AgreementListComponent.$inject            = ["AgreementListItemComponent"];
     AgreementDetailContainerComponent.$inject = ['AgreementActions', "AgreementDetailGeneralInfoComponent", 'AgreementDetailLengthComponent', 'AgreementDetailArtifactsComponent'];
     AgreementDetailArtifactsComponent.$inject = ['AgreementService'];
@@ -139,12 +163,15 @@ export default {
 
     FileUpload.$inject = ["DropzoneFactory"];
 
-    SearchQueryInputBox.$inject = ["SearchService"];
+    RoutingService.$inject = ["History"];
+
+    SimpleSearchQueryInputBox.$inject = ["SearchService"];
+    SimpleSearchQueryList.$inject     = ['SimpleSearchQueryListItem'];
 
     SearchResultContainer.$inject = ["SearchResultList"];
     SearchResultList.$inject      = ["SearchResultItem"];
 
-    SearchService.$inject    = ["SearchRepository"];
+    SearchService.$inject    = ["SearchRepository", 'RoutingService'];
     SearchRepository.$inject = ["PersistenceApiService"];
 
     SessionActions.$inject    = ["SessionService"];

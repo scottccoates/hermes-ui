@@ -27,7 +27,7 @@ const {Validator} = Validation;
 
 const {durationTypes, renewTypes} = agreementValueLabel;
 
-export default function (agreementActions, agreementTypeActions) {
+export default function (agreementActions) {
 
   var component = React.createClass({
     displayName: "NewAgreementFormComponent",
@@ -142,7 +142,7 @@ export default function (agreementActions, agreementTypeActions) {
 
     render() {
       var agreementTypesValues = [];
-      var userAgreementTypes   = this.props.userAgreementTypes.agreementTypes;
+      const userAgreementTypes   = this.props.userAgreementTypes.agreementTypes;
       if (userAgreementTypes) {
         agreementTypesValues = formattingService.getValueLabelFromArray(userAgreementTypes);
       }
@@ -356,8 +356,7 @@ export default function (agreementActions, agreementTypeActions) {
 
   function mapDispatchToProps(dispatch) {
     return {
-      agreementActions: bindActionCreators(agreementActions, dispatch),
-      agreementTypeActions: bindActionCreators(agreementActions, dispatch)
+      agreementActions: bindActionCreators(agreementActions, dispatch)
     };
   }
 

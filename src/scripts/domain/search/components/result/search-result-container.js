@@ -12,7 +12,7 @@ export default function (searchResultListProvider) {
   const SearchResultList = searchResultListProvider.dependency;
 
   const component = React.createClass({
-    displayName: "SearchResultsContainer",
+    displayName: "SearchResultsContainerComponent",
 
     render() {
       return (

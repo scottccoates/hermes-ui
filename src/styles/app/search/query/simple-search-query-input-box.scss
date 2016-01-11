@@ -1,0 +1,16 @@
+.simple-search-query-input-box {
+  .search-box {
+    border: solid 1px $src-brighter;
+    background: none;
+
+    border-radius: 3px;
+
+    &::placeholder {
+      color: $src-bright;
+    }
+
+    &:focus {
+      @include input-focus();
+    }
+  }
+}

@@ -24,6 +24,11 @@
       "$userID": {
         ".read": "auth.uid == $userID"
       }
+    },
+    "users-counterparties": {
+      "$userID": {
+        ".read": "auth.uid == $userID"
+      }
     }
   }
 }

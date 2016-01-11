@@ -1,11 +1,11 @@
-const searchPath = 'search';
+const searchPath          = 'search';
+const federatedSearchPath = `${searchPath}/federated`;
 
 export default function (apiService) {
 
   const repository = {
-    async search(searchText) {
-      const path = `${searchPath}`;
-      return await apiService.retrieve(path, {q: searchText});
+    async simpleSearch(query) {
+      return await apiService.retrieve(federatedSearchPath, {q: query});
     }
   };
 

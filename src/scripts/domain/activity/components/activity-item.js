@@ -1,11 +1,10 @@
 'use strict';
 
 import React from 'react';
-import Router  from 'react-router';
+
+import {Link}  from 'react-router';
 
 import DependencyProvider from '../../../libs/dependency-injection/utils/dependency-provider';
-
-const {Link} = Router;
 
 import cx from 'classnames';
 
