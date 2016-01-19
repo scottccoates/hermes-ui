@@ -2,7 +2,6 @@
 
 import React from 'react';
 
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import {BaconMixin} from 'react-bacon';
@@ -53,7 +52,7 @@ export default function (searchQueryInputBoxComponent, searchQueryListComponent,
     },
 
     onAdvancedSearchClose() {
-      this.props.searchActions.resetAdvancedSearchParameters();
+      searchActions.resetAdvancedSearchParameters();
       this.setState({advancedSearchDropdownEnabled: false});
     },
 
@@ -61,7 +60,7 @@ export default function (searchQueryInputBoxComponent, searchQueryListComponent,
       this.setState({searchDropdownEnabled: false, advancedSearchDropdownEnabled: true});
 
       const parameters = Object.assign({}, this.props.advancedSearch.parameters, {text: this.state.simple.query});
-      this.props.searchActions.specifyAdvancedSearchParameters(parameters);
+      searchActions.specifyAdvancedSearchParameters(parameters);
     },
 
     onItemSelected(){
@@ -73,7 +72,7 @@ export default function (searchQueryInputBoxComponent, searchQueryListComponent,
 
     onTextChanged(text){
       const parameters = Object.assign({}, this.props.advancedSearch.parameters, {text});
-      this.props.searchActions.specifyAdvancedSearchParameters(parameters);
+      searchActions.specifyAdvancedSearchParameters(parameters);
     },
 
     onAgreementTypeChanged(agreementType){
@@ -84,7 +83,7 @@ export default function (searchQueryInputBoxComponent, searchQueryListComponent,
       }
 
       const parameters = Object.assign({}, this.props.advancedSearch.parameters, {typeId});
-      this.props.searchActions.specifyAdvancedSearchParameters(parameters);
+      searchActions.specifyAdvancedSearchParameters(parameters);
     },
 
     onCounterpartyChanged(counterpartyOption){
@@ -95,7 +94,7 @@ export default function (searchQueryInputBoxComponent, searchQueryListComponent,
       }
 
       const parameters = Object.assign({}, this.props.advancedSearch.parameters, {counterparty});
-      this.props.searchActions.specifyAdvancedSearchParameters(parameters);
+      searchActions.specifyAdvancedSearchParameters(parameters);
     },
 
     onAdvancedSearch(){
@@ -175,13 +174,7 @@ export default function (searchQueryInputBoxComponent, searchQueryListComponent,
     };
   }
 
-  function mapDispatchToProps(dispatch) {
-    return {
-      searchActions: bindActionCreators(searchActions, dispatch)
-    };
-  }
-
-  headerSearch = connect(select, mapDispatchToProps)(headerSearch);
+  headerSearch = connect(select)(headerSearch);
 
   return new DependencyProvider(headerSearch);
 }

@@ -1,7 +1,8 @@
 import * as constants from 'src/scripts/apps/messaging/common/constants'
 import log from 'loglevel';
+import actionBinder from 'src/scripts/libs/redux-js/actions/action-binder';
 
-export default function (sessionService) {
+export default function (appStore, sessionService) {
 
   function _loginSuccessAction(loginInformation) {
     return {
@@ -32,7 +33,7 @@ export default function (sessionService) {
     };
   }
 
-  const sessionActions = {
+  let sessionActions = {
 
     login(token, user, keepAliveSessionFunc){
       return async dispatch => {
@@ -64,6 +65,8 @@ export default function (sessionService) {
     }
 
   };
+
+  sessionActions = actionBinder.bindActionCreatorsToStore(sessionActions, appStore);
 
   return sessionActions;
 };

@@ -3,7 +3,6 @@
 import React from 'react';
 import {Link}  from 'react-router';
 
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import DependencyProvider from '../../../../libs/dependency-injection/utils/dependency-provider';
@@ -71,7 +70,7 @@ export default function (agreementActions) {
     },
 
     componentWillMount(){
-      this.props.agreementActions.requestAgreementEdit(this.props.params.agreementId);
+      agreementActions.requestAgreementEdit(this.props.params.agreementId);
     },
 
     componentWillReceiveProps (nextProps) {
@@ -117,7 +116,7 @@ export default function (agreementActions) {
 
           const formData = normalizeFormValues(this.state.formData);
 
-          this.props.agreementActions.editAgreement(Object.assign({}, formData, {
+          agreementActions.editAgreement(Object.assign({}, formData, {
             agreementId: this.props.params.agreementId
           }));
         }
@@ -353,14 +352,7 @@ export default function (agreementActions) {
       userAgreementTypes: state.userAgreementTypes
     };
   }
-
-  function mapDispatchToProps(dispatch) {
-    return {
-      agreementActions: bindActionCreators(agreementActions, dispatch)
-    };
-  }
-
-  component = connect(extracted, mapDispatchToProps)(component);
+  component = connect(extracted)(component);
 
   return new DependencyProvider(component);
 };

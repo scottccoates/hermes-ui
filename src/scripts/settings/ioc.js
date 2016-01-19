@@ -153,13 +153,15 @@ export default {
     AgreementDetailContainerComponent.$inject = ['AgreementActions', "AgreementDetailGeneralInfoComponent", 'AgreementDetailLengthComponent', 'AgreementDetailArtifactsComponent'];
     AgreementDetailArtifactsComponent.$inject = ['AgreementService'];
 
-    AgreementActions.$inject    = ["AgreementService"];
+    AgreementActions.$inject    = ['AppStore', "AgreementService"];
     AgreementService.$inject    = ["AgreementRepository"];
     AgreementRepository.$inject = ["PersistenceApiService"];
 
-    AgreementTypeActions.$inject    = ["AgreementTypeService"];
+    AgreementTypeActions.$inject    = ['AppStore', "AgreementTypeService"];
     AgreementTypeService.$inject    = ["AgreementTypeRepository"];
     AgreementTypeRepository.$inject = ["PersistenceApiService"];
+
+    CounterpartyActions.$inject = ["AppStore"];
 
     FileUpload.$inject = ["DropzoneFactory"];
 
@@ -171,10 +173,11 @@ export default {
     SearchResultContainer.$inject = ["SearchResultList"];
     SearchResultList.$inject      = ["SearchResultItem"];
 
+    SearchActions.$inject    = ["AppStore", 'SearchService'];
     SearchService.$inject    = ["SearchRepository", 'RoutingService'];
     SearchRepository.$inject = ["PersistenceApiService"];
 
-    SessionActions.$inject    = ["SessionService"];
+    SessionActions.$inject    = ['AppStore', "SessionService"];
     SessionService.$inject    = ["SessionRepository", "AuthService"];
     SessionRepository.$inject = ["ClientSidePersistenceService"];
     LogoutComponent.$inject   = ['SessionActions'];

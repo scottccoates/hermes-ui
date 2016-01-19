@@ -2,8 +2,6 @@
 'use strict';
 import log from 'loglevel';
 
-import { bindActionCreators } from 'redux';
-
 import container from 'build/js/container';
 
 import routes from 'src/scripts/settings/routes';
@@ -30,8 +28,7 @@ containerInstance.register("AppStore", store);
 // our sessionService is special in that it will renew the session token every x min.
 // we do this by passing in a param called `keepAliveSessionFunc`. That param must be bound (or have access to our store)
 // so that it can dispatch the action.
-// http://rackt.github.io/redux/docs/api/bindActionCreators.html
-const sessionActions = bindActionCreators(containerInstance.get('SessionActions'), store.dispatch);
+const sessionActions = containerInstance.get('SessionActions');
 sessionActions.resumeSession(sessionActions.resumeSession);
 
 const unSub = store.subscribe(async _=> {

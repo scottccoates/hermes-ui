@@ -3,6 +3,8 @@
 import React from 'react';
 import Router  from 'react-router';
 
+import { connect } from 'react-redux';
+
 import DependencyProvider from '../../../../libs/dependency-injection/utils/dependency-provider';
 
 const {Link, RouteHandler} = Router;
@@ -11,7 +13,7 @@ export default function (searchResultListProvider) {
 
   const SearchResultList = searchResultListProvider.dependency;
 
-  const component = React.createClass({
+  var component = React.createClass({
     displayName: "SearchResultsContainerComponent",
 
     render() {
@@ -34,6 +36,16 @@ export default function (searchResultListProvider) {
       );
     }
   });
+
+
+  function extracted(state) {
+    return {
+      agreementEdit: state.agreementEdit,
+      userAgreementTypes: state.userAgreementTypes
+    };
+  }
+
+  component = connect(extracted)(component);
 
   return new DependencyProvider(component);
 };

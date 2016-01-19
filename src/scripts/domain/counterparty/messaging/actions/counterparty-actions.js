@@ -1,9 +1,10 @@
 import * as constants from 'src/scripts/apps/messaging/common/constants'
 import log from 'loglevel';
+import actionBinder from 'src/scripts/libs/redux-js/actions/action-binder';
 
-export default function (agreementTypeService) {
+export default function (appStore, agreementTypeService) {
 
-  const agreementActions = {
+  let agreementActions = {
 
     userCounterpartiesReceived(counterparties){
       return {
@@ -12,6 +13,8 @@ export default function (agreementTypeService) {
       };
     }
   };
+
+  agreementActions = actionBinder.bindActionCreatorsToStore(agreementActions, appStore);
 
   return agreementActions;
 };

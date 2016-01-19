@@ -1,7 +1,8 @@
 import * as constants from 'src/scripts/apps/messaging/common/constants'
 import log from 'loglevel';
+import actionBinder from 'src/scripts/libs/redux-js/actions/action-binder';
 
-export default function (searchService) {
+export default function (appStore, searchService) {
 
   function _advancedSearchSuccessAction(resultSet) {
     return {
@@ -21,7 +22,7 @@ export default function (searchService) {
     };
   }
 
-  const searchActions = {
+  let searchActions = {
 
     specifyAdvancedSearchParameters(parameters){
       return {
@@ -50,6 +51,8 @@ export default function (searchService) {
     }
 
   };
+
+  searchActions = actionBinder.bindActionCreatorsToStore(searchActions, appStore);
 
   return searchActions;
 };

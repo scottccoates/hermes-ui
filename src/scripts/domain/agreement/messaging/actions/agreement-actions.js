@@ -1,7 +1,8 @@
 import * as constants from 'src/scripts/apps/messaging/common/constants'
 import log from 'loglevel';
+import actionBinder from 'src/scripts/libs/redux-js/actions/action-binder';
 
-export default function (agreementService) {
+export default function (appStore, agreementService) {
 
   function _agreementEditedSuccessAction(agreement) {
     return {
@@ -26,7 +27,7 @@ export default function (agreementService) {
     };
   }
 
-  const agreementActions = {
+  let agreementActions = {
 
     userAgreementsReceived(agreements){
       return {
@@ -77,6 +78,8 @@ export default function (agreementService) {
     }
 
   };
+
+  agreementActions = actionBinder.bindActionCreatorsToStore(agreementActions, appStore);
 
   return agreementActions;
 };
