@@ -1,7 +1,8 @@
 import humps from 'humps';
 import 'whatwg-fetch';
+import {stringify} from 'query-string';
 
-export default function (persistenceApiServiceUrl, appStore, routingService) {
+export default function (persistenceApiServiceUrl, appStore) {
 
   const serverSideAPI = {
     _getPath(path) {
@@ -53,8 +54,10 @@ export default function (persistenceApiServiceUrl, appStore, routingService) {
       let url = this._getPath(path);
 
       if (data) {
-        const queryString = routingService.convertParametersToQueryString(data);
-        url               = `${url}${queryString}`
+        const parameters = humps.decamelizeKeys(data);
+
+        const queryString = stringify(parameters);
+        url               = `${url}?${queryString}`
       }
 
       const body = null;

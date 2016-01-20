@@ -20,12 +20,14 @@
   .header-search {
     flex-grow: 1;
 
-    color: $src-bright;
+    color: $src-less-dark;
 
     // the search icon child is absolute position
     position: relative;
 
     .search-icon {
+      color: $src-bright;
+
       @include at-least-small-screen-styles {
 
         position: absolute;
@@ -37,6 +39,10 @@
     }
 
     .search-box {
+      &::placeholder {
+        color: $src-bright;
+      }
+
       @include at-least-small-screen-styles {
         height: $header-search-height;
         padding-left: 50px;

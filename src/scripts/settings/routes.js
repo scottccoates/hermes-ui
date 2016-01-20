@@ -7,7 +7,6 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
 import { Router, Route, Redirect } from 'react-router';
-import { createHistory } from 'history';
 
 export default {
   init(container){

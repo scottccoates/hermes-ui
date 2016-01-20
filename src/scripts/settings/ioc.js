@@ -66,7 +66,7 @@ import SearchResultContainer from '../domain/search/components/result/search-res
 import SearchResultList from '../domain/search/components/result/search-result-list';
 import SearchResultItem from '../domain/search/components/result/search-result-item';
 
-import { createHistory } from 'history';
+import { createHistory , useQueries} from 'history';
 
 export default {
   init(){
@@ -138,7 +138,8 @@ export default {
 
     container.register("NprogressBar", NprogressBar);
 
-    const history = createHistory();
+    // https://github.com/rackt/history/blob/master/docs/QuerySupport.md
+    const history = useQueries(createHistory)();
     container.register("History", history);
 
     AppLayoutComponent.$inject = ['HeaderComponent'];
@@ -170,7 +171,7 @@ export default {
     SimpleSearchQueryInputBox.$inject = ["SearchService"];
     SimpleSearchQueryList.$inject     = ['SimpleSearchQueryListItem'];
 
-    SearchResultContainer.$inject = ["SearchResultList"];
+    SearchResultContainer.$inject = ['SearchActions', "SearchResultList"];
     SearchResultList.$inject      = ["SearchResultItem"];
 
     SearchActions.$inject    = ["AppStore", 'SearchService'];

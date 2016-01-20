@@ -5,10 +5,6 @@
 
     border-radius: 3px;
 
-    &::placeholder {
-      color: $src-bright;
-    }
-
     &:focus {
       @include input-focus();
     }

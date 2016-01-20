@@ -28,7 +28,7 @@ export default function (searchQueryInputBoxComponent, searchQueryListComponent,
           count: 0,
           results: [],
           loading: false,
-          query: ''
+          query: null
         },
         searchDropdownEnabled: false,
         advancedSearchDropdownEnabled: false
