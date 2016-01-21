@@ -100,19 +100,13 @@
 
   .content-section-header {
 
-    color: $src-bright;
-
-    text-transform: uppercase;
+    color: $src-less-dark;
 
     @include at-least-small-screen-styles {
 
       @include font-size(18px);
 
       margin-bottom: $src-content-section-vertical-space-sm; // Doesn't affect forms with margin collapse.
-    }
-
-    &.regular-text {
-      text-transform: none;
     }
   }
 

@@ -1,5 +1,13 @@
 #search-result-container-wrapper {
 
+  .smart-view-action {
+    @include at-least-small-screen-styles {
+      margin-left: $padding-xs-horizontal;
+      vertical-align: top;
+      @include font-size(18px);
+    }
+  }
+
   .search-header-section {
     border-bottom: $bright-border;
 

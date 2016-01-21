@@ -30,7 +30,7 @@ export default function (agreementListComponent) {
       else {
         agreementListContent = (
           <div>
-            <h3 className="content-section-header regular-text">
+            <h3 className="content-section-header ">
               Sorry, there are no agreements in the system.
               <br />
               Please <Link to="/agreements/step-1" className='underline'>upload one</Link> to get started.

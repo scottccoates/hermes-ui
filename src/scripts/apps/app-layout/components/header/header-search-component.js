@@ -59,14 +59,25 @@ export default function (searchQueryInputBoxComponent, searchQueryListComponent,
     onAdvancedSearchClick() {
       this.setState({searchDropdownEnabled: false, advancedSearchDropdownEnabled: true});
 
-      const parameters = Object.assign({}, this.props.advancedSearch.parameters, {text: this.state.simple.query});
+      const query = this.state.simple.query;
+      if (query) {
+        const parameters = Object.assign({}, this.props.advancedSearch.parameters, {text: query});
+        searchActions.specifyAdvancedSearchParameters(parameters);
+      }
+    },
+
+    onMoreClick() {
+      this.setState({searchDropdownEnabled: false});
+      const query      = this.state.simple.query;
+      const parameters = Object.assign({}, this.props.advancedSearch.parameters, {text: query});
       searchActions.specifyAdvancedSearchParameters(parameters);
+      searchService.transitionToAdvancedSearchPage(parameters);
     },
 
     onItemSelected(){
       this.refs.input.clear();
       this.onSearchClose();
-      const resultVal = Object.assign({}, this.state.simple, {count: 0, results: [], query: ''});
+      const resultVal = Object.assign({}, this.state.simple, {count: 0, results: [], query: null});
       this.setState({simple: resultVal});
     },
 
@@ -98,7 +109,7 @@ export default function (searchQueryInputBoxComponent, searchQueryListComponent,
     },
 
     onAdvancedSearch(){
-      this.onAdvancedSearchClose();
+      this.setState({advancedSearchDropdownEnabled: false});
       searchService.transitionToAdvancedSearchPage(this.props.advancedSearch.parameters);
     },
 
@@ -131,7 +142,7 @@ export default function (searchQueryInputBoxComponent, searchQueryListComponent,
         </span>
 
 
-          <FocusContainer enableOnClickOutside={this.state.searchDropdownEnabled}
+          <FocusContainer disableOnClickOutside={!this.state.searchDropdownEnabled}
                           handleClickOutside={this.onSearchClose}>
             <DisplayContainer open={this.state.searchDropdownEnabled}>
 
@@ -140,14 +151,15 @@ export default function (searchQueryInputBoxComponent, searchQueryListComponent,
                   <SearchQueryList count={this.state.simple.count}
                                    results={this.state.simple.results} loading={this.state.simple.loading}
                                    query={this.state.simple.query} onItemSelected={this.onItemSelected}
-                                   onAdvancedSearchClick={this.onAdvancedSearchClick}/>
+                                   onAdvancedSearchClick={this.onAdvancedSearchClick}
+                                   onMoreClick={this.onMoreClick}/>
                 </div>
               </div>
 
             </DisplayContainer>
           </FocusContainer>
 
-          <FocusContainer enableOnClickOutside={this.state.advancedSearchDropdownEnabled}
+          <FocusContainer disableOnClickOutside={!this.state.advancedSearchDropdownEnabled}
                           handleClickOutside={this.onAdvancedSearchClose}>
             <DisplayContainer open={this.state.advancedSearchDropdownEnabled}>
               <AdvancedSearchQueryContainer parameters={this.props.advancedSearch.parameters}

@@ -52,19 +52,19 @@ import DashboardComponent from '../apps/dashboard/components/dashboard-component
 
 import ClientSidePersistenceService from 'src/scripts/apps/persistence/services/client-side-persistence-service';
 
-import SimpleSearchQueryList from '../domain/search/components/query/simple-search-query-list';
-import SimpleSearchQueryListItem from '../domain/search/components/query/simple-search-query-list-item.js';
-import SimpleSearchQueryInputBox from '../domain/search/components/query/simple-search-query-input-box';
-import AdvancedSearchQueryContainer from '../domain/search/components/query/advanced-search-query-container';
+import SimpleSearchQueryList from '../apps/search/components/query/simple-search-query-list';
+import SimpleSearchQueryListItem from '../apps/search/components/query/simple-search-query-list-item.js';
+import SimpleSearchQueryInputBox from '../apps/search/components/query/simple-search-query-input-box';
+import AdvancedSearchQueryContainer from '../apps/search/components/query/advanced-search-query-container';
 
-import SearchService from 'src/scripts/domain/search/services/search-service';
-import SearchRepository from 'src/scripts/domain/search/services/search-repository';
-import SearchActions from 'src/scripts/domain/search/messaging/actions/search-actions';
-import AdvancedSearchReducer from 'src/scripts/domain/search/messaging/reducers/advanced-search-reducer';
+import SearchService from 'src/scripts/apps/search/services/search-service';
+import SearchRepository from 'src/scripts/apps/search/services/search-repository';
+import SearchActions from 'src/scripts/apps/search/messaging/actions/search-actions';
+import AdvancedSearchReducer from 'src/scripts/apps/search/messaging/reducers/advanced-search-reducer';
 
-import SearchResultContainer from '../domain/search/components/result/search-result-container';
-import SearchResultList from '../domain/search/components/result/search-result-list';
-import SearchResultItem from '../domain/search/components/result/search-result-item';
+import SearchResultContainer from '../apps/search/components/result/search-result-container';
+import SearchResultList from '../apps/search/components/result/search-result-list';
+import SearchResultItem from '../apps/search/components/result/search-result-item';
 
 import { createHistory , useQueries} from 'history';
 
@@ -171,7 +171,7 @@ export default {
     SimpleSearchQueryInputBox.$inject = ["SearchService"];
     SimpleSearchQueryList.$inject     = ['SimpleSearchQueryListItem'];
 
-    SearchResultContainer.$inject = ['SearchActions', "SearchResultList"];
+    SearchResultContainer.$inject = ['SearchActions', "AgreementListComponent"];
     SearchResultList.$inject      = ["SearchResultItem"];
 
     SearchActions.$inject    = ["AppStore", 'SearchService'];

@@ -23,12 +23,20 @@ export default React.createClass({
     const clickStream = this.eventStream('onClick');
     clickStream.onValue(event=> {
       this.setState({isFocused: true});
-      setTimeout(_=> {
-        const fieldInput = this.refs.fieldInput;
-        if (!fieldInput.state.isOpen) {
+
+      const fieldInput = this.refs.fieldInput;
+
+      if (!fieldInput.state.isOpen) {
+
+        // persist prevents the following warning
+        // Warning: This synthetic event is reused for performance reasons. If you're seeing this, you're calling `stopPropagation` on a released/nullified synthetic event. This is a no-op. See https://fb.me/react-event-pooling for more information.
+        event.persist();
+
+        setTimeout(_=> {
           fieldInput.handleMouseDown(event);
-        }
-      });
+        });
+
+      }
     });
 
     const blurStream = this.eventStream('onBlur');
@@ -40,7 +48,10 @@ export default React.createClass({
     const iconClasses = cx('fa', this.props.iconClass);
 
     var valueLabel;
-    if (this.props.value) {
+    if (this.props.value && this.props.options.length) {
+      // check that both the value and options exist
+      // there will times when the page first loads on the search screen where the userAgreementTypes (for example) haven't all
+      // been populated even though the parameters have already arrived
       valueLabel = this.props.options.find(item => item.value === this.props.value).label;
     }
 

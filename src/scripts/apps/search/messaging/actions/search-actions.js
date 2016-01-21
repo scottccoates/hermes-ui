@@ -6,7 +6,7 @@ export default function (appStore, searchService) {
 
   function _advancedSearchSuccessAction(resultSet) {
     return {
-      type: constants.ADVANCED_SEARCH_SUCCESS,
+      type: constants.ADVANCED_SEARCH_RESULTS_RECEIVED,
       resultSet
     };
   }
@@ -17,7 +17,7 @@ export default function (appStore, searchService) {
     setTimeout(_=>alert('There was an error performing the search.'));
 
     return {
-      type: constants.ADVANCED_SEARCH_FAILURE,
+      type: constants.ADVANCED_SEARCH_QUERY_FAILURE,
       error
     };
   }
@@ -41,8 +41,13 @@ export default function (appStore, searchService) {
       return async dispatch => {
 
         try {
-          const resultSet = await searchService.advancedSearch(parameters);
-          dispatch(_advancedSearchSuccessAction(resultSet));
+          const resultSet         = await searchService.advancedSearch(parameters);
+          const foundAgreementIds = resultSet.results.map(r => r.id);
+
+          const allUserAgreements  = appStore.getState().userAgreements.agreements;
+          const filteredAgreements = allUserAgreements.filter(a => foundAgreementIds.indexOf(a.id) >= 0);
+          const newResultSet       = {count: filteredAgreements.length, results: filteredAgreements};
+          dispatch(_advancedSearchSuccessAction(newResultSet));
         }
         catch (e) {
           dispatch(_agreementEditedFailureAction(e));

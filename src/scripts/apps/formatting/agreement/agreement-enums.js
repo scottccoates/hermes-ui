@@ -7,5 +7,8 @@ export default {
   renewTypes: {
     true: 'Yes',
     false: 'No'
+  },
+  sortTypes: {
+    dateCreated: 'Sort By: Date Created'
   }
 };

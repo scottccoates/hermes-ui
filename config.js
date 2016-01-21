@@ -46,7 +46,7 @@ System.config({
     "rc-form-validation": "npm:rc-form-validation@2.4.13",
     "react": "npm:react@0.14.3",
     "react-bacon": "npm:react-bacon@0.0.4",
-    "react-bootstrap": "npm:react-bootstrap@0.27.1",
+    "react-bootstrap": "npm:react-bootstrap@0.28.2",
     "react-dom": "npm:react-dom@0.14.0",
     "react-highlighter": "npm:react-highlighter@0.3.0",
     "react-immutable-render-mixin": "npm:react-immutable-render-mixin@0.8.1",
@@ -132,6 +132,9 @@ System.config({
     "npm:babel-runtime@5.8.25": {
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
+    "npm:babel-runtime@5.8.35": {
+      "process": "github:jspm/nodelibs-process@0.1.2"
+    },
     "npm:baconjs@0.7.74": {
       "assert": "github:jspm/nodelibs-assert@0.1.0",
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
@@ -146,11 +149,6 @@ System.config({
       "ieee754": "npm:ieee754@1.1.6",
       "isarray": "npm:isarray@1.0.0",
       "process": "github:jspm/nodelibs-process@0.1.2"
-    },
-    "npm:classnames@2.1.5": {
-      "assert": "github:jspm/nodelibs-assert@0.1.0",
-      "process": "github:jspm/nodelibs-process@0.1.2",
-      "systemjs-json": "github:systemjs/plugin-json@0.1.0"
     },
     "npm:classnames@2.2.1": {
       "assert": "github:jspm/nodelibs-assert@0.1.0",
@@ -322,18 +320,19 @@ System.config({
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
-    "npm:react-bootstrap@0.27.1": {
-      "babel-runtime": "npm:babel-runtime@5.8.25",
-      "classnames": "npm:classnames@2.1.5",
+    "npm:react-bootstrap@0.28.2": {
+      "babel-runtime": "npm:babel-runtime@5.8.35",
+      "classnames": "npm:classnames@2.2.3",
       "dom-helpers": "npm:dom-helpers@2.4.0",
+      "invariant": "npm:invariant@2.2.0",
       "keycode": "npm:keycode@2.1.0",
       "lodash-compat": "npm:lodash-compat@3.10.1",
       "process": "github:jspm/nodelibs-process@0.1.2",
       "react": "npm:react@0.14.3",
       "react-dom": "npm:react-dom@0.14.0",
-      "react-overlays": "npm:react-overlays@0.5.0",
+      "react-overlays": "npm:react-overlays@0.5.4",
       "react-prop-types": "npm:react-prop-types@0.3.0",
-      "uncontrollable": "npm:uncontrollable@3.1.3",
+      "uncontrollable": "npm:uncontrollable@3.2.1",
       "warning": "npm:warning@2.1.0"
     },
     "npm:react-dom@0.14.0": {
@@ -354,8 +353,8 @@ System.config({
     "npm:react-onclickoutside@4.5.0": {
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
-    "npm:react-overlays@0.5.0": {
-      "classnames": "npm:classnames@2.1.5",
+    "npm:react-overlays@0.5.4": {
+      "classnames": "npm:classnames@2.2.3",
       "dom-helpers": "npm:dom-helpers@2.4.0",
       "react": "npm:react@0.14.3",
       "react-dom": "npm:react-dom@0.14.0",
@@ -439,8 +438,8 @@ System.config({
     "npm:ua-parser-js@0.7.10": {
       "systemjs-json": "github:systemjs/plugin-json@0.1.0"
     },
-    "npm:uncontrollable@3.1.3": {
-      "invariant": "npm:invariant@2.1.1",
+    "npm:uncontrollable@3.2.1": {
+      "invariant": "npm:invariant@2.2.0",
       "process": "github:jspm/nodelibs-process@0.1.2",
       "react": "npm:react@0.14.3"
     },

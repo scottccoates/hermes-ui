@@ -27,13 +27,7 @@ export default function (searchResultItemProvider) {
               <span className='middle'>Sort By: Date Created</span>
               <i className="fa fa-chevron-down space-left middle"></i>
             </button>
-
-            <button className="btn btn-info btn-sm" type="button">
-              <i className="fa fa-wrench space-right"></i>
-              <span>Refine Search</span>
-            </button>
           </div>
-
 
           <div className="search-results">
 

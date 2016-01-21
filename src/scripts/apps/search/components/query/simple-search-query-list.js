@@ -36,6 +36,12 @@ export default function (searchQueryListItemComponent) {
       this.props.onAdvancedSearchClick();
     },
 
+    onMoreClick(e) {
+      e.preventDefault();
+      this.onItemSelected();
+      this.props.onMoreClick();
+    },
+
     onItemSelected(){
       this.props.onItemSelected();
     },
@@ -65,8 +71,13 @@ export default function (searchQueryListItemComponent) {
       const hasResults = this.props.query && this.props.count && !this.props.loading;
       if (hasResults) {
         moreNode = (
-          <li className="search-link">
-            Show more
+          <li>
+            <a className="search-link" href="javascript:void(0)" onClick={this.onMoreClick}>
+
+              <i className="fa fa-ellipsis-h"></i>
+              <span>Show more</span>
+
+            </a>
           </li>
         );
       }

@@ -3,8 +3,10 @@ import formattingService from 'src/scripts/apps/formatting/services/formatting-s
 
 const durationTypes = formattingService.getValueLabelFromObject(agreementEnums.durationTypes);
 const renewTypes    = formattingService.getValueLabelFromObject(agreementEnums.renewTypes);
+const sortTypes     = formattingService.getValueLabelFromObject(agreementEnums.sortTypes);
 
 export default {
   durationTypes,
-  renewTypes
+  renewTypes,
+  sortTypes
 };

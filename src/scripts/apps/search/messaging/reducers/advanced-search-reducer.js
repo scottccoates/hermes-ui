@@ -7,6 +7,10 @@ const defaultState = {
     text: null,
     counterparty: null,
     typeId: null
+  },
+  resultSet: {
+    count: 0,
+    results: []
   }
 };
 
@@ -26,6 +30,10 @@ export default function () {
 
       case constants.ADVANCED_SEARCH_RESET_PARAMETERS:
         retVal = defaultState;
+        break;
+
+      case constants.ADVANCED_SEARCH_RESULTS_RECEIVED:
+        retVal = Object.assign({}, state, {resultSet: action.resultSet});
         break;
 
       default:
