@@ -7,10 +7,6 @@ export default function (searchRepository, routingService) {
       routingService.transition(routerSearchPath, parameters);
     },
 
-    transitionToAdvancedSearchPagef(parameters){
-      routingService.transition(routerSearchPath, parameters);
-    },
-
     async simpleSearch(query){
       const resultSet = await searchRepository.simpleSearch(query);
 

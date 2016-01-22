@@ -52,6 +52,10 @@ parent: base
   @include btn($src-bright, $src-less-dark);
 }
 
+.btn-danger {
+  @include btn($src-danger, $src-less-dark, .5);
+}
+
 .btn-primary {
   @include btn($src-more-brighter, $src-less-dark, .5);
 

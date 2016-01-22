@@ -75,6 +75,16 @@ export default function (persistenceApiServiceUrl, appStore) {
       const response = await this._getResponse('PUT', url, body);
 
       return response;
+    },
+
+    async create(path, data){
+      const url = this._getPath(path);
+
+      const body = this._getBody(data);
+
+      const response = await this._getResponse('POST', url, body);
+
+      return response;
     }
   };
 

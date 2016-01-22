@@ -16,7 +16,7 @@ export default function (searchResultItemProvider) {
 
     render() {
       return (
-        <div id="search-result-list-wrapper">
+        <div className="search-result-list-wrapper">
 
           <div className='search-results-count content-section-item space-top-md space-bottom-sm'>
             2 Results Found

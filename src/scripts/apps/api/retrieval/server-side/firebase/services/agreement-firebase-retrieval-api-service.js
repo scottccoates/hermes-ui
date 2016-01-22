@@ -23,22 +23,22 @@ export default {
     // let's not worry about opening/closing connection for dashboard. just assume that we can always keep this open
     // because it's probably a frequently-visited screen.
     // also, we don't need to worry about users logging off, because the whole app will just be refreshed.
-    const agreementListRef = rootRef.child(`users-dashboard-agreements/${userId}/`);
+    const agreementListRef = rootRef.child(`users-agreements/${userId}/`);
 
     agreementListRef.on("value", snapshot => {
 
       try {
-        const dashboardAgreements = firebaseService.prepareCollection(snapshot);
+        const userAgreements = firebaseService.prepareCollection(snapshot);
 
-        dashboardAgreements.forEach(dashboardAgreement=> {
-          dashboardAgreement.executionDate    = ymdFormat(dateFromTimestamp(dashboardAgreement.executionDate));
-          dashboardAgreement.modificationDate = ymdFormat(dateFromTimestamp(dashboardAgreement.modificationDate));
+        userAgreements.forEach(userAgreement=> {
+          userAgreement.executionDate    = ymdFormat(dateFromTimestamp(userAgreement.executionDate));
+          userAgreement.modificationDate = ymdFormat(dateFromTimestamp(userAgreement.modificationDate));
 
-          dashboardAgreement.typeName = dashboardAgreement.typeName || 'Agreement type not specified';
+          userAgreement.typeName = userAgreement.typeName || 'Agreement type not specified';
 
         });
 
-        store.dispatch(agreementActions.userAgreementsReceived(dashboardAgreements));
+        store.dispatch(agreementActions.userAgreementsReceived(userAgreements));
       }
       catch (error) {
         throw new Error(`Error providing agreement list data from firebase: Inner exception: ${error.stack}`);

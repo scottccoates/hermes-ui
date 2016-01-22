@@ -1,5 +1,6 @@
 import log from 'loglevel';
 
+import smartViewRetrievalApiService from'./smart-view-firebase-retrieval-api-service';
 import agreementRetrievalApiService from'./agreement-firebase-retrieval-api-service';
 import agreementTypeRetrievalApiService from'./agreement-type-firebase-retrieval-api-service';
 import counterPartyRetrievalApiService from'./counterparty-firebase-retrieval-api-service';
@@ -15,6 +16,7 @@ export default function (firebase) {
             rej(new Error("Error authenticating with firebase: " + error.stack));
           }
           else {
+            smartViewRetrievalApiService.init(container, store, firebase);
             agreementRetrievalApiService.init(container, store, firebase);
             agreementTypeRetrievalApiService.init(container, store, firebase);
             counterPartyRetrievalApiService.init(container, store, firebase);

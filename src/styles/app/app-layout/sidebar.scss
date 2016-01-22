@@ -49,15 +49,17 @@
       @include section-dividing-line;
 
       @include at-least-small-screen-styles {
-        margin-bottom: 10px;
-
+        padding-bottom: 30px;
         padding-top: 30px;
         text-indent: 30px;
         @include font-size($src-font-size-small)
       }
 
-      ul {
+      .header {
         text-transform: uppercase;
+      }
+
+      ul {
         @include list-unstyled;
 
         @include at-least-small-screen-styles {

@@ -14,7 +14,7 @@ export default function (persistenceApiServiceUrl, fileUploadProvider, nprogress
   const FileUploader = fileUploadProvider.dependency;
 
   var component = React.createClass({
-    displayName: "NewAgreementCreateComponent",
+    displayName: "AgreementNewCreateComponent",
 
     getInitialState(){
       return {uploading: false};
@@ -62,7 +62,7 @@ export default function (persistenceApiServiceUrl, fileUploadProvider, nprogress
       const feedbackClasses = cx({'important-agreement-feedback': true, 'hidden': !this.state.uploading});
 
       return (
-        <div id="new-agreement-wrapper">
+        <div id="agreement-new-wrapper">
           <div id="create-agreement-wrapper">
             <div className="content-section  space-top space-bottom">
               <div className="container">

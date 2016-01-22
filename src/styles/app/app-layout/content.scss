@@ -2,7 +2,7 @@
 
 // Content Layout
 // --------------------------------------------------
-#content-wrapper {
+#content-wrapper, .modal {
   // make it grow as needed. This keeps the footer at the bottom.
   flex-grow: 1;
 
@@ -163,6 +163,12 @@
     &.space-bottom-xxs {
       @include at-least-small-screen-styles {
         margin-bottom: $src-content-section-vertical-space-xxs;
+      }
+    }
+
+    &.space-left-md {
+      @include at-least-small-screen-styles {
+        margin-left: $src-content-section-horizontal-space-md;
       }
     }
 

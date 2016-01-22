@@ -20,12 +20,17 @@
         ".read": "auth.uid == $userID"
       }
     },
-    "users-dashboard-agreements": {
+    "users-agreements": {
       "$userID": {
         ".read": "auth.uid == $userID"
       }
     },
     "users-counterparties": {
+      "$userID": {
+        ".read": "auth.uid == $userID"
+      }
+    },
+    "users-smart-views": {
       "$userID": {
         ".read": "auth.uid == $userID"
       }

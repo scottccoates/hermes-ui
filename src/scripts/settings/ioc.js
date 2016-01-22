@@ -11,6 +11,8 @@ import NprogressBar from 'src/scripts/apps/feedback/components/loading/nprogress
 
 import AppLayoutComponent from 'src/scripts/apps/app-layout/components/app-layout';
 
+import SidebarComponent from 'src/scripts/apps/app-layout/components/sidebar/sidebar';
+
 import HeaderComponent from 'src/scripts/apps/app-layout/components/header/header-component';
 import HeaderNavSectionComponent from 'src/scripts/apps/app-layout/components/header/header-nav-section-component';
 import HeaderSearchComponent from 'src/scripts/apps/app-layout/components/header/header-search-component';
@@ -22,8 +24,9 @@ import SessionReducer from 'src/scripts/apps/session/messaging/reducers/session-
 
 import LogoutComponent from 'src/scripts/apps/session/components/logout-component';
 
-import NewAgreementCreateComponent from '../domain/agreement/components/new-agreement/new-agreement-create-component';
-import NewAgreementFormComponent from '../domain/agreement/components/new-agreement/new-agreement-form-component';
+import AgreementNewCreateComponent from '../domain/agreement/components/agreement-new/agreement-new-create-component';
+import AgreementEditContainerComponent from '../domain/agreement/components/agreement-edit/agreement-edit-container-component';
+import AgreementEditFormComponent from '../domain/agreement/components/agreement-edit/agreement-edit-form-component';
 import AgreementListComponent from '../domain/agreement/components/agreement-list/agreement-list-component';
 import AgreementListItemComponent from '../domain/agreement/components/agreement-list/agreement-list-item-component';
 import AgreementDetailContainerComponent from '../domain/agreement/components/agreement-detail/agreement-detail-container-component';
@@ -47,6 +50,14 @@ import CounterpartyActions from '../domain/counterparty/messaging/actions/counte
 import CounterpartyService from '../domain/counterparty/services/counterparty-service';
 import CounterpartyRepository from '../domain/counterparty/services/counterparty-repository';
 import UserCounterpartiesReducer from 'src/scripts/domain/counterparty/messaging/reducers/user-counterparties-reducer';
+
+import SmartViewEditFormComponent from '../domain/smart-view/components/smart-view-edit/smart-view-edit-form-component';
+
+import SmartViewActions from '../domain/smart-view/messaging/actions/smart-view-actions';
+import SmartViewService from '../domain/smart-view/services/smart-view-service';
+import SmartViewRepository from '../domain/smart-view/services/smart-view-repository';
+import UserSmartViewsReducer from 'src/scripts/domain/smart-view/messaging/reducers/user-smart-views-reducer';
+import SmartViewEditReducer from 'src/scripts/domain/smart-view/messaging/reducers/smart-view-edit-reducer';
 
 import DashboardComponent from '../apps/dashboard/components/dashboard-component';
 
@@ -78,6 +89,8 @@ export default {
 
     container.register("AppLayoutComponent", AppLayoutComponent);
 
+    container.register("SidebarComponent", SidebarComponent);
+
     container.register("HeaderComponent", HeaderComponent);
     container.register("HeaderNavSectionComponent", HeaderNavSectionComponent);
     container.register("HeaderSearchComponent", HeaderSearchComponent);
@@ -98,8 +111,9 @@ export default {
     container.register("SearchActions", SearchActions);
     container.register("AdvancedSearchReducer", AdvancedSearchReducer);
 
-    container.register("CreateAgreementComponent", NewAgreementCreateComponent);
-    container.register("AgreementFormComponent", NewAgreementFormComponent);
+    container.register("AgreementNewCreateComponent", AgreementNewCreateComponent);
+    container.register("AgreementEditContainerComponent", AgreementEditContainerComponent);
+    container.register("AgreementEditFormComponent", AgreementEditFormComponent);
     container.register("AgreementListComponent", AgreementListComponent);
     container.register("AgreementListItemComponent", AgreementListItemComponent);
     container.register("AgreementDetailContainerComponent", AgreementDetailContainerComponent);
@@ -118,6 +132,14 @@ export default {
     container.register("AgreementTypeService", AgreementTypeService);
     container.register("AgreementTypeRepository", AgreementTypeRepository);
     container.register("UserAgreementTypesReducer", UserAgreementTypesReducer);
+
+    container.register("SmartViewEditFormComponent", SmartViewEditFormComponent);
+
+    container.register("SmartViewActions", SmartViewActions);
+    container.register("SmartViewService", SmartViewService);
+    container.register("SmartViewRepository", SmartViewRepository);
+    container.register("UserSmartViewsReducer", UserSmartViewsReducer);
+    container.register("SmartViewEditReducer", SmartViewEditReducer);
 
     container.register("CounterpartyActions", CounterpartyActions);
     container.register("CounterpartyService", CounterpartyService);
@@ -142,14 +164,16 @@ export default {
     const history = useQueries(createHistory)();
     container.register("History", history);
 
-    AppLayoutComponent.$inject = ['HeaderComponent'];
+    AppLayoutComponent.$inject = ['SidebarComponent', 'HeaderComponent'];
+
+    SidebarComponent.$inject = ['SmartViewActions'];
 
     HeaderComponent.$inject       = ['HeaderSearchComponent', 'HeaderNavSectionComponent'];
-    HeaderSearchComponent.$inject = ['SimpleSearchQueryInputBox', 'SimpleSearchQueryList', 'AdvancedSearchQueryContainer', 'SearchActions', 'SearchService'];
+    HeaderSearchComponent.$inject = ['SearchActions', 'SearchService', 'SmartViewActions', 'SimpleSearchQueryInputBox', 'SimpleSearchQueryList', 'AdvancedSearchQueryContainer'];
     DashboardComponent.$inject    = ["AgreementListComponent"];
 
-    NewAgreementCreateComponent.$inject       = ["PersistenceApiServiceUrl", "FileUpload", "NprogressBarFactory"];
-    NewAgreementFormComponent.$inject         = ["AgreementActions"];
+    AgreementNewCreateComponent.$inject       = ["PersistenceApiServiceUrl", "FileUpload", "NprogressBarFactory"];
+    AgreementEditContainerComponent.$inject   = ["AgreementActions", 'AgreementEditFormComponent'];
     AgreementListComponent.$inject            = ["AgreementListItemComponent"];
     AgreementDetailContainerComponent.$inject = ['AgreementActions', "AgreementDetailGeneralInfoComponent", 'AgreementDetailLengthComponent', 'AgreementDetailArtifactsComponent'];
     AgreementDetailArtifactsComponent.$inject = ['AgreementService'];
@@ -171,12 +195,16 @@ export default {
     SimpleSearchQueryInputBox.$inject = ["SearchService"];
     SimpleSearchQueryList.$inject     = ['SimpleSearchQueryListItem'];
 
-    SearchResultContainer.$inject = ['SearchActions', "AgreementListComponent"];
+    SearchResultContainer.$inject = ['SearchActions', 'SmartViewActions', "AgreementListComponent", 'SmartViewEditFormComponent'];
     SearchResultList.$inject      = ["SearchResultItem"];
 
     SearchActions.$inject    = ["AppStore", 'SearchService'];
     SearchService.$inject    = ["SearchRepository", 'RoutingService'];
     SearchRepository.$inject = ["PersistenceApiService"];
+
+    SmartViewActions.$inject    = ["AppStore", 'SmartViewService'];
+    SmartViewService.$inject    = ["SmartViewRepository"];
+    SmartViewRepository.$inject = ["PersistenceApiService"];
 
     SessionActions.$inject    = ['AppStore', "SessionService"];
     SessionService.$inject    = ["SessionRepository", "AuthService"];

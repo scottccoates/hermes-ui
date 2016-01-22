@@ -13,7 +13,7 @@ import formattingService from 'src/scripts/apps/formatting/services/formatting-s
 
 import DependencyProvider from 'src/scripts/libs/dependency-injection/utils/dependency-provider';
 
-export default function (searchQueryInputBoxComponent, searchQueryListComponent, advancedSearchQueryContainerComponent, searchActions, searchService) {
+export default function (searchActions, searchService, smartViewActions, searchQueryInputBoxComponent, searchQueryListComponent, advancedSearchQueryContainerComponent) {
   const SearchQueryInputBox          = searchQueryInputBoxComponent.dependency;
   const SearchQueryList              = searchQueryListComponent.dependency;
   const AdvancedSearchQueryContainer = advancedSearchQueryContainerComponent.dependency;
@@ -110,6 +110,7 @@ export default function (searchQueryInputBoxComponent, searchQueryListComponent,
 
     onAdvancedSearch(){
       this.setState({advancedSearchDropdownEnabled: false});
+      smartViewActions.clearSmartViewEdit();
       searchService.transitionToAdvancedSearchPage(this.props.advancedSearch.parameters);
     },
 

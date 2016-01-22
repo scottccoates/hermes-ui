@@ -30,7 +30,7 @@ export default function (agreementRepository) {
       return retVal;
     },
 
-    async editAgreement(agreementData){
+    async saveAgreement(agreementData){
       const executionDate = stringToTimestamp(agreementData.executionDate);
       const newData       = Object.assign({}, agreementData, {executionDate});
 

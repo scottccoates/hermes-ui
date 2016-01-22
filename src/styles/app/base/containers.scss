@@ -67,8 +67,6 @@ parent: patterns
   border-top-left-radius: $container-border-radius;
   border-top-right-radius: $container-border-radius;
 
-  @extend .text-uppercase;
-
   @include at-least-small-screen-styles {
     @include inner-container-space-lg;
   }
@@ -120,8 +118,6 @@ parent: patterns
 }
 
 .popover-title {
-  @extend .text-uppercase;
-
   background: none;
   border: none;
 

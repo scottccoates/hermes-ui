@@ -37,6 +37,7 @@ System.config({
     "immutable": "npm:immutable@3.7.4",
     "intravenous": "github:willow/intravenous@master",
     "jquery": "github:components/jquery@2.1.3",
+    "lodash": "npm:lodash-compat@3.10.1",
     "loglevel": "npm:loglevel@1.3.1",
     "moment": "npm:moment@2.10.6",
     "nanoscroller": "github:jamesflorentino/nanoScrollerJS@0.8.4",

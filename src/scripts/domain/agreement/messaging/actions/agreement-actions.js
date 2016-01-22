@@ -4,9 +4,9 @@ import actionBinder from 'src/scripts/libs/redux-js/actions/action-binder';
 
 export default function (appStore, agreementService) {
 
-  function _agreementEditedSuccessAction(agreement) {
+  function _agreementSavedSuccessAction(agreement) {
     return {
-      type: constants.EDIT_AGREEMENT_SUCCESS,
+      type: constants.AGREEMENT_SAVE_SUCCESS,
       agreement,
       meta: {
         transition: (state, action) => ({
@@ -16,13 +16,13 @@ export default function (appStore, agreementService) {
     };
   }
 
-  function _agreementEditedFailureAction(error) {
+  function _agreementSavedFailureAction(error) {
     log.info("AgreementActions: Agreement edit error: %s", error.stack);
 
     setTimeout(_=>alert('There was an error saving the agreement.'));
 
     return {
-      type: constants.EDIT_AGREEMENT_FAILURE,
+      type: constants.AGREEMENT_SAVE_FAILURE,
       error
     };
   }
@@ -50,15 +50,15 @@ export default function (appStore, agreementService) {
       };
     },
 
-    editAgreement(agreementData){
+    saveAgreement(agreementData){
       return async dispatch => {
 
         try {
-          const agreement = await agreementService.editAgreement(agreementData);
-          dispatch(_agreementEditedSuccessAction(agreement));
+          const agreement = await agreementService.saveAgreement(agreementData);
+          dispatch(_agreementSavedSuccessAction(agreement));
         }
         catch (e) {
-          dispatch(_agreementEditedFailureAction(e));
+          dispatch(_agreementSavedFailureAction(e));
         }
       };
     },

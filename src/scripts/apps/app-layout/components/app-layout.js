@@ -13,9 +13,9 @@ import { connect } from 'react-redux';
 
 import DependencyProvider from 'src/scripts/libs/dependency-injection/utils/dependency-provider';
 
-export default function (headerComponent) {
-
-  const Header = headerComponent.dependency;
+export default function (sidebarComponent, headerComponent) {
+  const Sidebar = sidebarComponent.dependency;
+  const Header  = headerComponent.dependency;
 
   var appLayout = React.createClass({
     displayName: "AppLayout",

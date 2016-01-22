@@ -2,22 +2,43 @@
 
 import React from 'react';
 
+import { connect } from 'react-redux';
+
+import DependencyProvider from '../../../../libs/dependency-injection/utils/dependency-provider';
+
 import ScrollContainer from '../../../../libs/react-js/components/scroll-container';
 
 import SidebarLogo from './sidebar-logo';
 import SidebarNavSection from './sidebar-nav-section';
 
-export default React.createClass({
+export default function (smartViewActions) {
+  let component = React.createClass({
+    displayName: "SidebarComponent",
 
-  render() {
+    onSmartViewSelected(smartView){
+      smartViewActions.selectSmartViewEdit(smartView);
+    },
 
-    return (
+    render() {
+
+      return (
         <nav id="sidebar-wrapper">
           <ScrollContainer id="sidebar-scroll-container">
             <SidebarLogo/>
-            <SidebarNavSection/>
+            <SidebarNavSection onSmartViewSelected={this.onSmartViewSelected}
+                               smartViews={this.props.userSmartViews.smartViews}/>
           </ScrollContainer>
         </nav>
-    )
+      )
+    }
+  });
+
+  function extracted(state) {
+    return {
+      userSmartViews: state.userSmartViews
+    };
   }
-});
+
+  component = connect(extracted)(component);
+  return new DependencyProvider(component);
+}

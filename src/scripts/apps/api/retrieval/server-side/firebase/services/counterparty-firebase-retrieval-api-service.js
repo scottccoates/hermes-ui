@@ -22,7 +22,8 @@ export default {
     counterpartiesRef.on("value", snapshot => {
 
       try {
-        const userCounterparties = Object.keys(snapshot.val()).map(k => ({id: k, name: k}));
+        const counterPartyValues = snapshot.val() || {};
+        const userCounterparties = Object.keys(counterPartyValues).map(k => ({id: k, name: k}));
 
         store.dispatch(counterpartyActions.userCounterpartiesReceived(userCounterparties));
       }
