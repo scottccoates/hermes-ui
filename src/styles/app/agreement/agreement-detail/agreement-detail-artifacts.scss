@@ -2,6 +2,8 @@
   .agreement-detail-artifacts-list {
     @include list-unstyled();
 
+    word-break: break-all;
+
     li {
       @include at-least-small-screen-styles {
         @include font-size(14px);

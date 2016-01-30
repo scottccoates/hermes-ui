@@ -41,9 +41,12 @@ export default function (dropzoneFactory) {
     },
 
     _configureProps() {
-      const propsMap                         = Immutable.Map(this.props);
-      const additionalDefaultDropzoneOptions = {"headers": null};
-      const defaultOptions                   = Object.assign({}, additionalDefaultDropzoneOptions, Dropzone.prototype.defaultOptions);
+      const propsMap = Immutable.Map(this.props);
+
+      // these are props you can provide that don't have default values in dropzone.
+      const additionalDefaultDropzoneOptions = {headers: null};
+
+      const defaultOptions = Object.assign({}, additionalDefaultDropzoneOptions, Dropzone.prototype.defaultOptions);
 
       var dropzoneOptions = propsMap.filter((v, k)=>k in defaultOptions);
 
@@ -51,6 +54,8 @@ export default function (dropzoneFactory) {
       // It results in a <div> tag containing an image preview.
       dropzoneOptions = dropzoneOptions.set('addedfile', ()=> {
       });
+
+      dropzoneOptions = dropzoneOptions.set('uploadMultiple', true);
 
       this._dropzoneOptions = dropzoneOptions;
     },

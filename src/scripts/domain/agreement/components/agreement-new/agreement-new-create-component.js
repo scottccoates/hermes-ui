@@ -85,7 +85,7 @@ export default function (persistenceApiServiceUrl, fileUploadProvider, nprogress
                                         onSuccess={this.onSuccess}
                                         onError={this.onError}
                                         className={dropzoneClasses}
-                                        paramName="contract"
+                                        paramName="contracts"
                                         headers={{"Authorization": "JWT " + this.props.user.token}}
                                         acceptedFiles=".pdf, .doc, .docx">
                             <i className="fa fa-cloud-upload"></i>
