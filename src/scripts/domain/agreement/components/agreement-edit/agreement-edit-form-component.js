@@ -261,10 +261,8 @@ export default function () {
                         <span
                           className="control-label content-section-item space-left-sm space-right-sm agreement-form-control-text">before
                         </span>
-                      <button type='button'
-                              className="btn btn-sm btn-info agreement-form-button agreement-form-field-button">
-                        Expiration
-                      </button>
+                      <ButtonSelect items={[{label:"Expiration",value:'expiration'}]} value='expiration'
+                                    className="btn btn-sm btn-info agreement-form-button agreement-form-field-button"/>
                     </div>
                     <div className="row">
                       <div className="col-sm-offset-6 col-sm-18">

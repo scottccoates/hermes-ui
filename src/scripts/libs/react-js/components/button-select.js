@@ -33,6 +33,7 @@ export default React.createClass({
         <button type='button' data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                 className={this.props.className}>
           {selectedItem.label}
+          <i className="fa fa-caret-down space-left middle"></i>
         </button>
         <ul className="dropdown-menu">
           {items}

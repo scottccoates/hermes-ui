@@ -48,6 +48,7 @@ System.config({
     "react": "npm:react@0.14.3",
     "react-bacon": "npm:react-bacon@0.0.4",
     "react-bootstrap": "npm:react-bootstrap@0.28.2",
+    "react-datepicker": "npm:react-datepicker@0.19.0",
     "react-dom": "npm:react-dom@0.14.0",
     "react-highlighter": "npm:react-highlighter@0.3.0",
     "react-immutable-render-mixin": "npm:react-immutable-render-mixin@0.8.1",
@@ -274,6 +275,9 @@ System.config({
     "npm:lodash-compat@3.10.1": {
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
+    "npm:lodash@3.10.1": {
+      "process": "github:jspm/nodelibs-process@0.1.2"
+    },
     "npm:loglevel@1.3.1": {
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
@@ -335,6 +339,17 @@ System.config({
       "react-prop-types": "npm:react-prop-types@0.3.0",
       "uncontrollable": "npm:uncontrollable@3.2.1",
       "warning": "npm:warning@2.1.0"
+    },
+    "npm:react-datepicker@0.19.0": {
+      "buffer": "github:jspm/nodelibs-buffer@0.1.0",
+      "classnames": "npm:classnames@2.2.3",
+      "lodash": "npm:lodash@3.10.1",
+      "moment": "npm:moment@2.10.6",
+      "path": "github:jspm/nodelibs-path@0.1.0",
+      "process": "github:jspm/nodelibs-process@0.1.2",
+      "react": "npm:react@0.14.3",
+      "react-onclickoutside": "npm:react-onclickoutside@4.5.0",
+      "tether": "npm:tether@1.1.1"
     },
     "npm:react-dom@0.14.0": {
       "react": "npm:react@0.14.3"
@@ -431,6 +446,10 @@ System.config({
     },
     "npm:tcomb@2.5.1": {
       "process": "github:jspm/nodelibs-process@0.1.2"
+    },
+    "npm:tether@1.1.1": {
+      "process": "github:jspm/nodelibs-process@0.1.2",
+      "systemjs-json": "github:systemjs/plugin-json@0.1.0"
     },
     "npm:through@2.3.8": {
       "process": "github:jspm/nodelibs-process@0.1.2",
