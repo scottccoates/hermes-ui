@@ -80,6 +80,7 @@ $select-input-placeholder: $src-less-dark;
 $select-option-focused-color: $src-very-dark;
 $select-clear-hover-color: $src-more-bright;
 @import "../../../../jspm_packages/npm/react-select@1.0.0-beta6/scss/default";
+@import "../../../../jspm_packages/npm/react-datepicker@0.19.0/dist/react-datepicker.css";
 
 .Select {
   .Select-control {

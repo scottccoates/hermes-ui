@@ -12,6 +12,10 @@ import cx from 'classnames';
 
 import ButtonSelect from 'src/scripts/libs/react-js/components/button-select'
 
+import Datepicker from 'react-datepicker';
+
+import moment from 'moment';
+
 import {toNumber} from 'src/scripts/libs/js-utils/validation/validation-utils';
 import {normalizeFormValues} from 'src/scripts/libs/js-utils/form/form-utils';
 
@@ -48,7 +52,7 @@ export default function () {
           counterparty: '',
           description: '',
           durationDetails: '',
-          executionDate: '',
+          executionDate: null,
           name: '',
           renewalNoticeAmount: '',
           renewalNoticeType: 'day',
@@ -76,6 +80,10 @@ export default function () {
       }
 
       this._setFormData({typeId: typeId});
+    },
+
+    onChangeExecutionDate (newVal){
+      this._setFormData({executionDate: newVal.toString()});
     },
 
     onChangeTermLengthType (newVal){
@@ -116,6 +124,14 @@ export default function () {
 
       const formData = this.state.formData;
       const status   = this.state.status;
+
+      let executionDate = formData.executionDate;
+      if (executionDate) {
+        executionDate = moment(executionDate);
+      }
+      else {
+        executionDate = moment();
+      }
 
       const defaultFormClasses       = ['form-group'];
       const nameFormClasses          = cx(defaultFormClasses, {'has-error': status.name.errors});
@@ -195,12 +211,14 @@ export default function () {
                       Date</label>
 
                     <div className="col-sm-6">
-                      <Validator
-                        rules={{required:true, message: 'Execution date is required'}}>
-                        <input type="date" className="form-control" name="executionDate"
-                               id="agreement-form-execution-date"
-                               value={formData.executionDate}/>
-                      </Validator>
+                      <Datepicker className='form-control' selected={executionDate}
+                                  onChange={this.onChangeExecutionDate}/>
+                      {/*<Validator
+                       rules={{required:true, message: 'Execution date is required'}}>
+                       <input type="date" className="form-control" name="executionDate"
+                       id="agreement-form-execution-date"
+                       value={formData.executionDate}/>
+                       </Validator>*/}
                     </div>
                     <div className="row">
                       <div className="col-sm-offset-6 col-sm-18">
