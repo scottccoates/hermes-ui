@@ -42,8 +42,8 @@ export default function () {
           durationDetails: {},
           executionDate: {},
           name: {},
-          renewalNoticeAmount: {},
-          renewalNoticeType: {},
+          outcomeNoticeTimeAmount: {},
+          outcomeNoticeTimeType: {},
           termLengthAmount: {},
           termLengthType: {}
         },
@@ -54,8 +54,8 @@ export default function () {
           durationDetails: '',
           executionDate: null,
           name: '',
-          renewalNoticeAmount: '',
-          renewalNoticeType: 'day',
+          outcomeNoticeTimeAmount: '',
+          outcomeNoticeTimeType: 'day',
           termLengthAmount: '',
           termLengthType: 'year',
           typeId: null
@@ -94,8 +94,8 @@ export default function () {
       this._setFormData({autoRenew: newVal});
     },
 
-    onChangeRenewalNoticeType (newVal){
-      this._setFormData({renewalNoticeType: newVal});
+    onChangeOutcomeNoticeTimeType (newVal){
+      this._setFormData({outcomeNoticeTimeType: newVal});
     },
 
     onSubmit(event){
@@ -138,7 +138,9 @@ export default function () {
       const counterpartyFormClasses  = cx(defaultFormClasses, {'has-error': status.counterparty.errors});
       const executionDateFormClasses = cx(defaultFormClasses, {'has-error': status.executionDate.errors});
       const termLengthFormClasses    = cx(defaultFormClasses, {'has-error': status.termLengthAmount.errors});
-      const renewalNoticeFormClasses = cx(defaultFormClasses, {'has-error': status.renewalNoticeAmount.errors});
+      const outcomeNoticeFormClasses = cx(defaultFormClasses, {'has-error': status.outcomeNoticeTimeAmount.errors});
+
+      const alertFormClasses = cx(defaultFormClasses, {'has-error': status.outcomeNoticeTimeAmount.errors});
 
       return (
         <div className="agreement-edit-form-wrapper">
@@ -261,20 +263,20 @@ export default function () {
                                     className="btn btn-sm btn-info agreement-form-button agreement-form-field-button"/>
                     </div>
                   </div>
-                  <div className={renewalNoticeFormClasses}>
-                    <label htmlFor="agreement-form-renewal-notice-amount" className="col-sm-6 control-label">Renewal
+                  <div className={outcomeNoticeFormClasses}>
+                    <label htmlFor="agreement-form-outcome-notice-time-amount" className="col-sm-6 control-label">Outcome
                       Notice</label>
 
                     <div className="col-sm-3">
                       <Validator
-                        rules={{required:false,type:'number', transform:toNumber, message: 'Renewal notice must be a number'}}>
-                        <input type="text" className="form-control" id="agreement-form-renewal-notice-amount"
-                               name="renewalNoticeAmount" value={formData.renewalNoticeAmount}/>
+                        rules={{required:false,type:'number', transform:toNumber, message: 'Outcome notice must be a number'}}>
+                        <input type="text" className="form-control" id="agreement-form-outcome-notice-time-amount"
+                               name="outcomeNoticeTimeAmount" value={formData.outcomeNoticeTimeAmount}/>
                       </Validator>
                     </div>
-                    <div className="col-sm-8">
-                      <ButtonSelect items={durationTypes} value={formData.renewalNoticeType}
-                                    onChange={this.onChangeRenewalNoticeType}
+                    <div className="col-sm-9">
+                      <ButtonSelect items={durationTypes} value={formData.outcomeNoticeTimeType}
+                                    onChange={this.onChangeOutcomeNoticeTimeType}
                                     className="btn btn-sm btn-info agreement-form-button agreement-form-field-button"/>
                         <span
                           className="control-label content-section-item space-left-sm space-right-sm agreement-form-control-text">before
@@ -290,9 +292,9 @@ export default function () {
                     </div>
                     <div className="row">
                       <div className="col-sm-offset-6 col-sm-18">
-                        {status.renewalNoticeAmount.errors ?
+                        {status.outcomeNoticeTimeAmount.errors ?
                           <div
-                            className="help-block">{status.renewalNoticeAmount.errors.join(', ')}</div> : null}</div>
+                            className="help-block">{status.outcomeNoticeTimeAmount.errors.join(', ')}</div> : null}</div>
                     </div>
                   </div>
                   <div className="form-group">
@@ -307,6 +309,40 @@ export default function () {
                     </div>
                   </div>
 
+                </div>
+              </section>
+              <section className="row agreement-form-section content-section-item space-top-sm space-bottom-xl">
+                <div className="col-md-24">
+                  <h3 className="content-section-header">Agreement Alerts</h3>
+
+                  <div className={alertFormClasses}>
+                    <label htmlFor="agreement-form-outcome-notice-time-amount" className="col-sm-6 control-label">Outcome
+                      Notice</label>
+
+                    <div className="col-sm-3">
+                      <Validator
+                        rules={{required:false,type:'number', transform:toNumber, message: 'Outcome notice must be a number'}}>
+                        <input type="text" className="form-control" id="agreement-form-outcome-notice-time-amount"
+                               name="outcomeNoticeTimeAmount" value={formData.outcomeNoticeTimeAmount}/>
+                      </Validator>
+                    </div>
+                    <div className="col-sm-10">
+                      <ButtonSelect items={durationTypes} value={formData.outcomeNoticeTimeType}
+                                    onChange={this.onChangeOutcomeNoticeTimeType}
+                                    className="btn btn-sm btn-info agreement-form-button agreement-form-field-button"/>
+                        <span
+                          className="control-label content-section-item space-left-sm space-right-sm agreement-form-control-text">before
+                        </span>
+                      <ButtonSelect items={[{label:"Expiration",value:'expiration'}]} value='expiration'
+                                    className="btn btn-sm btn-info agreement-form-button agreement-form-field-button"/>
+                    </div>
+                    <div className="row">
+                      <div className="col-sm-offset-6 col-sm-18">
+                        {status.outcomeNoticeTimeAmount.errors ?
+                          <div
+                            className="help-block">{status.outcomeNoticeTimeAmount.errors.join(', ')}</div> : null}</div>
+                    </div>
+                  </div>
                 </div>
               </section>
               <section className="row agreement-form-section agreement-form-section-save content-section-item">

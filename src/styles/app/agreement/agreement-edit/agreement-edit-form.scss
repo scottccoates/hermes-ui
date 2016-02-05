@@ -52,5 +52,9 @@
         top: 2px; //required because the padding will push down all inline elements (other buttons)
       }
     }
+
+    .help-text {
+      left: -25px;
+    }
   }
 }
