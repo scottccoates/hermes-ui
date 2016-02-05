@@ -107,3 +107,9 @@ h1 {
 .underline {
   text-decoration: underline;
 }
+
+.help-text {
+  color: $src-bright;
+  font-weight: lighter;
+  position: absolute;
+}

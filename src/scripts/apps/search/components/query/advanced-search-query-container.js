@@ -3,7 +3,6 @@
 import React from 'react';
 import Bacon from 'baconjs';
 import ReactBacon from 'react-bacon';
-import ReactBootstrap from 'react-bootstrap';
 
 import TextSearchField from './advanced-text-search-field';
 import SelectSearchField from './advanced-select-search-field';

@@ -272,7 +272,7 @@ export default function () {
                                name="renewalNoticeAmount" value={formData.renewalNoticeAmount}/>
                       </Validator>
                     </div>
-                    <div className="col-sm-10">
+                    <div className="col-sm-8">
                       <ButtonSelect items={durationTypes} value={formData.renewalNoticeType}
                                     onChange={this.onChangeRenewalNoticeType}
                                     className="btn btn-sm btn-info agreement-form-button agreement-form-field-button"/>
@@ -281,6 +281,12 @@ export default function () {
                         </span>
                       <ButtonSelect items={[{label:"Expiration",value:'expiration'}]} value='expiration'
                                     className="btn btn-sm btn-info agreement-form-button agreement-form-field-button"/>
+                    </div>
+                    <div className="col-sm-6">
+                      <span className="help-text">
+                        <i className='fa fa-info-circle space-right-md'/>
+                        This is the date by which you need to give notice to the other side about your intent to renew or cancel the contract.
+                      </span>
                     </div>
                     <div className="row">
                       <div className="col-sm-offset-6 col-sm-18">
@@ -293,7 +299,7 @@ export default function () {
                     <label htmlFor="agreement-form-durations-details" className="col-sm-6 control-label">Other
                       Details</label>
 
-                    <div className="col-sm-18">
+                    <div className="col-sm-11">
                       <Validator rules={{required:false}}>
                               <textarea rows="5" className="form-control" id="agreement-form-durations-details"
                                         name="durationDetails" value={formData.durationDetails}/>
