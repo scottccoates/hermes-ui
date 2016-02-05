@@ -3,8 +3,6 @@
 import React from 'react';
 import router  from 'react-router';
 
-import immutableRenderMixin from 'react-immutable-render-mixin';
-
 import DependencyProvider from 'src/scripts/libs/dependency-injection/utils/dependency-provider';
 
 import ButtonSelect from 'src/scripts/libs/react-js/components/button-select'
@@ -22,10 +20,6 @@ export default function (agreementListItemComponent) {
   const component = React.createClass({
     displayName: "AgreementListComponent",
 
-    mixins: [
-      immutableRenderMixin
-    ],
-
     render() {
       const agreementNodes = this.props.agreements.map(function (agreement) {
         return (
@@ -36,7 +30,7 @@ export default function (agreementListItemComponent) {
       });
 
       return (
-        <div className="agreement-list-list-wrapper">
+        <div className="agreement-list-wrapper">
 
           <div className="agreement-list-items">
             {agreementNodes}

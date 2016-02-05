@@ -14,9 +14,6 @@ export default {
 
     const smartViewActions = container.get('SmartViewActions');
 
-    this.agreementEditRef      = null;
-    this.agreementEditCallback = null;
-
     // let's not worry about opening/closing connection for sidebar. just assume that we can always keep this open
     // because it's always displayed.
     // also, we don't need to worry about users logging off, because the whole app will just be refreshed.
@@ -34,7 +31,7 @@ export default {
           userSmartView.url = `/search?${queryString}`;
         });
 
-        store.dispatch(smartViewActions.userSmartViewsReceived(userSmartViews));
+        smartViewActions.userSmartViewsReceived(userSmartViews);
       }
       catch (error) {
         throw new Error(`Error providing smart view list data from firebase: Inner exception: ${error.stack}`);

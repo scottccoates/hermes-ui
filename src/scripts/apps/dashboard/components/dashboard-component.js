@@ -5,10 +5,13 @@ import {Link} from 'react-router';
 
 import { connect } from 'react-redux';
 
+import Separator from 'src/scripts/libs/react-js/components/separator';
+
 import DependencyProvider from '../../../libs/dependency-injection/utils/dependency-provider';
 
-export default function (agreementListComponent) {
+export default function (agreementListComponent, alertListComponent) {
   const AgreementList = agreementListComponent.dependency;
+  const AlertList     = alertListComponent.dependency;
 
   var component = React.createClass({
 
@@ -16,14 +19,45 @@ export default function (agreementListComponent) {
 
     render() {
 
-      var agreementListContent = null;
+      const alerts = this.props.userAlerts.alerts;
 
-      if (this.props.agreements.length) {
+      //const alerts = [{
+      //  alertType: 'expiration',
+      //  id: '123-outcome-notice',
+      //  agreementId: '123',
+      //  agreementName: 'Soemthing',
+      //  dueDate: new Date('6/6/2016')
+      //}];
+
+      let alertListContent = null;
+
+      if (alerts.length) {
+        alertListContent = (
+          <div>
+            <h3 className="content-section-header">Your Alerts</h3>
+            <AlertList alerts={alerts}/>
+            <Separator/>
+          </div>
+        );
+      }
+      else {
+        alertListContent = (
+          <div>
+            <h3 className="content-section-header ">
+              You have no alerts.
+            </h3>
+          </div>
+        );
+      }
+
+      let agreementListContent = null;
+
+      if (this.props.userAgreements.agreements.length) {
 
         agreementListContent = (
           <div>
             <h3 className="content-section-header">Your Agreements</h3>
-            <AgreementList agreements={this.props.agreements}/>
+            <AgreementList agreements={this.props.userAgreements.agreements}/>
           </div>
         );
       }
@@ -50,6 +84,12 @@ export default function (agreementListComponent) {
 
           <div className="content-section  space-bottom">
             <div className="container">
+              {alertListContent}
+            </div>
+          </div>
+
+          <div className="content-section  space-bottom">
+            <div className="container">
               {agreementListContent}
             </div>
           </div>
@@ -59,6 +99,13 @@ export default function (agreementListComponent) {
     }
   });
 
-  component = connect(x=> x.userAgreements)(component);
+  function extracted(state) {
+    return {
+      userAgreements: state.userAgreements,
+      userAlerts: state.userAlerts
+    };
+  }
+
+  component = connect(extracted)(component);
   return new DependencyProvider(component);
 };

@@ -38,7 +38,7 @@ export default {
 
         });
 
-        store.dispatch(agreementActions.userAgreementsReceived(userAgreements));
+        agreementActions.userAgreementsReceived(userAgreements);
       }
       catch (error) {
         throw new Error(`Error providing agreement list data from firebase: Inner exception: ${error.stack}`);
@@ -61,7 +61,7 @@ export default {
 
           if (agreementEdit.executionDate) agreementEdit.executionDate = ymdFormat(dateFromTimestamp(agreementEdit.executionDate));
 
-          store.dispatch(agreementActions.agreementEditReceived(agreementEdit));
+          agreementActions.agreementEditReceived(agreementEdit);
         }
         catch (error) {
           throw new Error(`Error providing agreement edit data from firebase: Inner exception: ${error.stack}`);
@@ -86,15 +86,15 @@ export default {
 
           agreementDetail.typeName = agreementDetail.typeName || 'Agreement type not specified';
 
-          if (agreementDetail.termLengthAmount && agreementDetail.termLengthType) {
-            const termLengthType       = agreementEnums.durationTypes[agreementDetail.termLengthType];
-            agreementDetail.termLength = `${agreementDetail.termLengthAmount} ${termLengthType}`;
+          if (agreementDetail.termLengthTimeAmount && agreementDetail.termLengthTimeType) {
+            const termLengthTimeType   = agreementEnums.durationTypes[agreementDetail.termLengthTimeType];
+            agreementDetail.termLength = `${agreementDetail.termLengthTimeAmount} ${termLengthTimeType}`;
           }
           else {
             agreementDetail.termLength = 'Term length not specified';
           }
 
-          store.dispatch(agreementActions.agreementDetailReceived(agreementDetail));
+          agreementActions.agreementDetailReceived(agreementDetail);
         }
         catch (error) {
           throw new Error(`Error providing agreement detail data from firebase: Inner exception: ${error.stack}`);

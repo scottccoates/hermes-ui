@@ -11,8 +11,6 @@
   .form-group {
     .control-label {
       color: $src-less-dark;
-      @include at-least-small-screen-styles {
-      }
     }
 
     .form-control {

@@ -11,6 +11,7 @@ export default {
     const userAgreementTypesReducer = container.get("UserAgreementTypesReducer").dependency;
     const userCounterpartiesReducer = container.get("UserCounterpartiesReducer").dependency;
     const advancedSearchReducer     = container.get("AdvancedSearchReducer").dependency;
+    const userAlertsReducer         = container.get("UserAlertsReducer").dependency;
 
     const rootReducer = combineReducers({
       session: sessionReducer,
@@ -21,7 +22,8 @@ export default {
       userAgreements: userAgreementsReducer,
       userAgreementTypes: userAgreementTypesReducer,
       userCounterparties: userCounterpartiesReducer,
-      advancedSearch: advancedSearchReducer
+      advancedSearch: advancedSearchReducer,
+      userAlerts: userAlertsReducer
     });
 
     return rootReducer;

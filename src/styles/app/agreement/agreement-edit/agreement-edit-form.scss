@@ -11,7 +11,16 @@
   .form-group {
     .control-label {
       color: $src-less-dark;
-      @include at-least-small-screen-styles {
+    }
+
+    .description-label {
+      color: $src-less-dark;
+      font-weight: lighter;
+
+      padding-top: inherit;
+      text-align: inherit;
+      .description {
+        color: $src-bright;
       }
     }
 
@@ -23,9 +32,6 @@
           padding-top: 3px;
         }
       }
-    }
-
-    @include at-least-small-screen-styles {
     }
 
     .agreement-form-button {

@@ -44,8 +44,14 @@ export default function () {
           name: {},
           outcomeNoticeTimeAmount: {},
           outcomeNoticeTimeType: {},
-          termLengthAmount: {},
-          termLengthType: {}
+          termLengthTimeAmount: {},
+          termLengthTimeType: {},
+          outcomeNoticeAlertEnabled: {},
+          outcomeNoticeAlertTimeAmount: {},
+          outcomeNoticeAlertTimeType: {},
+          expirationAlertEnabled: {},
+          expirationAlertTimeAmount: {},
+          expirationAlertTimeType: {}
         },
         formData: {
           autoRenew: false,
@@ -56,9 +62,15 @@ export default function () {
           name: '',
           outcomeNoticeTimeAmount: '',
           outcomeNoticeTimeType: 'day',
-          termLengthAmount: '',
-          termLengthType: 'year',
-          typeId: null
+          termLengthTimeAmount: '',
+          termLengthTimeType: 'year',
+          typeId: null,
+          outcomeNoticeAlertEnabled: true,
+          outcomeNoticeAlertTimeAmount: 30,
+          outcomeNoticeAlertTimeType: 'day',
+          expirationAlertEnabled: true,
+          expirationAlertTimeAmount: 30,
+          expirationAlertTimeType: 'day'
         }
       };
     },
@@ -86,8 +98,8 @@ export default function () {
       this._setFormData({executionDate: newVal.toString()});
     },
 
-    onChangeTermLengthType (newVal){
-      this._setFormData({termLengthType: newVal});
+    onChangeTermLengthTimeType (newVal){
+      this._setFormData({termLengthTimeType: newVal});
     },
 
     onChangeAutoRenew (newVal){
@@ -96,6 +108,24 @@ export default function () {
 
     onChangeOutcomeNoticeTimeType (newVal){
       this._setFormData({outcomeNoticeTimeType: newVal});
+    },
+
+    onChangeOutcomeNoticeAlertEnabled (newVal){
+      // checkboxes don't work with this validation library
+      // https://app.asana.com/0/10235149247655/60618870526792
+      this._setFormData({outcomeNoticeAlertEnabled: newVal.target.checked});
+    },
+
+    onChangeOutcomeNoticeAlertTimeType (newVal){
+      this._setFormData({outcomeNoticeAlertTimeType: newVal});
+    },
+
+    onChangeExpirationAlertEnabled (newVal){
+      this._setFormData({expirationAlertEnabled: newVal.target.checked});
+    },
+
+    onChangeExpirationAlertTimeType (newVal){
+      this._setFormData({expirationAlertTimeType: newVal});
     },
 
     onSubmit(event){
@@ -137,10 +167,11 @@ export default function () {
       const nameFormClasses          = cx(defaultFormClasses, {'has-error': status.name.errors});
       const counterpartyFormClasses  = cx(defaultFormClasses, {'has-error': status.counterparty.errors});
       const executionDateFormClasses = cx(defaultFormClasses, {'has-error': status.executionDate.errors});
-      const termLengthFormClasses    = cx(defaultFormClasses, {'has-error': status.termLengthAmount.errors});
+      const termLengthFormClasses    = cx(defaultFormClasses, {'has-error': status.termLengthTimeAmount.errors});
       const outcomeNoticeFormClasses = cx(defaultFormClasses, {'has-error': status.outcomeNoticeTimeAmount.errors});
 
-      const alertFormClasses = cx(defaultFormClasses, {'has-error': status.outcomeNoticeTimeAmount.errors});
+      const expirationAlertFormClasses    = cx(defaultFormClasses, {'has-error': status.expirationAlertTimeAmount.errors});
+      const outcomeNoticeAlertFormClasses = cx(defaultFormClasses, {'has-error': status.outcomeNoticeAlertTimeAmount.errors});
 
       return (
         <div className="agreement-edit-form-wrapper">
@@ -194,6 +225,7 @@ export default function () {
                       Description</label>
 
                     <div className="col-sm-18">
+                      {/*rules cannot be empty*/}
                       <Validator rules={{required:false}}>
                             <textarea rows="5" className="form-control" id="agreement-form-description"
                                       name="description" value={formData.description}/>
@@ -237,21 +269,21 @@ export default function () {
                     <div className="col-sm-3">
                       <Validator
                         rules={{required:false, type:'number', transform:toNumber, message: 'Term length must be a number'}}>
-                        <input type="text" className="form-control" name="termLengthAmount"
+                        <input type="text" className="form-control" name="termLengthTimeAmount"
                                id="agreement-form-term-length-amount"
-                               value={formData.termLengthAmount}/>
+                               value={formData.termLengthTimeAmount}/>
                       </Validator>
                     </div>
                     <div className="col-sm-6">
-                      <ButtonSelect items={durationTypes} value={formData.termLengthType}
-                                    onChange={this.onChangeTermLengthType}
+                      <ButtonSelect items={durationTypes} value={formData.termLengthTimeType}
+                                    onChange={this.onChangeTermLengthTimeType}
                                     className="btn btn-sm btn-info agreement-form-button agreement-form-field-button"/>
                     </div>
                     <div className="row">
                       <div className="col-sm-offset-6 col-sm-18">
-                        {status.termLengthAmount.errors ?
+                        {status.termLengthTimeAmount.errors ?
                           <div
-                            className="help-block">{status.termLengthAmount.errors.join(', ')}</div> : null}</div>
+                            className="help-block">{status.termLengthTimeAmount.errors.join(', ')}</div> : null}</div>
                     </div>
                   </div>
                   <div className="form-group">
@@ -269,7 +301,7 @@ export default function () {
 
                     <div className="col-sm-3">
                       <Validator
-                        rules={{required:false,type:'number', transform:toNumber, message: 'Outcome notice must be a number'}}>
+                        rules={{required:false, type:'number', transform:toNumber, message: 'Outcome notice must be a number'}}>
                         <input type="text" className="form-control" id="agreement-form-outcome-notice-time-amount"
                                name="outcomeNoticeTimeAmount" value={formData.outcomeNoticeTimeAmount}/>
                       </Validator>
@@ -315,32 +347,81 @@ export default function () {
                 <div className="col-md-24">
                   <h3 className="content-section-header">Agreement Alerts</h3>
 
-                  <div className={alertFormClasses}>
-                    <label htmlFor="agreement-form-outcome-notice-time-amount" className="col-sm-6 control-label">Outcome
-                      Notice</label>
+                  <div className={expirationAlertFormClasses}>
+                    <div className="col-sm-offset-2 col-sm-2 control-label">
 
+                      <input id='agreement-form-expiration-notice-enabled' type="checkbox"
+                             name="expirationAlertEnabled"
+                             onChange={this.onChangeExpirationAlertEnabled}
+                             checked={formData.expirationAlertEnabled}/>
+
+                    </div>
+                    <div className="col-sm-11">
+                      <label htmlFor="agreement-form-expiration-notice-enabled" className="description-label">
+                        <div>
+                          Expiration Alert
+                        </div>
+                        <div className='description'>
+                          Receive an alert prior to the contract expiring.
+                        </div>
+                      </label>
+                    </div>
                     <div className="col-sm-3">
                       <Validator
-                        rules={{required:false,type:'number', transform:toNumber, message: 'Outcome notice must be a number'}}>
-                        <input type="text" className="form-control" id="agreement-form-outcome-notice-time-amount"
-                               name="outcomeNoticeTimeAmount" value={formData.outcomeNoticeTimeAmount}/>
+                        rules={{required:false, type:'number', transform:toNumber, message: 'Expiration alert must be a number'}}>
+                        <input type="text" className="form-control" id="agreement-form-expiration-alert"
+                               name="expirationAlertTimeAmount" value={formData.expirationAlertTimeAmount}/>
                       </Validator>
                     </div>
-                    <div className="col-sm-10">
-                      <ButtonSelect items={durationTypes} value={formData.outcomeNoticeTimeType}
-                                    onChange={this.onChangeOutcomeNoticeTimeType}
-                                    className="btn btn-sm btn-info agreement-form-button agreement-form-field-button"/>
-                        <span
-                          className="control-label content-section-item space-left-sm space-right-sm agreement-form-control-text">before
-                        </span>
-                      <ButtonSelect items={[{label:"Expiration",value:'expiration'}]} value='expiration'
+                    <div className="col-sm-4">
+                      <ButtonSelect items={durationTypes} value={formData.expirationAlertTimeType}
+                                    onChange={this.onChangeExpirationAlertTimeType}
                                     className="btn btn-sm btn-info agreement-form-button agreement-form-field-button"/>
                     </div>
                     <div className="row">
-                      <div className="col-sm-offset-6 col-sm-18">
-                        {status.outcomeNoticeTimeAmount.errors ?
+                      <div className="col-sm-offset-4 col-sm-12">
+                        {status.expirationAlertTimeAmount.errors ?
                           <div
-                            className="help-block">{status.outcomeNoticeTimeAmount.errors.join(', ')}</div> : null}</div>
+                            className="help-block">{status.expirationAlertTimeAmount.errors.join(', ')}</div> : null}</div>
+                    </div>
+                  </div>
+
+                  <div className={outcomeNoticeAlertFormClasses}>
+                    <div className="col-sm-offset-2 col-sm-2 control-label">
+
+                      <input id='agreement-form-outcome-notice-alert-enabled' type="checkbox"
+                             name="outcomeNoticeAlertEnabled"
+                             onChange={this.onChangeOutcomeNoticeAlertEnabled}
+                             checked={formData.outcomeNoticeAlertEnabled}/>
+
+                    </div>
+                    <div className="col-sm-11">
+                      <label htmlFor="agreement-form-outcome-notice-alert-enabled" className="description-label">
+                        <div>
+                          Outcome Notice Alert
+                        </div>
+                        <div className='description'>
+                          Receive an alert prior to the outcome notice date.
+                        </div>
+                      </label>
+                    </div>
+                    <div className="col-sm-3">
+                      <Validator
+                        rules={{required:false, type:'number', transform:toNumber, message: 'Outcome notice alert must be a number'}}>
+                        <input type="text" className="form-control" id="agreement-form-outcome-notice-alert"
+                               name="outcomeNoticeAlertTimeAmount" value={formData.outcomeNoticeAlertTimeAmount}/>
+                      </Validator>
+                    </div>
+                    <div className="col-sm-4">
+                      <ButtonSelect items={durationTypes} value={formData.outcomeNoticeAlertTimeType}
+                                    onChange={this.onChangeOutcomeNoticeAlertTimeType}
+                                    className="btn btn-sm btn-info agreement-form-button agreement-form-field-button"/>
+                    </div>
+                    <div className="row">
+                      <div className="col-sm-offset-4 col-sm-12">
+                        {status.outcomeNoticeAlertTimeAmount.errors ?
+                          <div
+                            className="help-block">{status.outcomeNoticeAlertTimeAmount.errors.join(', ')}</div> : null}</div>
                     </div>
                   </div>
                 </div>

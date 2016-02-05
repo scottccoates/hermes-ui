@@ -77,6 +77,12 @@ import SearchResultContainer from '../apps/search/components/result/search-resul
 import SearchResultList from '../apps/search/components/result/search-result-list';
 import SearchResultItem from '../apps/search/components/result/search-result-item';
 
+import AlertActions from '../domain/alert/messaging/actions/alert-actions';
+import UserAlertsReducer from '../domain/alert/messaging/reducers/user-alerts-reducer';
+
+import AlertListComponent from 'src/scripts/domain/alert/components/alert-list/alert-list-component';
+import AlertListItemComponent from 'src/scripts/domain/alert/components/alert-list/alert-list-item-component';
+
 import { createHistory , useQueries} from 'history';
 
 export default {
@@ -146,6 +152,12 @@ export default {
     container.register("CounterpartyRepository", CounterpartyRepository);
     container.register("UserCounterpartiesReducer", UserCounterpartiesReducer);
 
+    container.register('AlertActions', AlertActions);
+    container.register('UserAlertsReducer', UserAlertsReducer);
+
+    container.register('AlertListComponent', AlertListComponent);
+    container.register('AlertListItemComponent', AlertListItemComponent);
+
     container.register("FileUpload", FileUpload);
 
     container.register("RoutingService", RoutingService);
@@ -170,7 +182,7 @@ export default {
 
     HeaderComponent.$inject       = ['HeaderSearchComponent', 'HeaderNavSectionComponent'];
     HeaderSearchComponent.$inject = ['SearchActions', 'SearchService', 'SmartViewActions', 'SimpleSearchQueryInputBox', 'SimpleSearchQueryList', 'AdvancedSearchQueryContainer'];
-    DashboardComponent.$inject    = ["AgreementListComponent"];
+    DashboardComponent.$inject    = ["AgreementListComponent", 'AlertListComponent'];
 
     AgreementNewCreateComponent.$inject       = ["PersistenceApiServiceUrl", "FileUpload", "NprogressBarFactory"];
     AgreementEditContainerComponent.$inject   = ["AgreementActions", 'AgreementEditFormComponent'];
@@ -201,6 +213,10 @@ export default {
     SearchActions.$inject    = ["AppStore", 'SearchService'];
     SearchService.$inject    = ["SearchRepository", 'RoutingService'];
     SearchRepository.$inject = ["PersistenceApiService"];
+
+    AlertActions.$inject = ['AppStore'];
+
+    AlertListComponent.$inject = ['AlertListItemComponent'];
 
     SmartViewActions.$inject    = ["AppStore", 'SmartViewService'];
     SmartViewService.$inject    = ["SmartViewRepository"];

@@ -51,7 +51,6 @@ System.config({
     "react-datepicker": "npm:react-datepicker@0.19.0",
     "react-dom": "npm:react-dom@0.14.0",
     "react-highlighter": "npm:react-highlighter@0.3.0",
-    "react-immutable-render-mixin": "npm:react-immutable-render-mixin@0.8.1",
     "react-onclickoutside": "npm:react-onclickoutside@4.5.0",
     "react-redux": "npm:react-redux@3.0.1",
     "react-router": "npm:react-router@1.0.3",
@@ -359,9 +358,6 @@ System.config({
       "process": "github:jspm/nodelibs-process@0.1.2",
       "react": "npm:react@0.14.3",
       "systemjs-json": "github:systemjs/plugin-json@0.1.0"
-    },
-    "npm:react-immutable-render-mixin@0.8.1": {
-      "immutable": "npm:immutable@3.7.4"
     },
     "npm:react-input-autosize@0.6.6": {
       "react": "npm:react@0.14.3"

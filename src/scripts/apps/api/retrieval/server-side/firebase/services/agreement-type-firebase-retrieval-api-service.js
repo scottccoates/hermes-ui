@@ -22,7 +22,7 @@ export default {
       try {
         const agreementTypes = firebaseService.prepareCollection(snapshot);
 
-        store.dispatch(agreementTypeActions.userAgreementTypesReceived(agreementTypes));
+        agreementTypeActions.userAgreementTypesReceived(agreementTypes);
       }
       catch (error) {
         throw new Error(`Error providing agreement type data from firebase: Inner exception: ${error.stack}`);

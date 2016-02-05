@@ -3,7 +3,6 @@
 import React from 'react';
 
 import Router  from 'react-router';
-import ImmutableRenderMixin from 'react-immutable-render-mixin';
 
 import Immutable from 'immutable';
 
@@ -19,10 +18,6 @@ export default function (ActivityItemProvider) {
   const ActivityItem = ActivityItemProvider.dependency;
 
   const component = React.createClass({
-    mixins: [
-      ImmutableRenderMixin
-    ],
-
     getDefaultProps() {
       return {"activities": Immutable.List()}
     },

@@ -4,6 +4,7 @@ import smartViewRetrievalApiService from'./smart-view-firebase-retrieval-api-ser
 import agreementRetrievalApiService from'./agreement-firebase-retrieval-api-service';
 import agreementTypeRetrievalApiService from'./agreement-type-firebase-retrieval-api-service';
 import counterPartyRetrievalApiService from'./counterparty-firebase-retrieval-api-service';
+import alertRetrievalApiService from'./alert-firebase-retrieval-api-service';
 
 export default function (firebase) {
   return {
@@ -20,6 +21,7 @@ export default function (firebase) {
             agreementRetrievalApiService.init(container, store, firebase);
             agreementTypeRetrievalApiService.init(container, store, firebase);
             counterPartyRetrievalApiService.init(container, store, firebase);
+            alertRetrievalApiService.init(container, store, firebase);
             log.info("Firebase authenticated");
 
             res();
