@@ -34,6 +34,8 @@ export default function () {
     mixins: [Validation.FieldMixin],
 
     getInitialState() {
+      // http://stackoverflow.com/questions/2698725/comparing-date-part-only-without-comparing-time-in-javascript
+      const today = new Date(new Date().setHours(0, 0, 0, 0, 0));
       return {
         status: {
           autoRenew: {},
@@ -58,9 +60,9 @@ export default function () {
           counterparty: '',
           description: '',
           durationDetails: '',
-          executionDate: null,
+          executionDate: today,
           name: '',
-          outcomeNoticeTimeAmount: '',
+          outcomeNoticeTimeAmount: 30,
           outcomeNoticeTimeType: 'day',
           termLengthTimeAmount: '',
           termLengthTimeType: 'year',
@@ -95,7 +97,7 @@ export default function () {
     },
 
     onChangeExecutionDate (newVal){
-      this._setFormData({executionDate: newVal.toString()});
+      this._setFormData({executionDate: newVal.toDate()});
     },
 
     onChangeTermLengthTimeType (newVal){
