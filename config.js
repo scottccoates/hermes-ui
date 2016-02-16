@@ -49,7 +49,7 @@ System.config({
     "react-bacon": "npm:react-bacon@0.0.4",
     "react-bootstrap": "npm:react-bootstrap@0.28.2",
     "react-datepicker": "npm:react-datepicker@0.19.0",
-    "react-dom": "npm:react-dom@0.14.0",
+    "react-dom": "npm:react-dom@0.14.3",
     "react-highlighter": "npm:react-highlighter@0.3.0",
     "react-onclickoutside": "npm:react-onclickoutside@4.5.0",
     "react-redux": "npm:react-redux@3.0.1",
@@ -333,7 +333,7 @@ System.config({
       "lodash-compat": "npm:lodash-compat@3.10.1",
       "process": "github:jspm/nodelibs-process@0.1.2",
       "react": "npm:react@0.14.3",
-      "react-dom": "npm:react-dom@0.14.0",
+      "react-dom": "npm:react-dom@0.14.3",
       "react-overlays": "npm:react-overlays@0.5.4",
       "react-prop-types": "npm:react-prop-types@0.3.0",
       "uncontrollable": "npm:uncontrollable@3.2.1",
@@ -350,7 +350,7 @@ System.config({
       "react-onclickoutside": "npm:react-onclickoutside@4.5.0",
       "tether": "npm:tether@1.1.1"
     },
-    "npm:react-dom@0.14.0": {
+    "npm:react-dom@0.14.3": {
       "react": "npm:react@0.14.3"
     },
     "npm:react-highlighter@0.3.0": {
@@ -369,7 +369,7 @@ System.config({
       "classnames": "npm:classnames@2.2.3",
       "dom-helpers": "npm:dom-helpers@2.4.0",
       "react": "npm:react@0.14.3",
-      "react-dom": "npm:react-dom@0.14.0",
+      "react-dom": "npm:react-dom@0.14.3",
       "react-prop-types": "npm:react-prop-types@0.2.2",
       "warning": "npm:warning@2.1.0"
     },
@@ -395,7 +395,7 @@ System.config({
     "npm:react-select@1.0.0-beta6": {
       "classnames": "npm:classnames@2.2.1",
       "react": "npm:react@0.14.3",
-      "react-dom": "npm:react-dom@0.14.0",
+      "react-dom": "npm:react-dom@0.14.3",
       "react-input-autosize": "npm:react-input-autosize@0.6.6"
     },
     "npm:react@0.14.3": {
