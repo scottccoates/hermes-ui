@@ -52,8 +52,6 @@ export default function (sessionActions, tokenService) {
       event.preventDefault();
       var validation = this.refs.validation;
 
-      const props = this.props;
-
       // it's important to remember that validation is async (consider database calls, apis, existence in db, etc).
       validation.validate(valid => {
         if (valid) {
@@ -61,7 +59,7 @@ export default function (sessionActions, tokenService) {
 
           try {
             log.info("Beginning: Log in user: %s", tokenData.profile.username);
-            props.login(tokenData.idToken, tokenData.profile, props.resumeSession);
+            sessionActions.login(tokenData.idToken, tokenData.profile, sessionActions.resumeSession);
             log.info("Completed: Log in user: %s", tokenData.profile.username);
           }
           catch (e) {
@@ -131,7 +129,7 @@ export default function (sessionActions, tokenService) {
     }
   });
 
-  login = connect(x=> x.session, sessionActions)(login);
+  login = connect(x=> x.session)(login);
 
   return new DependencyProvider(login);
 };

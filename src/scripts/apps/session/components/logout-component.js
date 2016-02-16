@@ -16,7 +16,7 @@ export default function (sessionActions) {
 
     componentWillMount(){
       if (this.props.loggedIn) {
-        this.props.logout();
+        sessionActions.logout();
       }
       else {
         this._doLoginTransition();
@@ -38,6 +38,6 @@ export default function (sessionActions) {
     }
   });
 
-  logout = connect(x=>x.session, sessionActions)(logout);
+  logout = connect(x=>x.session)(logout);
   return new DependencyProvider(logout);
 };

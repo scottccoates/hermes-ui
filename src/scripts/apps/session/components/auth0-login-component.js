@@ -32,7 +32,6 @@ export default function (sessionActions, auth0Lock) {
       // auth info would be int he has is if we're impersonating someone.
       const authInfo = auth0Lock.$auth0.parseHash(window.location.hash);
       const idToken  = authInfo && authInfo.id_token;
-      const props    = this.props;
 
       if (idToken) {
 
@@ -54,7 +53,7 @@ export default function (sessionActions, auth0Lock) {
 
             try {
               log.info("Beginning: Impersonate user: %s", profile.nickname);
-              props.login(idToken, profile, props.resumeSession);
+              sessionActions.login(idToken, profile, sessionActions.resumeSession);
             }
             catch (e) {
               throw new Error("Error completing the impersonate process " + e.stack);
@@ -88,7 +87,7 @@ export default function (sessionActions, auth0Lock) {
             else {
               try {
                 log.info("Beginning: Log in user: %s", profile.nickname);
-                props.login(idToken, profile, props.resumeSession);
+                sessionActions.login(idToken, profile, sessionActions.resumeSession);
               }
               catch (e) {
                 throw new Error("Error completing the login process " + e.stack);
@@ -107,7 +106,7 @@ export default function (sessionActions, auth0Lock) {
     }
   });
 
-  login = connect(x=> x.session, sessionActions)(login);
+  login = connect(x=> x.session)(login);
 
   return new DependencyProvider(login);
 };
