@@ -32,7 +32,7 @@
       "react-onclickoutside": "npm:react-onclickoutside@^4.5.0",
       "react-redux": "npm:react-redux@3.0.1",
       "react-router": "npm:react-router@1.0.3",
-      "react-select": "npm:react-select@1.0.0-beta6",
+      "react-select": "npm:react-select@0.9.1",
       "react-tagsinput": "github:olahol/react-tagsinput@1.2.0",
       "redux": "npm:redux@3.0.2",
       "redux-history-transitions": "npm:redux-history-transitions@1.0.0",

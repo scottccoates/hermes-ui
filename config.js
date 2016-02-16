@@ -54,7 +54,7 @@ System.config({
     "react-onclickoutside": "npm:react-onclickoutside@4.5.0",
     "react-redux": "npm:react-redux@3.0.1",
     "react-router": "npm:react-router@1.0.3",
-    "react-select": "npm:react-select@1.0.0-beta6",
+    "react-select": "npm:react-select@0.9.1",
     "react-tagsinput": "github:olahol/react-tagsinput@1.2.0",
     "redux": "npm:redux@3.0.2",
     "redux-history-transitions": "npm:redux-history-transitions@1.0.0",
@@ -150,11 +150,6 @@ System.config({
       "ieee754": "npm:ieee754@1.1.6",
       "isarray": "npm:isarray@1.0.0",
       "process": "github:jspm/nodelibs-process@0.1.2"
-    },
-    "npm:classnames@2.2.1": {
-      "assert": "github:jspm/nodelibs-assert@0.1.0",
-      "process": "github:jspm/nodelibs-process@0.1.2",
-      "systemjs-json": "github:systemjs/plugin-json@0.1.0"
     },
     "npm:clean-css@3.1.9": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
@@ -359,7 +354,7 @@ System.config({
       "react": "npm:react@0.14.3",
       "systemjs-json": "github:systemjs/plugin-json@0.1.0"
     },
-    "npm:react-input-autosize@0.6.6": {
+    "npm:react-input-autosize@0.6.8": {
       "react": "npm:react@0.14.3"
     },
     "npm:react-onclickoutside@4.5.0": {
@@ -392,11 +387,11 @@ System.config({
       "process": "github:jspm/nodelibs-process@0.1.2",
       "warning": "npm:warning@2.1.0"
     },
-    "npm:react-select@1.0.0-beta6": {
-      "classnames": "npm:classnames@2.2.1",
+    "npm:react-select@0.9.1": {
+      "classnames": "npm:classnames@2.2.3",
       "react": "npm:react@0.14.3",
       "react-dom": "npm:react-dom@0.14.3",
-      "react-input-autosize": "npm:react-input-autosize@0.6.6"
+      "react-input-autosize": "npm:react-input-autosize@0.6.8"
     },
     "npm:react@0.14.3": {
       "envify": "npm:envify@3.4.0",

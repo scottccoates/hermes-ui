@@ -1,17 +1,19 @@
-const agreementPath = 'agreements';
-const assetPath     = 'assets';
+const agreementTypePath = 'agreement-types';
 
 export default function (apiService) {
 
   const repository = {
-    async save(agreement) {
-      const path = `${agreementPath}/${agreement.agreementId}`;
-      return await apiService.update(path, agreement);
-    },
+    async save(agreementType) {
+      const agreementTypeId = agreementType.id;
 
-    async getAgreementArtifactSignedObject(artifactId) {
-      const path = `${assetPath}/${artifactId}`;
-      return await apiService.retrieve(path);
+      if (agreementTypeId) {
+        const path = `${agreementTypePath}/${agreementTypeId}`;
+        return await apiService.update(path, agreementTypeId);
+      }
+      else {
+        const path = `${agreementTypePath}`;
+        return await apiService.create(path, agreementType);
+      }
     }
   };
 

@@ -86,11 +86,16 @@ export default function () {
       this.setState({formData: Object.assign({}, this.state.formData, val)});
     },
 
-    onChangeAgreementType (newVal){
+    onChangeAgreementType (newVal, newValState){
       let typeId = null;
 
       if (newVal) {
-        typeId = newVal.value;
+        if (newValState[0].create) {
+          this.props.onCreateAgreementType(newVal);
+        }
+        else {
+          typeId = newVal;
+        }
       }
 
       this._setFormData({typeId: typeId});
@@ -161,9 +166,6 @@ export default function () {
       if (executionDate) {
         executionDate = moment(executionDate);
       }
-      else {
-        executionDate = moment();
-      }
 
       const defaultFormClasses       = ['form-group'];
       const nameFormClasses          = cx(defaultFormClasses, {'has-error': status.name.errors});
@@ -216,7 +218,8 @@ export default function () {
                     <label className="col-sm-6 control-label">Agreement Type</label>
 
                     <div className="col-sm-18">
-                      <Select placeholder={null} options={agreementTypesValues} allowCreate
+                      <Select placeholder={null} options={agreementTypesValues}
+                              allowCreate
                               value={formData.typeId}
                               onChange={this.onChangeAgreementType}/>
                     </div>

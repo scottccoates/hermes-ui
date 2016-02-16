@@ -45,6 +45,7 @@ export default function (persistenceApiServiceUrl, appStore) {
       var retVal = await response.text();
       if (retVal) {
         retVal = JSON.parse(retVal);
+        retVal = humps.camelizeKeys(retVal);
       }
 
       return retVal;

@@ -25,7 +25,7 @@ const {Validator} = Validation;
 
 const {durationTypes, renewTypes} = agreementValueLabel;
 
-export default function (agreementActions, agreementEditFormComponent) {
+export default function (agreementActions, agreementTypeActions, agreementEditFormComponent) {
 
   const AgreementEditForm = agreementEditFormComponent.dependency;
 
@@ -40,6 +40,10 @@ export default function (agreementActions, agreementEditFormComponent) {
       agreementActions.saveAgreement(Object.assign({}, data, {
         agreementId: this.props.params.agreementId
       }));
+    },
+
+    onCreateAgreementType(agreementType){
+      agreementTypeActions.saveAgreementType({name: agreementType});
     },
 
     onInvalid()    {
@@ -71,7 +75,9 @@ export default function (agreementActions, agreementEditFormComponent) {
             <div className="container">
               <AgreementEditForm onValid={this.onValid} onInvalid={this.onInvalid}
                                  agreement={this.props.agreementEdit.agreement}
-                                 agreementTypes={this.props.userAgreementTypes.agreementTypes}/>
+                                 agreementTypes={this.props.userAgreementTypes.agreementTypes}
+                                 onCreateAgreementType={this.onCreateAgreementType}
+                />
             </div>
           </div>
         </div>

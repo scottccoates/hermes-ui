@@ -90,7 +90,7 @@ export default function (searchActions, searchService, smartViewActions, searchQ
       let typeId = null;
 
       if (agreementType) {
-        typeId = agreementType.value;
+        typeId = agreementType;
       }
 
       const parameters = Object.assign({}, this.props.advancedSearch.parameters, {typeId});
@@ -101,7 +101,7 @@ export default function (searchActions, searchService, smartViewActions, searchQ
       let counterparty = null;
 
       if (counterpartyOption) {
-        counterparty = counterpartyOption.value;
+        counterparty = counterpartyOption;
       }
 
       const parameters = Object.assign({}, this.props.advancedSearch.parameters, {counterparty});

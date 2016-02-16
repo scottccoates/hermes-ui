@@ -50,7 +50,7 @@ export default function (persistenceApiServiceUrl, fileUploadProvider, nprogress
     onSuccess(file, response) {
       this.nprogressBar.updateProgress(100);
       // https://app.asana.com/0/10235149247647/48987687687033
-      setTimeout(_=> this.props.history.pushState(null, `/agreements/${response.potential_agreement_id}/step-2`), 500);
+      setTimeout(_=> this.props.history.pushState(null, `/agreements/${response.potentialAgreementId}/step-2`), 500);
     },
 
     onError(file, errorMessage) {
@@ -90,9 +90,9 @@ export default function (persistenceApiServiceUrl, fileUploadProvider, nprogress
                                         acceptedFiles=".pdf, .doc, .docx">
                             <i className="fa fa-cloud-upload"></i>
 
-                            <div className="primary-import-text">Select a file to upload</div>
+                            <div className="primary-import-text">Select files to upload</div>
                             <div className="secondary-import-text">
-                              <span>Or drag and drop a file</span>
+                              <span>Or drag and drop files</span>
                             </div>
                           </FileUploader>
 

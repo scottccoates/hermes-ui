@@ -3,6 +3,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import humps from 'humps';
+
 import DependencyProvider from './../../dependency-injection/utils/dependency-provider';
 
 import Dropzone from 'dropzone';
@@ -64,13 +66,18 @@ export default function (dropzoneFactory) {
       this._configureProps();
     },
 
+    onSuccess(file, response){
+      const newData = humps.camelizeKeys(response);
+      this.props.onSuccess(file, newData);
+    },
+
     componentDidMount() {
       // remember to use non-arrow function here because that would bind it to undefined and then `this` wouldn't work.
       this.dropzone = dropzoneFactory.get(ReactDOM.findDOMNode(this), this._dropzoneOptions.toJS());
 
       this.dropzone.on('addedfile', this.props.onAddedFile);
       this.dropzone.on('totaluploadprogress', this.props.onProgressed);
-      this.dropzone.on('success', this.props.onSuccess);
+      this.dropzone.on('success', this.onSuccess);
       this.dropzone.on('error', this.props.onError);
     },
 
@@ -82,7 +89,7 @@ export default function (dropzoneFactory) {
       // I would not expect `updateTotalUploadProgress` to be triggered simply be calling `destroy`.
       this.dropzone.off('addedfile', this.props.onAddedFile);
       this.dropzone.off('totaluploadprogress', this.props.onProgressed);
-      this.dropzone.off('success', this.props.onSuccess);
+      this.dropzone.off('success', this.onSuccess);
       this.dropzone.off('error', this.props.onError);
 
       this.dropzone.destroy();

@@ -59,7 +59,7 @@ export default {
         try {
           const agreementEdit = firebaseService.prepareObject(snapshot);
 
-          if (agreementEdit.executionDate) agreementEdit.executionDate = ymdFormat(dateFromTimestamp(agreementEdit.executionDate));
+          if (agreementEdit.executionDate) agreementEdit.executionDate = dateFromTimestamp(agreementEdit.executionDate);
 
           agreementActions.agreementEditReceived(agreementEdit);
         }

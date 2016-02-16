@@ -64,7 +64,7 @@ export default React.createClass({
           <Select ref='fieldInput'
                   className='search-field-text-input-value'
                   placeholder={null}
-                  options={this.props.options} allowCreate
+                  options={this.props.options}
                   value={this.props.value}
                   onBlur={this.onBlur}
                   onChange={this.props.onChange}/>
