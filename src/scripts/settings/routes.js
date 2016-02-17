@@ -22,6 +22,8 @@ export default {
 
     const SearchResultContainer = container.get("SearchResultContainer").dependency;
 
+    const SecurityPrivacyComponent = container.get("SecurityPrivacyComponent").dependency;
+
     // http://rackt.github.io/history/stable/GettingStarted.html
     // react-router started using a new history dep: https://github.com/rackt/react-router/blob/master/CHANGELOG.md#v100-beta4---mon-31-aug-2015-061934-gmt
     const history = container.get("History");
@@ -38,8 +40,11 @@ export default {
       <Provider store={store}>
         <Router history={history}>
           <Route component={AppLayoutComponent} onEnter={requireAuth}>
-            <Redirect from='/' to='/dashboard'/> // https://github.com/rackt/react-router/issues/1675
+            <Redirect from='/' to='/dashboard'/> {/*https://github.com/rackt/react-router/issues/1675*/}
+
             <Route path='dashboard' component={DashboardComponent}/>
+
+            <Route path='privacy' component={SecurityPrivacyComponent}/>
 
             <Route path='agreements'>
               <Route path='step-1' component={CreateAgreementComponent}/>

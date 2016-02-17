@@ -63,8 +63,11 @@ a {
 
 p {
   color: $src-less-dark;
-  font-family: $src-font-family-content;
   margin: 0;
+
+  &.user-content {
+    font-family: $src-font-family-content;
+  }
 }
 
 .src-heading {

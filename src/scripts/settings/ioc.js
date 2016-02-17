@@ -83,6 +83,8 @@ import UserAlertsReducer from '../domain/alert/messaging/reducers/user-alerts-re
 import AlertListComponent from 'src/scripts/domain/alert/components/alert-list/alert-list-component';
 import AlertListItemComponent from 'src/scripts/domain/alert/components/alert-list/alert-list-item-component';
 
+import SecurityPrivacyComponent from '../apps/security/components/privacy/security-privacy-component';
+
 import { createHistory , useQueries} from 'history';
 
 export default {
@@ -169,6 +171,8 @@ export default {
     container.register("SessionReducer", SessionReducer);
     container.register("SessionActions", SessionActions);
     container.register("LogoutComponent", LogoutComponent);
+
+    container.register("SecurityPrivacyComponent", SecurityPrivacyComponent);
 
     container.register("NprogressBar", NprogressBar);
 

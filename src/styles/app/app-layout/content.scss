@@ -100,13 +100,17 @@
 
   .content-section-header {
 
-    color: $src-less-dark;
+    color: $src-bright;
 
     @include at-least-small-screen-styles {
 
       @include font-size(18px);
 
       margin-bottom: $src-content-section-vertical-space-sm; // Doesn't affect forms with margin collapse.
+    }
+
+    &.h1 {
+      color: $src-less-dark;
     }
   }
 

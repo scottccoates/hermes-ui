@@ -35,9 +35,6 @@
       }
 
       &#footer-secure-connection {
-        cursor: default;
-        user-select: none;
-
         i {
           @include at-least-small-screen-styles {
             @include font-size($src-font-size-small);
