@@ -19,7 +19,7 @@ export default React.createClass({
 
   componentWillMount() {
     const clickStream = this.eventStream('onClick');
-    clickStream.subscribe(()=> {
+    clickStream.onValue(()=> {
       this.setState({isFocused: true});
 
       // we need to wait until render has finished before we can set focus to this as its currently hidden.
@@ -27,7 +27,7 @@ export default React.createClass({
     });
 
     const blurStream = this.eventStream('onBlur');
-    blurStream.subscribe(()=>this.setState({isFocused: false}));
+    blurStream.onValue(()=>this.setState({isFocused: false}));
   },
 
   onChange(e){
