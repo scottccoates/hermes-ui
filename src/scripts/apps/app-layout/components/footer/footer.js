@@ -38,7 +38,7 @@ export default React.createClass({
             <i className="fa fa-facebook"/>
           </li>
           <li id="footer-copyright">
-            <span>© 2015 Willow, Inc.</span>
+            <span>© 2016 Willow, Inc.</span>
           </li>
         </ul>
       </footer>
