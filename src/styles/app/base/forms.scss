@@ -92,5 +92,14 @@ $select-clear-hover-color: $src-more-bright;
       vertical-align: baseline;
     }
 
+    .Select-placeholder {
+      color: $src-less-dark;
+    }
+  }
+
+  .Select-menu {
+    .Select-option {
+      color: $src-less-dark;
+    }
   }
 }
