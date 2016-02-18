@@ -44,18 +44,25 @@ parent: forms
   </div>
 */
 
-.form-control {
-  // it is probably good for form controls to be this opinionated, given that the color will probably always work
-  // on a white background.
 
-  @include form-input();
+body {
+  // using body here to provide more specificity.
+  // some libs (like react datepicker) have input boxes that we want to restyle with .form-control
+  // but their css overrides ours.
+  // ex: .datepicker__input .form-control.
+  .form-control {
+    // it is probably good for form controls to be this opinionated, given that the color will probably always work
+    // on a white background.
 
-  &:focus, &.focus {
-    @include input-focus();
-  }
+    @include form-input();
 
-  i {
-    color: $src-bright;
+    &:focus, &.focus {
+      @include input-focus();
+    }
+
+    i {
+      color: $src-bright;
+    }
   }
 }
 
@@ -80,7 +87,6 @@ $select-input-placeholder: $src-less-dark;
 $select-option-focused-color: $src-very-dark;
 $select-clear-hover-color: $src-more-bright;
 @import "../../../../jspm_packages/npm/react-select@0.9.1/scss/default";
-@import "../../../../jspm_packages/npm/react-datepicker@0.19.0/dist/react-datepicker.css";
 
 .Select {
   .Select-control {
@@ -101,5 +107,15 @@ $select-clear-hover-color: $src-more-bright;
     .Select-option {
       color: $src-less-dark;
     }
+  }
+}
+
+// Datepicker
+// --------------------------------------------------
+@import "../../../../jspm_packages/npm/react-datepicker@0.19.0/dist/react-datepicker";
+
+body {
+  .datepicker__input {
+    font-size: inherit;
   }
 }
