@@ -21,7 +21,6 @@ export default function () {
     },
 
     onItemClick(e) {
-      e.preventDefault();
       this.props.onItemSelected(this.props.id);
     },
 

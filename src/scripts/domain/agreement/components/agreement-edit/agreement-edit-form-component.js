@@ -88,7 +88,7 @@ export default function () {
       this.setState({formData: Object.assign({}, this.state.formData, val)});
     },
 
-    async     onChangeAgreementType (newVal, newValState){
+    async onChangeAgreementType (newVal, newValState){
       let typeId = null;
 
       if (newVal) {
