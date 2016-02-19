@@ -42,8 +42,8 @@ export default function (searchService) {
       const inputStream = this.eventStream('onInputChanged')
         .debounce(500)
         .map('.target.value.trim')
-        .filter(v => !!v)
-        .skipDuplicates(); // ex would be copy/pasting the same thing in the text box.
+        .filter(v => !!v);
+      //.skipDuplicates(); // ex would be copy/pasting the same thing in the text box. https://app.asana.com/0/10235149247655/92185394999254
 
       const searchResults = inputStream.flatMapLatest(search);
       searchResults.onValue(resultSet=> this.props.onResultsReceived(resultSet));
