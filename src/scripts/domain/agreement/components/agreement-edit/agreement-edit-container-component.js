@@ -25,7 +25,7 @@ const {Validator} = Validation;
 
 const {durationTypes, renewTypes} = agreementValueLabel;
 
-export default function (agreementActions, agreementTypeActions, agreementEditFormComponent) {
+export default function (agreementActions, agreementTypeService, agreementEditFormComponent) {
 
   const AgreementEditForm = agreementEditFormComponent.dependency;
 
@@ -42,8 +42,9 @@ export default function (agreementActions, agreementTypeActions, agreementEditFo
       }));
     },
 
-    onCreateAgreementType(agreementType){
-      agreementTypeActions.saveAgreementType({name: agreementType});
+    async onCreateAgreementType(agreementType){
+      const newAgreementType = await agreementTypeService.saveAgreementType({name: agreementType});
+      return newAgreementType;
     },
 
     onInvalid()    {

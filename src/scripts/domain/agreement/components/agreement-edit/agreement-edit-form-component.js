@@ -78,27 +78,33 @@ export default function () {
     },
 
     componentWillReceiveProps (nextProps) {
-      // reset old form data if we switch from one agreement to another
-      this._setFormData(Object.assign({}, this.getInitialState().formData, nextProps.agreement));
+      if (!this.state.formData.id) {
+        // reset old form data if we switch from one agreement to another
+        this._setFormData(Object.assign({}, this.getInitialState().formData, nextProps.agreement));
+      }
     },
 
     _setFormData(val){
       this.setState({formData: Object.assign({}, this.state.formData, val)});
     },
 
-    onChangeAgreementType (newVal, newValState){
+    async     onChangeAgreementType (newVal, newValState){
       let typeId = null;
 
       if (newVal) {
         if (newValState[0].create) {
-          this.props.onCreateAgreementType(newVal);
+          const newAgreementType = await this.props.onCreateAgreementType(newVal);
+          this._setFormData({typeId: newAgreementType.agreementTypeId});
         }
         else {
           typeId = newVal;
+          this._setFormData({typeId: typeId});
         }
       }
+      else {
+        this._setFormData({typeId: typeId});
+      }
 
-      this._setFormData({typeId: typeId});
     },
 
     onChangeExecutionDate (newVal){

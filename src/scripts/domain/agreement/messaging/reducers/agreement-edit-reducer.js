@@ -25,11 +25,6 @@ export default function () {
         retVal = Object.assign({}, state, {agreement: action.agreement});
         break;
 
-      case constants.AGREEMENT_EDIT_SPECIFY_AGREEMENT_TYPE:
-        const agreement = Object.assign({}, state.agreement, {typeId: action.agreementType.agreementTypeId});
-        retVal          = Object.assign({}, state, {agreement});
-        break;
-
       default:
         retVal = state;
         break;

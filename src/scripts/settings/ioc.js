@@ -189,7 +189,7 @@ export default {
     DashboardComponent.$inject    = ["AgreementListComponent", 'AlertListComponent'];
 
     AgreementNewCreateComponent.$inject       = ["PersistenceApiServiceUrl", "FileUpload", "NprogressBarFactory"];
-    AgreementEditContainerComponent.$inject   = ["AgreementActions", 'AgreementTypeActions', 'AgreementEditFormComponent'];
+    AgreementEditContainerComponent.$inject   = ["AgreementActions", 'AgreementTypeService', 'AgreementEditFormComponent'];
     AgreementListComponent.$inject            = ["AgreementListItemComponent"];
     AgreementDetailContainerComponent.$inject = ['AgreementActions', "AgreementDetailGeneralInfoComponent", 'AgreementDetailLengthComponent', 'AgreementDetailArtifactsComponent'];
     AgreementDetailArtifactsComponent.$inject = ['AgreementService'];
