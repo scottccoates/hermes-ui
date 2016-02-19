@@ -46,7 +46,7 @@ export default function (agreementActions, agreementDetailGeneralInfoComponent, 
                         </div>
 
                         <div className='col-sm-4 edit-link'>
-                          <Link to={`/agreements/${this.props.agreement.id}/step-2`}>
+                          <Link to={`/agreements/${this.props.agreement.id}/edit`}>
                             <div>
                               {/*the div makes the entire space hoverable*/}
                               <i className="fa fa-pencil space-right-md"></i>
@@ -69,7 +69,7 @@ export default function (agreementActions, agreementDetailGeneralInfoComponent, 
                         </div>
 
                         <div className='col-sm-4 edit-link'>
-                          <Link to={`/agreements/${this.props.agreement.id}/step-2`}>
+                          <Link to={`/agreements/${this.props.agreement.id}/edit`}>
                             <div>
                               {/*the div makes the entire space hoverable*/}
                               <i className="fa fa-pencil space-right-md"></i>

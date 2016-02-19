@@ -42,7 +42,7 @@ export default function () {
               </div>
 
               <div className="col-sm-22 alert-content">
-                <Link to={`/agreements/${this.props.alert.agreementId}/step-2`}>
+                <Link to={`/agreements/${this.props.alert.agreementId}`}>
                   {this.props.alert.agreementName}
                 </Link> {message}
               </div>

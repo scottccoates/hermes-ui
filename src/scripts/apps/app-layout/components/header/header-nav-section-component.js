@@ -29,7 +29,7 @@ export default function () {
               <Dropdown.Menu
                 className="dropdown-menu dropdown-menu-right dropdown-menu-arrow dropdown-menu-arrow-right">
                 <li role="presentation">
-                  <a role="menuitem" href="javascript:void(0)">Dashboard</a>
+                  <Link role="menuitem" to="/dashboard">Dashboard</Link>
                 </li>
                 <li role="presentation">
                   <a role="menuitem" href="javascript:void(0)">Edit Profile</a>
