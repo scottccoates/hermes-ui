@@ -70,6 +70,7 @@ export default function (searchActions, searchService, smartViewActions, searchQ
       this.setState({searchDropdownEnabled: false});
       const query      = this.state.simple.query;
       const parameters = Object.assign({}, this.props.advancedSearch.parameters, {text: query});
+      smartViewActions.clearSmartViewEdit();
       searchActions.specifyAdvancedSearchParameters(parameters);
       searchService.transitionToAdvancedSearchPage(parameters);
     },
