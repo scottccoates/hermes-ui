@@ -94,7 +94,7 @@ export default function () {
       if (newVal) {
         if (newValState[0].create) {
           const newAgreementType = await this.props.onCreateAgreementType(newVal);
-          this._setFormData({typeId: newAgreementType.agreementTypeId});
+          this._setFormData({typeId: newAgreementType.id});
         }
         else {
           typeId = newVal;
