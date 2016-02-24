@@ -78,8 +78,8 @@ export default function () {
     },
 
     componentWillReceiveProps (nextProps) {
-      if (!this.state.formData.id) {
-        // reset old form data if we switch from one agreement to another
+      // reset old form data if we switch from one agreement to another
+      if (this.state.formData.id != nextProps.agreement.id) {
         this._setFormData(Object.assign({}, this.getInitialState().formData, nextProps.agreement));
       }
     },
