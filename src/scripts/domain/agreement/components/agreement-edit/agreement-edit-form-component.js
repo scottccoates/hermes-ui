@@ -193,7 +193,7 @@ export default function () {
 
                   <div className={nameFormClasses}>
                     <label htmlFor="agreement-form-name" className="col-sm-6 control-label">Agreement
-                      Name</label>
+                      Name *</label>
 
                     <div className="col-sm-18">
                       <Validator rules={{required:true, message: 'Name is required'}}>
@@ -208,7 +208,7 @@ export default function () {
 
                   <div className={counterpartyFormClasses}>
                     <label htmlFor="agreement-form-counterparty"
-                           className="col-sm-6 control-label">Counterparty</label>
+                           className="col-sm-6 control-label">Counterparty *</label>
 
                     <div className="col-sm-18">
                       <Validator rules={{required:true, message: 'Counterparty is required'}}>
@@ -253,7 +253,7 @@ export default function () {
 
                   <div className={executionDateFormClasses}>
                     <label htmlFor="agreement-form-execution-date" className="col-sm-6 control-label">Execution
-                      Date</label>
+                      Date *</label>
 
                     <div className="col-sm-6">
                       <Datepicker className='form-control' selected={executionDate}
