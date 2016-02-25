@@ -11,7 +11,7 @@ export default React.createClass({
       <footer id="footer-wrapper">
         <ul>
           <li id="footer-secure-connection">
-            <Link to='privacy'>
+            <Link to='/privacy'>
               <i className="fa fa-lock"></i>
               <span>Secure Connection</span>
             </Link>
