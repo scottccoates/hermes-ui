@@ -21,14 +21,6 @@ export default function (agreementListComponent, alertListComponent) {
 
       const alerts = this.props.userAlerts.alerts;
 
-      //const alerts = [{
-      //  alertType: 'expiration',
-      //  id: '123-outcome-notice',
-      //  agreementId: '123',
-      //  agreementName: 'Soemthing',
-      //  dueDate: new Date('6/6/2016')
-      //}];
-
       let alertListContent = null;
 
       if (alerts.length) {

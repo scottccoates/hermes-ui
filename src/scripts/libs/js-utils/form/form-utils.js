@@ -4,7 +4,16 @@ export function normalizeFormValues(obj) {
     // set all empty strings to null
     // https://github.com/facebook/react/issues/2533
     const currentData = obj[current];
-    accum[current]    = currentData ? currentData : null;
+    let value;
+
+    if (currentData == 0) {
+      value = currentData;
+    }
+    else {
+      value = currentData ? currentData : null;
+    }
+
+    accum[current] = value;
 
     return accum;
   }, {});
