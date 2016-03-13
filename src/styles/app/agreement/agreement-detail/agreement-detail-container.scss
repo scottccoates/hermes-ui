@@ -3,4 +3,10 @@
     color: $src-less-dark;
     @include font-size(14px);
   }
+
+  .delete-link {
+    color: $src-danger;
+    @include font-size(14px);
+    text-align: center;
+  }
 }

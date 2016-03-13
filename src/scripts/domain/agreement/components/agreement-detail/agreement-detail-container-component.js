@@ -18,6 +18,10 @@ export default function (agreementActions, agreementDetailGeneralInfoComponent, 
       this.props.requestAgreementDetail(this.props.params.agreementId);
     },
 
+    deleteAgreement(){
+      agreementActions.deleteAgreement(this.props.params.agreementId);
+    },
+
     render() {
       var retVal = null;
 
@@ -88,6 +92,17 @@ export default function (agreementActions, agreementDetailGeneralInfoComponent, 
                       <AgreementDetailArtifacts agreement={this.props.agreement}/>
                     </div>
                   </div>
+
+                  <div className='delete-link content-section-item space-top-sm'>
+                    <a href='javascript:void(0)' onClick={this.deleteAgreement}>
+                      <div>
+                        {/*the div makes the entire space hoverable*/}
+                        <i className="fa fa-close space-right-md"></i>
+                        <span>Delete Agreement</span>
+                      </div>
+                    </a>
+                  </div>
+
                 </div>
               </div>
             </div>
