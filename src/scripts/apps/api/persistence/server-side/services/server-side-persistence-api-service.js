@@ -86,6 +86,14 @@ export default function (persistenceApiServiceUrl, appStore) {
       const response = await this._getResponse('POST', url, body);
 
       return response;
+    },
+
+    async delete(path){
+      const url = this._getPath(path);
+
+      const response = await this._getResponse('DELETE', url);
+
+      return response;
     }
   };
 

@@ -27,6 +27,29 @@ export default function (appStore, agreementService) {
     };
   }
 
+  function _agreementDeletedSuccessAction(agreementId) {
+    return {
+      type: constants.AGREEMENT_DELETE_SUCCESS,
+      agreementId,
+      meta: {
+        transition: (state, action) => ({
+          path: '/dashboard'
+        })
+      }
+    };
+  }
+
+  function _agreementDeletedFailureAction(error) {
+    log.info("AgreementActions: Agreement delete error: %s", error.stack);
+
+    setTimeout(_=>alert('There was an error deleting the agreement.'));
+
+    return {
+      type: constants.AGREEMENT_DELETE_FAILURE,
+      error
+    };
+  }
+
   let agreementActions = {
 
     userAgreementsReceived(agreements){
@@ -60,6 +83,24 @@ export default function (appStore, agreementService) {
         catch (e) {
           dispatch(_agreementSavedFailureAction(e));
         }
+      };
+    },
+
+    deleteAgreement(agreementId){
+      return async dispatch => {
+
+        if (window.confirm('Are you sure you want to delete this agreement?')) {
+
+          try {
+            await agreementService.deleteAgreement(agreementId);
+            dispatch(_agreementDeletedSuccessAction(agreementId));
+          }
+
+          catch (e) {
+            dispatch(_agreementDeletedFailureAction(e));
+          }
+        }
+
       };
     },
 
