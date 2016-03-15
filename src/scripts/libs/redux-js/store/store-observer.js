@@ -10,7 +10,6 @@ export default {
     const stream = bacon
       .fromBinder(storeBinderFunc)
       .map(mapFunc)
-      .filter(value=>!!value)
       .skipDuplicates();
 
     return stream;

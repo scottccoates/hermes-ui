@@ -25,6 +25,10 @@ export default function () {
         retVal = Object.assign({}, state, {agreement: action.agreement});
         break;
 
+      case constants.AGREEMENT_DELETE_SUCCESS:
+        retVal = Object.assign({}, state, {agreement: {id: null}, requestedAgreement: {id: null}});
+        break;
+
       default:
         retVal = state;
         break;

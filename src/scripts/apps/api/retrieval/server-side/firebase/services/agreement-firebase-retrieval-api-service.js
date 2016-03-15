@@ -53,22 +53,27 @@ export default {
 
       // clean up old connection (this will happen if we look at different agreement edits)
       if (this.agreementEditRef) this.agreementEditRef.off('value', this.agreementEditCallback);
-      this.agreementEditRef      = rootRef.child(`agreement-edits/${requestedAgreementEditId}`);
-      this.agreementEditCallback = this.agreementEditRef.on('value', snapshot=> {
 
-        try {
-          const agreementEdit = firebaseService.prepareObject(snapshot);
+      if (requestedAgreementEditId) {
+        // the id can become null in cases like an agreement being deleted. need to disconnect from the resource
+        // before we get a permission denied errors (when back end deletes the firebase resource).
+        this.agreementEditRef      = rootRef.child(`agreement-edits/${requestedAgreementEditId}`);
+        this.agreementEditCallback = this.agreementEditRef.on('value', snapshot=> {
 
-          if (agreementEdit.executionDate) agreementEdit.executionDate = dateFromTimestamp(agreementEdit.executionDate);
+          try {
+            const agreementEdit = firebaseService.prepareObject(snapshot);
 
-          agreementActions.agreementEditReceived(agreementEdit);
-        }
-        catch (error) {
-          throw new Error(`Error providing agreement edit data from firebase: Inner exception: ${error.stack}`);
-        }
-      }, error => {
-        throw new Error(`Error retrieving agreement edit data from firebase: Inner exception: ${error.stack}`);
-      });
+            if (agreementEdit.executionDate) agreementEdit.executionDate = dateFromTimestamp(agreementEdit.executionDate);
+
+            agreementActions.agreementEditReceived(agreementEdit);
+          }
+          catch (error) {
+            throw new Error(`Error providing agreement edit data from firebase: Inner exception: ${error.stack}`);
+          }
+        }, error => {
+          throw new Error(`Error retrieving agreement edit data from firebase: Inner exception: ${error.stack}`);
+        });
+      }
     });
 
     const agreementDetailStream = storeObserver.observeStateStream(store, state=> state.agreementDetail.requestedAgreement.id);
@@ -77,31 +82,35 @@ export default {
 
       // clean up old connection (this will happen if we look at different agreement edits)
       if (this.agreementDetailRef) this.agreementDetailRef.off('value', this.agreementDetailCallback);
-      this.agreementDetailRef      = rootRef.child(`agreement-details/${requestedAgreementDetailId}`);
-      this.agreementDetailCallback = this.agreementDetailRef.on('value', snapshot=> {
-        try {
-          const agreementDetail = firebaseService.prepareObject(snapshot, 'artifacts');
 
-          agreementDetail.executionDate = ymdFormat(dateFromTimestamp(agreementDetail.executionDate));
+      if (requestedAgreementDetailId) {
+        this.agreementDetailRef      = rootRef.child(`agreement-details/${requestedAgreementDetailId}`);
+        this.agreementDetailCallback = this.agreementDetailRef.on('value', snapshot=> {
+          try {
+            const agreementDetail = firebaseService.prepareObject(snapshot, 'artifacts');
 
-          agreementDetail.typeName = agreementDetail.typeName || 'Agreement type not specified';
+            agreementDetail.executionDate = ymdFormat(dateFromTimestamp(agreementDetail.executionDate));
 
-          if (agreementDetail.termLengthTimeAmount && agreementDetail.termLengthTimeType) {
-            const termLengthTimeType   = agreementEnums.durationTypes[agreementDetail.termLengthTimeType];
-            agreementDetail.termLength = `${agreementDetail.termLengthTimeAmount} ${termLengthTimeType}`;
+            agreementDetail.typeName = agreementDetail.typeName || 'Agreement type not specified';
+
+            if (agreementDetail.termLengthTimeAmount && agreementDetail.termLengthTimeType) {
+              const termLengthTimeType   = agreementEnums.durationTypes[agreementDetail.termLengthTimeType];
+              agreementDetail.termLength = `${agreementDetail.termLengthTimeAmount} ${termLengthTimeType}`;
+            }
+            else {
+              agreementDetail.termLength = 'Term length not specified';
+            }
+
+            agreementActions.agreementDetailReceived(agreementDetail);
           }
-          else {
-            agreementDetail.termLength = 'Term length not specified';
+          catch (error) {
+            throw new Error(`Error providing agreement detail data from firebase: Inner exception: ${error.stack}`);
           }
+        }, error => {
+          throw new Error(`Error retrieving agreement detail data from firebase: Inner exception: ${error.stack}`);
+        });
+      }
 
-          agreementActions.agreementDetailReceived(agreementDetail);
-        }
-        catch (error) {
-          throw new Error(`Error providing agreement detail data from firebase: Inner exception: ${error.stack}`);
-        }
-      }, error => {
-        throw new Error(`Error retrieving agreement detail data from firebase: Inner exception: ${error.stack}`);
-      });
     });
   }
 };
