@@ -22,6 +22,10 @@ export default function (agreementActions, agreementDetailGeneralInfoComponent, 
       agreementActions.deleteAgreement(this.props.params.agreementId);
     },
 
+    deleteArtifact(agreementId, artifactId){
+      agreementActions.deleteArtifact(agreementId, artifactId);
+    },
+
     render() {
       var retVal = null;
 
@@ -89,7 +93,7 @@ export default function (agreementActions, agreementDetailGeneralInfoComponent, 
                   <div className='panel panel-alt'>
                     <div className='panel-body'>
                       <h3 className="content-section-header">Documents</h3>
-                      <AgreementDetailArtifacts agreement={this.props.agreement}/>
+                      <AgreementDetailArtifacts agreement={this.props.agreement} deleteArtifact={this.deleteArtifact}/>
                     </div>
                   </div>
 

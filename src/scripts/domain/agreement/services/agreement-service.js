@@ -41,6 +41,10 @@ export default function (agreementRepository) {
       return await agreementRepository.delete(agreementId);
     },
 
+    async deleteArtifact(agreementId, artifactId){
+      return await agreementRepository.deleteArtifact(agreementId, artifactId);
+    },
+
     async getAgreementArtifactSignedUrl(artifactId){
       const retVal = await agreementRepository.getAgreementArtifactSignedObject(artifactId);
 

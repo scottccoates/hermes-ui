@@ -1,4 +1,5 @@
 const agreementPath = 'agreements';
+const artifactPath  = 'artifacts';
 const assetPath     = 'assets';
 
 export default function (apiService) {
@@ -11,7 +12,12 @@ export default function (apiService) {
 
     async delete(agreementId) {
       const path = `${agreementPath}/${agreementId}`;
-      return await apiService.delete(path, agreementId);
+      return await apiService.delete(path);
+    },
+
+    async deleteArtifact(agreementId, artifactId) {
+      const path = `${agreementPath}/${agreementId}/${artifactPath}/${artifactId}`;
+      return await apiService.delete(path);
     },
 
     async getAgreementArtifactSignedObject(artifactId) {

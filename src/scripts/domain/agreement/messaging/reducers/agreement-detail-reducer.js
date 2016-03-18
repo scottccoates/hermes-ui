@@ -29,6 +29,20 @@ export default function () {
         retVal = Object.assign({}, state, {agreement: {id: null}, requestedAgreement: {id: null}});
         break;
 
+      case constants.ARTIFACT_DELETE_SUCCESS:
+        const agreement = state.agreement;
+
+        const {artifacts} = agreement;
+
+        //if (artifacts) {
+        const newArtifacts = artifacts.filter(a=>a.id != action.artifactId);
+        const newAgreement = Object.assign({}, agreement, {artifacts: newArtifacts});
+        retVal             = Object.assign({}, state, {agreement: newAgreement});
+
+        //}
+
+        break;
+
       default:
         retVal = state;
         break;

@@ -50,6 +50,25 @@ export default function (appStore, agreementService) {
     };
   }
 
+  function _artifactDeletedSuccessAction(agreementId, artifactId) {
+    return {
+      type: constants.ARTIFACT_DELETE_SUCCESS,
+      agreementId,
+      artifactId
+    };
+  }
+
+  function _artifactDeletedFailureAction(error) {
+    log.info("AgreementActions: Artifact delete error: %s", error.stack);
+
+    setTimeout(_=>alert('There was an error deleting the artifact.'));
+
+    return {
+      type: constants.ARTIFACT_DELETE_FAILURE,
+      error
+    };
+  }
+
   let agreementActions = {
 
     userAgreementsReceived(agreements){
@@ -98,6 +117,24 @@ export default function (appStore, agreementService) {
 
           catch (e) {
             dispatch(_agreementDeletedFailureAction(e));
+          }
+        }
+
+      };
+    },
+
+    deleteArtifact(agreementId, artifactId){
+      return async dispatch => {
+
+        if (window.confirm('Are you sure you want to delete this document?')) {
+
+          try {
+            await agreementService.deleteArtifact(agreementId, artifactId);
+            dispatch(_artifactDeletedSuccessAction(agreementId, artifactId));
+          }
+
+          catch (e) {
+            dispatch(_artifactDeletedFailureAction(e));
           }
         }
 
