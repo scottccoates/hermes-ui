@@ -23,7 +23,7 @@ import formattingService from 'src/scripts/apps/formatting/services/formatting-s
 
 const {Validator} = Validation;
 
-const {durationTypes, renewTypes} = agreementValueLabel;
+const {timeTypes, renewTypes} = agreementValueLabel;
 
 export default function (agreementActions, agreementTypeService, agreementEditFormComponent) {
 

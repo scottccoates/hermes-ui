@@ -1,5 +1,5 @@
 export default {
-  durationTypes: {
+  timeTypes: {
     day: 'Days',
     month: 'Months',
     year: 'Years'

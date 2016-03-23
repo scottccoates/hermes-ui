@@ -94,7 +94,7 @@ export default {
             agreementDetail.typeName = agreementDetail.typeName || 'Agreement type not specified';
 
             if (agreementDetail.termLengthTimeAmount && agreementDetail.termLengthTimeType) {
-              const termLengthTimeType   = agreementEnums.durationTypes[agreementDetail.termLengthTimeType];
+              const termLengthTimeType   = agreementEnums.timeTypes[agreementDetail.termLengthTimeType];
               agreementDetail.termLength = `${agreementDetail.termLengthTimeAmount} ${termLengthTimeType}`;
             }
             else {

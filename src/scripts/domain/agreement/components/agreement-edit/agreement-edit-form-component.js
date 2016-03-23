@@ -25,7 +25,7 @@ import formattingService from 'src/scripts/apps/formatting/services/formatting-s
 
 const {Validator} = Validation;
 
-const {durationTypes, renewTypes} = agreementValueLabel;
+const {timeTypes, renewTypes} = agreementValueLabel;
 
 export default function () {
 
@@ -286,7 +286,7 @@ export default function () {
                       </Validator>
                     </div>
                     <div className="col-sm-6">
-                      <ButtonSelect items={durationTypes} value={formData.termLengthTimeType}
+                      <ButtonSelect items={timeTypes} value={formData.termLengthTimeType}
                                     onChange={this.onChangeTermLengthTimeType}
                                     className="btn btn-sm btn-info agreement-form-button agreement-form-field-button"/>
                     </div>
@@ -318,7 +318,7 @@ export default function () {
                       </Validator>
                     </div>
                     <div className="col-sm-9">
-                      <ButtonSelect items={durationTypes} value={formData.outcomeNoticeTimeType}
+                      <ButtonSelect items={timeTypes} value={formData.outcomeNoticeTimeType}
                                     onChange={this.onChangeOutcomeNoticeTimeType}
                                     className="btn btn-sm btn-info agreement-form-button agreement-form-field-button"/>
                         <span
@@ -385,7 +385,7 @@ export default function () {
                       </Validator>
                     </div>
                     <div className="col-sm-4">
-                      <ButtonSelect items={durationTypes} value={formData.expirationAlertTimeType}
+                      <ButtonSelect items={timeTypes} value={formData.expirationAlertTimeType}
                                     onChange={this.onChangeExpirationAlertTimeType}
                                     className="btn btn-sm btn-info agreement-form-button agreement-form-field-button"/>
                     </div>
@@ -424,7 +424,7 @@ export default function () {
                       </Validator>
                     </div>
                     <div className="col-sm-4">
-                      <ButtonSelect items={durationTypes} value={formData.outcomeNoticeAlertTimeType}
+                      <ButtonSelect items={timeTypes} value={formData.outcomeNoticeAlertTimeType}
                                     onChange={this.onChangeOutcomeNoticeAlertTimeType}
                                     className="btn btn-sm btn-info agreement-form-button agreement-form-field-button"/>
                     </div>
