@@ -58,7 +58,7 @@ export default function (persistenceApiServiceUrl, fileUploadProvider, nprogress
     },
 
     render() {
-      const dropzoneClasses = cx({'dropzone': true, 'hidden': this.state.uploading});
+      const dropzoneClasses = cx({'dropzone dropzone-bright': true, 'hidden': this.state.uploading});
       const feedbackClasses = cx({'important-agreement-feedback': true, 'hidden': !this.state.uploading});
 
       return (

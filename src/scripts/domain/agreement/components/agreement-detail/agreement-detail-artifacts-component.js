@@ -2,9 +2,10 @@ import React from 'react';
 
 import DependencyProvider from 'src/scripts/libs/dependency-injection/utils/dependency-provider';
 
-export default function (agreementService) {
+export default function (agreementService, persistenceApiServiceUrl, fileUploadProvider) {
+  const FileUploader = fileUploadProvider.dependency;
 
-  const agreementDetailDocuments = React.createClass({
+  const agreementDetailArtifacts = React.createClass({
     displayName: "AgreementDetailArtifactsComponent",
 
     async downloadArtifact(artifactId){
@@ -16,13 +17,19 @@ export default function (agreementService) {
       this.props.deleteArtifact(agreementId, artifactId);
     },
 
+    onError(file, errorMessage) {
+      alert('There was an error processing your file.');
+    },
+
     render() {
-      const documentNodes = this.props.agreement.artifacts.map(artifact=> {
+      const artifactUrl = `${persistenceApiServiceUrl}/agreements/${this.props.agreement.id}/artifacts/`;
+
+      const artifactNodes = this.props.agreement.artifacts.map(artifact=> {
         return (
           <li className="content-section-item space-bottom-sm clearfix" key={artifact.id}>
             <a href="javascript:void(0)" onClick={this.downloadArtifact.bind(this, artifact.id)}>
               <div className='col-sm-3 no-left-gutter gutter-xs'>
-                <i className="fa fa-file-pdf-o space-right"></i>
+                <i className="fa fa-file-pdf-o"></i>
               </div>
               <div className='col-sm-18 gutter-xs'>
                 <span>{artifact.name}</span>
@@ -31,7 +38,7 @@ export default function (agreementService) {
 
             <a href="javascript:void(0)" onClick={this.deleteArtifact.bind(this, this.props.agreement.id, artifact.id)}>
               <div className='col-sm-3 gutter-xs'>
-                <i className="fa fa-close space-right"></i>
+                <i className="fa fa-close"></i>
               </div>
             </a>
           </li>
@@ -41,12 +48,28 @@ export default function (agreementService) {
       return (
         <div className="agreement-detail-artifacts">
           <ul className="agreement-detail-artifacts-list">
-            {documentNodes}
+            {artifactNodes}
+            <li className="content-section-item space-top-md clearfix">
+              <FileUploader url={artifactUrl}
+                            onSuccess={this.onSuccess}
+                            onError={this.onError}
+                            className='dropzone'
+                            paramName="artifacts"
+                            headers={{"Authorization": "JWT " + this.props.user.token}}
+                            acceptedFiles=".pdf, .doc, .docx">
+                <div className='col-sm-3 no-left-gutter gutter-xs'>
+                  <i className="fa fa-cloud-upload"></i>
+                </div>
+                <div className='col-sm-21 gutter-xs'>
+                  <span>Upload Document</span>
+                </div>
+              </FileUploader>
+            </li>
           </ul>
         </div>
       );
     }
   });
 
-  return new DependencyProvider(agreementDetailDocuments);
+  return new DependencyProvider(agreementDetailArtifacts);
 };

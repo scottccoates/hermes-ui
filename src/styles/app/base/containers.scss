@@ -311,7 +311,9 @@ parent: patterns
 // --------------------------------------------------
 .dropzone {
 
-  background: $src-very-bright;
+  &.bright {
+    background: $src-very-bright;
+  }
 
   &.dz-clickable {
     cursor: pointer;

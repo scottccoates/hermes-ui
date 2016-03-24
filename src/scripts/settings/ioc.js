@@ -192,7 +192,7 @@ export default {
     AgreementEditContainerComponent.$inject   = ["AgreementActions", 'AgreementTypeService', 'AgreementEditFormComponent'];
     AgreementListComponent.$inject            = ["AgreementListItemComponent"];
     AgreementDetailContainerComponent.$inject = ['AgreementActions', "AgreementDetailGeneralInfoComponent", 'AgreementDetailLengthComponent', 'AgreementDetailArtifactsComponent'];
-    AgreementDetailArtifactsComponent.$inject = ['AgreementService'];
+    AgreementDetailArtifactsComponent.$inject = ['AgreementService', 'PersistenceApiServiceUrl', 'FileUpload'];
 
     AgreementActions.$inject    = ['AppStore', "AgreementService"];
     AgreementService.$inject    = ["AgreementRepository"];

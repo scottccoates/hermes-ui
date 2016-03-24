@@ -15,7 +15,7 @@ export default function (agreementActions, agreementDetailGeneralInfoComponent, 
     displayName: "AgreementDetailContainerComponent",
 
     componentWillMount(){
-      this.props.requestAgreementDetail(this.props.params.agreementId);
+      agreementActions.requestAgreementDetail(this.props.params.agreementId);
     },
 
     deleteAgreement(){
@@ -29,14 +29,14 @@ export default function (agreementActions, agreementDetailGeneralInfoComponent, 
     render() {
       var retVal = null;
 
-      if (this.props.agreement.id)
+      if (this.props.agreementDetail.agreement.id)
 
         retVal = (
           <div id="agreement-detail-container-wrapper" className="alt-content-page">
 
             <div className="content-section alt-content-section space-top space-bottom">
               <div className="container">
-                <h1 className="page-header">{this.props.agreement.name}</h1>
+                <h1 className="page-header">{this.props.agreementDetail.agreement.name}</h1>
               </div>
             </div>
 
@@ -50,11 +50,11 @@ export default function (agreementActions, agreementDetailGeneralInfoComponent, 
                     <div className='row'>
                       <div className="content-section">
                         <div className='col-sm-20'>
-                          <AgreementDetailGeneralInfo agreement={this.props.agreement}/>
+                          <AgreementDetailGeneralInfo agreement={this.props.agreementDetail.agreement}/>
                         </div>
 
                         <div className='col-sm-4 edit-link'>
-                          <Link to={`/agreements/${this.props.agreement.id}/edit`}>
+                          <Link to={`/agreements/${this.props.agreementDetail.agreement.id}/edit`}>
                             <div>
                               {/*the div makes the entire space hoverable*/}
                               <i className="fa fa-pencil space-right-md"></i>
@@ -73,11 +73,11 @@ export default function (agreementActions, agreementDetailGeneralInfoComponent, 
                     <div className='row'>
                       <div className="content-section">
                         <div className='col-sm-20'>
-                          <AgreementDetailLength agreement={this.props.agreement}/>
+                          <AgreementDetailLength agreement={this.props.agreementDetail.agreement}/>
                         </div>
 
                         <div className='col-sm-4 edit-link'>
-                          <Link to={`/agreements/${this.props.agreement.id}/edit`}>
+                          <Link to={`/agreements/${this.props.agreementDetail.agreement.id}/edit`}>
                             <div>
                               {/*the div makes the entire space hoverable*/}
                               <i className="fa fa-pencil space-right-md"></i>
@@ -93,7 +93,10 @@ export default function (agreementActions, agreementDetailGeneralInfoComponent, 
                   <div className='panel panel-alt'>
                     <div className='panel-body'>
                       <h3 className="content-section-header">Documents</h3>
-                      <AgreementDetailArtifacts agreement={this.props.agreement} deleteArtifact={this.deleteArtifact}/>
+                      <AgreementDetailArtifacts agreement={this.props.agreementDetail.agreement}
+                                                deleteArtifact={this.deleteArtifact}
+                                                user={this.props.user}
+                        />
                     </div>
                   </div>
 
@@ -117,7 +120,12 @@ export default function (agreementActions, agreementDetailGeneralInfoComponent, 
     }
   });
 
-  component = connect(x=> x.agreementDetail, agreementActions)(component);
+  function extracted(state) {
+    return {
+      agreementDetail: state.agreementDetail
+    };
+  }
 
+  component = connect(extracted)(component);
   return new DependencyProvider(component);
 };
