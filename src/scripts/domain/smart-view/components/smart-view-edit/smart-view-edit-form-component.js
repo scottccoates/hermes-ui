@@ -5,65 +5,40 @@ import React from 'react';
 import DependencyProvider from '../../../../libs/dependency-injection/utils/dependency-provider';
 
 import Select from 'react-select';
-import Validation from 'rc-form-validation';
+//todo remove rc form
+import {reduxForm} from 'redux-form';
 
 import cx from 'classnames';
+//todo test unctonroled smart view name
+import {required, integer} from 'src/scripts/libs/js-utils/validation/validation-utils';
 
 import {normalizeFormValues} from 'src/scripts/libs/js-utils/form/form-utils';
 
-const {Validator} = Validation;
+function validate(values) {
+  const errors = {};
+
+  errors.name = required(values.name, 'Name is required');
+
+  return errors;
+}
 
 export default function () {
 
-  const component = React.createClass({
+  let component = React.createClass({
     displayName: "SmartViewEditFormComponent",
-    mixins: [Validation.FieldMixin],
 
-    getInitialState() {
-      return {
-        status: {
-          name: {}
-        },
-        formData: {
-          name: ''
-        }
-      };
-    },
-
-    componentWillMount () {
-      // populate data from parent
-      // currently the smart view is being passed in as a simple object - we're not re-retrieving it from firebase
-      // like how we're doing w/ agreement edits
-      this._setFormData(Object.assign({}, this.getInitialState().formData, this.props.smartView));
-    },
-
-    _setFormData(val){
-      this.setState({formData: Object.assign({}, this.state.formData, val)});
-    },
-
-    onSubmit(event){
-      event.preventDefault();
-      var validation = this.refs.validation;
-
-      // it's important to remember that validation is async (consider database calls, apis, existence in db, etc).
-      validation.validate(valid => {
-
-        if (valid) {
-          const formData = normalizeFormValues(this.state.formData);
-          this.props.onValid(formData);
-        }
-        else {
-          this.props.onInvalid();
-        }
-      });
+    onSubmit(values){
+      const newValues = normalizeFormValues(values);
+      this.props.onValid(newValues);
     },
 
     render() {
-      const formData = this.state.formData;
-      const status   = this.state.status;
+      const {fields: {name},handleSubmit} = this.props;
 
       const defaultFormClasses = ['form-group'];
-      const nameFormClasses    = cx(defaultFormClasses, {'has-error': status.name.errors});
+      const nameInvalid        = name.touched && name.invalid;
+      const nameFormClasses    = cx(defaultFormClasses, {'has-error': nameInvalid});
+
 
       let deleteButton;
       if (this.props.smartView) {
@@ -72,44 +47,52 @@ export default function () {
           </button>
         );
       }
+
+      const submit = event => {
+        // requires this setting below returnRejectedSubmitPromise: true
+        // https://github.com/erikras/redux-form/issues/256
+        const submitPromise = handleSubmit(this.onSubmit)(event);
+        if (submitPromise) {
+          submitPromise.catch(err => this.props.onInvalid(err));
+        }
+      };
+
       return (
         <div className="smart-view-edit-form-wrapper">
-          <form className="form-horizontal" onSubmit={this.onSubmit}>
-            <Validation ref='validation' onValidate={this.handleValidate}>
-              <section className="row content-section-item space-bottom-xl">
-                <div className="space-top-sm col-md-24">
-                  <div className={nameFormClasses}>
-                    <label htmlFor="agreement-form-name" className="col-sm-6 control-label">Name</label>
+          <form className="form-horizontal" onSubmit={submit}>
+            <section className="row content-section-item space-bottom-xl">
+              <div className="space-top-sm col-md-24">
+                <div className={nameFormClasses}>
+                  <label htmlFor="agreement-form-name" className="col-sm-6 control-label">Name</label>
 
-                    <div className="col-sm-18">
-                      <Validator rules={{required:true, message: 'Name is required'}}>
-                        <input autoFocus type="text" name="name" className="form-control"
-                               id="agreement-form-name"
-                               value={formData.name}/>
-                      </Validator>
-                      {status.name.errors ?
-                        <div className="help-block">{status.name.errors.join(', ')}</div> : null}
-                    </div>
+                  <div className="col-sm-18">
+                    <input autoFocus type="text" className="form-control" id="agreement-form-name" {...name}/>
+                    {nameInvalid && <div className="help-block">{name.error}</div>}
                   </div>
                 </div>
+              </div>
 
-              </section>
+            </section>
 
-              <section className="row agreement-form-section agreement-form-section-save content-section-item">
-                <div className="col-md-24">
-                  <button type='submit' className="btn btn-primary pull-right content-section-item space-left-md">Save
-                  </button>
-                  <button type='button' className="btn btn-info pull-right" onClick={this.props.onCancel}>Cancel
-                  </button>
-                  {deleteButton}
-                </div>
-              </section>
-            </Validation>
+            <section className="row agreement-form-section agreement-form-section-save content-section-item">
+              <div className="col-md-24">
+                <button type='submit' className="btn btn-primary pull-right content-section-item space-left-md">Save
+                </button>
+                <button type='button' className="btn btn-info pull-right" onClick={this.props.onCancel}>Cancel
+                </button>
+                {deleteButton}
+              </div>
+            </section>
           </form>
         </div>
       );
     }
   });
 
+  component = reduxForm({
+    fields: ['name'],
+    validate,
+    returnRejectedSubmitPromise: true
+  })(component);
   return new DependencyProvider(component);
 };

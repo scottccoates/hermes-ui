@@ -44,7 +44,6 @@ System.config({
     "nprogress": "github:rstacruz/nprogress@0.1.6",
     "query-string": "npm:querystring@0.2.0",
     "raygun4js": "github:MindscapeHQ/raygun4js@2.0.3",
-    "rc-form-validation": "npm:rc-form-validation@2.4.13",
     "react": "npm:react@0.14.3",
     "react-bacon": "npm:react-bacon@0.0.4",
     "react-bootstrap": "npm:react-bootstrap@0.28.2",
@@ -52,7 +51,7 @@ System.config({
     "react-dom": "npm:react-dom@0.14.3",
     "react-highlighter": "npm:react-highlighter@0.3.0",
     "react-onclickoutside": "npm:react-onclickoutside@4.5.0",
-    "react-redux": "npm:react-redux@3.0.1",
+    "react-redux": "npm:react-redux@4.4.1",
     "react-router": "npm:react-router@1.0.3",
     "react-select": "npm:react-select@0.9.1",
     "react-tagsinput": "github:olahol/react-tagsinput@1.2.0",
@@ -287,10 +286,6 @@ System.config({
     "npm:inherits@2.0.1": {
       "util": "github:jspm/nodelibs-util@0.1.0"
     },
-    "npm:invariant@2.1.1": {
-      "loose-envify": "npm:loose-envify@1.0.0",
-      "process": "github:jspm/nodelibs-process@0.1.2"
-    },
     "npm:invariant@2.2.0": {
       "loose-envify": "npm:loose-envify@1.1.0",
       "process": "github:jspm/nodelibs-process@0.1.2"
@@ -302,10 +297,6 @@ System.config({
     "npm:isomorphic-fetch@2.2.1": {
       "node-fetch": "npm:node-fetch@1.4.1",
       "whatwg-fetch": "npm:whatwg-fetch@0.10.0"
-    },
-    "npm:js-tokens@1.0.1": {
-      "fs": "github:jspm/nodelibs-fs@0.1.2",
-      "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:jstransform@10.1.0": {
       "base62": "npm:base62@0.1.1",
@@ -327,12 +318,6 @@ System.config({
     },
     "npm:loglevel@1.3.1": {
       "process": "github:jspm/nodelibs-process@0.1.2"
-    },
-    "npm:loose-envify@1.0.0": {
-      "js-tokens": "npm:js-tokens@1.0.1",
-      "process": "github:jspm/nodelibs-process@0.1.2",
-      "stream": "github:jspm/nodelibs-stream@0.1.0",
-      "util": "github:jspm/nodelibs-util@0.1.0"
     },
     "npm:loose-envify@1.1.0": {
       "js-tokens": "npm:js-tokens@1.0.2",
@@ -378,11 +363,6 @@ System.config({
     },
     "npm:query-string@3.0.0": {
       "strict-uri-encode": "npm:strict-uri-encode@1.1.0"
-    },
-    "npm:rc-form-validation@2.4.13": {
-      "async-validator": "npm:async-validator@1.3.3",
-      "object-assign": "npm:object-assign@4.0.1",
-      "rc-util": "npm:rc-util@2.0.3"
     },
     "npm:react-bacon@0.0.4": {
       "baconjs": "npm:baconjs@0.7.74",
@@ -447,11 +427,6 @@ System.config({
     "npm:react-prop-types@0.3.0": {
       "warning": "npm:warning@2.1.0"
     },
-    "npm:react-redux@3.0.1": {
-      "invariant": "npm:invariant@2.1.1",
-      "process": "github:jspm/nodelibs-process@0.1.2",
-      "redux": "npm:redux@3.0.2"
-    },
     "npm:react-redux@4.4.1": {
       "hoist-non-react-statics": "npm:hoist-non-react-statics@1.0.5",
       "invariant": "npm:invariant@2.2.1",
@@ -459,7 +434,7 @@ System.config({
       "loose-envify": "npm:loose-envify@1.1.0",
       "process": "github:jspm/nodelibs-process@0.1.2",
       "react": "npm:react@15.0.0-rc.2",
-      "redux": "npm:redux@3.3.1"
+      "redux": "npm:redux@3.0.2"
     },
     "npm:react-router@1.0.3": {
       "child_process": "github:jspm/nodelibs-child_process@0.1.0",

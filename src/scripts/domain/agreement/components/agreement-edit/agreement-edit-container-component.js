@@ -6,25 +6,6 @@ import { connect } from 'react-redux';
 
 import DependencyProvider from '../../../../libs/dependency-injection/utils/dependency-provider';
 
-import Agreement from '../../models/agreement-list-item-model';
-import Select from 'react-select';
-import Validation from 'rc-form-validation';
-
-import cx from 'classnames';
-
-import ButtonSelect from 'src/scripts/libs/react-js/components/button-select'
-
-import {toNumber} from 'src/scripts/libs/js-utils/validation/validation-utils';
-import {normalizeFormValues} from 'src/scripts/libs/js-utils/form/form-utils';
-
-import agreementValueLabel from 'src/scripts/apps/formatting/agreement/agreement-value-label';
-
-import formattingService from 'src/scripts/apps/formatting/services/formatting-service';
-
-const {Validator} = Validation;
-
-const {timeTypes, renewTypes} = agreementValueLabel;
-
 export default function (agreementActions, agreementTypeService, agreementEditFormComponent) {
 
   const AgreementEditForm = agreementEditFormComponent.dependency;
@@ -64,6 +45,30 @@ export default function (agreementActions, agreementTypeService, agreementEditFo
     },
 
     render() {
+      const today = new Date(new Date().setHours(0, 0, 0, 0, 0));
+      // https://github.com/erikras/redux-form/issues/547
+      const defaults = {
+        autoRenew: true,
+        counterparty: '',
+        description: '',
+        durationDetails: '',
+        executionDate: today,
+        name: '',
+        outcomeNoticeTimeAmount: 30,
+        outcomeNoticeTimeType: 'day',
+        termLengthTimeAmount: '',
+        termLengthTimeType: 'year',
+        typeId: null,
+        outcomeAlertEnabled: true,
+        outcomeAlertTimeAmount: 30,
+        outcomeAlertTimeType: 'day',
+        outcomeNoticeAlertEnabled: true,
+        outcomeNoticeAlertTimeAmount: 30,
+        outcomeNoticeAlertTimeType: 'day'
+      };
+
+      const agreement = Object.assign({}, defaults, this.props.agreementEdit.agreement);
+
       return (
         <div id="agreement-edit-container-wrapper">
           <div className="content-section space-top space-bottom">
@@ -74,11 +79,12 @@ export default function (agreementActions, agreementTypeService, agreementEditFo
 
           <div className="content-section  space-bottom">
             <div className="container">
-              <AgreementEditForm onValid={this.onValid} onInvalid={this.onInvalid}
-                                 agreement={this.props.agreementEdit.agreement}
+              <AgreementEditForm form='agreementEditContainerForm'
+                                 onValid={this.onValid} onInvalid={this.onInvalid}
+                                 initialValues={agreement}
+                                 counterparties={this.props.userCounterparties.counterparties}
                                  agreementTypes={this.props.userAgreementTypes.agreementTypes}
-                                 onCreateAgreementType={this.onCreateAgreementType}
-                />
+                                 onCreateAgreementType={this.onCreateAgreementType}/>
             </div>
           </div>
         </div>
@@ -89,7 +95,8 @@ export default function (agreementActions, agreementTypeService, agreementEditFo
   function extracted(state) {
     return {
       agreementEdit: state.agreementEdit,
-      userAgreementTypes: state.userAgreementTypes
+      userAgreementTypes: state.userAgreementTypes,
+      userCounterparties: state.userCounterparties
     };
   }
 

@@ -1,16 +1,26 @@
-export function normalizeFormValues(obj) {
+import _ from 'lodash';
+import isEmpty from '../functions/is-empty';
+
+function transformValue(obj, transformFunc = _.identity) {
+  // default params kick in when param is undefined
+  return transformFunc(obj);
+}
+
+export function normalizeFormValues(obj, transform = {}) {
   const formData = Object.keys(obj).reduce((accum, current)=> {
 
     // set all empty strings to null
-    // https://github.com/facebook/react/issues/2533
+    // this is so that when we send the data over to the server, we're passing NULL over as opposed to falsy values
+    // like empty strings.
+
     const currentData = obj[current];
     let value;
 
-    if (currentData == 0) {
-      value = currentData;
+    if (isEmpty(currentData)) {
+      value = null;
     }
     else {
-      value = currentData ? currentData : null;
+      value = transformValue(currentData, transform[current]);
     }
 
     accum[current] = value;

@@ -7,6 +7,8 @@ import ReactBacon from 'react-bacon';
 import TextSearchField from './advanced-text-search-field';
 import SelectSearchField from './advanced-select-search-field';
 
+import formattingService from 'src/scripts/apps/formatting/services/formatting-service';
+
 import DependencyProvider from 'src/scripts/libs/dependency-injection/utils/dependency-provider';
 
 export default function () {
@@ -23,6 +25,18 @@ export default function () {
     },
 
     render() {
+      let agreementTypesValues = [];
+      const userAgreementTypes = this.props.agreementTypes;
+      if (userAgreementTypes) {
+        agreementTypesValues = formattingService.getValueLabelFromArray(userAgreementTypes);
+      }
+
+      let counterpartiesValues  = [];
+      const counterpartiesTypes = this.props.counterparties;
+      if (counterpartiesTypes.length) {
+        counterpartiesValues = formattingService.getValueLabelFromArray(counterpartiesTypes);
+      }
+
       return (
         <div className="advanced-search-query-container">
 
@@ -37,11 +51,11 @@ export default function () {
                                      onChange={this.props.onTextChanged}/>
                 </li>
                 <li><SelectSearchField iconClass='fa-building' fieldLabel="Counterparty"
-                                       options={this.props.counterparties}
+                                       options={counterpartiesValues}
                                        value={this.props.parameters.counterparty}
                                        onChange={this.props.onCounterpartyChanged}/></li>
                 <li><SelectSearchField iconClass='fa-file' fieldLabel="Type of agreement"
-                                       options={this.props.agreementTypes}
+                                       options={agreementTypesValues}
                                        value={this.props.parameters.typeId}
                                        onChange={this.props.onAgreementTypeChanged}/></li>
               </ul>

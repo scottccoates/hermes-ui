@@ -1,39 +1,19 @@
+// this fake login still needs to be updated to use the new validation framework
+
 import React from 'react';
 
 import { connect } from 'react-redux';
 
 import DependencyProvider from 'src/scripts/libs/dependency-injection/utils/dependency-provider';
 
-import Validation from 'rc-form-validation';
-
 import log from 'loglevel';
-
-const {Validator} = Validation;
 
 export default function (sessionActions, tokenService) {
 
   var login = React.createClass({
     displayName: "FakeLogin",
-
-    mixins: [
-      Validation.FieldMixin
-    ],
-
     contextTypes: {
       router: React.PropTypes.object
-    },
-
-    getInitialState() {
-      return {
-        status: {
-          username: {},
-          password: {}
-        },
-        formData: {
-          username: "",
-          password: ""
-        }
-      };
     },
 
     _doLoginTransition(){

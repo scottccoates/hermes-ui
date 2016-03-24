@@ -9,8 +9,6 @@ import {BaconMixin} from 'react-bacon';
 import DisplayContainer from '../../../../libs/react-js/components/display-container';
 import FocusContainer from '../../../../libs/react-js/components/focus-container';
 
-import formattingService from 'src/scripts/apps/formatting/services/formatting-service';
-
 import DependencyProvider from 'src/scripts/libs/dependency-injection/utils/dependency-provider';
 
 export default function (searchActions, searchService, smartViewActions, searchQueryInputBoxComponent, searchQueryListComponent, advancedSearchQueryContainerComponent) {
@@ -123,17 +121,6 @@ export default function (searchActions, searchService, smartViewActions, searchQ
     },
 
     render() {
-      var agreementTypesValues = [];
-      const userAgreementTypes = this.props.userAgreementTypes.agreementTypes;
-      if (userAgreementTypes) {
-        agreementTypesValues = formattingService.getValueLabelFromArray(userAgreementTypes);
-      }
-
-      var counterpartiesValues  = [];
-      const counterpartiesTypes = this.props.userCounterparties.counterparties;
-      if (counterpartiesTypes.length) {
-        counterpartiesValues = formattingService.getValueLabelFromArray(counterpartiesTypes);
-      }
       return (
         <div className="header-search">
 
@@ -166,9 +153,9 @@ export default function (searchActions, searchService, smartViewActions, searchQ
             <DisplayContainer open={this.state.advancedSearchDropdownEnabled}>
               <AdvancedSearchQueryContainer parameters={this.props.advancedSearch.parameters}
                                             onTextChanged={this.onTextChanged}
-                                            counterparties={counterpartiesValues}
+                                            counterparties={this.props.userCounterparties.counterparties}
                                             onCounterpartyChanged={this.onCounterpartyChanged}
-                                            agreementTypes={agreementTypesValues}
+                                            agreementTypes={this.props.userAgreementTypes.agreementTypes}
                                             onAgreementTypeChanged={this.onAgreementTypeChanged}
                                             onSearch={this.onAdvancedSearch}/>
             </DisplayContainer>

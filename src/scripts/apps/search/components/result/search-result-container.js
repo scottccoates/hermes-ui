@@ -17,8 +17,8 @@ const {Link, RouteHandler, History} = Router;
 
 export default function (searchActions, smartViewActions, agreementListComponent, smartViewEditFormComponent) {
 
-  const AgreementList = agreementListComponent.dependency;
-  const SmartViewForm = smartViewEditFormComponent.dependency;
+  const AgreementList    = agreementListComponent.dependency;
+  const SmartViewEdiForm = smartViewEditFormComponent.dependency;
 
   var component = React.createClass({
     displayName: "SearchResultsContainerComponent",
@@ -157,11 +157,12 @@ export default function (searchActions, smartViewActions, agreementListComponent
 
             <div className="content-section space-bottom-sm">
               <div className="container-fluid">
-                <SmartViewForm onValid={this.onSaveSmartView}
-                               onCancel={this.onSmartViewCancel}
-                               onInvalid={this.onSmartViewInvalid}
-                               onDelete={this.onSmartFieldDelete}
-                               smartView={smartView}/>
+                <SmartViewEdiForm form='searchResultContainerSmartViewEditForm'
+                                  onValid={this.onSaveSmartView}
+                                  onCancel={this.onSmartViewCancel}
+                                  onInvalid={this.onSmartViewInvalid}
+                                  onDelete={this.onSmartFieldDelete}
+                                  initialValues={smartView}/>
               </div>
             </div>
 

@@ -5,7 +5,7 @@ const task1 = {
   id: 1,
   taskSubject: "Sales Contract Between Hermes Inc. and Jake's Down Home Restaurant",
   taskAction: 'expires in 17 days.',
-  taskType: 'expiration'
+  taskType: 'outcome'
 };
 
 const task2 = {

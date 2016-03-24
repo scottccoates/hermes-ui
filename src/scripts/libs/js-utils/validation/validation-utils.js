@@ -1,43 +1,73 @@
-export function toNumber(v) {
-  // http://react-component.github.io/form-validation/examples/form.html
-  var retVal;
+import isEmpty from '../functions/is-empty';
 
-  if (typeof(v) == 'number') {
-    retVal = v;
-  }
-  else {
-    if (!v || !v.trim()) {
-      // react-validation expects undefined
-      retVal = undefined;
-    }
-    else {
-      var num = Number(v);
-      // num === ' '
-      if (!isNaN(num)) {
-        num = parseInt(v);
-      }
-      retVal = isNaN(num) ? v : num;
-    }
-  }
+const join    = (rules) => (value, data) => rules.map(rule => rule(value, data)).filter(error => !!error)[0 /* first error */];
 
-  return retVal;
+export function email(value) {
+  // Let's not start a debate on email regex. This is just for an example app!
+  if (!isEmpty(value) && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
+    return 'Invalid email address';
+  }
 }
 
-export function toDate(v) {
-  var retVal;
-
-  if (v instanceof Date) {
-    retVal = v;
+export function required(value, message = 'Required') {
+  if (isEmpty(value)) {
+    return message;
   }
-  else {
-    if (!v || !v.trim()) {
-      // react-validation expects undefined
-      retVal = undefined;
+}
+
+export function minLength(min) {
+  return value => {
+    if (!isEmpty(value) && value.length < min) {
+      return;
     }
-    else {
-      retVal = new Date(v);
+  };
+}
+
+export function maxLength(max) {
+  return value => {
+    if (!isEmpty(value) && value.length > max) {
+      return `Must be no more than ${max} characters`;
+    }
+  };
+}
+
+export function integer(value, message = 'Must be an integer') {
+  if (!isEmpty(value)) {
+    if (!Number.isInteger(Number(value))) {
+      return message;
     }
   }
 
-  return retVal;
+}
+
+export function oneOf(enumeration) {
+  return value => {
+    if (!~enumeration.indexOf(value)) {
+      return `Must be one of: ${enumeration.join(', ')}`;
+    }
+  };
+}
+
+export function match(field) {
+  return (value, data) => {
+    if (data) {
+      if (value !== data[field]) {
+        return 'Do not match';
+      }
+    }
+  };
+}
+
+export function createValidator(rules) {
+  return (data = {}) => {
+    const errors = {};
+    Object.keys(rules).forEach((key) => {
+      const rule = join([].concat(rules[key])); // concat enables both functions and arrays of functions
+      const error = rule(data[key], data);
+      if (error) {
+        errors[key] = error;
+      }
+    });
+    return errors;
+  };
 }

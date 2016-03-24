@@ -5,7 +5,7 @@ const agreementListItem1 = {
   image: "/assets/images/client-side/microsoft-logo.jpg",
   status: "Active",
   type: "Licensing Agreement",
-  expirationDate: '12/31/2016',
+  outcomeDate: '12/31/2016',
   modifiedDate: '06/01/2015',
   documentCount: 2
 };
@@ -17,7 +17,7 @@ const agreementListItem2 = {
   image: "/assets/images/client-side/adobe-logo.jpg",
   status: "Expired",
   type: "Licensing Agreement",
-  expirationDate: '06/01/2015',
+  outcomeDate: '06/01/2015',
   modifiedDate: '07/01/2015',
   documentCount: 2
 };

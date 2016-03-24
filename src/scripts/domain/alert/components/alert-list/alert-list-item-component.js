@@ -11,12 +11,12 @@ import {Link}  from 'react-router';
 import cx from 'classnames';
 
 const alertTypeIcons = {
-  "expiration": "fa-exclamation-circle",
+  "outcome": "fa-exclamation-circle",
   "outcomeNotice": "fa-calendar"
 };
 
 const alertTypeMessages = {
-  "expiration": "will expire",
+  "outcome": "will expire",
   "outcomeNotice": "requires an outcome notice"
 };
 
