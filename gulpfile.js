@@ -78,7 +78,7 @@ gulp.task('js', function () {
 
   return gulp.src('src/scripts/settings/' + settingsModule + '.js')
     .pipe(plugins.cached('js'))  //Process only changed files
-    .pipe(plugins.rename('container.js'))
+    .pipe(plugins.rename('container.js')) // this container.js is imported in main.js
     .on('error', plugins.util.log)
     .pipe(gulp.dest('build/js'));
 });

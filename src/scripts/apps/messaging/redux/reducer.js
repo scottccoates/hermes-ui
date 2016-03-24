@@ -1,4 +1,6 @@
 import { combineReducers } from 'redux';
+import {reducer as formReducer} from 'redux-form';
+
 export default {
   init(container) {
 
@@ -14,6 +16,7 @@ export default {
     const userAlertsReducer         = container.get("UserAlertsReducer").dependency;
 
     const rootReducer = combineReducers({
+      form: formReducer,
       session: sessionReducer,
       agreementEdit: agreementEditReducer,
       agreementDetail: agreementDetailReducer,
