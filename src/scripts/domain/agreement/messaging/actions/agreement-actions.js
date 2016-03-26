@@ -96,8 +96,8 @@ export default function (appStore, agreementService) {
       return async dispatch => {
 
         try {
-          const agreement = await agreementService.saveAgreement(agreementData);
-          dispatch(_agreementSavedSuccessAction(agreement));
+          await agreementService.saveAgreement(agreementData);
+          dispatch(_agreementSavedSuccessAction(agreementData));
         }
         catch (e) {
           dispatch(_agreementSavedFailureAction(e));

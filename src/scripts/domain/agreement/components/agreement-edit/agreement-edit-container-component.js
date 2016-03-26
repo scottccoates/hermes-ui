@@ -19,7 +19,7 @@ export default function (agreementActions, agreementTypeService, agreementEditFo
 
     onValid(data){
       agreementActions.saveAgreement(Object.assign({}, data, {
-        agreementId: this.props.params.agreementId
+        id: this.props.params.agreementId
       }));
     },
 
@@ -45,30 +45,6 @@ export default function (agreementActions, agreementTypeService, agreementEditFo
     },
 
     render() {
-      const today = new Date(new Date().setHours(0, 0, 0, 0, 0));
-      // https://github.com/erikras/redux-form/issues/547
-      const defaults = {
-        autoRenew: true,
-        counterparty: '',
-        description: '',
-        durationDetails: '',
-        executionDate: today,
-        name: '',
-        outcomeNoticeTimeAmount: 30,
-        outcomeNoticeTimeType: 'day',
-        termLengthTimeAmount: '',
-        termLengthTimeType: 'year',
-        typeId: null,
-        outcomeAlertEnabled: true,
-        outcomeAlertTimeAmount: 30,
-        outcomeAlertTimeType: 'day',
-        outcomeNoticeAlertEnabled: true,
-        outcomeNoticeAlertTimeAmount: 30,
-        outcomeNoticeAlertTimeType: 'day'
-      };
-
-      const agreement = Object.assign({}, defaults, this.props.agreementEdit.agreement);
-
       return (
         <div id="agreement-edit-container-wrapper">
           <div className="content-section space-top space-bottom">
@@ -81,7 +57,7 @@ export default function (agreementActions, agreementTypeService, agreementEditFo
             <div className="container">
               <AgreementEditForm form='agreementEditContainerForm'
                                  onValid={this.onValid} onInvalid={this.onInvalid}
-                                 initialValues={agreement}
+                                 initialValues={this.props.agreementEdit.agreement}
                                  counterparties={this.props.userCounterparties.counterparties}
                                  agreementTypes={this.props.userAgreementTypes.agreementTypes}
                                  onCreateAgreementType={this.onCreateAgreementType}/>

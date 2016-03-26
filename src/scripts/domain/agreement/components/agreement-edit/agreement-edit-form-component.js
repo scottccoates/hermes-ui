@@ -27,6 +27,8 @@ import formattingService from 'src/scripts/apps/formatting/services/formatting-s
 
 const {timeTypes, renewTypes} = agreementValueLabel;
 
+import formWrapper from '../../../../libs/redux-js/components/redux-form-wrapper';
+
 function validate(values) {
   const errors = {};
 
@@ -41,6 +43,27 @@ function validate(values) {
 }
 
 export default function () {
+
+  const today    = new Date(new Date().setHours(0, 0, 0, 0, 0));
+  const defaults = {
+    autoRenew: true,
+    counterparty: '',
+    description: '',
+    durationDetails: '',
+    executionDate: today,
+    name: '',
+    outcomeNoticeTimeAmount: 30,
+    outcomeNoticeTimeType: 'day',
+    termLengthTimeAmount: '',
+    termLengthTimeType: 'year',
+    typeId: null,
+    outcomeAlertEnabled: true,
+    outcomeAlertTimeAmount: 30,
+    outcomeAlertTimeType: 'day',
+    outcomeNoticeAlertEnabled: true,
+    outcomeNoticeAlertTimeAmount: 30,
+    outcomeNoticeAlertTimeType: 'day'
+  };
 
   let component = React.createClass({
     displayName: "AgreementEditFormComponent",
@@ -334,6 +357,12 @@ export default function () {
                            id="agreement-form-outcome-alert" {...outcomeAlertTimeAmount}/>
                   </div>
                   <div className="col-sm-4">
+                    {/*
+                     The problem here is that .values doesn't contain a value until it's been provided by a user
+                     this.props.values || initialValue
+                     https://github.com/erikras/redux-form/issues/547
+                     https://github.com/erikras/redux-form/issues/621
+                     */}
                     <ButtonSelect items={timeTypes}
                                   value={this.props.values.outcomeAlertTimeType || this.props.fields.outcomeAlertTimeType.initialValue}
                                   onChange={this.onChangeOutcomeAlertTimeType}
@@ -409,6 +438,8 @@ export default function () {
     validate,
     returnRejectedSubmitPromise: true
   })(component);
+
+  component = formWrapper(component, defaults);
 
   return new DependencyProvider(component);
 };

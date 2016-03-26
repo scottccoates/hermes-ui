@@ -5,14 +5,16 @@ import React from 'react';
 import DependencyProvider from '../../../../libs/dependency-injection/utils/dependency-provider';
 
 import Select from 'react-select';
-//todo remove rc form
 import {reduxForm} from 'redux-form';
 
 import cx from 'classnames';
-//todo test unctonroled smart view name
+
 import {required, integer} from 'src/scripts/libs/js-utils/validation/validation-utils';
 
 import {normalizeFormValues} from 'src/scripts/libs/js-utils/form/form-utils';
+
+import formWrapper from '../../../../libs/redux-js/components/redux-form-wrapper';
+
 
 function validate(values) {
   const errors = {};
@@ -23,6 +25,9 @@ function validate(values) {
 }
 
 export default function () {
+  const defaults = {
+    name: ''
+  };
 
   let component = React.createClass({
     displayName: "SmartViewEditFormComponent",
@@ -94,5 +99,8 @@ export default function () {
     validate,
     returnRejectedSubmitPromise: true
   })(component);
+
+  component = formWrapper(component);
+
   return new DependencyProvider(component);
 };

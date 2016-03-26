@@ -34,12 +34,9 @@ export default function () {
 
         const {artifacts} = agreement;
 
-        //if (artifacts) {
         const newArtifacts = artifacts.filter(a=>a.id != action.artifactId);
         const newAgreement = Object.assign({}, agreement, {artifacts: newArtifacts});
         retVal             = Object.assign({}, state, {agreement: newAgreement});
-
-        //}
 
         break;
 

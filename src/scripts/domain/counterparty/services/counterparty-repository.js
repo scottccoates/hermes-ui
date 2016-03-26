@@ -5,7 +5,7 @@ export default function (apiService) {
 
   const repository = {
     async save(agreement) {
-      const path = `${agreementPath}/${agreement.agreementId}`;
+      const path = `${agreementPath}/${agreement.id}`;
       return await apiService.update(path, agreement);
     },
 

@@ -48,8 +48,8 @@ export default function (appStore, smartViewService) {
       return async dispatch => {
 
         try {
-          const smartView = await smartViewService.saveSmartView(smartViewData);
-          dispatch(_smartViewSaveedSuccessAction(smartView));
+          await smartViewService.saveSmartView(smartViewData);
+          dispatch(_smartViewSaveedSuccessAction(smartViewData));
         }
         catch (e) {
           dispatch(_smartViewSaveedFailureAction(e));
