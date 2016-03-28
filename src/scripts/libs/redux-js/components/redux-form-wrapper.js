@@ -11,11 +11,16 @@ export default function formWrapper(wrapped, defaults) {
     displayName: "FormWrapperComponent",
 
     shouldComponentUpdate: function (nextProps, nextState) {
+      let retVal = true;
       // https://facebook.github.io/react/docs/component-specs.html#updating-shouldcomponentupdate
       // this prevents the form from being "reset" if someone
       // is editing it and that agreement data is concurrently changed in firebase. it'd wipe out their work.
       // we probably don't need realtime sync on an edit form.
-      return nextProps.initialValues.id !== this.props.initialValues.id;
+      if (nextProps.initialValues && nextProps.initialValues.id) {
+        retVal = nextProps.initialValues.id !== this.props.initialValues.id;
+      }
+
+      return retVal;
     },
 
     render() {
