@@ -96,11 +96,12 @@ export default function (searchActions, searchService, smartViewActions, searchQ
       searchActions.specifyAdvancedSearchParameters(parameters);
     },
 
-    onCounterpartyChanged(counterpartyOption){
+    onCounterpartyChanged(newVal, counterpartyOption){
       let counterparty = null;
 
-      if (counterpartyOption) {
-        counterparty = counterpartyOption;
+      if (counterpartyOption.length) {
+        // counterparties don't have ID's yet - they're just strings.
+        counterparty = counterpartyOption[0].label;
       }
 
       const parameters = Object.assign({}, this.props.advancedSearch.parameters, {counterparty});

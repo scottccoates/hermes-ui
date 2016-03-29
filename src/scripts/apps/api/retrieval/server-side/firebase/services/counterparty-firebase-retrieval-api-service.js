@@ -22,10 +22,9 @@ export default {
     counterpartiesRef.on("value", snapshot => {
 
       try {
-        const counterPartyValues = snapshot.val() || {};
-        const userCounterparties = Object.keys(counterPartyValues).map(k => ({id: k, name: k}));
+        const counterpartyTypes = firebaseService.prepareCollection(snapshot);
 
-        counterpartyActions.userCounterpartiesReceived(userCounterparties);
+        counterpartyActions.userCounterpartiesReceived(counterpartyTypes);
       }
       catch (error) {
         throw new Error(`Error providing counterparty data from firebase: Inner exception: ${error.stack}`);

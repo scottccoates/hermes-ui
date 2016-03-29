@@ -37,6 +37,12 @@ export default function () {
         counterpartiesValues = formattingService.getValueLabelFromArray(counterpartiesTypes);
       }
 
+      let counterpartyValue = this.props.parameters.counterparty;
+      if (counterpartyValue && counterpartiesValues) {
+        // counterparty doesn't have an ID yet - it's just a string.
+        counterpartyValue = counterpartiesValues.find(item=>item.label === counterpartyValue).value;
+      }
+
       return (
         <div className="advanced-search-query-container">
 
@@ -52,7 +58,7 @@ export default function () {
                 </li>
                 <li><SelectSearchField iconClass='fa-building' fieldLabel="Counterparty"
                                        options={counterpartiesValues}
-                                       value={this.props.parameters.counterparty}
+                                       value={counterpartyValue}
                                        onChange={this.props.onCounterpartyChanged}/></li>
                 <li><SelectSearchField iconClass='fa-file' fieldLabel="Type of agreement"
                                        options={agreementTypesValues}

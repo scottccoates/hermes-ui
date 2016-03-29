@@ -68,8 +68,17 @@ export default function () {
   let component = React.createClass({
     displayName: "AgreementEditFormComponent",
 
-    onChangeCounterparty (newVal){
-      this.props.fields.counterparty.onChange(newVal);
+    onChangeCounterparty (newVal, newValState){
+      // counterparties don't have ID's yet - they're just strings.
+
+      let counterpartyValue = null;
+
+      if (newValState.length) {
+        counterpartyValue = newValState[0].label;
+      }
+
+      this.props.fields.counterparty.onChange(counterpartyValue);
+
       this.props.touch('counterparty');
     },
 
@@ -139,6 +148,7 @@ export default function () {
               handleSubmit
               } = this.props;
 
+      // counterparty doesn't have an ID yet - it's just a string.
       let counterpartiesValues  = [];
       const counterpartiesTypes = this.props.counterparties;
       if (counterpartiesTypes.length) {
@@ -184,8 +194,6 @@ export default function () {
           submitPromise.catch(err => this.props.onInvalid(err));
         }
       };
-
-      const {values} = this.props;
 
       return (
         <div className="agreement-edit-form-wrapper">
