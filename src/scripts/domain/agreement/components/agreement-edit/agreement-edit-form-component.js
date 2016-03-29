@@ -151,7 +151,7 @@ export default function () {
         agreementTypesValues = formattingService.getValueLabelFromArray(userAgreementTypes);
       }
 
-      const executionDateMoment = moment(this.props.fields.executionDate.initialValue);
+      const executionDateMoment = moment(this.props.values.executionDate || this.props.fields.executionDate.initialValue);
 
       const defaultFormClasses = ['form-group'];
 
