@@ -27,6 +27,7 @@ import formattingService from 'src/scripts/apps/formatting/services/formatting-s
 
 const {timeTypes, renewTypes} = agreementValueLabel;
 
+
 import formWrapper from '../../../../libs/redux-js/components/redux-form-wrapper';
 
 function validate(values) {
@@ -161,7 +162,7 @@ export default function () {
         agreementTypesValues = formattingService.getValueLabelFromArray(userAgreementTypes);
       }
 
-      const executionDateMoment = moment(this.props.values.executionDate || this.props.fields.executionDate.initialValue);
+      const executionDateMoment = moment(this.props.values.executionDate);
 
       const defaultFormClasses = ['form-group'];
 
@@ -276,7 +277,7 @@ export default function () {
                   </div>
                   <div className="col-sm-6">
                     <ButtonSelect items={timeTypes}
-                                  value={this.props.values.termLengthTimeType || this.props.fields.termLengthTimeType.initialValue}
+                                  value={this.props.values.termLengthTimeType}
                                   onChange={this.onChangeTermLengthTimeType}
                                   className="btn btn-sm btn-info agreement-form-button agreement-form-field-button"/>
                   </div>
@@ -291,7 +292,7 @@ export default function () {
 
                   <div className="col-sm-6">
                     <ButtonSelect items={renewTypes}
-                                  value={this.props.values.autoRenew || this.props.fields.autoRenew.initialValue}
+                                  value={this.props.values.autoRenew}
                                   onChange={this.onChangeAutoRenew}
                                   className="btn btn-sm btn-info agreement-form-button agreement-form-field-button"/>
                   </div>
@@ -306,7 +307,7 @@ export default function () {
                   </div>
                   <div className="col-sm-9">
                     <ButtonSelect items={timeTypes}
-                                  value={this.props.values.outcomeNoticeTimeType || this.props.fields.outcomeNoticeTimeType.initialValue }
+                                  value={this.props.values.outcomeNoticeTimeType }
                                   onChange={this.onChangeOutcomeNoticeTimeType}
                                   className="btn btn-sm btn-info agreement-form-button agreement-form-field-button"/>
                         <span
@@ -365,14 +366,8 @@ export default function () {
                            id="agreement-form-outcome-alert" {...outcomeAlertTimeAmount}/>
                   </div>
                   <div className="col-sm-4">
-                    {/*
-                     The problem here is that .values doesn't contain a value until it's been provided by a user
-                     this.props.values || initialValue
-                     https://github.com/erikras/redux-form/issues/547
-                     https://github.com/erikras/redux-form/issues/621
-                     */}
                     <ButtonSelect items={timeTypes}
-                                  value={this.props.values.outcomeAlertTimeType || this.props.fields.outcomeAlertTimeType.initialValue}
+                                  value={this.props.values.outcomeAlertTimeType}
                                   onChange={this.onChangeOutcomeAlertTimeType}
                                   className="btn btn-sm btn-info agreement-form-button agreement-form-field-button"/>
                   </div>
@@ -407,7 +402,7 @@ export default function () {
                   </div>
                   <div className="col-sm-4">
                     <ButtonSelect items={timeTypes}
-                                  value={this.props.values.outcomeNoticeAlertTimeType || this.props.fields.outcomeNoticeAlertTimeType.initialValue}
+                                  value={this.props.values.outcomeNoticeAlertTimeType}
                                   onChange={this.onChangeOutcomeNoticeAlertTimeType}
                                   className="btn btn-sm btn-info agreement-form-button agreement-form-field-button"/>
                   </div>
