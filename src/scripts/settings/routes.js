@@ -35,32 +35,45 @@ export default {
       }
     }
 
-    ReactDOM.render((
+    // https://github.com/capaj/systemjs-hot-reloader/issues/13
+    // https://github.com/jackfranklin/interactive-es6/pull/3/commits
+    class ForceReRender extends React.Component {
 
-      <Provider store={store}>
-        <Router history={history}>
-          <Route component={AppLayoutComponent} onEnter={requireAuth}>
-            <Redirect from='/' to='/dashboard'/> {/*https://github.com/rackt/react-router/issues/1675*/}
+      componentWillMount() {
+        // a little hack to help us rerender when this module is reloaded
+        // https://github.com/capaj/jspm-react/blob/master/public/app.js#L16
+        this.forceUpdate();
+      }
 
-            <Route path='dashboard' component={DashboardComponent}/>
+      render() {
+        return (
+          <Provider store={store}>
+            <Router history={history}>
+              <Route component={AppLayoutComponent} onEnter={requireAuth}>
+                <Redirect from='/' to='/dashboard'/> {/*https://github.com/rackt/react-router/issues/1675*/}
 
-            <Route path='privacy' component={SecurityPrivacyComponent}/>
+                <Route path='dashboard' component={DashboardComponent}/>
 
-            <Route path='agreements'>
-              <Route path='step-1' component={CreateAgreementComponent}/>
-              <Route path=':agreementId/step-2' component={AgreementEditContainerComponent}/>
-              <Route path=':agreementId/edit' component={AgreementEditContainerComponent}/>
-              <Route path=':agreementId' component={AgreementDetailContainerComponent}/>
-            </Route>
+                <Route path='privacy' component={SecurityPrivacyComponent}/>
 
-            <Route path='search' component={SearchResultContainer}/>
-          </Route>
+                <Route path='agreements'>
+                  <Route path='step-1' component={CreateAgreementComponent}/>
+                  <Route path=':agreementId/step-2' component={AgreementEditContainerComponent}/>
+                  <Route path=':agreementId/edit' component={AgreementEditContainerComponent}/>
+                  <Route path=':agreementId' component={AgreementDetailContainerComponent}/>
+                </Route>
 
-          <Route path='login' component={LoginComponent}/>
-          <Route path='logout' component={LogoutComponent}/>
-        </Router>
-      </Provider>
+                <Route path='search' component={SearchResultContainer}/>
+              </Route>
 
-    ), document.getElementById('app'));
+              <Route path='login' component={LoginComponent}/>
+              <Route path='logout' component={LogoutComponent}/>
+            </Router>
+          </Provider>
+        )
+      }
+    }
+
+    ReactDOM.render(<ForceReRender />, document.getElementById('app'));
   }
 };

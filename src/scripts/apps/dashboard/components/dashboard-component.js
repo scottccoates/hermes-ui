@@ -5,7 +5,7 @@ import {Link} from 'react-router';
 
 import { connect } from 'react-redux';
 
-import Separator from 'src/scripts/libs/react-js/components/separator';
+import Separator from '../../../libs/react-js/components/separator';
 
 import DependencyProvider from '../../../libs/dependency-injection/utils/dependency-provider';
 

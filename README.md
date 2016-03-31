@@ -48,6 +48,9 @@ Everything in the src folder is for example purposes. Have a look to see how eve
 
 If you want a more stable and probable better put together React Kit project that uses webpack, have a look at the [React Starter Kit](https://github.com/kriasoft/react-starter-kit).
 
+## JSPM
+http://jspm.io/0.17-beta-guide/hot-reloading.html
+
 ## FAQ
 ### Why is babel defined in npm and jspm (look in package.json)?
 In `package.json`, babel is defined in jspm because jspm uses it when it fetches a new file. It's configured in npm

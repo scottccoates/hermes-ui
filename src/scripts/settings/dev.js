@@ -1,3 +1,6 @@
+// http://jspm.io/0.17-beta-guide/hot-reloading.html
+import 'systemjs-hot-reloader/default-listener'
+
 import config from 'src/scripts/settings/ioc';
 
 import Lock from 'auth0-lock';

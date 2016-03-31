@@ -4,7 +4,7 @@ import log from 'loglevel';
 
 import container from 'build/js/container';
 
-import routes from 'src/scripts/settings/routes';
+import routes from './settings/routes';
 
 const containerInstance = container.init();
 
@@ -52,3 +52,7 @@ const unSub = store.subscribe(async _=> {
 
   routes.init(containerInstance);
 });
+
+export function __reload(m) {
+  console.log("m",m);
+}
