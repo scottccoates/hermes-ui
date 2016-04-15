@@ -52,7 +52,3 @@ const unSub = store.subscribe(async _=> {
 
   routes.init(containerInstance);
 });
-
-export function __reload(m) {
-  console.log("m",m);
-}

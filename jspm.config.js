@@ -20,15 +20,7 @@ SystemJS.config({
     },
     "build": {
       // build is used to import the container.js from the build/ dir.
-      "meta": {
-        "*.js": {
-          "babelOptions": {
-            "plugins": [
-              "babel-plugin-transform-react-jsx"
-            ]
-          }
-        }
-      }
+      // apparently this key needs to exist for babel and systemjs to work properly
     }
   },
   map: {

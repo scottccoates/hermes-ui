@@ -5,7 +5,3 @@ System.config({
     "npm:*": "jspm_packages/npm/*"
   }
 });
-
-if (location.origin.match(/localhost/)) {
-  System.config({trace: true});
-}

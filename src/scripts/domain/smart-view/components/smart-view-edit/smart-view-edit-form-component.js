@@ -25,9 +25,6 @@ function validate(values) {
 }
 
 export default function () {
-  const defaults = {
-    name: ''
-  };
 
   let component = React.createClass({
     displayName: "SmartViewEditFormComponent",

@@ -93,7 +93,7 @@ export default function (sessionRepository, authService) {
 
     async resumeSession(keepAliveSessionFunc){
       try {
-        //await sessionService.renewSession(keepAliveSessionFunc);
+        await sessionService.renewSession(keepAliveSessionFunc);
         var retVal = sessionRepository.getLoginInfo();
       }
       catch (e) {

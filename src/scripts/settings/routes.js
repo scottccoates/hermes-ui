@@ -35,6 +35,34 @@ export default {
       }
     }
 
+    // routes should be defined in a constant outside of the actual component
+    // https://github.com/reactjs/react-router/issues/2704#issuecomment-174363765
+    const routes = (
+      <Provider store={store}>
+      <Router history={history}>
+        <Route component={AppLayoutComponent} onEnter={requireAuth}>
+          <Redirect from='/' to='/dashboard'/> {/*https://github.com/rackt/react-router/issues/1675*/}
+
+          <Route path='dashboard' component={DashboardComponent}/>
+
+          <Route path='privacy' component={SecurityPrivacyComponent}/>
+
+          <Route path='agreements'>
+            <Route path='step-1' component={CreateAgreementComponent}/>
+            <Route path=':agreementId/step-2' component={AgreementEditContainerComponent}/>
+            <Route path=':agreementId/edit' component={AgreementEditContainerComponent}/>
+            <Route path=':agreementId' component={AgreementDetailContainerComponent}/>
+          </Route>
+
+          <Route path='search' component={SearchResultContainer}/>
+        </Route>
+
+        <Route path='login' component={LoginComponent}/>
+        <Route path='logout' component={LogoutComponent}/>
+      </Router>
+    </Provider>
+    );
+
     // https://github.com/capaj/systemjs-hot-reloader/issues/13
     // https://github.com/jackfranklin/interactive-es6/pull/3/commits
     class ForceReRender extends React.Component {
@@ -46,31 +74,7 @@ export default {
       }
 
       render() {
-        return (
-          <Provider store={store}>
-            <Router history={history}>
-              <Route component={AppLayoutComponent} onEnter={requireAuth}>
-                <Redirect from='/' to='/dashboard'/> {/*https://github.com/rackt/react-router/issues/1675*/}
-
-                <Route path='dashboard' component={DashboardComponent}/>
-
-                <Route path='privacy' component={SecurityPrivacyComponent}/>
-
-                <Route path='agreements'>
-                  <Route path='step-1' component={CreateAgreementComponent}/>
-                  <Route path=':agreementId/step-2' component={AgreementEditContainerComponent}/>
-                  <Route path=':agreementId/edit' component={AgreementEditContainerComponent}/>
-                  <Route path=':agreementId' component={AgreementDetailContainerComponent}/>
-                </Route>
-
-                <Route path='search' component={SearchResultContainer}/>
-              </Route>
-
-              <Route path='login' component={LoginComponent}/>
-              <Route path='logout' component={LogoutComponent}/>
-            </Router>
-          </Provider>
-        )
+        return routes;
       }
     }
 

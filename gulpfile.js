@@ -73,6 +73,10 @@ gulp.task('browser-sync', function () {
     });
 });
 
+gulp.task('hot-reload', function () {
+  require('chokidar-socket-emitter/cli');
+});
+
 // Js
 gulp.task('js', function () {
 
@@ -127,7 +131,7 @@ gulp.task('serve', function () {
   process.env.BUILD_TYPE = 'local'; // gulp-preprocessor will use this env var when compiling index.html, assets, etc.
   console.info('BUILD_TYPE forcibly set to local')
 
-  runSequence(['browser-sync', 'js', 'sass', 'assets', 'html']);
+  runSequence(['browser-sync', 'hot-reload', 'js', 'sass', 'assets', 'html']);
 
   gulp.watch('./index.html', ['html']);
   gulp.watch('./src/scripts/settings/**/*.js', ['js']);
@@ -192,8 +196,8 @@ gulp.task('assets-dist', function () {
 // https://60devs.com/custom-ember-dev-workflow-using-jspm.html
 // https://github.com/jspm/jspm-cli/blob/b454d33c8a53bfd871f9c03c9a47122a0719016f/docs/api.md
 gulp.task('bundle', function () {
-  jspm.setPackagePath('.');
-  return jspm.bundle('./src/scripts/main + src/scripts/apps/feedback/components/loading/loading-feedback + bootstrap', './build/js/app.js', { // this returns a promise, which gulp can interpret
+  var builder = new jspm.Builder();
+  return builder.bundle('./src/scripts/main + src/scripts/apps/feedback/components/loading/loading-feedback + bootstrap', './build/js/app.js', { // this returns a promise, which gulp can interpret
     mangle: false, minify: false,
     sourceMaps: true, lowResSourceMaps: true
   });
@@ -202,7 +206,7 @@ gulp.task('bundle', function () {
 // Uglify the bundle
 // http://stackoverflow.com/questions/24591854/using-gulp-to-concatenate-and-uglify-files
 gulp.task('uglify', function () {
-  return gulp.src(['./jspm_packages/system.src.js', './config.js', './build/js/app.js'])
+  return gulp.src(['./jspm_packages/system.src.js', './jspm.browser.js', 'jspm.config.js', './build/js/app.js'])
     .pipe(plugins.sourcemaps.init({loadMaps: true}))
     .pipe(plugins.concat('app.js'))
     .pipe(plugins.uglify())
