@@ -85,6 +85,8 @@ import AlertListItemComponent from 'src/scripts/domain/alert/components/alert-li
 
 import SecurityPrivacyComponent from '../apps/security/components/privacy/security-privacy-component';
 
+import CheckoutComponent from '../apps/payment/components/privacy/checkout-component'
+
 import { createHistory , useQueries} from 'history';
 
 export default {
@@ -174,6 +176,8 @@ export default {
 
     container.register("SecurityPrivacyComponent", SecurityPrivacyComponent);
 
+    container.register("CheckoutComponent", CheckoutComponent);
+
     container.register("NprogressBar", NprogressBar);
 
     // https://github.com/rackt/history/blob/master/docs/QuerySupport.md
@@ -231,6 +235,7 @@ export default {
     SessionRepository.$inject = ["ClientSidePersistenceService"];
     LogoutComponent.$inject   = ['SessionActions'];
 
+    CheckoutComponent.$inject = ['StripeApiKey'];
     return container;
   }
 };

@@ -24,6 +24,8 @@ export default {
 
     const SecurityPrivacyComponent = container.get("SecurityPrivacyComponent").dependency;
 
+    const CheckoutComponent = container.get("CheckoutComponent").dependency;
+
     // http://rackt.github.io/history/stable/GettingStarted.html
     // react-router started using a new history dep: https://github.com/rackt/react-router/blob/master/CHANGELOG.md#v100-beta4---mon-31-aug-2015-061934-gmt
     const history = container.get("History");
@@ -46,6 +48,8 @@ export default {
           <Route path='dashboard' component={DashboardComponent}/>
 
           <Route path='privacy' component={SecurityPrivacyComponent}/>
+
+          <Route path='checkout' component={CheckoutComponent}/>
 
           <Route path='agreements'>
             <Route path='step-1' component={CreateAgreementComponent}/>

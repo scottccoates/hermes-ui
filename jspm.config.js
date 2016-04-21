@@ -18,10 +18,7 @@ SystemJS.config({
         }
       }
     },
-    "build": {
-      // build is used to import the container.js from the build/ dir.
-      // apparently this key needs to exist for babel and systemjs to work properly
-    }
+    "build": {}
   },
   map: {
     "babel": "npm:systemjs-plugin-babel@0.0.8"
@@ -83,6 +80,7 @@ SystemJS.config({
     "react-redux": "npm:react-redux@4.4.1",
     "react-router": "npm:react-router@1.0.3",
     "react-select": "npm:react-select@0.9.1",
+    "react-stripe-checkout": "npm:react-stripe-checkout@1.8.0",
     "react-tagsinput": "github:olahol/react-tagsinput@1.2.0",
     "redux": "npm:redux@3.0.2",
     "redux-form": "npm:redux-form@4.2.2",
@@ -97,6 +95,11 @@ SystemJS.config({
     "whatwg-fetch": "npm:whatwg-fetch@0.10.0"
   },
   packages: {
+    "npm:react-stripe-checkout@1.8.0": {
+      "map": {
+        "react-script-loader": "npm:react-script-loader@0.0.1"
+      }
+    },
     "github:capaj/systemjs-hot-reloader@0.5.6": {
       "map": {
         "debug": "npm:debug@2.2.0",

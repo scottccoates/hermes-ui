@@ -39,7 +39,9 @@ export default {
 
     container.register("ErrorLogger", LoglevelErrorLogger);
 
-    Lock.$inject = ["Auth0ClientID", "Auth0ClientDomain"]; // these are provided in the environment settings files
+    container.register("StripeApiKey", 'Stripe API Key');
+
+    Lock.$inject                = ["Auth0ClientID", "Auth0ClientDomain"]; // these are provided in the environment settings files
     Auth0LoginComponent.$inject = ['SessionActions', "Auth0Lock"];
     Auth0AuthService.$inject    = ["Auth0Lock"];
 

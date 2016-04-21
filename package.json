@@ -32,6 +32,7 @@
       "react-redux": "npm:react-redux@4.4.1",
       "react-router": "npm:react-router@1.0.3",
       "react-select": "npm:react-select@0.9.1",
+      "react-stripe-checkout": "npm:react-stripe-checkout@^1.8.0",
       "react-tagsinput": "github:olahol/react-tagsinput@1.2.0",
       "redux": "npm:redux@3.0.2",
       "redux-form": "npm:redux-form@4.2.2",

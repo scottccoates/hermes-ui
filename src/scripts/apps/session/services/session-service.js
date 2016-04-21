@@ -77,8 +77,8 @@ export default function (sessionRepository, authService) {
 
     async renewSession(keepAliveSessionFunc){
       try {
-        const loginInfo        = sessionRepository.getLoginInfo();
-        const currentIdToken   = loginInfo.token;
+        const loginInfo      = sessionRepository.getLoginInfo();
+        const currentIdToken = loginInfo.token;
 
         log.info("Beginning: Renew auth for user: %s", loginInfo.user.nickname);
         const renewedAuthToken = await authService.renewAuthToken(currentIdToken);
@@ -93,7 +93,7 @@ export default function (sessionRepository, authService) {
 
     async resumeSession(keepAliveSessionFunc){
       try {
-        await sessionService.renewSession(keepAliveSessionFunc);
+        await sessionService.renewSession(keepAliveSessionFunc); // this will fail if they're not logged in or haven't logged in a while.
         var retVal = sessionRepository.getLoginInfo();
       }
       catch (e) {

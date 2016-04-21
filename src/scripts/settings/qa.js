@@ -37,6 +37,8 @@ export default {
     container.register("ErrorLogger", RaygunErrorLogger);
     container.register("RaygunApiKey", "/* @echo RAYGUN_API_KEY */");
 
+    container.register("StripeApiKey", '/* @echo STRIPE_API_KEY */'); // QA
+
     RaygunErrorLogger.$inject = ['RaygunApiKey'];
 
     Lock.$inject = ["Auth0ClientID", "Auth0ClientDomain"]; // these are provided in the environment settings files
