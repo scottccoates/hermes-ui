@@ -16,7 +16,7 @@
     </inspection_tool>
     <inspection_tool class="BadExpressionStatementJS" enabled="true" level="WARNING" enabled_by_default="true">
       <scope name="Build" level="WARNING" enabled="false" />
-      <scope name="Tests" level="UNUSED ENTRY" enabled="false" />
+      <scope name="Tests" level="WARNING" enabled="false" />
     </inspection_tool>
     <inspection_tool class="BlockStatementJS" enabled="true" level="WARNING" enabled_by_default="false">
       <scope name="Build" level="WARNING" enabled="false" />
@@ -221,7 +221,7 @@
       <scope name="Build" level="WARNING" enabled="false" />
     </inspection_tool>
     <inspection_tool class="JSFileReferences" enabled="true" level="WARNING" enabled_by_default="true">
-      <scope name="Build" level="UNUSED ENTRY" enabled="false" />
+      <scope name="Build" level="WARNING" enabled="false" />
     </inspection_tool>
     <inspection_tool class="JSHint" enabled="true" level="ERROR" enabled_by_default="false">
       <scope name="Build" level="ERROR" enabled="false" />
@@ -499,7 +499,7 @@
     <inspection_tool class="UnnecessaryLabelOnContinueStatementJS" enabled="true" level="WARNING" enabled_by_default="true">
       <scope name="Build" level="WARNING" enabled="false" />
     </inspection_tool>
-    <inspection_tool class="UnnecessaryLocalVariableJS" enabled="false" level="UNUSED ENTRY" enabled_by_default="false">
+    <inspection_tool class="UnnecessaryLocalVariableJS" enabled="false" level="WARNING" enabled_by_default="false">
       <option name="m_ignoreImmediatelyReturnedVariables" value="false" />
       <option name="m_ignoreAnnotatedVariables" value="false" />
     </inspection_tool>
