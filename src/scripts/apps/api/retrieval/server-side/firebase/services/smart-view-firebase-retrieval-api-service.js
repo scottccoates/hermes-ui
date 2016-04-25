@@ -9,8 +9,8 @@ import agreementEnums from 'src/scripts/apps/formatting/agreement/agreement-enum
 export default {
   init(container, store, rootRef) {
     const state  = store.getState();
-    const user   = state.session.user;
-    const userId = user.appMetadata.hermes.userId;
+    const meta   = state.session.meta;
+    const userId = meta.appMetadata.hermes.userId;
 
     const smartViewActions = container.get('SmartViewActions');
 

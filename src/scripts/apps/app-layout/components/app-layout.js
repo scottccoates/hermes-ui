@@ -77,7 +77,7 @@ export default function (sidebarComponent, headerComponent) {
                    https://facebook.github.io/react/docs/top-level-api.html#react.cloneelement
                    https://github.com/rackt/react-router/blob/15b05b4f2ca8b4ade5f7378ed1839b752a62babc/examples/passing-props-to-children/app.js
                    */}
-                  {React.cloneElement(this.props.children, {user: {token: this.props.token}})}
+                  {React.cloneElement(this.props.children, {loginMeta: {token: this.props.session.token}})}
                 </div>
               </div>
             </div>
@@ -88,7 +88,13 @@ export default function (sidebarComponent, headerComponent) {
     }
   });
 
-  appLayout = connect(x=> x.session)(appLayout);
+  function extracted(state) {
+    return {
+      session: state.session, user: state.userInfo
+    };
+  }
+
+  appLayout = connect(extracted)(appLayout);
 
   return new DependencyProvider(appLayout);
 };

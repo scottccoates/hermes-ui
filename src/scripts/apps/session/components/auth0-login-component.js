@@ -69,7 +69,7 @@ export default function (sessionActions, auth0Lock) {
         else {
           // https://auth0.com/docs/libraries/lock/customization
           // https://auth0.com/docs/libraries/lock/sending-authentication-parameters
-          // we can omit authParams.scope because we don't actually care about storing anything in the token.
+          // we cannot omit authParams.scope because we need to pass in appMetadata into our JWT
           const lockOptions = {
             sso: false,
             rememberLastLogin: false,
@@ -78,7 +78,7 @@ export default function (sessionActions, auth0Lock) {
             authParams: {scope: 'openid app_metadata'}
           };
 
-          auth0Lock.show(lockOptions, (error, profile, idToken)=> {
+          auth0Lock.show(lockOptions, (error, meta, idToken)=> {
             if (error) {
               if (error.status && error.status != 401) {
                 throw new Error(`Error authenticating: ${idToken}. Inner exception: ${error.stack}`);
@@ -86,8 +86,8 @@ export default function (sessionActions, auth0Lock) {
             }
             else {
               try {
-                log.info("Beginning: Log in user: %s", profile.nickname);
-                sessionActions.login(idToken, profile, sessionActions.resumeSession);
+                log.info("Beginning: Log in user: %s", meta.nickname);
+                sessionActions.login(idToken, meta, sessionActions.resumeSession);
               }
               catch (e) {
                 throw new Error("Error completing the login process " + e.stack);

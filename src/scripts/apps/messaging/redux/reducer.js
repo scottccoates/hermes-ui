@@ -14,6 +14,7 @@ export default {
     const userCounterpartiesReducer = container.get("UserCounterpartiesReducer").dependency;
     const advancedSearchReducer     = container.get("AdvancedSearchReducer").dependency;
     const userAlertsReducer         = container.get("UserAlertsReducer").dependency;
+    const userInfoReducer           = container.get("UserInfoReducer").dependency;
 
     const rootReducer = combineReducers({
       form: formReducer,
@@ -26,7 +27,8 @@ export default {
       userAgreementTypes: userAgreementTypesReducer,
       userCounterparties: userCounterpartiesReducer,
       advancedSearch: advancedSearchReducer,
-      userAlerts: userAlertsReducer
+      userAlerts: userAlertsReducer,
+      userInfo: userInfoReducer
     });
 
     return rootReducer;

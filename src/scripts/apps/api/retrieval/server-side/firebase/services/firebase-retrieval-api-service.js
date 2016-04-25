@@ -5,12 +5,13 @@ import agreementRetrievalApiService from'./agreement-firebase-retrieval-api-serv
 import agreementTypeRetrievalApiService from'./agreement-type-firebase-retrieval-api-service';
 import counterPartyRetrievalApiService from'./counterparty-firebase-retrieval-api-service';
 import alertRetrievalApiService from'./alert-firebase-retrieval-api-service';
+import userRetrievalApiService from'./user-firebase-retrieval-api-service';
 
 export default function (firebase) {
   return {
     init(container, store) {
       const promise = new Promise((res, rej)=> {
-        const firebaseToken = store.getState().session.user.firebaseData.token;
+        const firebaseToken = store.getState().session.meta.firebaseData.token;
 
         firebase.authWithCustomToken(firebaseToken, function (error) {
           if (error) {
@@ -22,6 +23,7 @@ export default function (firebase) {
             agreementTypeRetrievalApiService.init(container, store, firebase);
             counterPartyRetrievalApiService.init(container, store, firebase);
             alertRetrievalApiService.init(container, store, firebase);
+            userRetrievalApiService.init(container, store, firebase);
             log.info("Firebase authenticated");
 
             res();

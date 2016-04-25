@@ -7,36 +7,36 @@ var _renewSessionTimeout = null;
 export default function (sessionRepository, authService) {
 
   const sessionService = {
-    _prepareUserObject: function (user) {
+    _prepareMetaObject: function (meta) {
       // auth0 doesn't follow a convention, so user_id is diff than isSocial, etc.
-      const data = humps.camelizeKeys(user);
+      const data = humps.camelizeKeys(meta);
       return data;
     },
 
-    async login(token, user, keepAliveSessionFunc){
+    async login(token, meta, keepAliveSessionFunc){
 
-      user = this._prepareUserObject(user);
+      meta = this._prepareMetaObject(meta);
       if (!keepAliveSessionFunc) {
         throw new Error('Missing keepAliveSessionFunc');
       }
 
       try {
 
-        log.info("Beginning: Get third party auth for user: %s", user.nickname);
+        log.info("Beginning: Get third party auth for meta: %s", meta.nickname);
 
         let thirdPartyAuthInformation = await authService.getThirdPartyAuthInformation(token);
-        thirdPartyAuthInformation     = this._prepareUserObject(thirdPartyAuthInformation);
+        thirdPartyAuthInformation     = this._prepareMetaObject(thirdPartyAuthInformation);
 
-        log.info("Completed: Get third party auth for user: %s", user.nickname);
+        log.info("Completed: Get third party auth for meta: %s", meta.nickname);
 
-        var newUserInformation = Object.assign({}, user, thirdPartyAuthInformation);
+        var newMetaInformation = Object.assign({}, meta, thirdPartyAuthInformation);
       }
       catch (e) {
         throw new Error("Cannot get third party auth: " + e.stack);
       }
 
       try {
-        sessionRepository.saveLoginInfo(token, newUserInformation);
+        sessionRepository.saveLoginInfo(token, newMetaInformation);
       }
       catch (e) {
         throw new Error("Cannot save login info: " + e.stack);
@@ -80,11 +80,11 @@ export default function (sessionRepository, authService) {
         const loginInfo      = sessionRepository.getLoginInfo();
         const currentIdToken = loginInfo.token;
 
-        log.info("Beginning: Renew auth for user: %s", loginInfo.user.nickname);
+        log.info("Beginning: Renew auth for user: %s", loginInfo.meta.nickname);
         const renewedAuthToken = await authService.renewAuthToken(currentIdToken);
-        log.info("Completed: Renew auth for user: %s", loginInfo.user.nickname);
+        log.info("Completed: Renew auth for user: %s", loginInfo.meta.nickname);
 
-        return await sessionService.login(renewedAuthToken, loginInfo.user, keepAliveSessionFunc);
+        return await sessionService.login(renewedAuthToken, loginInfo.meta, keepAliveSessionFunc);
       }
       catch (e) {
         throw new Error("Cannot renew: " + e.stack);

@@ -35,10 +35,13 @@ export default function (appStore, sessionService) {
 
   let sessionActions = {
 
-    login(token, user, keepAliveSessionFunc){
+    login(token, meta, keepAliveSessionFunc){
+      // I started to build out the meta messaging (reducer, actions) logic and decided to remove `meta` param.
+      // I however I realized we need to persist certain info (like userId) to our local storage and that's
+      // done via the SessionRepo.
       return async dispatch => {
-        const newUserLoginInformation = await sessionService.login(token, user, keepAliveSessionFunc);
-        dispatch(_loginSuccessAction(newUserLoginInformation));
+        const newMetaLoginInformation = await sessionService.login(token, meta, keepAliveSessionFunc);
+        dispatch(_loginSuccessAction(newMetaLoginInformation));
       };
     },
 

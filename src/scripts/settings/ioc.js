@@ -83,6 +83,11 @@ import UserAlertsReducer from '../domain/alert/messaging/reducers/user-alerts-re
 import AlertListComponent from 'src/scripts/domain/alert/components/alert-list/alert-list-component';
 import AlertListItemComponent from 'src/scripts/domain/alert/components/alert-list/alert-list-item-component';
 
+import UserActions from '../domain/user/messaging/actions/user-actions';
+import UserService from '../domain/user/services/user-service';
+import UserRepository from '../domain/user/services/user-repository';
+import UserInfoReducer from '../domain/user/messaging/reducers/user-info-reducer';
+
 import SecurityPrivacyComponent from '../apps/security/components/privacy/security-privacy-component';
 
 import CheckoutComponent from '../apps/payment/components/privacy/checkout-component'
@@ -174,6 +179,11 @@ export default {
     container.register("SessionActions", SessionActions);
     container.register("LogoutComponent", LogoutComponent);
 
+    container.register("UserActions", UserActions);
+    container.register("UserService", UserService);
+    container.register("UserRepository", UserRepository);
+    container.register("UserInfoReducer", UserInfoReducer);
+
     container.register("SecurityPrivacyComponent", SecurityPrivacyComponent);
 
     container.register("CheckoutComponent", CheckoutComponent);
@@ -235,7 +245,11 @@ export default {
     SessionRepository.$inject = ["ClientSidePersistenceService"];
     LogoutComponent.$inject   = ['SessionActions'];
 
-    CheckoutComponent.$inject = ['StripeApiKey'];
+    UserActions.$inject    = ["AppStore", 'UserService'];
+    UserService.$inject    = ["UserRepository"];
+    UserRepository.$inject = ["PersistenceApiService"];
+
+    CheckoutComponent.$inject = ['UserActions', 'StripeApiKey'];
     return container;
   }
 };

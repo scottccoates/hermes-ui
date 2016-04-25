@@ -55,7 +55,7 @@ export default function (agreementService, persistenceApiServiceUrl, fileUploadP
                             onError={this.onError}
                             className='dropzone'
                             paramName="artifacts"
-                            headers={{"Authorization": "JWT " + this.props.user.token}}
+                            headers={{"Authorization": "JWT " + this.props.loginMeta.token}}
                             acceptedFiles=".pdf, .doc, .docx">
                 <div className='col-sm-3 no-left-gutter gutter-xs'>
                   <i className="fa fa-cloud-upload"></i>

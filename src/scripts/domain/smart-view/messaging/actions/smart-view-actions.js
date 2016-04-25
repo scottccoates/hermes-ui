@@ -4,7 +4,7 @@ import actionBinder from 'src/scripts/libs/redux-js/actions/action-binder';
 
 export default function (appStore, smartViewService) {
 
-  function _smartViewSaveedSuccessAction(smartView) {
+  function _smartViewSavedSuccessAction(smartView) {
     return {
       type: constants.SMART_VIEW_SAVE_SUCCESS,
       smartView
@@ -49,7 +49,7 @@ export default function (appStore, smartViewService) {
 
         try {
           await smartViewService.saveSmartView(smartViewData);
-          dispatch(_smartViewSaveedSuccessAction(smartViewData));
+          dispatch(_smartViewSavedSuccessAction(smartViewData));
         }
         catch (e) {
           dispatch(_smartViewSaveedFailureAction(e));

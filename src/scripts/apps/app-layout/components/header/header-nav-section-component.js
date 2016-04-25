@@ -21,8 +21,8 @@ export default function () {
             <Dropdown className="header-item header-profile" componentClass="li" id="profile-dropdown">
               <Dropdown.Toggle useAnchor={true} noCaret>
                 <img alt="header profile image" className="header-profile-image"
-                     src={this.props.user.picture}/>
-              <span className="header-profile-name">{this.props.user.nickname}
+                     src={this.props.user.identity.picture}/>
+              <span className="header-profile-name">{this.props.user.identity.nickname}
                 <i className="fa fa-caret-down space-left middle"></i>
               </span>
               </Dropdown.Toggle>

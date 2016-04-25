@@ -3,13 +3,17 @@ import DependencyProvider from 'src/scripts/libs/dependency-injection/utils/depe
 import * as constants from 'src/scripts/apps/messaging/common/constants'
 
 const defaultState = {
-  loggedIn: false,
-  token: null,
-  meta: null
+  identity: {
+    picture: null,
+    email: null
+  },
+  subscriptions: {
+    isSubscribed: false
+  }
 };
 
 export default function () {
-  function sessionReducer(state = defaultState, action = null) {
+  function userInfoReducer(state = defaultState, action = null) {
     // if state is `undefined` it'll used the default param
     // redux docs don't provide action with a default param, but I think this is more appropriate
     // refer to https://app.asana.com/0/10235149247655/47787389428342
@@ -18,13 +22,12 @@ export default function () {
 
     switch (action.type) {
 
-      case constants.LOGIN_SUCCESS:
-      case constants.RESUME_SESSION_SUCCESS:
-        retVal = Object.assign({}, state, action.loginInformation, {loggedIn: true});
+      case constants.USER_INFO_RECEIVED:
+        retVal = Object.assign({}, state, action.user);
         break;
 
-      case constants.LOGOUT_SUCCESS:
-        retVal = defaultState;
+      case constants.USER_SUBSCRIBE_SUCCESS:
+        retVal = Object.assign({}, state, {subscriptions: {isSubscribed: true}});
         break;
 
       default:
@@ -35,5 +38,5 @@ export default function () {
     return retVal;
   }
 
-  return new DependencyProvider(sessionReducer);
+  return new DependencyProvider(userInfoReducer);
 }

@@ -12,25 +12,24 @@ export default {
     const meta   = state.session.meta;
     const userId = meta.appMetadata.hermes.userId;
 
-    const counterpartyActions = container.get('CounterpartyActions');
+    const userActions = container.get('UserActions');
 
     // let's not worry about opening/closing connection for dashboard. just assume that we can always keep this open
     // because it's probably a frequently-visited screen.
     // also, we don't need to worry about users logging off, because the whole app will just be refreshed.
-    const counterpartiesRef = rootRef.child(`users-counterparties/${userId}/`);
+    const userInfoRef = rootRef.child(`users/${userId}`);
 
-    counterpartiesRef.on("value", snapshot => {
+    userInfoRef.on("value", snapshot => {
 
       try {
-        const counterpartyTypes = firebaseService.prepareCollection(snapshot);
-
-        counterpartyActions.userCounterpartiesReceived(counterpartyTypes);
+        const userInfo = firebaseService.prepareObject(snapshot);
+        userActions.userInfoReceived(userInfo);
       }
       catch (error) {
-        throw new Error(`Error providing counterparty data from firebase: Inner exception: ${error.stack}`);
+        throw new Error(`Error providing user info data from firebase: Inner exception: ${error.stack}`);
       }
     }, error => {
-      throw new Error(`Error retrieving counterparty data from firebase: Inner exception: ${error.stack}`);
+      throw new Error(`Error retrieving user info data from firebase: Inner exception: ${error.stack}`);
     });
   }
 };
