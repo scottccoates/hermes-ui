@@ -17,25 +17,32 @@ export default React.createClass({
             </Link>
           </li>
           <li>
-            <span>Support</span>
+            <Link to='/support'>
+              Support
+            </Link>
           </li>
           <li>
-            <span>About</span>
+            <a href='https://angel.co/willow-1' target="_blank">About</a>
           </li>
           <li>
-            <span>Privacy</span>
+            <Link to='/privacy'>
+              Privacy
+            </Link>
           </li>
           <li>
-            <span>Terms</span>
-          </li>
-          <li>
-            <span>Support</span>
+            <Link to='/privacy'>
+              Terms
+            </Link>
           </li>
           <li className="social">
-            <i className="fa fa-twitter"/>
+            <a href="https://twitter.com/startwillow" target="_blank">
+              <i className="fa fa-twitter"/>
+            </a>
           </li>
           <li className="social">
-            <i className="fa fa-facebook"/>
+            <a href="https://www.facebook.com/startwillow" target="_blank">
+              <i className="fa fa-facebook"/>
+            </a>
           </li>
           <li id="footer-copyright">
             <span>© 2016 Willow, Inc.</span>

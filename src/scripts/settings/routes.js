@@ -11,7 +11,10 @@ import { Router, Route, Redirect } from 'react-router';
 export default {
   init(container){
     const AppLayoutComponent = container.get("AppLayoutComponent").dependency;
+
     const DashboardComponent = container.get("DashboardComponent").dependency;
+
+    const AgreementListContainerComponent = container.get("AgreementListContainerComponent").dependency;
 
     const LoginComponent  = container.get("LoginComponent").dependency;
     const LogoutComponent = container.get("LogoutComponent").dependency;
@@ -25,6 +28,10 @@ export default {
     const SecurityPrivacyComponent = container.get("SecurityPrivacyComponent").dependency;
 
     const CheckoutComponent = container.get("CheckoutComponent").dependency;
+
+    const ComingSoonComponent = container.get("ComingSoonComponent").dependency;
+
+    const SupportComponent = container.get("SupportComponent").dependency;
 
     // http://rackt.github.io/history/stable/GettingStarted.html
     // react-router started using a new history dep: https://github.com/rackt/react-router/blob/master/CHANGELOG.md#v100-beta4---mon-31-aug-2015-061934-gmt
@@ -41,30 +48,38 @@ export default {
     // https://github.com/reactjs/react-router/issues/2704#issuecomment-174363765
     const routes = (
       <Provider store={store}>
-      <Router history={history}>
-        <Route component={AppLayoutComponent} onEnter={requireAuth}>
-          <Redirect from='/' to='/dashboard'/> {/*https://github.com/rackt/react-router/issues/1675*/}
+        <Router history={history}>
+          <Route component={AppLayoutComponent} onEnter={requireAuth}>
+            <Redirect from='/' to='/dashboard'/> {/*https://github.com/rackt/react-router/issues/1675*/}
 
-          <Route path='dashboard' component={DashboardComponent}/>
+            <Route path='dashboard' component={DashboardComponent}/>
 
-          <Route path='privacy' component={SecurityPrivacyComponent}/>
 
-          <Route path='checkout' component={CheckoutComponent}/>
+            <Route path='privacy' component={SecurityPrivacyComponent}/>
+            <Route path='support' component={SupportComponent}/>
 
-          <Route path='agreements'>
-            <Route path='step-1' component={CreateAgreementComponent}/>
-            <Route path=':agreementId/step-2' component={AgreementEditContainerComponent}/>
-            <Route path=':agreementId/edit' component={AgreementEditContainerComponent}/>
-            <Route path=':agreementId' component={AgreementDetailContainerComponent}/>
+            <Route path='checkout' component={CheckoutComponent}/>
+
+            <Route path='calendar' component={ComingSoonComponent}/>
+            <Route path='reports' component={ComingSoonComponent}/>
+
+            {/*not sure the best way to combine these two routes*/}
+            <Route path='agreements' component={AgreementListContainerComponent}/>
+            <Route path='agreements'>
+              <Route path='generate' component={ComingSoonComponent}/>
+              <Route path='step-1' component={CreateAgreementComponent}/>
+              <Route path=':agreementId/step-2' component={AgreementEditContainerComponent}/>
+              <Route path=':agreementId/edit' component={AgreementEditContainerComponent}/>
+              <Route path=':agreementId' component={AgreementDetailContainerComponent}/>
+            </Route>
+
+            <Route path='search' component={SearchResultContainer}/>
           </Route>
 
-          <Route path='search' component={SearchResultContainer}/>
-        </Route>
-
-        <Route path='login' component={LoginComponent}/>
-        <Route path='logout' component={LogoutComponent}/>
-      </Router>
-    </Provider>
+          <Route path='login' component={LoginComponent}/>
+          <Route path='logout' component={LogoutComponent}/>
+        </Router>
+      </Provider>
     );
 
     // https://github.com/capaj/systemjs-hot-reloader/issues/13

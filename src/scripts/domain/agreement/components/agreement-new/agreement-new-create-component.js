@@ -6,6 +6,8 @@ import cx from 'classnames';
 
 import NProgress from 'nprogress';
 
+import {Link}  from 'react-router';
+
 import DependencyProvider from '../../../../libs/dependency-injection/utils/dependency-provider';
 
 export default function (persistenceApiServiceUrl, fileUploadProvider, nprogressBarFactory) {
@@ -124,11 +126,10 @@ export default function (persistenceApiServiceUrl, fileUploadProvider, nprogress
                         </h4>
                       </div>
                       <div className="content-section-item space-top-lg">
-
-                        <a href="javascript:void(0)" className="btn btn-default btn-lg">Generate New
+                        <Link to="/agreements/generate" className='btn btn-default btn-lg'>Generate New
                           Agreement
                           From
-                          Template</a>
+                          Template</Link>
                       </div>
                     </div>
                   </div>

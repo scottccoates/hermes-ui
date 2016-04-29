@@ -27,6 +27,7 @@ import LogoutComponent from 'src/scripts/apps/session/components/logout-componen
 import AgreementNewCreateComponent from '../domain/agreement/components/agreement-new/agreement-new-create-component';
 import AgreementEditContainerComponent from '../domain/agreement/components/agreement-edit/agreement-edit-container-component';
 import AgreementEditFormComponent from '../domain/agreement/components/agreement-edit/agreement-edit-form-component';
+import AgreementListContainerComponent from '../domain/agreement/components/agreement-list/agreement-list-container-component';
 import AgreementListComponent from '../domain/agreement/components/agreement-list/agreement-list-component';
 import AgreementListItemComponent from '../domain/agreement/components/agreement-list/agreement-list-item-component';
 import AgreementDetailContainerComponent from '../domain/agreement/components/agreement-detail/agreement-detail-container-component';
@@ -90,17 +91,17 @@ import UserInfoReducer from '../domain/user/messaging/reducers/user-info-reducer
 
 import SecurityPrivacyComponent from '../apps/security/components/privacy/security-privacy-component';
 
-import CheckoutComponent from '../apps/payment/components/privacy/checkout-component'
+import CheckoutComponent from '../apps/payment/components/checkout/checkout-component';
+
+import ComingSoonComponent from '../apps/common/components/coming-soon-component';
+
+import SupportComponent from '../apps/help/components/support/support-component';
 
 import { createHistory , useQueries} from 'history';
 
 export default {
   init(){
-    const container = Intravenous.create({
-      onDispose: function (obj, serviceName) {
-        console.log('wtf!!!!!', obj, serviceName);
-      }
-    });
+    const container = Intravenous.create();
 
     container.register("AppLayoutComponent", AppLayoutComponent);
 
@@ -129,8 +130,9 @@ export default {
     container.register("AgreementNewCreateComponent", AgreementNewCreateComponent);
     container.register("AgreementEditContainerComponent", AgreementEditContainerComponent);
     container.register("AgreementEditFormComponent", AgreementEditFormComponent);
-    container.register("AgreementListComponent", AgreementListComponent);
+    container.register("AgreementListContainerComponent", AgreementListContainerComponent);
     container.register("AgreementListItemComponent", AgreementListItemComponent);
+    container.register("AgreementListComponent", AgreementListComponent);
     container.register("AgreementDetailContainerComponent", AgreementDetailContainerComponent);
     container.register("AgreementDetailGeneralInfoComponent", AgreementDetailGeneralInfoComponent);
     container.register("AgreementDetailLengthComponent", AgreementDetailLengthComponent);
@@ -188,6 +190,10 @@ export default {
 
     container.register("CheckoutComponent", CheckoutComponent);
 
+    container.register("ComingSoonComponent", ComingSoonComponent);
+
+    container.register("SupportComponent", SupportComponent);
+
     container.register("NprogressBar", NprogressBar);
 
     // https://github.com/rackt/history/blob/master/docs/QuerySupport.md
@@ -204,6 +210,7 @@ export default {
 
     AgreementNewCreateComponent.$inject       = ["PersistenceApiServiceUrl", "FileUpload", "NprogressBarFactory"];
     AgreementEditContainerComponent.$inject   = ["AgreementActions", 'AgreementTypeService', 'AgreementEditFormComponent'];
+    AgreementListContainerComponent.$inject   = ["AgreementListComponent"];
     AgreementListComponent.$inject            = ["AgreementListItemComponent"];
     AgreementDetailContainerComponent.$inject = ['AgreementActions', "AgreementDetailGeneralInfoComponent", 'AgreementDetailLengthComponent', 'AgreementDetailArtifactsComponent'];
     AgreementDetailArtifactsComponent.$inject = ['AgreementService', 'PersistenceApiServiceUrl', 'FileUpload'];

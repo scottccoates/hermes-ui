@@ -24,15 +24,15 @@ export default React.createClass({
             </li>
             <li>
               <i className="fa fa-file-text middle space-right-lg"></i>
-              <span className='middle'>Agreements</span>
+              <Link to="/agreements" className='middle'>Agreements</Link>
             </li>
             <li>
               <i className="fa fa-calendar middle space-right-lg"></i>
-              <span className='middle'>Calendar</span>
+              <Link to="/calendar" className='middle'>Calendar</Link>
             </li>
             <li>
               <i className="fa fa-bar-chart middle space-right-lg"></i>
-              <span className='middle'>Reports</span>
+              <Link to="/reports" className='middle'>Reports</Link>
             </li>
           </ul>
         </section>
