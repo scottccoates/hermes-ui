@@ -95,7 +95,7 @@ export default function (agreementActions, agreementDetailGeneralInfoComponent, 
                       <h3 className="content-section-header">Documents</h3>
                       <AgreementDetailArtifacts agreement={this.props.agreementDetail.agreement}
                                                 deleteArtifact={this.deleteArtifact}
-                                                user={this.props.user}
+                                                loginMeta={this.props.loginMeta}
                         />
                     </div>
                   </div>
