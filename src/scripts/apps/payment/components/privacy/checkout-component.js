@@ -23,6 +23,7 @@ export default function (userActions, stripeApiKey) {
       // we need to wait until render has finished before we can set focus to this as its currently hidden.
       setTimeout(()=> {
         if (this.refs.stripe) {
+          this.refs.stripe.onClick();
         }
       });
     },
