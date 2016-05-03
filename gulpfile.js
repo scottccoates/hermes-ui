@@ -295,7 +295,7 @@ gulp.task('firebase', function (done) {
           cwd: './dist' // The reason we cwd into 'dist' is because the firebase.json file uses relative paths. The command (firebaseDeployCommand) also uses rel paths.
         }
 
-        cp.exec(firebaseDeployCommand, fbDeployOptions, function (error, stdout, stderr) {
+        const fbcp = cp.exec(firebaseDeployCommand, fbDeployOptions, function (error, stdout, stderr) {
 
           if (error) {
             console.log("error deploying firebase:", error);
@@ -306,6 +306,8 @@ gulp.task('firebase', function (done) {
             done();
           }
         });
+
+        fbcp.stdout.on('data', data => console.log(data.toString()));
       }
     });
   }
