@@ -34,7 +34,7 @@ export default function (searchActions, smartViewActions, agreementListComponent
       const queryStringStream = this.propsProperty('location')
         .map('.search')
         .skipDuplicates()
-        .subscribe(async _=> await this.performedAdvancedSearch());
+        .subscribe(async ()=> await this.performedAdvancedSearch());
     },
 
     componentWillUnmount(){
