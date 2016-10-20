@@ -1,4 +1,5 @@
 /* eslint-disable import/default */
+import log from 'loglevel';
 
 import React from 'react';
 import {render} from 'react-dom';

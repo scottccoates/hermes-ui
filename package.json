@@ -26,6 +26,7 @@
     "open:cover": "npm run test:cover && open coverage/index.html"
   },
   "dependencies": {
+    "loglevel": "1.4.1",
     "object-assign": "4.1.0",
     "react": "15.3.1",
     "react-dom": "15.3.1",
