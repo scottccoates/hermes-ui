@@ -1,0 +1,114 @@
+//
+// App Variables
+// --------------------------------------------------
+// `!default` is important here because we might want to override these in something like:
+// - a styleguide
+// - a mobile-specific theme
+
+// Brand Colors
+// --------------------------------------------------
+
+$ac: #28303D !default;
+$untameable-blue: #333B47 !default;
+$polar-express: #3D495C !default;
+$cloud-sliding: #707C94 !default;
+$the-sound: #7C89A4 !default;
+$goodbye: #A5B6C3 !default;
+$shrugs: #D8E2EB !default;
+$glass: #EBF1F5 !default;
+$grape-taffy: #AD6BAE !default;
+$aquas: #4DBAC0 !default;
+$fanta: #F77626 !default;
+$triplet: #992233 !default;
+$sky-blue: #25A6F7 !default;
+$white: #FFF !default;
+
+$src-super-dark: $ac !default;
+$src-very-dark: $untameable-blue !default;
+$src-dark: $polar-express !default;
+$src-less-dark: $cloud-sliding !default;
+$src-less-bright: $the-sound !default;
+$src-bright: $goodbye !default;
+$src-slightly-brighter: rgba($src-bright, .20) !default;
+$src-brighter: $glass !default;
+$src-medium-bright: $grape-taffy !default;
+$src-even-brighter: $aquas !default;
+$src-more-bright: $fanta !default;
+$src-more-brighter: $sky-blue !default;
+$src-very-bright: $white !default;
+
+$src-danger: $triplet !default;
+
+// Font
+// --------------------------------------------------
+
+$src-font-size-base: 16px !default;
+$src-font-size-small: 14px !default;
+$src-font-family-heading: Montserrat, Helvetica, Arial, sans-serif !default;
+$src-font-family-content: 'Source Sans Pro', Helvetica, Arial, sans-serif !default;
+$src-line-height-base: 1.428571429 !default;
+
+// Container
+// --------------------------------------------------
+$src-content-section-vertical-space-xl: 105px !default;
+$src-content-section-vertical-space-lg: 75px !default;
+$src-content-section-vertical-space: 55px !default;
+$src-content-section-vertical-space-md: 35px !default;
+$src-content-section-vertical-space-sm: 25px !default;
+$src-content-section-vertical-space-xs: 20px !default;
+$src-content-section-vertical-space-xxs: 15px !default;
+$src-content-section-horizontal-space: 28px !default;
+$src-content-section-horizontal-space-md: 25px !default;
+$src-content-section-horizontal-space-sm: 20px !default;
+
+$src-container-vertical-space: 20px !default;
+$src-container-horizontal-space-lg: 25px !default;
+$src-container-horizontal-space: 14px !default;
+
+$src-icon-horizontal-space-lg: 16px !default;
+$src-icon-horizontal-space: 8px !default;
+$src-icon-horizontal-space-md: 6px !default;
+
+$container-border-radius: 3px !default;
+$container-color: $src-less-dark !default;
+
+$src-grid-gutter-xs: 4px !default;
+
+// Header Layout
+// --------------------------------------------------
+$header-height: 68px;
+
+$header-search-height: 40px;
+$header-search-width: 552px;
+$header-advanced-search-width: 798px;
+
+$header-font-size: 18px;
+
+// Footer
+// --------------------------------------------------
+$footer-height: 110px;
+
+// Form
+// --------------------------------------------------
+$advanced-input-field-size: 28px;
+
+// Border
+// --------------------------------------------------
+$bright-border: 2px solid $src-bright !default;
+
+// Separator
+// --------------------------------------------------
+$src-separator-margin: 22px !default;
+
+// Table
+// --------------------------------------------------
+$src-table-color: $src-less-dark !default;
+
+// Responsive Viewing
+// --------------------------------------------------
+$src-grid-columns: 24 !default;
+$src-screen-sm: 768px !default;
+
+// Feedback
+// --------------------------------------------------
+$src-progress-bar-height: 5px !default;

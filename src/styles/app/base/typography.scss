@@ -1,0 +1,118 @@
+// Typography Styles
+// --------------------------------------------------
+
+// Fonts
+// --------------------------------------------------
+@font-face {
+  font-family: 'Montserrat';
+  src: local('Montserrat-Light'), url('/assets/fonts/Montserrat-Light-webfont.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal; //italics, bold, normal.
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Montserrat-Regular'), url('/assets/fonts/Montserrat-Regular-webfont.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 400;
+  src: local('SourceSansPro-Regular'), url('/assets/fonts/SourceSansPro-Regular-webfont.woff2') format('woff2');
+}
+
+// Basic Type Styles
+// --------------------------------------------------
+/*doc
+---
+title: Typography
+name: typography
+parent: 1foundation
+---
+<div class="sg-section">
+  <p class="sg-font src-heading">Montserrat, Helvetica, Arial, sans-serif;</p>
+  <p class="sg-font">'Source Sans Pro', Helvetica, Arial, sans-serif;</p>
+</div>
+*/
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, body {
+  // set the font size equal to whatever the user defines as the standard text size (usually 16px)
+  // http://stackoverflow.com/questions/22228568/switching-to-em-based-media-queries
+  // http://css-tricks.com/rems-ems/#comment-1540171
+  font-size: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+
+  &:hover, &:focus {
+    color: $src-more-brighter;
+  }
+}
+
+p {
+  color: $src-less-dark;
+  margin: 0;
+
+  &.user-content {
+    font-family: $src-font-family-content;
+  }
+}
+
+.src-heading {
+  font-family: $src-font-family-heading;
+}
+
+.page-header {
+  color: $src-less-dark;
+  border: none;
+
+  @include at-least-small-screen-styles {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+h1 {
+
+  &.page-header {
+    @include at-least-small-screen-styles {
+      @include font-size(24px);
+    }
+  }
+}
+
+.middle {
+  vertical-align: middle;
+}
+
+.generated-info {
+  white-space: pre-wrap;
+  line-height: 18px;
+}
+
+.heavy-emphasis {
+  font-weight: 900;
+  text-decoration: underline;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.help-text {
+  color: $src-bright;
+  font-weight: lighter;
+  position: absolute;
+}

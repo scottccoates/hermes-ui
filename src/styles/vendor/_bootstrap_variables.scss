@@ -1,0 +1,70 @@
+//
+// Bootstrap Variables
+// --------------------------------------------------
+
+// https://github.com/jtangelder/sass-loader/issues/40#issuecomment-211939541
+// ERROR in ./~/css-loader?sourceMap!./~/postcss-loader!./~/sass-loader?sourceMap!./src/styles/main.scss
+// Module not found: Error: Cannot resolve 'file' or 'directory' ../fonts/bootstrap/glyphicons-halflings-regular.eot in /hermes-ui/src/styles
+$bootstrap-sass-asset-helper: true;
+
+// Colors
+// --------------------------------------------------
+
+$brand-primary: $src-very-dark !default;
+$brand-heading: $src-less-dark !default;
+$brand-success: $src-medium-bright !default;
+$brand-nav: $src-very-bright !default;
+$brand-button: $src-less-dark !default;
+$brand-warning: $src-more-bright !default;
+$brand-danger: $src-danger !default;
+$brand-info: $src-less-dark !default;
+
+$state-warning-text: $src-more-bright !default;
+
+$state-danger-text: $src-danger !default;
+
+// Components
+// --------------------------------------------------
+
+$border-radius-base: 0px !default;
+$border-radius-large: 0px !default;
+$border-radius-small: 0px !default;
+
+// Containers
+// --------------------------------------------------
+
+$dropdown-link-color: $src-less-dark;
+$dropdown-link-hover-color: $src-very-dark;
+
+// Typography
+// --------------------------------------------------
+
+$headings-line-height: $src-line-height-base;
+$line-height-base: $src-line-height-base;
+$font-size-base: $src-font-size-base;
+$font-size-large: $src-font-size-base;
+$font-size-small: $src-font-size-small;
+$font-family-base: $src-font-family-heading !default;
+$text-color: $src-very-dark !default;
+
+// Buttons
+// --------------------------------------------------
+
+$btn-default-color: $src-very-bright !default;
+
+// Responsive Viewing
+// --------------------------------------------------
+$screen-sm: $src-screen-sm;
+
+// Grid System
+// --------------------------------------------------
+$grid-columns: $src-grid-columns;
+$container-lg: 930px !default;
+
+// Buttons
+// --------------------------------------------------
+$padding-base-vertical: 7px !default;
+$padding-base-horizontal: 14px !default;
+
+$padding-xs-vertical: 3px !default;
+$padding-xs-horizontal: 8px !default;

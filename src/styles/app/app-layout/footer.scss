@@ -1,0 +1,90 @@
+// Footer Layout
+// --------------------------------------------------
+
+#footer-wrapper {
+  border-top: 1px solid $src-bright;
+  background-color: $src-very-bright;
+
+  color: $src-bright;
+
+  @include at-least-small-screen-styles {
+    height: $footer-height;
+
+    padding-left: $src-content-section-horizontal-space;
+    padding-right: $src-content-section-horizontal-space;
+
+    @include font-size(12px);
+  }
+
+  ul {
+    @extend .list-inline;
+
+    text-transform: uppercase;
+
+    @include at-least-small-screen-styles {
+      margin-left: auto;
+      padding-top: 10px;
+      margin-bottom: 0;
+    }
+
+    & > li {
+
+      @include at-least-small-screen-styles {
+        margin-right: 22px;
+        padding: 0;
+      }
+
+      &#footer-secure-connection {
+        i {
+          @include at-least-small-screen-styles {
+            @include font-size($src-font-size-small);
+
+            margin-right: 8px;
+          }
+        }
+
+        @include at-least-small-screen-styles {
+          margin-right: 36px;
+        }
+      }
+
+      &.social {
+        float: right;
+
+        @include at-least-small-screen-styles {
+          margin-left: 10px;
+          margin-right: 0;
+        }
+
+        i {
+          background-color: $src-bright;
+          text-align: center;
+          color: $src-very-bright;
+          border-radius: 50%;
+
+          @include at-least-small-screen-styles {
+            width: 20px;
+            height: 20px;
+            padding-top: 5px;
+          }
+        }
+      }
+
+      &#footer-copyright {
+        display: block;
+
+        text-align: center;
+
+        @include at-least-small-screen-styles {
+          margin-top: 36px;
+
+          @include font-size(10px);
+        }
+      }
+
+      & > i, & > span {
+        vertical-align: middle;
+      }
+    }
+  }
+}

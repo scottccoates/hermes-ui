@@ -1,0 +1,11 @@
+#agreement-detail-container-wrapper {
+  .edit-link {
+    color: $src-less-dark;
+    @include font-size(14px);
+  }
+
+  .delete-link {
+    color: $src-danger;
+    @include font-size(14px);
+  }
+}

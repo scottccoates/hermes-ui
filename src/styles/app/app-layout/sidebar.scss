@@ -1,0 +1,101 @@
+// Sidebar Layout
+// --------------------------------------------------
+#sidebar-wrapper {
+  // have this show up at the left of the flex container
+  order: 1;
+
+  background-color: $src-very-dark;
+
+  width: 70px;
+
+  color: $src-bright;
+
+  @include at-least-small-screen-styles {
+    flex-shrink: 0; //always keep it at the desired width, even if the other items shrink
+    width: 240px;
+  }
+
+  #sidebar-scroll-container {
+    // http://stackoverflow.com/questions/5873565/set-width-of-a-position-fixed-div-relative-to-parent-div
+    width: inherit;
+
+    height: 100vh;
+    overflow-y: hidden;
+
+    &.nano > .nano-pane > .nano-slider {
+      background-color: $src-less-dark;
+    }
+
+    .sidebar-logo {
+      @include at-least-small-screen-styles {
+        margin-bottom: 20px;
+      }
+
+      .sidebar-logo-image {
+        @include img-responsive;
+
+        @include at-least-small-screen-styles {
+          margin: 20px 25px 0 10px;
+
+          // make this img be explicit because we don't want to wait for server response to figure out the dimensions.
+          // that would make things like nanoScroller miscalculate space.
+          width: 205px;
+          height: 85px;
+        }
+      }
+    }
+
+    section {
+      @include section-dividing-line;
+
+      @include at-least-small-screen-styles {
+        padding-bottom: 30px;
+        padding-top: 30px;
+        text-indent: 30px;
+        @include font-size($src-font-size-small)
+      }
+
+      .header {
+        text-transform: uppercase;
+      }
+
+      ul {
+        @include list-unstyled;
+
+        @include at-least-small-screen-styles {
+          margin-top: 10px;
+        }
+
+        & > li {
+          &:hover {
+            background-color: $src-super-dark;
+            color: $src-very-bright;
+          }
+
+          @include at-least-small-screen-styles {
+            &:hover {
+              box-shadow: inset 6px 0 $src-more-brighter;
+            }
+
+            padding-top: 10px;
+            padding-bottom: 10px;
+          }
+
+          & > i {
+            text-align: center;
+
+            @include at-least-small-screen-styles {
+              // reset the text indent inherited from the section element
+              text-indent: initial;
+
+              // width is important here, it keeps all icons (regardless of their size) at a box of 20px, then the icon is centered.
+              width: 20px;
+
+              @include font-size(22px);
+            }
+          }
+        }
+      }
+    }
+  }
+}

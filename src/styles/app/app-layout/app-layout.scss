@@ -1,0 +1,24 @@
+// Page Layout
+// --------------------------------------------------
+// This contains the stuff in the middle (header, main content)
+@import "main-layout";
+// The actual app layout components
+@import "sidebar";
+@import "header";
+@import "content";
+@import "footer";
+
+html {
+  height: 100%;
+
+  body {
+    height: 100%;
+    background-color: $src-brighter;
+  }
+}
+
+#page-wrapper {
+  min-width: 1233px; // this is a temporary hack to prevent any media queries from firing. hack: force large media query
+
+  display: flex;
+}
