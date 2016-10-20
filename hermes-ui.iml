@@ -6,8 +6,6 @@
       <sourceFolder url="file://$MODULE_DIR$/src/scripts/libs/react-js/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/scripts/apps/app-layout/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/scripts/domain/agreement/tests" isTestSource="true" />
-      <excludeFolder url="file://$MODULE_DIR$/build" />
-      <excludeFolder url="file://$MODULE_DIR$/dist" />
       <excludeFolder url="file://$MODULE_DIR$/docs" />
       <excludeFolder url="file://$MODULE_DIR$/docs/style_guide/doc_assets/static/css" />
       <excludeFolder url="file://$MODULE_DIR$/docs/style_guide/out" />

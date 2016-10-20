@@ -289,11 +289,14 @@
     <inspection_tool class="JSUnnecessarySemicolon" enabled="true" level="WARNING" enabled_by_default="true">
       <scope name="Build" level="WARNING" enabled="false" />
     </inspection_tool>
-    <inspection_tool class="JSUnresolvedFunction" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="JSUnresolvedFunction" enabled="true" level="WARNING" enabled_by_default="true">
+      <scope name="Project Files" level="WARNING" enabled="false" />
+    </inspection_tool>
     <inspection_tool class="JSUnresolvedLibraryURL" enabled="true" level="WARNING" enabled_by_default="true">
       <scope name="Build" level="WARNING" enabled="false" />
     </inspection_tool>
     <inspection_tool class="JSUnresolvedVariable" enabled="true" level="WARNING" enabled_by_default="true">
+      <scope name="Project Files" level="INFO" enabled="false" />
       <scope name="Build" level="WARNING" enabled="true" />
       <scope name="Tests" level="WARNING" enabled="true" />
     </inspection_tool>
