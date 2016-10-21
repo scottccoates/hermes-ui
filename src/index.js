@@ -45,7 +45,15 @@ containerInstance.register(constants.APP_STORE, store);
 
 const unSub = store.subscribe(async _=> {
   unSub();
+  const state = store.getState();
 
+  if (state.session.loggedIn) {
+
+    errorLogger.setUser(state.session.meta.email, state.session.meta.email, state.session.meta.name, state.session.meta.nickname);
+
+  }
+
+  routes.init(containerInstance);
 });
 
 

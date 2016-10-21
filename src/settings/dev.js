@@ -4,7 +4,7 @@ import * as constants from './constants';
 
 import LoglevelErrorLogger from '../scripts/libs/js-utils/logging/loglevel-error-logger';
 
-import devStore from '../scripts/apps/messaging/redux/dev-store';
+import devStore from '../scripts/apps/app-layout/messaging/redux/dev-store';
 
 import DependencyProvider from '../scripts/libs/dependency-injection/utils/dependency-provider';
 
