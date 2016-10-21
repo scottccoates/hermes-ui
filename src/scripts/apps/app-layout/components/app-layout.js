@@ -1,42 +1,49 @@
 import React, { PropTypes } from 'react';
 import { Link, IndexLink } from 'react-router';
+import DependencyProvider from '../../../libs/dependency-injection/utils/dependency-provider.js';
 
-class App extends React.Component {
-  constructor(props, context) {
-    super(props, context);
+export default function (sidebarComponent, headerComponent) {
 
-    this.displayName = 'AppLayoutContainer';
-  }
+  //const Sidebar = sidebarComponent.dependency;
+  //const Header  = headerComponent.dependency;
 
-  render() {
-    return (
-      <div id="page-wrapper">
+  class App extends React.Component {
+    constructor(props, context) {
+      super(props, context);
 
-        <div id="main-wrapper">
+      this.displayName = 'AppLayoutContainer';
+    }
 
-          <div id="content-wrapper">
-            <div>
-              <IndexLink to="/">Home</IndexLink>
-              {' | '}
-              <Link to="/fuel-savings">Demo App</Link>
-              {' | '}
-              <Link to="/about">About</Link>
-              <br/>
-              {this.props.children}
+    render() {
+      return (
+        <div id="page-wrapper">
+
+          <div id="main-wrapper">
+
+            <div id="content-wrapper">
+              <div>
+                <IndexLink to="/">Home</IndexLink>
+                {' | '}
+                <Link to="/fuel-savings">Demo App</Link>
+                {' | '}
+                <Link to="/about">About</Link>
+                <br/>
+                {this.props.children}
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
-}
 
 
-App.propTypes = {
-  children: PropTypes.element
+  App.propTypes = {
+    children: PropTypes.element
+  };
+
+  return new DependencyProvider(App);
 };
-
-export default App;
 
 //
 //import React from 'react';

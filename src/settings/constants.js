@@ -53,3 +53,5 @@ export const LOG_LEVEL        = 'LOG_LEVEL';
 
 export const SESSION_ACTIONS = 'SESSION_ACTIONS';
 export const SESSION_SERVICE = 'SESSION_SERVICE';
+
+export const APP_LAYOUT_COMPONENT = 'APP_LAYOUT_COMPONENT';
