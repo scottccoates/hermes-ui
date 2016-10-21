@@ -1,6 +1,14 @@
 /* eslint-disable import/default */
 import log from 'loglevel';
 
+const settingsModule = process.env.SETTINGS_MODULE || 'dev';
+
+const container         = require(`./settings/${settingsModule}`).default;
+const containerInstance = container.init();
+
+const errorLogger = containerInstance.get('ErrorLogger');
+errorLogger.init();
+
 import React from 'react';
 import {render} from 'react-dom';
 import { Provider } from 'react-redux';
