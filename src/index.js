@@ -1,5 +1,10 @@
 /* eslint-disable import/default */
 import { syncHistoryWithStore } from 'react-router-redux';
+import React from 'react';
+import {render} from 'react-dom';
+import { Provider } from 'react-redux';
+import { Router, browserHistory } from 'react-router';
+import routes from './routes';
 
 import './assets/images/favicon.ico'; // Tell webpack to load favicon.ico
 import './styles/main.scss'; // Yep, that's right. You can import SASS/CSS files too! Webpack will run the associated loader and plug this into the page.
@@ -19,12 +24,6 @@ log.setLevel(containerInstance.get(constants.LOG_LEVEL), false); // false means 
 const errorLogger = containerInstance.get(constants.ERROR_LOGGER);
 errorLogger.init();
 
-import React from 'react';
-import {render} from 'react-dom';
-import { Provider } from 'react-redux';
-import { Router, browserHistory } from 'react-router';
-import routes from './routes';
-
 const configureStore = containerInstance.get(constants.APP_STORE_CONFIG).dependency;
 const store          = configureStore();
 // no need for "singleton" param here, appStore is not a function, it's an instance of an object.
@@ -42,7 +41,6 @@ const history = syncHistoryWithStore(browserHistory, store);
 // so that it can dispatch the action.
 const sessionActions = containerInstance.get(constants.SESSION_ACTIONS);
 sessionActions.resumeSession(sessionActions.resumeSession);
-
 
 const unSub = store.subscribe(async _=> {
   unSub();
