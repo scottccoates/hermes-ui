@@ -1,4 +1,4 @@
-import * as constants from '../common/constants'
+import * as constants from '../../../../../settings/constants'
 
 const defaultState = {
   loggedIn: false,
