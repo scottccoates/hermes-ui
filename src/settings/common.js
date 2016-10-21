@@ -14,7 +14,7 @@ export default {
     container.register(constants.APP_LAYOUT_COMPONENT, AppLayoutComponent);
 
     container.register(constants.SESSION_ACTIONS, SessionActions);
-    container.register(constants.SESSION_SERVICE, _=>({
+    container.register(constants.SESSION_SERVICE, ()=>({
       async resumeSession(){
         throw new Error('error');
       }

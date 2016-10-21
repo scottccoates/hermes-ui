@@ -42,7 +42,7 @@ const history = syncHistoryWithStore(browserHistory, store);
 const sessionActions = containerInstance.get(constants.SESSION_ACTIONS);
 sessionActions.resumeSession(sessionActions.resumeSession);
 
-const unSub = store.subscribe(async _=> {
+const unSub = store.subscribe(async ()=> {
   unSub();
 
   const state = store.getState();

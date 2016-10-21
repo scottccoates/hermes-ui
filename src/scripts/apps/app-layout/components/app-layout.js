@@ -37,13 +37,12 @@ export default function (sidebarComponent, headerComponent) {
     }
   }
 
-
   App.propTypes = {
     children: PropTypes.element
   };
 
   return new DependencyProvider(App);
-};
+}
 
 //
 //import React from 'react';
