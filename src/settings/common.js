@@ -3,6 +3,8 @@ import DependencyProvider from '../scripts/libs/dependency-injection/utils/depen
 
 import AppLayoutComponent from '../scripts/apps/app-layout/components/app-layout';
 
+import SidebarComponent from '../scripts/apps/app-layout/components/sidebar/sidebar';
+
 import SessionActions from '../scripts/apps/session/messaging/actions/session-actions';
 
 import * as constants from './constants';
@@ -13,14 +15,20 @@ export default {
 
     container.register(constants.APP_LAYOUT_COMPONENT, AppLayoutComponent);
 
+    container.register(constants.SIDEBAR_COMPONENT, SidebarComponent);
+
+
     container.register(constants.SESSION_ACTIONS, SessionActions);
     container.register(constants.SESSION_SERVICE, ()=>({
+      // todo replace me with real service
       async resumeSession(){
         throw new Error('error');
       }
     }));
 
     SessionActions.$inject = [constants.APP_STORE, constants.SESSION_SERVICE];
+
+    AppLayoutComponent.$inject = [constants.SIDEBAR_COMPONENT];
 
     return container;
   }

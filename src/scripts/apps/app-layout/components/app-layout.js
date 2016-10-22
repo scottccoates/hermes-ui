@@ -2,12 +2,14 @@ import React, { PropTypes } from 'react';
 import { Link, IndexLink } from 'react-router';
 import DependencyProvider from '../../../libs/dependency-injection/utils/dependency-provider.js';
 
+import {connect} from 'react-redux';
+
 export default function (sidebarComponent, headerComponent) {
 
-  //const Sidebar = sidebarComponent.dependency;
+  const Sidebar = sidebarComponent.dependency;
   //const Header  = headerComponent.dependency;
 
-  class App extends React.Component {
+  class Component extends React.Component {
     constructor(props, context) {
       super(props, context);
 
@@ -15,8 +17,10 @@ export default function (sidebarComponent, headerComponent) {
     }
 
     render() {
+      debugger
       return (
         <div id="page-wrapper">
+          <Sidebar userSmartViews={this.props.userSmartViews}/>
 
           <div id="main-wrapper">
 
@@ -37,11 +41,19 @@ export default function (sidebarComponent, headerComponent) {
     }
   }
 
-  App.propTypes = {
+  Component.propTypes = {
     children: PropTypes.element
   };
 
-  return new DependencyProvider(App);
+  function extracted(state) {
+    return {
+      userSmartViews: state.userSmartViews || {smartViews: []} // todo remove me
+    };
+  }
+
+  Component = connect(extracted)(Component);
+
+  return new DependencyProvider(Component);
 }
 
 //
