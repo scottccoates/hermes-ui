@@ -11,14 +11,14 @@ export default function (smartViewActions) {
 
   class Component extends React.Component {
 
+    static onSmartViewSelected(smartView) {
+      smartViewActions.selectSmartViewEdit(smartView);
+    }
+
     constructor(props, context) {
       super(props, context);
 
       this.displayName = 'SidebarComponent';
-    }
-
-    static onSmartViewSelected(smartView) {
-      smartViewActions.selectSmartViewEdit(smartView);
     }
 
     render() {
@@ -29,7 +29,7 @@ export default function (smartViewActions) {
           <SidebarNavSection onSmartViewSelected={Component.onSmartViewSelected}
                              smartViews={this.props.userSmartViews.smartViews}/>
         </nav>
-      )
+      );
     }
   }
 

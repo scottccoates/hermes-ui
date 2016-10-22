@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import { Link, IndexLink } from 'react-router';
 import DependencyProvider from '../../../libs/dependency-injection/utils/dependency-provider.js';
 
 import {connect} from 'react-redux';
@@ -17,7 +16,7 @@ export default function (sidebarComponent, headerComponent) {
     }
 
     render() {
-      debugger
+      debugger;
       return (
         <div id="page-wrapper">
           <Sidebar userSmartViews={this.props.userSmartViews}/>
@@ -25,15 +24,7 @@ export default function (sidebarComponent, headerComponent) {
           <div id="main-wrapper">
 
             <div id="content-wrapper">
-              <div>
-                <IndexLink to="/">Home</IndexLink>
-                {' | '}
-                <Link to="/fuel-savings">Demo App</Link>
-                {' | '}
-                <Link to="/about">About</Link>
-                <br/>
-                {this.props.children}
-              </div>
+              {this.props.children}
             </div>
           </div>
         </div>
@@ -42,7 +33,8 @@ export default function (sidebarComponent, headerComponent) {
   }
 
   Component.propTypes = {
-    children: PropTypes.element
+    children: PropTypes.element,
+    userSmartViews: PropTypes.object.isRequired
   };
 
   function extracted(state) {
@@ -51,9 +43,7 @@ export default function (sidebarComponent, headerComponent) {
     };
   }
 
-  Component = connect(extracted)(Component);
-
-  return new DependencyProvider(Component);
+  return new DependencyProvider(connect(extracted)(Component));
 }
 
 //
