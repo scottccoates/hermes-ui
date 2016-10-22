@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 export default function (sidebarComponent, headerComponent) {
 
   const Sidebar = sidebarComponent.dependency;
-  //const Header  = headerComponent.dependency;
+  const Header  = headerComponent.dependency;
 
   class Component extends React.Component {
     constructor(props, context) {
@@ -16,12 +16,12 @@ export default function (sidebarComponent, headerComponent) {
     }
 
     render() {
-      debugger;
       return (
         <div id="page-wrapper">
           <Sidebar userSmartViews={this.props.userSmartViews}/>
 
           <div id="main-wrapper">
+            <Header user={this.props.user}/>
 
             <div id="content-wrapper">
               {this.props.children}
@@ -34,12 +34,14 @@ export default function (sidebarComponent, headerComponent) {
 
   Component.propTypes = {
     children: PropTypes.element,
-    userSmartViews: PropTypes.object.isRequired
+    userSmartViews: PropTypes.object.isRequired,
+    user: PropTypes.object.isRequired,
   };
 
   function extracted(state) {
     return {
-      userSmartViews: state.userSmartViews || {smartViews: []} // todo remove me
+      userSmartViews: state.userSmartViews || {smartViews: []/* todo remove me */},
+      user: state.userInfo || {identity: {}/* todo remove me */},
     };
   }
 
