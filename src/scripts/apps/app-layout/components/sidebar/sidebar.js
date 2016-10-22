@@ -25,9 +25,11 @@ export default function (smartViewActions) {
 
       return (
         <nav id="sidebar-wrapper">
-          <SidebarLogo/>
-          <SidebarNavSection onSmartViewSelected={Component.onSmartViewSelected}
-                             smartViews={this.props.userSmartViews.smartViews}/>
+          <div id="sidebar-scroll-container">
+            <SidebarLogo/>
+            <SidebarNavSection onSmartViewSelected={Component.onSmartViewSelected}
+                               smartViews={this.props.userSmartViews.smartViews}/>
+          </div>
         </nav>
       );
     }
