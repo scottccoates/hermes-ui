@@ -44,10 +44,10 @@ export default React.createClass({
 
     return (
       <div className="btn-group">
-        <button type='button' data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+        <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                 className={this.props.className}>
           {selectedItem}
-          <i className="fa fa-caret-down space-left middle"></i>
+          <i className="fa fa-caret-down space-left middle" />
         </button>
         <ul className="dropdown-menu">
           {items}

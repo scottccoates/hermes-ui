@@ -26,7 +26,7 @@ export default function (searchService) {
         },
         onInputClick: ()=> {
         }
-      }
+      };
     },
 
     clear(){
@@ -58,8 +58,8 @@ export default function (searchService) {
     render() {
 
       return (
-        <span className='simple-search-query-input-box'>
-          <input ref='input' type="text" className="search-box" placeholder="Search" onClick={this.props.onClick}
+        <span className="simple-search-query-input-box">
+          <input ref="input" type="text" className="search-box" placeholder="Search" onClick={this.props.onClick}
                  onChange={this.onInputChanged}/>
         </span>
       );

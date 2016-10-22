@@ -126,8 +126,8 @@ export default function (searchActions, searchService, smartViewActions, simpleS
         <div className="header-search">
 
         <span>
-            <i className="fa fa-search search-icon"></i>
-            <SimpleSearchQueryInputBox ref='input' onClick={this.onInputClick} onLoading={this.onLoading}
+            <i className="fa fa-search search-icon" />
+            <SimpleSearchQueryInputBox ref="input" onClick={this.onInputClick} onLoading={this.onLoading}
                                        onResultsReceived={this.searchResultsReceived}/>
         </span>
 

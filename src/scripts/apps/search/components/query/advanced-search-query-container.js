@@ -53,15 +53,15 @@ export default function () {
             <div className="popover-content">
 
               <ul className="advanced-search-list">
-                <li><TextSearchField iconClass='fa-search' fieldLabel="Contains the words"
+                <li><TextSearchField iconClass="fa-search" fieldLabel="Contains the words"
                                      value={this.props.parameters.text}
                                      onChange={this.props.onTextChanged}/>
                 </li>
-                <li><SelectSearchField iconClass='fa-building' fieldLabel="Counterparty"
+                <li><SelectSearchField iconClass="fa-building" fieldLabel="Counterparty"
                                        options={counterpartiesValues}
                                        value={counterpartyValue}
                                        onChange={this.props.onCounterpartyChanged}/></li>
-                <li><SelectSearchField iconClass='fa-file' fieldLabel="Type of agreement"
+                <li><SelectSearchField iconClass="fa-file" fieldLabel="Type of agreement"
                                        options={agreementTypesValues}
                                        value={this.props.parameters.typeId}
                                        onChange={this.props.onAgreementTypeChanged}/></li>

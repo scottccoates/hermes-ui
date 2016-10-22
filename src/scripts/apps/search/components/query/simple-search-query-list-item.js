@@ -28,7 +28,7 @@ export default function () {
       return (
         <Link to={`/agreements/${this.props.id}`} className="search-link" onClick={this.onItemClick}>
 
-          <i className="fa fa-file"></i>
+          <i className="fa fa-file" />
           <Highlighter search={this.props.query} caseSensitive={false}>
             {this.props.name}
           </Highlighter>

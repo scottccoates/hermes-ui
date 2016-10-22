@@ -39,7 +39,7 @@ export default function (dropzoneFactory) {
         },
         onError: ()=> {
         }
-      }
+      };
     },
 
     _configureProps() {
@@ -50,7 +50,7 @@ export default function (dropzoneFactory) {
 
       const defaultOptions = Object.assign({}, additionalDefaultDropzoneOptions, Dropzone.prototype.defaultOptions);
 
-      var dropzoneOptions = propsMap.filter((v, k)=>k in defaultOptions);
+      let dropzoneOptions = propsMap.filter((v, k)=>k in defaultOptions);
 
       // For some stupid reason, they provide a default implementation of 'addedfile'.
       // It results in a <div> tag containing an image preview.
@@ -111,4 +111,4 @@ export default function (dropzoneFactory) {
   });
 
   return new DependencyProvider(component);
-};
+}

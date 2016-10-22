@@ -20,26 +20,26 @@ export default function () {
         <footer id="footer-wrapper">
           <ul>
             <li id="footer-secure-connection">
-              <Link to='/privacy'>
-                <i className="fa fa-lock"></i>
+              <Link to="/privacy">
+                <i className="fa fa-lock" />
                 <span>Secure Connection</span>
               </Link>
             </li>
             <li>
-              <Link to='/support'>
+              <Link to="/support">
                 Support
               </Link>
             </li>
             <li>
-              <a href='https://angel.co/willow-1' target="_blank">About</a>
+              <a href="https://angel.co/willow-1" target="_blank">About</a>
             </li>
             <li>
-              <Link to='/privacy'>
+              <Link to="/privacy">
                 Privacy
               </Link>
             </li>
             <li>
-              <Link to='/privacy'>
+              <Link to="/privacy">
                 Terms
               </Link>
             </li>

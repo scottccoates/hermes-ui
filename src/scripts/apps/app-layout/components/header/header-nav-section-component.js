@@ -23,7 +23,7 @@ export default function () {
                 <img alt="header profile image" className="header-profile-image"
                      src={this.props.user.identity.picture}/>
               <span className="header-profile-name">{this.props.user.identity.nickname}
-                <i className="fa fa-caret-down space-left middle"></i>
+                <i className="fa fa-caret-down space-left middle" />
               </span>
               </Dropdown.Toggle>
               <Dropdown.Menu
@@ -31,7 +31,7 @@ export default function () {
                 <li role="presentation">
                   <Link role="menuitem" to="/dashboard">Dashboard</Link>
                 </li>
-                <li role="presentation" className="divider"></li>
+                <li role="presentation" className="divider" />
                 <li role="presentation">
                   <Link to="/logout">Logout</Link>
                 </li>
@@ -39,14 +39,14 @@ export default function () {
             </Dropdown>
 
             <li className="header-item header-alerts">
-              <i className="fa fa-bell-o middle"></i>
+              <i className="fa fa-bell-o middle" />
             </li>
 
             <Dropdown className="header-item header-help" componentClass="li" id="profile-dropdown">
               <Dropdown.Toggle useAnchor={true} noCaret>
                 <span>
                   Help
-                  <i className="fa fa-caret-down space-left middle"></i>
+                  <i className="fa fa-caret-down space-left middle" />
                 </span>
               </Dropdown.Toggle>
               <Dropdown.Menu

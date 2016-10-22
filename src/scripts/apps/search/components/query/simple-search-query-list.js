@@ -27,7 +27,7 @@ export default function (searchQueryListItemComponent) {
         query: '',
         onItemSelected: function () {
         }
-      }
+      };
     },
 
     onAdvancedSearchClick(e) {
@@ -74,7 +74,7 @@ export default function (searchQueryListItemComponent) {
           <li>
             <a className="search-link" href="javascript:void(0)" onClick={this.onMoreClick}>
 
-              <i className="fa fa-ellipsis-h"></i>
+              <i className="fa fa-ellipsis-h" />
               <span>Show more</span>
 
             </a>
@@ -108,7 +108,7 @@ export default function (searchQueryListItemComponent) {
               <li>
 
                 <a className="search-link" href="javascript:void(0)" onClick={this.onAdvancedSearchClick}>
-                  <i className="fa fa-wrench"></i>
+                  <i className="fa fa-wrench" />
                   <span>Advanced Search</span>
                 </a>
 

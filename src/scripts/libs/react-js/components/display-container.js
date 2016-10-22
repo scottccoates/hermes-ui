@@ -9,7 +9,7 @@ export default React.createClass({
   },
   render() {
     return (
-      <div className='display-container' style={{display: this.props.open ? "block" : "none"}}>
+      <div className="display-container" style={{display: this.props.open ? "block" : "none"}}>
         {this.props.children}
       </div>
     );
