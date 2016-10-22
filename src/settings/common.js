@@ -1,5 +1,4 @@
 import Intravenous from 'intravenous';
-import DependencyProvider from '../scripts/libs/dependency-injection/utils/dependency-provider';
 
 import AppLayoutComponent from '../scripts/apps/app-layout/components/app-layout';
 

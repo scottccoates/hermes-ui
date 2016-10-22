@@ -6,6 +6,10 @@
         <JSCodeStyleSettings>
           <option name="ALIGN_MULTIPLE_ASSIGNMENTS" value="true" />
         </JSCodeStyleSettings>
+        <JSON>
+          <option name="OBJECT_WRAPPING" value="5" />
+          <option name="ARRAY_WRAPPING" value="5" />
+        </JSON>
         <XML>
           <option name="XML_LEGACY_SETTINGS_IMPORTED" value="true" />
         </XML>
