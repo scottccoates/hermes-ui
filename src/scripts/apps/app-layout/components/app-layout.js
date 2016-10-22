@@ -3,10 +3,11 @@ import DependencyProvider from '../../../libs/dependency-injection/utils/depende
 
 import {connect} from 'react-redux';
 
-export default function (sidebarComponent, headerComponent) {
+export default function (sidebarComponent, headerComponent, footerComponent) {
 
   const Sidebar = sidebarComponent.dependency;
   const Header  = headerComponent.dependency;
+  const Footer  = footerComponent.dependency;
 
   class Component extends React.Component {
     constructor(props, context) {
@@ -26,6 +27,9 @@ export default function (sidebarComponent, headerComponent) {
             <div id="content-wrapper">
               {this.props.children}
             </div>
+
+            <Footer/>
+
           </div>
         </div>
       );

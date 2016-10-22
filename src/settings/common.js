@@ -5,6 +5,8 @@ import AppLayoutComponent from '../scripts/apps/app-layout/components/app-layout
 
 import SidebarComponent from '../scripts/apps/app-layout/components/sidebar/sidebar';
 
+import FooterComponent from '../scripts/apps/app-layout/components/footer/footer';
+
 import HeaderComponent from '../scripts/apps/app-layout/components/header/header-component';
 import HeaderNavSectionComponent from '../scripts/apps/app-layout/components/header/header-nav-section-component';
 import HeaderSearchComponent from '../scripts/apps/app-layout/components/header/header-search-component';
@@ -26,6 +28,8 @@ export default {
 
     container.register(constants.SIDEBAR_COMPONENT, SidebarComponent);
 
+    container.register(constants.FOOTER_COMPONENT, FooterComponent);
+
     container.register(constants.HEADER_COMPONENT, HeaderComponent);
     container.register(constants.HEADER_NAV_SECTION_COMPONENT, HeaderNavSectionComponent);
     container.register(constants.HEADER_SEARCH_COMPONENT, HeaderSearchComponent);
@@ -46,7 +50,7 @@ export default {
 
     SessionActions.$inject = [constants.APP_STORE, constants.SESSION_SERVICE];
 
-    AppLayoutComponent.$inject = [constants.SIDEBAR_COMPONENT, constants.HEADER_COMPONENT];
+    AppLayoutComponent.$inject = [constants.SIDEBAR_COMPONENT, constants.HEADER_COMPONENT, constants.FOOTER_COMPONENT];
 
     HeaderComponent.$inject = [constants.HEADER_SEARCH_COMPONENT, constants.HEADER_NAV_SECTION_COMPONENT];
 
