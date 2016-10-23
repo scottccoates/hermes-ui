@@ -60,6 +60,10 @@ export default class Component extends React.Component {
 
 Component.propTypes = {
   className: React.PropTypes.string.isRequired,
-  value: React.PropTypes.any,
+  value: React.PropTypes.oneOfType([
+    React.PropTypes.string,
+    React.PropTypes.number
+  ]).isRequired,
+  items: React.PropTypes.array.isRequired,
   onChange: React.PropTypes.func
 };
