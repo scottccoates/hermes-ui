@@ -171,8 +171,8 @@ export default function (searchActions, searchService, smartViewActions, simpleS
   function select(s) {
     return {
       advancedSearch: s.advancedSearch,
-      userAgreementTypes: s.userAgreementTypes || {agreementTypes: []/* todo remove me */},
-      userCounterparties: s.userCounterparties || {counterparties: []/* todo remove me */},
+      userAgreementTypes: s.userAgreementTypes,
+      userCounterparties: s.userCounterparties,
     };
   }
 
