@@ -2,11 +2,13 @@
 
 import React from 'react';
 
-export default React.createClass({
-  displayName: "DisplayContainer",
-  propTypes: {
-    open: React.PropTypes.bool.isRequired
-  },
+export default class Component extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+
+    this.displayName = 'DisplayContainerComponent';
+  }
+
   render() {
     return (
       <div className="display-container" style={{display: this.props.open ? "block" : "none"}}>
@@ -14,4 +16,8 @@ export default React.createClass({
       </div>
     );
   }
-});
+}
+
+Component.propTypes = {
+  open: React.PropTypes.bool.isRequired
+};
