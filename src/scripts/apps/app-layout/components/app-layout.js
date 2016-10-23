@@ -45,7 +45,7 @@ export default function (sidebarComponent, headerComponent, footerComponent) {
   function extracted(state) {
     return {
       userSmartViews: state.userSmartViews || {smartViews: []/* todo remove me */},
-      user: state.userInfo || {identity: {}/* todo remove me */},
+      user: state.userInfo
     };
   }
 
