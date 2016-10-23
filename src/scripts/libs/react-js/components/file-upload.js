@@ -15,32 +15,42 @@ Dropzone.autoDiscover = false;
 
 export default function (dropzoneFactory) {
 
-  const component = React.createClass({
-    propTypes: {
-      url: React.PropTypes.string.isRequired,
-      className: React.PropTypes.string,
-      paramName: React.PropTypes.string,
-      acceptedFiles: React.PropTypes.string,
-      headers: React.PropTypes.object,
-      onAddedFile: React.PropTypes.func,
-      onProgressed: React.PropTypes.func,
-      onSuccess: React.PropTypes.func,
-      onError: React.PropTypes.func,
-      style: React.PropTypes.object
-    },
+  class Component extends React.Component {
 
-    getDefaultProps() {
-      return {
-        onAddedFile: ()=> {
-        },
-        onProgressed: (progress)=> {
-        },
-        onSuccess: ()=> {
-        },
-        onError: ()=> {
-        }
-      };
-    },
+    constructor(props, context) {
+      super(props, context);
+
+      this.displayName = 'FileUploadComponent';
+    }
+
+    componentWillMount() {
+      this._configureProps();
+    }
+
+    componentDidMount() {
+      // remember to use non-arrow function here because that would bind it to undefined and then `this` wouldn't work.
+      this.dropzone = dropzoneFactory.get(ReactDOM.findDOMNode(this), this._dropzoneOptions.toJS());
+
+      this.dropzone.on('addedfile', this.props.onAddedFile);
+      this.dropzone.on('totaluploadprogress', this.props.onProgressed);
+      this.dropzone.on('success', this.onSuccess);
+      this.dropzone.on('error', this.props.onError);
+    }
+
+    componentWillUnmount() {
+      dropzoneFactory.dispose(this.dropzone);
+
+      // I was running into an issue where calling `destroy` below would trigger (in dropzone) file.remove
+      // which would further trigger `updateTotalUploadProgress` which would cause issues in react components that were un-mounted.
+      // I would not expect `updateTotalUploadProgress` to be triggered simply be calling `destroy`.
+      this.dropzone.off('addedfile', this.props.onAddedFile);
+      this.dropzone.off('totaluploadprogress', this.props.onProgressed);
+      this.dropzone.off('success', this.onSuccess);
+      this.dropzone.off('error', this.props.onError);
+
+      this.dropzone.destroy();
+      this.dropzone = null;
+    }
 
     _configureProps() {
       const propsMap = Immutable.Map(this.props);
@@ -60,41 +70,12 @@ export default function (dropzoneFactory) {
       dropzoneOptions = dropzoneOptions.set('uploadMultiple', true);
 
       this._dropzoneOptions = dropzoneOptions;
-    },
+    }
 
-    componentWillMount() {
-      this._configureProps();
-    },
-
-    onSuccess(file, response){
+    onSuccess(file, response) {
       const newData = humps.camelizeKeys(response);
       this.props.onSuccess(file, newData);
-    },
-
-    componentDidMount() {
-      // remember to use non-arrow function here because that would bind it to undefined and then `this` wouldn't work.
-      this.dropzone = dropzoneFactory.get(ReactDOM.findDOMNode(this), this._dropzoneOptions.toJS());
-
-      this.dropzone.on('addedfile', this.props.onAddedFile);
-      this.dropzone.on('totaluploadprogress', this.props.onProgressed);
-      this.dropzone.on('success', this.onSuccess);
-      this.dropzone.on('error', this.props.onError);
-    },
-
-    componentWillUnmount() {
-      dropzoneFactory.dispose(this.dropzone);
-
-      // I was running into an issue where calling `destroy` below would trigger (in dropzone) file.remove
-      // which would further trigger `updateTotalUploadProgress` which would cause issues in react components that were un-mounted.
-      // I would not expect `updateTotalUploadProgress` to be triggered simply be calling `destroy`.
-      this.dropzone.off('addedfile', this.props.onAddedFile);
-      this.dropzone.off('totaluploadprogress', this.props.onProgressed);
-      this.dropzone.off('success', this.onSuccess);
-      this.dropzone.off('error', this.props.onError);
-
-      this.dropzone.destroy();
-      this.dropzone = null;
-    },
+    }
 
     render() {
       // pass in just the className (as opposed to ...props)
@@ -108,7 +89,31 @@ export default function (dropzoneFactory) {
         </form>
       );
     }
-  });
+  }
 
-  return new DependencyProvider(component);
+  Component.propTypes = {
+    url: React.PropTypes.string.isRequired,
+    className: React.PropTypes.string,
+    paramName: React.PropTypes.string,
+    acceptedFiles: React.PropTypes.string,
+    headers: React.PropTypes.object,
+    onAddedFile: React.PropTypes.func,
+    onProgressed: React.PropTypes.func,
+    onSuccess: React.PropTypes.func,
+    onError: React.PropTypes.func,
+    style: React.PropTypes.object
+  };
+
+  Component.defaultProps = {
+    onAddedFile: ()=> {
+    },
+    onProgressed: ()=> {
+    },
+    onSuccess: ()=> {
+    },
+    onError: ()=> {
+    }
+  };
+
+  return new DependencyProvider(Component);
 }

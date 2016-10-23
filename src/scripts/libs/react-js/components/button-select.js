@@ -4,15 +4,16 @@ import React from 'react';
 
 import isEmpty from '../../js-utils/functions/is-empty';
 
-export default React.createClass({
-  displayName: "ButtonSelect",
-  propTypes: {
-    className: React.PropTypes.string.isRequired,
-    value: React.PropTypes.any,
-    onChange: React.PropTypes.func
-  },
+export default class Component extends React.Component {
 
-  setItem(item){
+  constructor(props, context) {
+    super(props, context);
+
+    this.displayName = 'ButtonSelect';
+  }
+
+
+  setItem(item) {
     // follow react-select logic - they fire onChange before setting state
     // https://github.com/JedWatson/react-select/blob/master/src/Select.js
     const value = item.value;
@@ -20,12 +21,12 @@ export default React.createClass({
     if (this.props.onChange) {
       this.props.onChange(value);
     }
-  },
+  }
 
   render() {
 
     const items = this.props.items.map(item =>
-        <li key={item.value}><a href="javascript:void(0);" onClick={this.setItem.bind(this,item)}>{item.label}</a></li>
+      <li key={item.value}><a href="javascript:void(0);" onClick={this.setItem.bind(this,item)}>{item.label}</a></li>
     );
 
     let selectedItem = null;
@@ -47,7 +48,7 @@ export default React.createClass({
         <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                 className={this.props.className}>
           {selectedItem}
-          <i className="fa fa-caret-down space-left middle" />
+          <i className="fa fa-caret-down space-left middle"/>
         </button>
         <ul className="dropdown-menu">
           {items}
@@ -55,4 +56,10 @@ export default React.createClass({
       </div>
     );
   }
-});
+}
+
+Component.propTypes = {
+  className: React.PropTypes.string.isRequired,
+  value: React.PropTypes.any,
+  onChange: React.PropTypes.func
+};

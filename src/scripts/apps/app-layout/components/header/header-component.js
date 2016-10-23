@@ -9,8 +9,13 @@ export default function (headerSearchComponent, headerNavSectionComponent) {
   const HeaderSearch     = headerSearchComponent.dependency;
   const HeaderNavSection = headerNavSectionComponent.dependency;
 
-  const header = React.createClass({
-    displayName: "HeaderComponent",
+  class Component extends React.Component {
+    
+    constructor(props, context) {
+      super(props, context);
+
+      this.displayName = 'HeaderComponent';
+    }
 
     render() {
       return (
@@ -20,7 +25,7 @@ export default function (headerSearchComponent, headerNavSectionComponent) {
         </header>
       );
     }
-  });
+  }
 
-  return new DependencyProvider(header);
+  return new DependencyProvider(Component);
 }
