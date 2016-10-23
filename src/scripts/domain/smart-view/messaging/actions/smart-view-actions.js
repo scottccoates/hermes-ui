@@ -1,4 +1,4 @@
-import * as constants from '../../../../../settings/constants'
+import * as constants from '../../../../../settings/constants';
 
 import log from 'loglevel';
 
@@ -71,4 +71,4 @@ export default function (appStore, smartViewService) {
   smartViewActions = actionBinder.bindActionCreatorsToStore(smartViewActions, appStore);
 
   return smartViewActions;
-};
+}

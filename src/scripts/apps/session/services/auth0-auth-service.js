@@ -58,4 +58,4 @@ export default function (auth0Lock) {
       return promise;
     }
   };
-};
+}

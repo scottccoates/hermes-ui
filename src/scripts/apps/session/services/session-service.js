@@ -3,7 +3,7 @@ import humps from 'humps';
 import log from 'loglevel';
 // Store this interval function in the module root, just in case we get references to multiple instances of this service.
 // If that happens, there'd be multiple timers running concurrently, surely to make debugging this difficult thing to debug.
-var _renewSessionTimeout = null;
+let _renewSessionTimeout = null;
 export default function (sessionRepository, authService) {
 
   const sessionService = {
@@ -104,4 +104,4 @@ export default function (sessionRepository, authService) {
   };
 
   return sessionService;
-};
+}

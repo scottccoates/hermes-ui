@@ -45,7 +45,7 @@ export default function () {
       let deleteButton;
       if (this.props.smartView) {
         deleteButton = (
-          <button type='button' className="btn btn-danger" onClick={this.props.onDelete}>Delete
+          <button type="button" className="btn btn-danger" onClick={this.props.onDelete}>Delete
           </button>
         );
       }
@@ -78,9 +78,9 @@ export default function () {
 
             <section className="row agreement-form-section agreement-form-section-save content-section-item">
               <div className="col-md-24">
-                <button type='submit' className="btn btn-primary pull-right content-section-item space-left-md">Save
+                <button type="submit" className="btn btn-primary pull-right content-section-item space-left-md">Save
                 </button>
-                <button type='button' className="btn btn-info pull-right" onClick={this.props.onCancel}>Cancel
+                <button type="button" className="btn btn-info pull-right" onClick={this.props.onCancel}>Cancel
                 </button>
                 {deleteButton}
               </div>
@@ -100,4 +100,4 @@ export default function () {
   component = formWrapper(component);
 
   return new DependencyProvider(component);
-};
+}
