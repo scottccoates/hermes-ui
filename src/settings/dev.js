@@ -8,6 +8,8 @@ import LoglevelErrorLogger from '../scripts/libs/js-utils/logging/loglevel-error
 
 import devStore from '../scripts/apps/app-layout/messaging/redux/dev-store';
 
+import Auth0AuthService from '../scripts/apps/session/services/auth0-auth-service';
+
 export default {
   init(){
     const container = config.init();
@@ -17,6 +19,8 @@ export default {
     container.register(constants.ERROR_LOGGER, LoglevelErrorLogger);
 
     container.register(constants.APP_STORE_CONFIG, new DependencyProvider(devStore));
+
+    container.register(constants.AUTH_SERVICE, new Auth0AuthService);
 
     return container;
   }

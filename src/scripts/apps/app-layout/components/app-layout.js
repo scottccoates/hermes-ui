@@ -38,7 +38,6 @@ export default function (sidebarComponent, headerComponent, footerComponent) {
 
   Component.propTypes = {
     children: PropTypes.element,
-    userSmartViews: PropTypes.object.isRequired,
     user: PropTypes.object.isRequired,
   };
 

@@ -16,6 +16,8 @@ import SimpleSearchQueryInputBox from '../scripts/apps/search/components/query/s
 import AdvancedSearchQueryContainer from '../scripts/apps/search/components/query/advanced-search-query-container';
 
 import SessionActions from '../scripts/apps/session/messaging/actions/session-actions';
+import SessionService from '../scripts/apps/session/services/session-service';
+import SessionRepository from '../scripts/apps/session/services/session-repository';
 
 import * as constants from './constants';
 
@@ -40,14 +42,11 @@ export default {
     container.register(constants.ADVANCED_SEARCH_QUERY_CONTAINER, AdvancedSearchQueryContainer);
 
     container.register(constants.SESSION_ACTIONS, SessionActions);
-    container.register(constants.SESSION_SERVICE, ()=>({
-      // todo replace me with real service
-      async resumeSession(){
-        throw new Error('error');
-      }
-    }));
+    container.register(constants.SESSION_SERVICE, SessionService);
+    container.register(constants.SESSION_REPOSITORY, SessionRepository);
 
     SessionActions.$inject = [constants.APP_STORE, constants.SESSION_SERVICE];
+    SessionService.$inject = [constants.SESSION_REPOSITORY, constants.AUTH_SERVICE];
 
     AppLayoutComponent.$inject = [constants.SIDEBAR_COMPONENT, constants.HEADER_COMPONENT, constants.FOOTER_COMPONENT];
 
