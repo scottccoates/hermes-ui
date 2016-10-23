@@ -1,4 +1,4 @@
-import {stringToTimestamp} from 'src/scripts/libs/js-utils/type/date-utils';
+import {stringToTimestamp} from '../../../libs/js-utils/type/date-utils';
 
 import immutable from 'immutable';
 

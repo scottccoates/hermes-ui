@@ -1,6 +1,8 @@
-import * as constants from 'src/scripts/apps/messaging/common/constants'
+import * as constants from '../../../../../settings/constants'
+
 import log from 'loglevel';
-import actionBinder from 'src/scripts/libs/redux-js/actions/action-binder';
+
+import actionBinder from '../../../../libs/redux-js/actions/action-binder';
 
 export default function (appStore, smartViewService) {
 

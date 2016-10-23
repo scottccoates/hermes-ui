@@ -30,6 +30,7 @@
     "humps": "2.0.0",
     "intravenous": "0.1.4-beta",
     "loglevel": "1.4.1",
+    "moment": "2.15.1",
     "object-assign": "4.1.0",
     "react": "15.3.1",
     "react-bacon": "0.0.4",
