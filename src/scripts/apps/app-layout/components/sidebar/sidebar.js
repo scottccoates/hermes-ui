@@ -2,6 +2,8 @@
 
 import React, { PropTypes } from 'react';
 
+import {connect} from 'react-redux';
+
 import DependencyProvider from '../../../../libs/dependency-injection/utils/dependency-provider';
 
 import SidebarLogo from './sidebar-logo';
@@ -39,5 +41,11 @@ export default function (smartViewActions) {
     userSmartViews: PropTypes.object.isRequired
   };
 
-  return new DependencyProvider(Component);
+  function extracted(state) {
+    return {
+      userSmartViews: state.userSmartViews
+    };
+  }
+
+  return new DependencyProvider(connect(extracted)(Component));
 }

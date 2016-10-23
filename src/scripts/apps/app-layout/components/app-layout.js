@@ -19,7 +19,7 @@ export default function (sidebarComponent, headerComponent, footerComponent) {
     render() {
       return (
         <div id="page-wrapper">
-          <Sidebar userSmartViews={this.props.userSmartViews}/>
+          <Sidebar/>
 
           <div id="main-wrapper">
             <Header user={this.props.user}/>
@@ -44,7 +44,7 @@ export default function (sidebarComponent, headerComponent, footerComponent) {
 
   function extracted(state) {
     return {
-      userSmartViews: state.userSmartViews || {smartViews: []/* todo remove me */},
+      session: state.session,
       user: state.userInfo
     };
   }
