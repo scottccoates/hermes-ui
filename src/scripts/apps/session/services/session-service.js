@@ -94,7 +94,7 @@ export default function (sessionRepository, authService) {
     async resumeSession(keepAliveSessionFunc){
       try {
         await sessionService.renewSession(keepAliveSessionFunc); // this will fail if they're not logged in or haven't logged in a while.
-        var retVal = sessionRepository.getLoginInfo();
+        const retVal = sessionRepository.getLoginInfo();
       }
       catch (e) {
         throw new Error("Cannot resume session: " + e.stack);

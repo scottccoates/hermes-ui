@@ -26,7 +26,6 @@ export default function (appStore, sessionService) {
 
   function _sessionResumedFailureAction(error) {
     log.info("SessionActions: Session error: %s", error.stack);
-
     return {
       type: constants.RESUME_SESSION_FAILURE,
       error

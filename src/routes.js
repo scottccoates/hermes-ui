@@ -11,14 +11,28 @@ import NotFoundPage from './components/NotFoundPage.js';
 export default {
   init(container){
     const AppLayoutComponent = container.get(constants.APP_LAYOUT_COMPONENT).dependency;
+    const LoginComponent     = container.get(constants.LOGIN_COMPONENT).dependency;
+
+    const store = container.get(constants.APP_STORE);
+
+    function requireAuth(nextState, replace) {
+      debugger
+      if (!store.getState().session.loggedIn) {
+        replace({
+          pathname: '/login',
+          state: {'next-path': nextState.location.pathname}
+        });
+      }
+    }
 
     return (
-      <Route path="/" component={AppLayoutComponent}>
-        <IndexRoute component={HomePage}/>
-        <Route path="fuel-savings" component={FuelSavingsPage}/>
-        <Route path="about" component={AboutPage}/>
-        <Route path="*" component={NotFoundPage}/>
-      </Route>
+      [ // use array for multiple adjacent routes,  https://github.com/ReactTraining/react-router/issues/193#issuecomment-51977965
+        <Route component={AppLayoutComponent} onEnter={requireAuth}>
+          <Route path="fuel-savings" component={FuelSavingsPage}/>
+          <Route path="about" component={AboutPage}/>
+        </Route>,
+        <Route path='login' component={LoginComponent}/>
+      ]
     );
   }
 };

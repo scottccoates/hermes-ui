@@ -26,6 +26,7 @@
     "open:cover": "npm run test:cover && open coverage/index.html"
   },
   "dependencies": {
+    "auth0-lock": "10.4.1",
     "dropzone": "4.3.0",
     "humps": "2.0.0",
     "intravenous": "0.1.4-beta",
