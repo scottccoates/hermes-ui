@@ -27,7 +27,7 @@ export default {
 
     return (
       [ // use array for multiple adjacent routes,  https://github.com/ReactTraining/react-router/issues/193#issuecomment-51977965
-        <Route component={AppLayoutComponent} onEnter={requireAuth}>
+        <Route path='/' component={AppLayoutComponent} onEnter={requireAuth}>
           <Route path="fuel-savings" component={FuelSavingsPage}/>
           <Route path="about" component={AboutPage}/>
         </Route>,

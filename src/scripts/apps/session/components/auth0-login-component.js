@@ -6,7 +6,7 @@ import DependencyProvider from '../../../libs/dependency-injection/utils/depende
 
 import log from 'loglevel';
 
-export default function (sessionActions, auth0Lock) {
+export default function (sessionActions, auth0Js, auth0Lock) {
 console.log("auth ioc made it here");
   class Component extends React.Component {
 
@@ -26,7 +26,7 @@ console.log("auth ioc made it here");
     componentDidMount() {
       // tokens are not passed into the hash because we're not using a redirect mode. Right now the only reason
       // auth info would be int he has is if we're impersonating someone.
-      const authInfo = auth0Lock.$auth0.parseHash(window.location.hash);
+      const authInfo = auth0Js.parseHash(window.location.hash);
       const idToken  = authInfo && authInfo.id_token;
 
       if (idToken) {
@@ -43,7 +43,7 @@ console.log("auth ioc made it here");
           }
         }
         else {
-          auth0Lock.$auth0.getProfile(idToken, (error, profile)=> {
+          auth0Js.getProfile(idToken, (error, profile)=> {
 
             if (error) throw new Error(`Error authenticating: ${idToken}. Inner exception: ${error.stack}`);
 

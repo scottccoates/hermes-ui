@@ -11,10 +11,9 @@ import './styles/main.scss'; // Yep, that's right. You can import SASS/CSS files
 
 import log from 'loglevel';
 
-const settingsModule = process.env.SETTINGS_MODULE;
-
 import * as constants from './settings/constants';
 
+const settingsModule    = process.env.SETTINGS_MODULE || 'dev-override'; // todo this should read dev not dev-override
 const container         = require(`./settings/${settingsModule}`).default;
 const containerInstance = container.init();
 
