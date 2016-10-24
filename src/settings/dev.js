@@ -35,11 +35,9 @@ export default {
 
     Auth0Js.$inject             = ['Auth0Config']; // these are provided in the environment settings files
     Auth0Lock.$inject           = ['Auth0ClientID', 'Auth0ClientDomain']; // these are provided in the environment settings files
-    Auth0LoginComponent.$inject = [constants.SESSION_ACTIONS, 'Auth0Js', 'Auth0Lock'];
-    Auth0AuthService.$inject    = ['Auth0Lock'];
+    Auth0LoginComponent.$inject = [constants.SESSION_ACTIONS, 'Auth0Js', 'Auth0Lock!']; //! means 'factory' - in the component we're going to use .get to provide more ctor params
+    Auth0AuthService.$inject    = ['Auth0Js'];
 
-    debugger
-    container.get('Auth0Js');
     return container;
   }
 };

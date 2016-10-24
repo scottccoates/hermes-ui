@@ -4,9 +4,11 @@ import { connect } from 'react-redux';
 
 import DependencyProvider from '../../../libs/dependency-injection/utils/dependency-provider';
 
+import logoUrl from '../../../../assets/images/medium-logo-no-text.svg'
+
 import log from 'loglevel';
 
-export default function (sessionActions, auth0Js, auth0Lock) {
+export default function (sessionActions, auth0Js, auth0LockFactory) {
   class Component extends React.Component {
 
     constructor(props, context) {
@@ -22,10 +24,22 @@ export default function (sessionActions, auth0Js, auth0Lock) {
     }
 
     componentDidMount() {
+      // https://auth0.com/docs/libraries/lock/customization
+      // https://auth0.com/docs/libraries/lock/sending-authentication-parameters
+      // we cannot omit authParams.scope because we need to pass in appMetadata into our JWT
+      const lockOptions = {
+        sso: false,
+        rememberLastLogin: false,
+        closable: false,
+        theme: {logo: logoUrl},
+        authParams: {scope: 'openid app_metadata'}
+      };
+
       // tokens are not passed into the hash because we're not using a redirect mode. Right now the only reason
       // auth info would be int he has is if we're impersonating someone.
       const authInfo = auth0Js.parseHash(window.location.hash);
       const idToken  = authInfo && authInfo.id_token;
+      this.lock      = auth0LockFactory.get(lockOptions);
 
       if (idToken) {
 
@@ -61,18 +75,8 @@ export default function (sessionActions, auth0Js, auth0Lock) {
           this._doLoginTransition();
         }
         else {
-          // https://auth0.com/docs/libraries/lock/customization
-          // https://auth0.com/docs/libraries/lock/sending-authentication-parameters
-          // we cannot omit authParams.scope because we need to pass in appMetadata into our JWT
-          const lockOptions = {
-            sso: false,
-            rememberLastLogin: false,
-            closable: false,
-            icon: '/assets/images/medium-logo-no-text.svg',
-            authParams: {scope: 'openid app_metadata'}
-          };
 
-          auth0Lock.show(lockOptions, (error, meta, idToken)=> {
+          this.lock.show((error, meta, idToken)=> {
             if (error) {
               if (error.status && error.status != 401) {
                 throw new Error(`Error authenticating: ${idToken}. Inner exception: ${error.stack}`);
@@ -104,7 +108,12 @@ export default function (sessionActions, auth0Js, auth0Lock) {
         </div>
       );
     }
+
+    componentWillUnmount() {
+      auth0LockFactory.dispose(this.lock);
+    }
   }
+
 
   return new DependencyProvider(connect(x=> x.session)(Component));
 };
