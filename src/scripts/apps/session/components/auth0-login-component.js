@@ -7,14 +7,12 @@ import DependencyProvider from '../../../libs/dependency-injection/utils/depende
 import log from 'loglevel';
 
 export default function (sessionActions, auth0Js, auth0Lock) {
-console.log("auth ioc made it here");
   class Component extends React.Component {
 
     constructor(props, context) {
       super(props, context);
 
       this.displayName = 'AuthLoginComponent';
-      console.log("Component",Component); // todo remove me
     }
 
     componentWillReceiveProps(nextProps) {
