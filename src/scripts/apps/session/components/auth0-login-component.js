@@ -8,7 +8,7 @@ import logoUrl from '../../../../assets/images/medium-logo-no-text.svg'
 
 import log from 'loglevel';
 
-export default function (sessionActions, auth0Js, auth0LockFactory) {
+export default function (sessionActions, auth0LockFactory) {
   class Component extends React.Component {
 
     constructor(props, context) {
@@ -35,65 +35,20 @@ export default function (sessionActions, auth0Js, auth0LockFactory) {
         authParams: {scope: 'openid app_metadata'}
       };
 
-      // tokens are not passed into the hash because we're not using a redirect mode. Right now the only reason
-      // auth info would be int he has is if we're impersonating someone.
-      const authInfo = auth0Js.parseHash(window.location.hash);
-      const idToken  = authInfo && authInfo.id_token;
-      this.lock      = auth0LockFactory.get(lockOptions);
+      this.lock = auth0LockFactory.get(lockOptions);
 
-      if (idToken) {
-
-        if (this.props.loggedIn) {
-          // log out initial user  first
-          try {
-            const nickname = this.props.user.nickname;
-            log.info("Logging out previous user: %s", nickname);
-            this.transitionTo('/logout', {}, {'next-path': window.location.toString()});
-          }
-          catch (e) {
-            throw new Error("Error completing the impersonate process " + e.stack);
-          }
-        }
-        else {
-          auth0Js.getProfile(idToken, (error, profile)=> {
-
-            if (error) throw new Error(`Error authenticating: ${idToken}. Inner exception: ${error.stack}`);
-
-            try {
-              log.info("Beginning: Impersonate user: %s", profile.nickname);
-              sessionActions.login(idToken, profile, sessionActions.resumeSession);
-            }
-            catch (e) {
-              throw new Error("Error completing the impersonate process " + e.stack);
-            }
-          });
-        }
+      if (this.props.loggedIn) {
+        // if they're already logged in, but visiting /login
+        this._doLoginTransition();
       }
       else {
-        if (this.props.loggedIn) {
-          // if they're already logged in, but visiting /login
-          this._doLoginTransition();
-        }
-        else {
-
-          this.lock.show((error, meta, idToken)=> {
-            if (error) {
-              if (error.status && error.status != 401) {
-                throw new Error(`Error authenticating: ${idToken}. Inner exception: ${error.stack}`);
-              }
-            }
-            else {
-              try {
-                log.info("Beginning: Log in user: %s", meta.nickname);
-                sessionActions.login(idToken, meta, sessionActions.resumeSession);
-              }
-              catch (e) {
-                throw new Error("Error completing the login process " + e.stack);
-              }
-            }
-          });
-        }
+        this.lock.on("authenticated", this.handleAuth);
+        this.lock.show();
       }
+    }
+
+    componentWillUnmount() {
+      auth0LockFactory.dispose(this.lock);
     }
 
     _doLoginTransition() {
@@ -102,15 +57,23 @@ export default function (sessionActions, auth0Js, auth0LockFactory) {
       window.location = this.props.location.query['next-path'] || '/';
     }
 
+    async handleAuth(authResult) {
+      const {idToken} = authResult;
+
+      try {
+        log.info("Beginning: Log in user: %s", idToken);
+        sessionActions.login(idToken, sessionActions.resumeSession);
+      }
+      catch (e) {
+        throw new Error("Error completing the login process " + e.stack);
+      }
+    }
+
     render() {
       return (
         <div id="login-wrapper">
         </div>
       );
-    }
-
-    componentWillUnmount() {
-      auth0LockFactory.dispose(this.lock);
     }
   }
 

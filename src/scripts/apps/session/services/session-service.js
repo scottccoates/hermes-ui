@@ -13,23 +13,24 @@ export default function (sessionRepository, authService) {
       return data;
     },
 
-    async login(token, meta, keepAliveSessionFunc){
+    async login(token, keepAliveSessionFunc){
+      let profileInfo = await authService.getProfileInfo(token);
+      profileInfo     = this._prepareMetaObject(profileInfo);
 
-      meta = this._prepareMetaObject(meta);
       if (!keepAliveSessionFunc) {
         throw new Error('Missing keepAliveSessionFunc');
       }
 
       try {
 
-        log.info("Beginning: Get third party auth for meta: %s", meta.nickname);
+        log.info("Beginning: Get third party auth for profileInfo: %s", profileInfo.nickname);
 
-        let thirdPartyAuthInformation = await authService.getThirdPartyAuthInformation(token);
-        thirdPartyAuthInformation     = this._prepareMetaObject(thirdPartyAuthInformation);
+        let thirdPartyAuthInformation = {};//await authService.getThirdPartyAuthToken(token);
+        //thirdPartyAuthInformation     = this._prepareMetaObject(thirdPartyAuthInformation);
 
-        log.info("Completed: Get third party auth for meta: %s", meta.nickname);
+        log.info("Completed: Get third party auth for profileInfo: %s", profileInfo.nickname);
 
-        var newMetaInformation = Object.assign({}, meta, thirdPartyAuthInformation);
+        var newMetaInformation = Object.assign({}, profileInfo, thirdPartyAuthInformation);
       }
       catch (e) {
         throw new Error("Cannot get third party auth: " + e.stack);
@@ -39,7 +40,8 @@ export default function (sessionRepository, authService) {
         sessionRepository.saveLoginInfo(token, newMetaInformation);
       }
       catch (e) {
-        throw new Error("Cannot save login info: " + e.stack);
+        // throw  new Error("Cannot save login info: " + e.stack); // todo fix me - i don't preserve 'clickable' stack trace, just the 'literal' stack trace and sometimes that is 'minified' whereas the real stack trace has real method names
+        throw e;
       }
 
       try {
@@ -80,11 +82,11 @@ export default function (sessionRepository, authService) {
         const loginInfo      = sessionRepository.getLoginInfo();
         const currentIdToken = loginInfo.token;
 
-        log.info("Beginning: Renew auth for user: %s", loginInfo.meta.nickname);
+        log.info("Beginning: Renew auth for user: %s", loginInfo.profileInfo.nickname);
         const renewedAuthToken = await authService.renewAuthToken(currentIdToken);
-        log.info("Completed: Renew auth for user: %s", loginInfo.meta.nickname);
+        log.info("Completed: Renew auth for user: %s", loginInfo.profileInfo.nickname);
 
-        return await sessionService.login(renewedAuthToken, loginInfo.meta, keepAliveSessionFunc);
+        return await sessionService.login(renewedAuthToken, loginInfo.profileInfo, keepAliveSessionFunc);
       }
       catch (e) {
         throw new Error("Cannot renew: " + e.stack);

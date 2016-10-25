@@ -27,6 +27,7 @@ import SessionActions from '../scripts/apps/session/messaging/actions/session-ac
 import SessionService from '../scripts/apps/session/services/session-service';
 import SessionRepository from '../scripts/apps/session/services/session-repository';
 
+import ClientSidePersistenceService from '../scripts/apps/persistence/services/client-side-persistence-service';
 
 import * as constants from './constants';
 
@@ -61,8 +62,11 @@ export default {
     container.register(constants.SESSION_SERVICE, SessionService);
     container.register(constants.SESSION_REPOSITORY, SessionRepository);
 
+    container.register(constants.CLIENT_SIDE_PERSISTENCE_SERVICE, ClientSidePersistenceService);
+
     SessionActions.$inject = [constants.APP_STORE, constants.SESSION_SERVICE];
     SessionService.$inject = [constants.SESSION_REPOSITORY, constants.AUTH_SERVICE];
+    SessionRepository.$inject = [constants.CLIENT_SIDE_PERSISTENCE_SERVICE];
 
     AppLayoutComponent.$inject = [constants.SIDEBAR_COMPONENT, constants.HEADER_COMPONENT, constants.FOOTER_COMPONENT];
 

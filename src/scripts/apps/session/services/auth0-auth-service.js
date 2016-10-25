@@ -3,7 +3,27 @@ import log from 'loglevel';
 export default function (auth0Lock) {
 
   return {
-    getThirdPartyAuthInformation(token){
+    getProfileInfo(token){
+      const promise = new Promise((resolve, reject) => {
+
+        log.info("Beginning: Get profile");
+        auth0Lock.getProfile(token, (error, profile) => {
+
+          if (error) {
+            // error is not typeof Error
+            reject(new Error(`Error getting profile info: ${token}. Inner exception: ${error.error_description}`));
+          }
+          else {
+            log.info("Completed: Get profile information");
+            resolve(profile);
+          }
+        });
+      });
+
+      return promise;
+    },
+
+    getThirdPartyAuthToken(token){
       const promise = new Promise((resolve, reject) => {
         const fbOptions = {
           id_token: token,    // The auth0 id_token you have now

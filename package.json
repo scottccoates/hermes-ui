@@ -26,7 +26,6 @@
     "open:cover": "npm run test:cover && open coverage/index.html"
   },
   "dependencies": {
-    "auth0-js": "7.3.0",
     "auth0-lock": "10.4.1",
     "dropzone": "4.3.0",
     "humps": "2.0.0",
@@ -45,7 +44,8 @@
     "react-router-redux": "4.0.5",
     "react-select": "1.0.0-rc.2",
     "redux": "3.5.2",
-    "redux-thunk": "2.1.0"
+    "redux-thunk": "2.1.0",
+    "store": "1.3.20"
   },
   "devDependencies": {
     "autoprefixer": "6.4.0",
