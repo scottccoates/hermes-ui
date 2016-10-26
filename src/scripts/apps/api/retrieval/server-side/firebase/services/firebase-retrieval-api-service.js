@@ -13,7 +13,7 @@ export default function (firebase, firebaseAppUrl, firebaseApiKey) {
 
       try {
         firebase.initializeApp({databaseURL: firebaseAppUrl, apiKey: firebaseApiKey});
-        debugger
+
         const firebaseToken = store.getState().session.meta.firebaseData.token;
         await firebase.auth().signInWithCustomToken(firebaseToken);
         //smartViewRetrievalApiService.init(container, store, firebase);

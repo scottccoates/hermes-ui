@@ -14,6 +14,8 @@ export default function (sessionRepository, authService) {
     },
 
     async login(token, keepAliveSessionFunc){
+      const exp = authService.getTokenExp(token);
+
       let profileInfo = await authService.getProfileInfo(token);
       profileInfo     = this._prepareMetaObject(profileInfo);
 
@@ -36,7 +38,7 @@ export default function (sessionRepository, authService) {
       }
 
       try {
-        sessionRepository.saveLoginInfo({token, meta: newMetaInformation});
+        sessionRepository.saveLoginInfo({tokenInfo: {token, exp}, meta: newMetaInformation});
       }
       catch (e) {
         throw  new Error("Cannot save login info: " + e.stack);
@@ -78,11 +80,7 @@ export default function (sessionRepository, authService) {
       try {
         const loginInfo = sessionRepository.getLoginInfo();
 
-        if (!loginInfo) {
-          throw new Error('login info is missing');
-        }
-
-        const currentIdToken = loginInfo.token;
+        const currentIdToken = loginInfo.tokenInfo.token;
 
         log.info("Beginning: Renew auth for user: %s", loginInfo.meta.nickname);
         const renewedAuthToken = await authService.renewAuthToken(currentIdToken);
@@ -97,8 +95,19 @@ export default function (sessionRepository, authService) {
 
     async resumeSession(keepAliveSessionFunc){
       try {
-        await sessionService.renewSession(keepAliveSessionFunc); // this will fail if they're not logged in or haven't logged in a while.
         var retVal = sessionRepository.getLoginInfo();
+
+        if (!retVal) {
+          throw new Error('login info is missing');
+        }
+
+        const tokenExp         = retVal.tokenInfo.exp;
+        const expDate          = new Date(tokenExp * 1000);
+        const remainingSeconds = (expDate - new Date()) / 1000;
+
+        if (remainingSeconds <= 60) {
+          await sessionService.renewSession(keepAliveSessionFunc); // this will fail if they're not logged in or haven't logged in a while.
+        }
       }
       catch (e) {
         throw new Error("Cannot resume session: " + e.stack);

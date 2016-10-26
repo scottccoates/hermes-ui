@@ -16,7 +16,6 @@ export default {
     const store = container.get(constants.APP_STORE);
 
     function requireAuth(nextState, replace) {
-      debugger
       if (!store.getState().session.loggedIn) {
         replace({
           pathname: '/login',

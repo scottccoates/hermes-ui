@@ -3,6 +3,13 @@ import log from 'loglevel';
 export default function (auth0Js) {
 
   return {
+    getTokenExp(token){
+      const payload = auth0Js.decodeJwt(token);
+      const exp     = payload.exp;
+
+      return exp;
+    },
+
     getProfileInfo(token){
       const promise = new Promise((resolve, reject) => {
 
