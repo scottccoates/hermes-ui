@@ -12,16 +12,19 @@ export default function (firebase, firebaseAppUrl, firebaseApiKey) {
     async init(container, store) {
 
       try {
+        // if we start using firebase in multiple parts of the app, we should put this init logic in the main entry point of this app
         firebase.initializeApp({databaseURL: firebaseAppUrl, apiKey: firebaseApiKey});
 
         const firebaseToken = store.getState().session.meta.firebaseData.token;
         await firebase.auth().signInWithCustomToken(firebaseToken);
+
         //smartViewRetrievalApiService.init(container, store, firebase);
         //agreementRetrievalApiService.init(container, store, firebase);
         //agreementTypeRetrievalApiService.init(container, store, firebase);
         //counterPartyRetrievalApiService.init(container, store, firebase);
         //alertRetrievalApiService.init(container, store, firebase);
         userRetrievalApiService.init(container, store, firebase);
+
         log.info("Firebase authenticated");
       }
       catch (error) {
