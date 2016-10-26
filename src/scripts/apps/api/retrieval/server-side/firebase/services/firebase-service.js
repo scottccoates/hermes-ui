@@ -17,7 +17,7 @@ export default {
 
   prepareObject(inputObject, ...childCollections){
     const inputObjectValue = inputObject.val();
-    inputObjectValue.id    = inputObject.key();
+    inputObjectValue.id    = inputObject.key;
 
     for (let child of childCollections) {
       inputObjectValue[child] = this.prepareCollection(inputObject.child(child));

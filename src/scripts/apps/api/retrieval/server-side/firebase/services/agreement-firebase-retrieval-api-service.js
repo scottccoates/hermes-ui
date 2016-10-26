@@ -4,7 +4,7 @@ import storeObserver from 'src/scripts/libs/redux-js/store/store-observer';
 
 import {dateFromTimestamp, ymdFormat} from 'src/scripts/libs/js-utils/type/date-utils';
 
-import agreementEnums from 'src/scripts/apps/formatting/agreement/agreement-enums';
+import agreementEnums from 'agreement-enums';
 
 export default {
   init(container, store, rootRef) {

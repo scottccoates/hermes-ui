@@ -27,6 +27,11 @@ import SessionActions from '../scripts/apps/session/messaging/actions/session-ac
 import SessionService from '../scripts/apps/session/services/session-service';
 import SessionRepository from '../scripts/apps/session/services/session-repository';
 
+import UserActions from '../scripts/domain/user/messaging/actions/user-actions';
+import UserService from '../scripts/domain/user/services/user-service';
+import UserRepository from '../scripts/domain/user/services/user-repository';
+import UserInfoReducer from '../scripts/domain/user/messaging/reducers/user-info-reducer';
+
 import ClientSidePersistenceService from '../scripts/apps/persistence/services/client-side-persistence-service';
 
 import * as constants from './constants';
@@ -62,10 +67,15 @@ export default {
     container.register(constants.SESSION_SERVICE, SessionService);
     container.register(constants.SESSION_REPOSITORY, SessionRepository);
 
+    container.register(constants.USER_ACTIONS, UserActions);
+    container.register(constants.USER_SERVICE, UserService);
+    container.register(constants.USER_REPOSITORY, UserRepository);
+    container.register(constants.USER_INFO_REDUCER, UserInfoReducer);
+
     container.register(constants.CLIENT_SIDE_PERSISTENCE_SERVICE, ClientSidePersistenceService);
 
-    SessionActions.$inject = [constants.APP_STORE, constants.SESSION_SERVICE];
-    SessionService.$inject = [constants.SESSION_REPOSITORY, constants.AUTH_SERVICE];
+    SessionActions.$inject    = [constants.APP_STORE, constants.SESSION_SERVICE];
+    SessionService.$inject    = [constants.SESSION_REPOSITORY, constants.AUTH_SERVICE];
     SessionRepository.$inject = [constants.CLIENT_SIDE_PERSISTENCE_SERVICE];
 
     AppLayoutComponent.$inject = [constants.SIDEBAR_COMPONENT, constants.HEADER_COMPONENT, constants.FOOTER_COMPONENT];
@@ -81,6 +91,10 @@ export default {
 
     SmartViewActions.$inject = [constants.APP_STORE, constants.SMART_VIEW_SERVICE];
     SmartViewService.$inject = [constants.SMART_VIEW_REPOSITORY];
+
+    UserActions.$inject = [constants.APP_STORE, constants.USER_SERVICE];
+    UserService.$inject = [constants.USER_REPOSITORY];
+    //UserRepository.$inject = ["PersistenceApiService"];
 
     return container;
   }
