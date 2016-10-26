@@ -13,10 +13,14 @@ import Auth0Lock from 'auth0-lock';
 import Auth0LoginComponent from '../scripts/apps/session/components/auth0-login-component';
 import Auth0AuthService from '../scripts/apps/session/services/auth0-auth-service';
 
+import Firebase from 'firebase';
+import FirebaseRetrievalApiService from '../scripts/apps/api/retrieval/server-side/firebase/services/firebase-retrieval-api-service';
+
 export default {
   init(){
     const container = config.init();
 
+    // -- REGISTRATION
     container.register(constants.LOG_LEVEL, "debug");
 
     container.register(constants.ERROR_LOGGER, LoglevelErrorLogger);
@@ -33,10 +37,20 @@ export default {
     container.register('Auth0Lock', Auth0Lock);
     container.register(constants.AUTH_SERVICE, Auth0AuthService);
 
+    container.register("Firebase", Firebase);
+
+    container.register("FirebaseAppUrl", "Firebase App Url");
+    container.register("FirebaseApiKey", "Firebase Api Key");
+    container.register(constants.RETRIEVAL_API_SERVICE, FirebaseRetrievalApiService);
+
+
+    // -- DEPENDENCIES
     Auth0Js.$inject             = ['Auth0Config']; // these are provided in the environment settings files
     Auth0Lock.$inject           = ['Auth0ClientID', 'Auth0ClientDomain']; // these are provided in the environment settings files
     Auth0LoginComponent.$inject = [constants.SESSION_ACTIONS, 'Auth0Lock!']; //! means 'factory' - in the component we're going to use .get to provide more ctor params
     Auth0AuthService.$inject    = ['Auth0Js'];
+
+    FirebaseRetrievalApiService.$inject = ['Firebase', 'FirebaseAppUrl', 'FirebaseApiKey'];
 
     return container;
   }

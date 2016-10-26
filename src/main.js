@@ -49,6 +49,16 @@ const unSub = store.subscribe(async ()=> {
   if (state.session.loggedIn) {
 
     errorLogger.setUser(state.session.meta.email, state.session.meta.email, state.session.meta.name, state.session.meta.nickname);
+
+    // retrievalService will listen for events from the store
+    const retrievalService = containerInstance.get(constants.RETRIEVAL_API_SERVICE);
+
+    try {
+      await retrievalService.init(containerInstance, store);
+    }
+    catch (error) {
+      throw new Error(`Error initializing retrieval api service: Inner exception: ${error.stack}`);
+    }
   }
 
   const routesInstances = routes.init(containerInstance);
