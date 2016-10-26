@@ -59,7 +59,7 @@ export default function (sessionActions, auth0LockFactory) {
 
     handleAuth(authResult) {
       const {idToken} = authResult;
-      
+
       try {
         log.info("Beginning: Log in user: %s", idToken);
         sessionActions.login(idToken, sessionActions.resumeSession);

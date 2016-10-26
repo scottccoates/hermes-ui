@@ -22,7 +22,6 @@ export default function (sessionRepository, authService) {
       }
 
       try {
-
         log.info("Beginning: Get third party auth for profileInfo: %s", profileInfo.nickname);
 
         let thirdPartyAuthInformation = await authService.getThirdPartyAuthToken(token);
@@ -78,6 +77,11 @@ export default function (sessionRepository, authService) {
     async renewSession(keepAliveSessionFunc){
       try {
         const loginInfo = sessionRepository.getLoginInfo();
+
+        if (!loginInfo) {
+          throw new Error('login info is missing');
+        }
+
         const currentIdToken = loginInfo.token;
 
         log.info("Beginning: Renew auth for user: %s", loginInfo.meta.nickname);
