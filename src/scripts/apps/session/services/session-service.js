@@ -37,11 +37,10 @@ export default function (sessionRepository, authService) {
       }
 
       try {
-        sessionRepository.saveLoginInfo(token, newMetaInformation);
+        sessionRepository.saveLoginInfo({token, meta: newMetaInformation});
       }
       catch (e) {
-        // throw  new Error("Cannot save login info: " + e.stack); // todo fix me - i don't preserve 'clickable' stack trace, just the 'literal' stack trace and sometimes that is 'minified' whereas the real stack trace has real method names
-        throw e;
+        throw  new Error("Cannot save login info: " + e.stack);
       }
 
       try {
@@ -79,14 +78,15 @@ export default function (sessionRepository, authService) {
 
     async renewSession(keepAliveSessionFunc){
       try {
-        const loginInfo      = sessionRepository.getLoginInfo();
+        const loginInfo = sessionRepository.getLoginInfo();
+        debugger
         const currentIdToken = loginInfo.token;
 
-        log.info("Beginning: Renew auth for user: %s", loginInfo.profileInfo.nickname);
+        log.info("Beginning: Renew auth for user: %s", loginInfo.meta.nickname);
         const renewedAuthToken = await authService.renewAuthToken(currentIdToken);
-        log.info("Completed: Renew auth for user: %s", loginInfo.profileInfo.nickname);
+        log.info("Completed: Renew auth for user: %s", loginInfo.meta.nickname);
 
-        return await sessionService.login(renewedAuthToken, loginInfo.profileInfo, keepAliveSessionFunc);
+        return await sessionService.login(renewedAuthToken, loginInfo.meta, keepAliveSessionFunc);
       }
       catch (e) {
         throw new Error("Cannot renew: " + e.stack);
@@ -96,7 +96,7 @@ export default function (sessionRepository, authService) {
     async resumeSession(keepAliveSessionFunc){
       try {
         await sessionService.renewSession(keepAliveSessionFunc); // this will fail if they're not logged in or haven't logged in a while.
-        const retVal = sessionRepository.getLoginInfo();
+        var retVal = sessionRepository.getLoginInfo();
       }
       catch (e) {
         throw new Error("Cannot resume session: " + e.stack);

@@ -1,17 +1,16 @@
 import log from 'loglevel';
 
-export default function (auth0Lock) {
+export default function (auth0Js) {
 
   return {
     getProfileInfo(token){
       const promise = new Promise((resolve, reject) => {
 
         log.info("Beginning: Get profile");
-        auth0Lock.getProfile(token, (error, profile) => {
+        auth0Js.getProfile(token, (error, profile) => {
 
           if (error) {
-            // error is not typeof Error
-            reject(new Error(`Error getting profile info: ${token}. Inner exception: ${error.error_description}`));
+            reject(new Error(`Error getting profile info: ${token}. Inner exception: ${error.stack}`));
           }
           else {
             log.info("Completed: Get profile information");
@@ -35,8 +34,7 @@ export default function (auth0Lock) {
         auth0Lock.$auth0.getDelegationToken(fbOptions, (error, delegationResult) => {
 
           if (error) {
-            // error is not typeof Error
-            reject(new Error(`Error getting firebase token: ${delegationResult}. Inner exception: ${error.error_description}`));
+            reject(new Error(`Error getting firebase token: ${delegationResult}. Inner exception: ${error.stack}`));
           }
           else {
             const newUser = {firebaseData: {token: delegationResult.id_token}};
@@ -53,13 +51,11 @@ export default function (auth0Lock) {
       // https://auth0.com/docs/libraries/lock/using-a-refresh-token
       // renewing a token doesn't fetch the data from their database, it simply reruns whatever was passed into the token.
       const promise = new Promise((resolve, reject) => {
-        const client = auth0Lock.getClient();
 
-        client.renewIdToken(idToken, function (error, delegationResult) {
+        auth0Js.renewIdToken(idToken, function (error, delegationResult) {
 
           if (error) {
-            // error is not typeof Error
-            reject(new Error(`Error getting new token: ${idToken}. Inner exception: ${error.error_description}`));
+            reject(new Error(`Error getting new token: ${idToken}. Inner exception: ${error.stack}`));
           }
           else {
             // the reason we're not actually providing the new profile is because

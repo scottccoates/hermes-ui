@@ -8,8 +8,8 @@ export default function (clientSidePersistenceRepo) {
   // This repo chooses to store it locally
 
   return {
-    saveLoginInfo(token, meta){
-      const retVal = clientSidePersistenceRepo.save(clientSidePersistencePath, {token, meta});
+    saveLoginInfo(loginInfo){
+      const retVal = clientSidePersistenceRepo.save(clientSidePersistencePath, loginInfo);
 
       return retVal;
     },
