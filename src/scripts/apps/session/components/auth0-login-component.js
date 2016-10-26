@@ -52,15 +52,14 @@ export default function (sessionActions, auth0LockFactory) {
     }
 
     _doLoginTransition() {
-      debugger
       // I'm not sure if there's a better way to completely reset the history by this point.
       // It'd be bad to be able to click back and go back to the login screen
       window.location = this.props.location.query['next-path'] || '/';
     }
 
-    async handleAuth(authResult) {
+    handleAuth(authResult) {
       const {idToken} = authResult;
-
+      
       try {
         log.info("Beginning: Log in user: %s", idToken);
         sessionActions.login(idToken, sessionActions.resumeSession);

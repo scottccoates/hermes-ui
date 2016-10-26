@@ -26,15 +26,13 @@ export default function (auth0Js) {
       const promise = new Promise((resolve, reject) => {
         const fbOptions = {
           id_token: token,    // The auth0 id_token you have now
-          targetClientId: auth0Lock.$auth0._clientID, // the clientID is the app from our auth0 dashboard
           api: 'firebase'
         };
 
         log.info("Beginning: Get delegation token");
-        auth0Lock.$auth0.getDelegationToken(fbOptions, (error, delegationResult) => {
-
+        auth0Js.getDelegationToken(fbOptions, (error, delegationResult) => {
           if (error) {
-            reject(new Error(`Error getting firebase token: ${delegationResult}. Inner exception: ${error.stack}`));
+            reject(new Error(`Error getting firebase token: ${delegationResult}. Inner exception: ${error}`));
           }
           else {
             const newUser = {firebaseData: {token: delegationResult.id_token}};

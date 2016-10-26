@@ -25,8 +25,8 @@ export default function (sessionRepository, authService) {
 
         log.info("Beginning: Get third party auth for profileInfo: %s", profileInfo.nickname);
 
-        let thirdPartyAuthInformation = {};//await authService.getThirdPartyAuthToken(token);
-        //thirdPartyAuthInformation     = this._prepareMetaObject(thirdPartyAuthInformation);
+        let thirdPartyAuthInformation = await authService.getThirdPartyAuthToken(token);
+        thirdPartyAuthInformation     = this._prepareMetaObject(thirdPartyAuthInformation);
 
         log.info("Completed: Get third party auth for profileInfo: %s", profileInfo.nickname);
 
@@ -50,12 +50,11 @@ export default function (sessionRepository, authService) {
         throw new Error("Cannot retrieve login info after saving: " + e.stack);
       }
 
-
       if (_renewSessionTimeout) {
         clearTimeout(_renewSessionTimeout);
       }
 
-      _renewSessionTimeout = setTimeout(keepAliveSessionFunc, 1000 * 60 * 60); // 1 hour
+      _renewSessionTimeout = setTimeout(keepAliveSessionFunc, 1000 * 60 * 60); // 1 hour // todo don't naively do every hour, do this based on the expiration of the current id token
 
       return loginInfo;
     },
@@ -79,7 +78,6 @@ export default function (sessionRepository, authService) {
     async renewSession(keepAliveSessionFunc){
       try {
         const loginInfo = sessionRepository.getLoginInfo();
-        debugger
         const currentIdToken = loginInfo.token;
 
         log.info("Beginning: Renew auth for user: %s", loginInfo.meta.nickname);
