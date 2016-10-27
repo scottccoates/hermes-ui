@@ -180,6 +180,8 @@ export default {
 
     AlertActions.$inject = [constants.APP_STORE];
 
+    AlertListComponent.$inject = [constants.ALERT_LIST_ITEM_COMPONENT];
+
     DashboardComponent.$inject = [constants.ALERT_LIST_COMPONENT, constants.ALERT_LIST_ITEM_COMPONENT];
 
     return container;
