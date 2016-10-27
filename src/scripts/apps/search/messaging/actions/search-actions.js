@@ -14,7 +14,7 @@ export default function (appStore, searchService) {
   }
 
   function _agreementEditedFailureAction(error) {
-    log.info("SearchActions: Search error: %s", error.stack);
+    log.info("SearchActions: Search error: %s", (error.stack || error));
 
     setTimeout(_=>alert('There was an error performing the search.'));
 

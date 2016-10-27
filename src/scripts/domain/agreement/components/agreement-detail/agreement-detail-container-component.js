@@ -1,6 +1,6 @@
 import React from 'react';
 
-import DependencyProvider from 'src/scripts/libs/dependency-injection/utils/dependency-provider';
+import DependencyProvider from '../../../../libs/dependency-injection/utils/dependency-provider';
 
 import { connect } from 'react-redux';
 
@@ -11,20 +11,25 @@ export default function (agreementActions, agreementDetailGeneralInfoComponent, 
   const AgreementDetailLength      = agreementDetailLengthComponent.dependency;
   const AgreementDetailArtifacts   = agreementDetailArtifactsComponent.dependency;
 
-  var component = React.createClass({
-    displayName: "AgreementDetailContainerComponent",
+  class Component extends React.Component {
+
+    constructor(props, context) {
+      super(props, context);
+
+      this.displayName = 'AgreementDetailContainerComponent';
+    }
 
     componentWillMount(){
       agreementActions.requestAgreementDetail(this.props.params.agreementId);
-    },
+    }
 
     deleteAgreement(){
       agreementActions.deleteAgreement(this.props.params.agreementId);
-    },
+    }
 
     deleteArtifact(agreementId, artifactId){
       agreementActions.deleteArtifact(agreementId, artifactId);
-    },
+    }
 
     render() {
       var retVal = null;
@@ -118,7 +123,7 @@ export default function (agreementActions, agreementDetailGeneralInfoComponent, 
 
       return retVal;
     }
-  });
+  }
 
   function extracted(state) {
     return {
@@ -126,6 +131,5 @@ export default function (agreementActions, agreementDetailGeneralInfoComponent, 
     };
   }
 
-  component = connect(extracted)(component);
-  return new DependencyProvider(component);
+  return new DependencyProvider(connect(extracted)(Component));
 };

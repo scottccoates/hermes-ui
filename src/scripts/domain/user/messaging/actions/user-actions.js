@@ -12,7 +12,7 @@ export default function (appStore, userService) {
   }
 
   function _userSubscribedFailureAction(error) {
-    log.info("UserActions: User subscribe error: %s", error.stack);
+    log.info("UserActions: User subscribe error: %s", (error.stack || error));
 
     setTimeout(_=>alert('There was an error subscribing.'));
 

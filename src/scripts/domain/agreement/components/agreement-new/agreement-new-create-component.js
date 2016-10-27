@@ -15,14 +15,19 @@ export default function (persistenceApiServiceUrl, fileUploadProvider, nprogress
   const agreementUrl = `${persistenceApiServiceUrl}/agreements/`;
   const FileUploader = fileUploadProvider.dependency;
 
-  var component = React.createClass({
-    displayName: "AgreementNewCreateComponent",
+  class Component extends React.Component {
 
-    getInitialState(){
-      return {uploading: false};
-    },
+    constructor(props, context) {
+      super(props, context);
 
-    componentWillMount(){
+      this.displayName = 'AgreementNewCreateComponent';
+
+      this.state = {
+        uploading: false
+      };
+    }
+
+    componentWillMount() {
       this.nprogressBar = nprogressBarFactory.get({
         parent: '#important-agreement-feedback-progress',
         showSpinner: false,
@@ -30,34 +35,34 @@ export default function (persistenceApiServiceUrl, fileUploadProvider, nprogress
         trickleSpeed: 800,
         speed: 200
       });
-    },
+    }
 
     componentWillUnmount() {
       nprogressBarFactory.dispose(this.nprogressBar);
       this.nprogressBar = null;
-    },
+    }
 
     onAddedFile() {
       this.setState({uploading: true});
       this.nprogressBar.updateProgress();
-    },
+    }
 
     onProgressed(progress) {
       // if we hit 100 here, it'll appear to finish twice
       var newProgress = progress >= 100 ? 99 : progress;
 
       this.nprogressBar.updateProgress(newProgress);
-    },
+    }
 
     onSuccess(file, response) {
       this.nprogressBar.updateProgress(100);
       // https://app.asana.com/0/10235149247647/48987687687033
       setTimeout(_=> this.props.history.pushState(null, `/agreements/${response.id}/step-2`), 500);
-    },
+    }
 
     onError(file, errorMessage) {
       alert('There was an error processing your file.');
-    },
+    }
 
     render() {
       const dropzoneClasses = cx({'dropzone dropzone-bright': true, 'hidden': this.state.uploading});
@@ -141,7 +146,7 @@ export default function (persistenceApiServiceUrl, fileUploadProvider, nprogress
 
       );
     }
-  });
+  }
 
-  return new DependencyProvider(component);
+  return new DependencyProvider(Component);
 };

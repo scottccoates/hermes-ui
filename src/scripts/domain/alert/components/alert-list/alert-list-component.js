@@ -1,15 +1,13 @@
 'use strict';
 
 import React from 'react';
-import Router  from 'react-router';
+import {Link}  from 'react-router';
 
 import Immutable from 'immutable';
 
 import DependencyProvider from '../../../../libs/dependency-injection/utils/dependency-provider';
 
 import Separator from '../../../../libs/react-js/components/separator';
-
-const {Link} = Router;
 
 export default function (alertItemComponent) {
 

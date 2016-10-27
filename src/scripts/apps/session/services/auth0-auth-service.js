@@ -17,7 +17,7 @@ export default function (auth0Js) {
         auth0Js.getProfile(token, (error, profile) => {
 
           if (error) {
-            reject(new Error(`Error getting profile info: ${token}. Inner exception: ${error.stack}`));
+            reject(new Error(`Error getting profile info: ${token}. Inner exception: ${(error.stack || error)}`));
           }
           else {
             log.info("Completed: Get profile information");
@@ -60,7 +60,7 @@ export default function (auth0Js) {
         auth0Js.renewIdToken(idToken, function (error, delegationResult) {
 
           if (error) {
-            reject(new Error(`Error getting new token: ${idToken}. Inner exception: ${error.stack}`));
+            reject(new Error(`Error getting new token: ${idToken}. Inner exception: ${(error.stack || error)}`));
           }
           else {
             // the reason we're not actually providing the new profile is because

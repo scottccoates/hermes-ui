@@ -43,10 +43,10 @@ export default {
         agreementActions.userAgreementsReceived(userAgreements);
       }
       catch (error) {
-        throw new Error(`Error providing agreement list data from firebase: Inner exception: ${error.stack}`);
+        throw new Error(`Error providing agreement list data from firebase: Inner exception: ${(error.stack || error)}`);
       }
     }, error => {
-      throw new Error(`Error retrieving agreement list data from firebase: Inner exception: ${error.stack}`);
+      throw new Error(`Error retrieving agreement list data from firebase: Inner exception: ${(error.stack || error)}`);
     });
 
     const agreementEditStream = storeObserver.observeStateStream(store, state=> state.agreementEdit.requestedAgreement.id);
@@ -70,10 +70,10 @@ export default {
             agreementActions.agreementEditReceived(agreementEdit);
           }
           catch (error) {
-            throw new Error(`Error providing agreement edit data from firebase: Inner exception: ${error.stack}`);
+            throw new Error(`Error providing agreement edit data from firebase: Inner exception: ${(error.stack || error)}`);
           }
         }, error => {
-          throw new Error(`Error retrieving agreement edit data from firebase: Inner exception: ${error.stack}`);
+          throw new Error(`Error retrieving agreement edit data from firebase: Inner exception: ${(error.stack || error)}`);
         });
       }
     });
@@ -106,10 +106,10 @@ export default {
             agreementActions.agreementDetailReceived(agreementDetail);
           }
           catch (error) {
-            throw new Error(`Error providing agreement detail data from firebase: Inner exception: ${error.stack}`);
+            throw new Error(`Error providing agreement detail data from firebase: Inner exception: ${(error.stack || error)}`);
           }
         }, error => {
-          throw new Error(`Error retrieving agreement detail data from firebase: Inner exception: ${error.stack}`);
+          throw new Error(`Error retrieving agreement detail data from firebase: Inner exception: ${(error.stack || error)}`);
         });
       }
 

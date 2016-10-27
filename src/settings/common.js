@@ -47,13 +47,31 @@ import UserCounterpartiesReducer from '../scripts/domain/counterparty/messaging/
 import AgreementActions from '../scripts/domain/agreement/messaging/actions/agreement-actions';
 import AgreementService from '../scripts/domain/agreement/services/agreement-service';
 import AgreementRepository from '../scripts/domain/agreement/services/agreement-repository';
+
 import AgreementEditReducer from '../scripts/domain/agreement/messaging/reducers/agreement-edit-reducer';
 import AgreementDetailReducer from '../scripts/domain/agreement/messaging/reducers/agreement-detail-reducer';
 import UserAgreementsReducer from '../scripts/domain/agreement/messaging/reducers/user-agreements-reducer';
 
 import AlertActions from '../scripts/domain/alert/messaging/actions/alert-actions';
 
+import AgreementNewCreateComponent from '../scripts/domain/agreement/components/agreement-new/agreement-new-create-component';
+import AgreementEditContainerComponent from '../scripts/domain/agreement/components/agreement-edit/agreement-edit-container-component';
+import AgreementEditFormComponent from '../scripts/domain/agreement/components/agreement-edit/agreement-edit-form-component';
+import AgreementListContainerComponent from '../scripts/domain/agreement/components/agreement-list/agreement-list-container-component';
+import AgreementListComponent from '../scripts/domain/agreement/components/agreement-list/agreement-list-component';
+import AgreementListItemComponent from '../scripts/domain/agreement/components/agreement-list/agreement-list-item-component';
+import AgreementDetailContainerComponent from '../scripts/domain/agreement/components/agreement-detail/agreement-detail-container-component';
+import AgreementDetailGeneralInfoComponent from '../scripts/domain/agreement/components/agreement-detail/agreement-detail-general-info-component';
+import AgreementDetailLengthComponent from '../scripts/domain/agreement/components/agreement-detail/agreement-detail-length-component';
+import AgreementDetailArtifactsComponent from '../scripts/domain/agreement/components/agreement-detail/agreement-detail-artifacts-component';
+
+
+import AlertListComponent from '../scripts/domain/alert/components/alert-list/alert-list-component';
+import AlertListItemComponent from '../scripts/domain/alert/components/alert-list/alert-list-item-component';
+
 import ClientSidePersistenceService from '../scripts/apps/persistence/services/client-side-persistence-service';
+
+import DashboardComponent from '../scripts/apps/dashboard/components/dashboard-component';
 
 import * as constants from './constants';
 
@@ -100,6 +118,18 @@ export default {
     container.register(constants.AGREEMENT_SERVICE, AgreementService);
     container.register(constants.AGREEMENT_REPOSITORY, AgreementRepository);
 
+    container.register(constants.AGREEMENT_NEW_CREATE_COMPONENT, AgreementNewCreateComponent);
+    container.register(constants.AGREEMENT_EDIT_CONTAINER_COMPONENT, AgreementEditContainerComponent);
+    container.register(constants.AGREEMENT_EDIT_FORM_COMPONENT, AgreementEditFormComponent);
+    container.register(constants.AGREEMENT_LIST_CONTAINER_COMPONENT, AgreementListContainerComponent);
+    container.register(constants.AGREEMENT_LIST_ITEM_COMPONENT, AgreementListItemComponent);
+    container.register(constants.AGREEMENT_LIST_COMPONENT, AgreementListComponent);
+    container.register(constants.AGREEMENT_DETAIL_CONTAINER_COMPONENT, AgreementDetailContainerComponent);
+    container.register(constants.AGREEMENT_DETAIL_GENERAL_INFO_COMPONENT, AgreementDetailGeneralInfoComponent);
+    container.register(constants.AGREEMENT_DETAIL_LENGTH_COMPONENT, AgreementDetailLengthComponent);
+    container.register(constants.AGREEMENT_DETAIL_ARTIFACTS_COMPONENT, AgreementDetailArtifactsComponent);
+
+
     container.register(constants.AGREEMENT_TYPE_ACTIONS, AgreementTypeActions);
     container.register(constants.AGREEMENT_TYPE_SERVICE, AgreementTypeService);
     container.register(constants.AGREEMENT_TYPE_REPOSITORY, AgreementTypeRepository);
@@ -109,6 +139,11 @@ export default {
     container.register(constants.COUNTERPARTY_REPOSITORY, CounterpartyRepository);
 
     container.register(constants.ALERT_ACTIONS, AlertActions);
+
+    container.register(constants.ALERT_LIST_COMPONENT, AlertListComponent);
+    container.register(constants.ALERT_LIST_ITEM_COMPONENT, AlertListItemComponent);
+
+    container.register(constants.DASHBOARD_COMPONENT, DashboardComponent);
 
     // -- DEPENDENCIES
     SessionActions.$inject    = [constants.APP_STORE, constants.SESSION_SERVICE];
@@ -138,10 +173,14 @@ export default {
     AgreementActions.$inject = [constants.APP_STORE, constants.AGREEMENT_SERVICE];
     AgreementService.$inject = [constants.AGREEMENT_REPOSITORY];
 
+    AgreementListComponent.$inject = [constants.AGREEMENT_LIST_ITEM_COMPONENT];
+
     CounterpartyActions.$inject = [constants.APP_STORE, constants.COUNTERPARTY_SERVICE];
     CounterpartyService.$inject = [constants.COUNTERPARTY_REPOSITORY];
 
     AlertActions.$inject = [constants.APP_STORE];
+
+    DashboardComponent.$inject = [constants.ALERT_LIST_COMPONENT, constants.ALERT_LIST_ITEM_COMPONENT];
 
     return container;
   }

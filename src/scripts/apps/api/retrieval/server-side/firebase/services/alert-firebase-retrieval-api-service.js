@@ -36,10 +36,10 @@ export default {
         alertActions.userAlertsReceived(userAlerts);
       }
       catch (error) {
-        throw new Error(`Error providing alert list data from firebase: Inner exception: ${error.stack}`);
+        throw new Error(`Error providing alert list data from firebase: Inner exception: ${(error.stack || error)}`);
       }
     }, error => {
-      throw new Error(`Error retrieving alert list data from firebase: Inner exception: ${error.stack}`);
+      throw new Error(`Error retrieving alert list data from firebase: Inner exception: ${(error.stack || error)}`);
     });
   }
 };

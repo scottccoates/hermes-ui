@@ -1,5 +1,3 @@
-'use strict';
-
 import React from 'react';
 
 import { connect } from 'react-redux';
@@ -10,28 +8,33 @@ export default function (agreementActions, agreementTypeService, agreementEditFo
 
   const AgreementEditForm = agreementEditFormComponent.dependency;
 
-  var component = React.createClass({
-    displayName: "AgreementEditContainer",
+  class Component extends React.Component {
 
-    componentWillMount(){
+    constructor(props, context) {
+      super(props, context);
+
+      this.displayName = 'AgreementEditContainer';
+    }
+
+    componentWillMount() {
       agreementActions.requestAgreementEdit(this.props.params.agreementId);
-    },
+    }
 
-    onValid(data){
+    onValid(data) {
       agreementActions.saveAgreement(Object.assign({}, data, {
         id: this.props.params.agreementId
       }));
-    },
+    }
 
-    async onCreateAgreementType(agreementType){
+    async onCreateAgreementType(agreementType) {
       const newAgreementType = await agreementTypeService.saveAgreementType({name: agreementType});
       return newAgreementType;
-    },
+    }
 
-    onInvalid()    {
+    onInvalid() {
       // give some time for render to do it's thing and provide has-error class
       setTimeout(
-          _=> {
+        _=> {
           const firstErrorElementGroup = document.querySelector('.has-error');
 
           if (firstErrorElementGroup) {
@@ -42,7 +45,7 @@ export default function (agreementActions, agreementTypeService, agreementEditFo
             });
           }
         }, 100);
-    },
+    }
 
     render() {
       return (
@@ -66,7 +69,7 @@ export default function (agreementActions, agreementTypeService, agreementEditFo
         </div>
       );
     }
-  });
+  }
 
   function extracted(state) {
     return {
@@ -76,7 +79,5 @@ export default function (agreementActions, agreementTypeService, agreementEditFo
     };
   }
 
-  component = connect(extracted)(component);
-
-  return new DependencyProvider(component);
+  return new DependencyProvider(connect(extracted)(Component));
 };

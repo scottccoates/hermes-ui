@@ -28,7 +28,7 @@ export default function (firebase, firebaseAppUrl, firebaseApiKey) {
         log.info("Firebase authenticated");
       }
       catch (error) {
-        throw new Error("Error authenticating with firebase: " + error.stack || error);
+        throw new Error("Error authenticating with firebase: " + (error.stack || error));
       }
     }
   }

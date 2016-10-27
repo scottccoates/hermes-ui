@@ -27,10 +27,10 @@ export default {
         agreementTypeActions.userAgreementTypesReceived(agreementTypes);
       }
       catch (error) {
-        throw new Error(`Error providing agreement type data from firebase: Inner exception: ${error.stack}`);
+        throw new Error(`Error providing agreement type data from firebase: Inner exception: ${(error.stack || error)}`);
       }
     }, error => {
-      throw new Error(`Error retrieving agreement type data from firebase: Inner exception: ${error.stack}`);
+      throw new Error(`Error retrieving agreement type data from firebase: Inner exception: ${(error.stack || error)}`);
     });
   }
 };

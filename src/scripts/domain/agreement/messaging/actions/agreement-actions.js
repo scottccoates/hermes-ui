@@ -17,7 +17,7 @@ export default function (appStore, agreementService) {
   }
 
   function _agreementSavedFailureAction(error) {
-    log.info("AgreementActions: Agreement edit error: %s", error.stack);
+    log.info("AgreementActions: Agreement edit error: %s", (error.stack || error));
 
     setTimeout(_=>alert('There was an error saving the agreement.'));
 
@@ -40,7 +40,7 @@ export default function (appStore, agreementService) {
   }
 
   function _agreementDeletedFailureAction(error) {
-    log.info("AgreementActions: Agreement delete error: %s", error.stack);
+    log.info("AgreementActions: Agreement delete error: %s", (error.stack || error));
 
     setTimeout(_=>alert('There was an error deleting the agreement.'));
 
@@ -59,7 +59,7 @@ export default function (appStore, agreementService) {
   }
 
   function _artifactDeletedFailureAction(error) {
-    log.info("AgreementActions: Artifact delete error: %s", error.stack);
+    log.info("AgreementActions: Artifact delete error: %s", (error.stack || error));
 
     setTimeout(_=>alert('There was an error deleting the artifact.'));
 

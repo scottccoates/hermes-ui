@@ -6,24 +6,23 @@ import DependencyProvider from '../../../../libs/dependency-injection/utils/depe
 
 import {reduxForm} from 'redux-form';
 
-import Agreement from '../../models/agreement-list-item-model';
 import Select from 'react-select';
 
 import cx from 'classnames';
 
-import ButtonSelect from 'src/scripts/libs/react-js/components/button-select'
+import ButtonSelect from '../../../../libs/react-js/components/button-select'
 
 import Datepicker from 'react-datepicker';
 
 import moment from 'moment';
 
-import {required, integer} from 'src/scripts/libs/js-utils/validation/validation-utils';
+import {required, integer} from '../../../../libs/js-utils/validation/validation-utils';
 
-import {normalizeFormValues} from 'src/scripts/libs/js-utils/form/form-utils';
+import {normalizeFormValues} from '../../../../libs/js-utils/form/form-utils';
 
-import agreementValueLabel from 'src/scripts/apps/formatting/agreement/agreement-value-label';
+import agreementValueLabel from '../../../../apps/formatting/agreement/agreement-value-label';
 
-import formattingService from 'src/scripts/apps/formatting/services/formatting-service';
+import formattingService from '../../../../apps/formatting/services/formatting-service';
 
 const {timeTypes, renewTypes} = agreementValueLabel;
 
@@ -66,10 +65,15 @@ export default function () {
     outcomeNoticeAlertTimeType: 'day'
   };
 
-  let component = React.createClass({
-    displayName: "AgreementEditFormComponent",
+  class Component extends React.Component {
 
-    onChangeCounterparty (newVal, newValState){
+    constructor(props, context) {
+      super(props, context);
+
+      this.displayName = 'AgreementEditFormComponent';
+    }
+
+    onChangeCounterparty(newVal, newValState) {
       // counterparties don't have ID's yet - they're just strings.
 
       let counterpartyValue = null;
@@ -81,9 +85,9 @@ export default function () {
       this.props.fields.counterparty.onChange(counterpartyValue);
 
       this.props.touch('counterparty');
-    },
+    }
 
-    async onChangeAgreementType (newVal, newValState){
+    async onChangeAgreementType(newVal, newValState) {
       let typeId = null;
 
       if (newVal) {
@@ -101,33 +105,33 @@ export default function () {
       }
 
       this.props.touch('typeId');
-    },
+    }
 
-    onChangeExecutionDate (newVal){
+    onChangeExecutionDate(newVal) {
       this.props.fields.executionDate.onChange(newVal.toDate());
-    },
+    }
 
-    onChangeTermLengthTimeType (newVal){
+    onChangeTermLengthTimeType(newVal) {
       this.props.fields.termLengthTimeType.onChange(newVal);
-    },
+    }
 
-    onChangeAutoRenew (newVal){
+    onChangeAutoRenew(newVal) {
       this.props.fields.autoRenew.onChange(newVal);
-    },
+    }
 
-    onChangeOutcomeNoticeTimeType (newVal){
+    onChangeOutcomeNoticeTimeType(newVal) {
       this.props.fields.outcomeNoticeTimeType.onChange(newVal);
-    },
+    }
 
-    onChangeOutcomeNoticeAlertTimeType (newVal){
+    onChangeOutcomeNoticeAlertTimeType(newVal) {
       this.props.fields.outcomeNoticeAlertTimeType.onChange(newVal);
-    },
+    }
 
-    onChangeOutcomeAlertTimeType (newVal){
+    onChangeOutcomeAlertTimeType(newVal) {
       this.props.fields.outcomeAlertTimeType.onChange(newVal);
-    },
+    }
 
-    onSubmit(values){
+    onSubmit(values) {
       //transform values https://github.com/erikras/redux-form/issues/554#issuecomment-172088797
       const transform = {
         termLengthTimeAmount: parseInt,
@@ -137,7 +141,7 @@ export default function () {
       };
       const newValues = normalizeFormValues(values, transform);
       this.props.onValid(newValues);
-    },
+    }
 
     render() {
       const {
@@ -425,7 +429,7 @@ export default function () {
         </div>
       );
     }
-  });
+  }
 
 
   component = reduxForm({
@@ -442,7 +446,5 @@ export default function () {
     returnRejectedSubmitPromise: true
   })(component);
 
-  component = formWrapper(component, defaults);
-
-  return new DependencyProvider(component);
+  return new DependencyProvider(formWrapper(Component, defaults));
 };

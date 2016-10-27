@@ -1,11 +1,17 @@
 import React from 'react';
 
-import DependencyProvider from 'src/scripts/libs/dependency-injection/utils/dependency-provider';
+import DependencyProvider from '../../../../libs/dependency-injection/utils/dependency-provider';
 
 export default function () {
 
-  const agreementDetailItem = React.createClass({
-    displayName: "AgreementDetailGeneralInfoComponent",
+
+  class Component extends React.Component {
+
+    constructor(props, context) {
+      super(props, context);
+
+      this.displayName = 'AgreementDetailGeneralInfoComponent';
+    }
 
     render() {
       return (
@@ -33,7 +39,7 @@ export default function () {
         </div>
       );
     }
-  });
+  }
 
-  return new DependencyProvider(agreementDetailItem);
+  return new DependencyProvider(Component);
 };

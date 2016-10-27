@@ -36,10 +36,10 @@ export default {
         smartViewActions.userSmartViewsReceived(userSmartViews);
       }
       catch (error) {
-        throw new Error(`Error providing smart view list data from firebase: Inner exception: ${error.stack}`);
+        throw new Error(`Error providing smart view list data from firebase: Inner exception: ${(error.stack || error)}`);
       }
     }, error => {
-      throw new Error(`Error retrieving smart view list data from firebase: Inner exception: ${error.stack}`);
+      throw new Error(`Error retrieving smart view list data from firebase: Inner exception: ${(error.stack || error)}`);
     });
   }
 };

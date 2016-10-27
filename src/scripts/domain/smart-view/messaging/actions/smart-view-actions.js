@@ -14,7 +14,7 @@ export default function (appStore, smartViewService) {
   }
 
   function _smartViewSaveedFailureAction(error) {
-    log.info("SmartViewActions: SmartView save error: %s", error.stack);
+    log.info("SmartViewActions: SmartView save error: %s", (error.stack || error));
 
     setTimeout(_=>alert('There was an error saving the smartView.'));
 

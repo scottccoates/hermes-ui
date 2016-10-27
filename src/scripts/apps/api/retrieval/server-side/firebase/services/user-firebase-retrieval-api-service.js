@@ -25,10 +25,10 @@ export default {
         userActions.userInfoReceived(userInfo);
       }
       catch (error) {
-        throw new Error(`Error providing user info data from firebase: Inner exception: ${error.stack}`);
+        throw new Error(`Error providing user info data from firebase: Inner exception: ${(error.stack || error)}`);
       }
     }, error => {
-      throw new Error(`Error retrieving user info data from firebase: Inner exception: ${error.stack}`);
+      throw new Error(`Error retrieving user info data from firebase: Inner exception: ${(error.stack || error)}`);
     });
   }
 };

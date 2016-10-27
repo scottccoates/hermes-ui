@@ -3,13 +3,18 @@
 import React from 'react';
 import {Link}  from 'react-router';
 
-import DependencyProvider from 'src/scripts/libs/dependency-injection/utils/dependency-provider';
-
+import DependencyProvider from '../../../../libs/dependency-injection/utils/dependency-provider';
 
 export default function () {
 
-  const component = React.createClass({
-    displayName: "AgreementListItemComponent",
+  class Component extends React.Component {
+
+    constructor(props, context) {
+      super(props, context);
+
+      this.displayName = 'AgreementListItemComponent';
+    }
+
     render() {
 
       return (
@@ -65,7 +70,7 @@ export default function () {
       );
     }
 
-  });
+  }
 
-  return new DependencyProvider(component);
+  return new DependencyProvider(Component);
 };

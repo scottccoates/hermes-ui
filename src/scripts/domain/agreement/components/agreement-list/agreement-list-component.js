@@ -1,15 +1,13 @@
 'use strict';
 
 import React from 'react';
-import router  from 'react-router';
+import {Link}  from 'react-router';
 
-import DependencyProvider from 'src/scripts/libs/dependency-injection/utils/dependency-provider';
+import DependencyProvider from '../../../../libs/dependency-injection/utils/dependency-provider';
 
-import ButtonSelect from 'src/scripts/libs/react-js/components/button-select'
+import ButtonSelect from '../../../../libs/react-js/components/button-select'
 
-import agreementValueLabel from 'src/scripts/apps/formatting/agreement/agreement-value-label';
-
-const {Link} = router;
+import agreementValueLabel from '../../../../apps/formatting/agreement/agreement-value-label';
 
 const {sortTypes} = agreementValueLabel;
 
@@ -17,8 +15,13 @@ export default function (agreementListItemComponent) {
 
   const AgreementListItem = agreementListItemComponent.dependency;
 
-  const component = React.createClass({
-    displayName: "AgreementListComponent",
+  class Component extends React.Component {
+
+    constructor(props, context) {
+      super(props, context);
+
+      this.displayName = 'AgreementListComponent';
+    }
 
     render() {
       const agreementNodes = this.props.agreements.map(function (agreement) {
@@ -39,7 +42,7 @@ export default function (agreementListItemComponent) {
         </div>
       );
     }
-  });
+  }
 
-  return new DependencyProvider(component);
+  return new DependencyProvider(Component);
 };

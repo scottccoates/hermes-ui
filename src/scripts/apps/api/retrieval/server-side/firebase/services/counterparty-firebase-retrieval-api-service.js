@@ -29,10 +29,10 @@ export default {
         counterpartyActions.userCounterpartiesReceived(counterpartyTypes);
       }
       catch (error) {
-        throw new Error(`Error providing counterparty data from firebase: Inner exception: ${error.stack}`);
+        throw new Error(`Error providing counterparty data from firebase: Inner exception: ${(error.stack || error)}`);
       }
     }, error => {
-      throw new Error(`Error retrieving counterparty data from firebase: Inner exception: ${error.stack}`);
+      throw new Error(`Error retrieving counterparty data from firebase: Inner exception: ${(error.stack || error)}`);
     });
   }
 };

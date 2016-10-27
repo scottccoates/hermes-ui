@@ -1,25 +1,30 @@
 import React from 'react';
 
-import DependencyProvider from 'src/scripts/libs/dependency-injection/utils/dependency-provider';
+import DependencyProvider from '../../../../libs/dependency-injection/utils/dependency-provider';
 
 export default function (agreementService, persistenceApiServiceUrl, fileUploadProvider) {
   const FileUploader = fileUploadProvider.dependency;
 
-  const agreementDetailArtifacts = React.createClass({
-    displayName: "AgreementDetailArtifactsComponent",
+  class Component extends React.Component {
 
-    async downloadArtifact(artifactId){
+    constructor(props, context) {
+      super(props, context);
+
+      this.displayName = 'AgreementDetailArtifactsComponent';
+    }
+
+    async downloadArtifact(artifactId) {
       const url = await agreementService.getAgreementArtifactSignedUrl(artifactId);
       window.open(url, '_blank');
-    },
+    }
 
-    deleteArtifact(agreementId, artifactId){
+    deleteArtifact(agreementId, artifactId) {
       this.props.deleteArtifact(agreementId, artifactId);
-    },
+    }
 
     onError(file, errorMessage) {
       alert('There was an error processing your file.');
-    },
+    }
 
     render() {
       const artifactUrl = `${persistenceApiServiceUrl}/agreements/${this.props.agreement.id}/artifacts/`;
@@ -69,7 +74,7 @@ export default function (agreementService, persistenceApiServiceUrl, fileUploadP
         </div>
       );
     }
-  });
+  }
 
-  return new DependencyProvider(agreementDetailArtifacts);
+  return new DependencyProvider(Component);
 };
