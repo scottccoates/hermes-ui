@@ -1,23 +1,25 @@
 import firebaseService from './firebase-service.js';
 
-import storeObserver from 'src/scripts/libs/redux-js/store/store-observer';
+import * as constants from '../../../../../../../settings/constants';
 
-import {dateFromTimestamp} from 'src/scripts/libs/js-utils/type/date-utils';
+import storeObserver from '../../../../../../libs/redux-js/store/store-observer';
 
-import agreementEnums from 'src/scripts/apps/formatting/agreement/agreement-enums';
+import {dateFromTimestamp} from '../../../../../../libs/js-utils/type/date-utils';
+
+import agreementEnums from '../../../../../formatting/agreement/agreement-enums';
 
 export default {
-  init(container, store, rootRef) {
+  init(container, store, firebase) {
     const state  = store.getState();
     const meta   = state.session.meta;
     const userId = meta.appMetadata.hermes.userId;
 
-    const alertActions = container.get('AlertActions');
+    const alertActions = container.get(constants.ALERT_ACTIONS);
 
     // let's not worry about opening/closing connection for sidebar. just assume that we can always keep this open
     // because it's always displayed.
     // also, we don't need to worry about users logging off, because the whole app will just be refreshed.
-    const alertListRef = rootRef.child(`users-alerts/${userId}/`);
+    const alertListRef = firebase.database().ref(`users-alerts/${userId}/`);
 
     alertListRef.on("value", snapshot => {
 

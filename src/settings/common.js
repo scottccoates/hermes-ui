@@ -22,6 +22,8 @@ import SearchRepository from '../scripts/apps/search/services/search-repository'
 import SmartViewActions from '../scripts/domain/smart-view/messaging/actions/smart-view-actions';
 import SmartViewService from '../scripts/domain/smart-view/services/smart-view-service';
 import SmartViewRepository from '../scripts/domain/smart-view/services/smart-view-repository';
+import UserSmartViewsReducer from '../scripts/domain/smart-view/messaging/reducers/user-smart-views-reducer';
+import SmartViewEditReducer from '../scripts/domain/smart-view/messaging/reducers/smart-view-edit-reducer';
 
 import SessionActions from '../scripts/apps/session/messaging/actions/session-actions';
 import SessionService from '../scripts/apps/session/services/session-service';
@@ -32,6 +34,25 @@ import UserService from '../scripts/domain/user/services/user-service';
 import UserRepository from '../scripts/domain/user/services/user-repository';
 import UserInfoReducer from '../scripts/domain/user/messaging/reducers/user-info-reducer';
 
+import AgreementTypeActions from '../scripts/domain/agreement-type/messaging/actions/agreement-type-actions';
+import AgreementTypeService from '../scripts/domain/agreement-type/services/agreement-type-service';
+import AgreementTypeRepository from '../scripts/domain/agreement-type/services/agreement-type-repository';
+import UserAgreementTypesReducer from '../scripts/domain/agreement-type/messaging/reducers/user-agreement-types-reducer';
+
+import CounterpartyActions from '../scripts/domain/counterparty/messaging/actions/counterparty-actions';
+import CounterpartyService from '../scripts/domain/counterparty/services/counterparty-service';
+import CounterpartyRepository from '../scripts/domain/counterparty/services/counterparty-repository';
+import UserCounterpartiesReducer from '../scripts/domain/counterparty/messaging/reducers/user-counterparties-reducer';
+
+import AgreementActions from '../scripts/domain/agreement/messaging/actions/agreement-actions';
+import AgreementService from '../scripts/domain/agreement/services/agreement-service';
+import AgreementRepository from '../scripts/domain/agreement/services/agreement-repository';
+import AgreementEditReducer from '../scripts/domain/agreement/messaging/reducers/agreement-edit-reducer';
+import AgreementDetailReducer from '../scripts/domain/agreement/messaging/reducers/agreement-detail-reducer';
+import UserAgreementsReducer from '../scripts/domain/agreement/messaging/reducers/user-agreements-reducer';
+
+import AlertActions from '../scripts/domain/alert/messaging/actions/alert-actions';
+
 import ClientSidePersistenceService from '../scripts/apps/persistence/services/client-side-persistence-service';
 
 import * as constants from './constants';
@@ -40,6 +61,7 @@ export default {
   init(){
     const container = Intravenous.create();
 
+    // -- REGISTRATION
     container.register(constants.APP_LAYOUT_COMPONENT, AppLayoutComponent);
 
     container.register(constants.SIDEBAR_COMPONENT, SidebarComponent);
@@ -74,6 +96,21 @@ export default {
 
     container.register(constants.CLIENT_SIDE_PERSISTENCE_SERVICE, ClientSidePersistenceService);
 
+    container.register(constants.AGREEMENT_ACTIONS, AgreementActions);
+    container.register(constants.AGREEMENT_SERVICE, AgreementService);
+    container.register(constants.AGREEMENT_REPOSITORY, AgreementRepository);
+
+    container.register(constants.AGREEMENT_TYPE_ACTIONS, AgreementTypeActions);
+    container.register(constants.AGREEMENT_TYPE_SERVICE, AgreementTypeService);
+    container.register(constants.AGREEMENT_TYPE_REPOSITORY, AgreementTypeRepository);
+
+    container.register(constants.COUNTERPARTY_ACTIONS, CounterpartyActions);
+    container.register(constants.COUNTERPARTY_SERVICE, CounterpartyService);
+    container.register(constants.COUNTERPARTY_REPOSITORY, CounterpartyRepository);
+
+    container.register(constants.ALERT_ACTIONS, AlertActions);
+
+    // -- DEPENDENCIES
     SessionActions.$inject    = [constants.APP_STORE, constants.SESSION_SERVICE];
     SessionService.$inject    = [constants.SESSION_REPOSITORY, constants.AUTH_SERVICE];
     SessionRepository.$inject = [constants.CLIENT_SIDE_PERSISTENCE_SERVICE];
@@ -94,7 +131,17 @@ export default {
 
     UserActions.$inject = [constants.APP_STORE, constants.USER_SERVICE];
     UserService.$inject = [constants.USER_REPOSITORY];
-    //UserRepository.$inject = ["PersistenceApiService"];
+
+    AgreementTypeActions.$inject = [constants.APP_STORE, constants.AGREEMENT_TYPE_SERVICE];
+    AgreementTypeService.$inject = [constants.AGREEMENT_TYPE_REPOSITORY];
+
+    AgreementActions.$inject = [constants.APP_STORE, constants.AGREEMENT_SERVICE];
+    AgreementService.$inject = [constants.AGREEMENT_REPOSITORY];
+
+    CounterpartyActions.$inject = [constants.APP_STORE, constants.COUNTERPARTY_SERVICE];
+    CounterpartyService.$inject = [constants.COUNTERPARTY_REPOSITORY];
+
+    AlertActions.$inject = [constants.APP_STORE];
 
     return container;
   }

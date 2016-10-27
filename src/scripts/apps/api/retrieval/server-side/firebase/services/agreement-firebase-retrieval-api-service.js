@@ -1,18 +1,20 @@
 import firebaseService from './firebase-service.js';
 
-import storeObserver from 'src/scripts/libs/redux-js/store/store-observer';
+import * as constants from '../../../../../../../settings/constants';
 
-import {dateFromTimestamp, ymdFormat} from 'src/scripts/libs/js-utils/type/date-utils';
+import storeObserver from '../../../../../../libs/redux-js/store/store-observer';
 
-import agreementEnums from 'agreement-enums';
+import {dateFromTimestamp, ymdFormat} from '../../../../../../libs/js-utils/type/date-utils';
+
+import agreementEnums from '../../../../../formatting/agreement/agreement-enums';
 
 export default {
-  init(container, store, rootRef) {
+  init(container, store, firebase) {
     const state  = store.getState();
     const meta   = state.session.meta;
     const userId = meta.appMetadata.hermes.userId;
 
-    const agreementActions = container.get('AgreementActions');
+    const agreementActions = container.get(constants.AGREEMENT_ACTIONS);
 
     this.agreementEditRef      = null;
     this.agreementEditCallback = null;
@@ -23,7 +25,7 @@ export default {
     // let's not worry about opening/closing connection for dashboard. just assume that we can always keep this open
     // because it's probably a frequently-visited screen.
     // also, we don't need to worry about users logging off, because the whole app will just be refreshed.
-    const agreementListRef = rootRef.child(`users-agreements/${userId}/`);
+    const agreementListRef = firebase.database().ref(`users-agreements/${userId}/`);
 
     agreementListRef.on("value", snapshot => {
 
@@ -57,7 +59,7 @@ export default {
       if (requestedAgreementEditId) {
         // the id can become null in cases like an agreement being deleted. need to disconnect from the resource
         // before we get a permission denied errors (when back end deletes the firebase resource).
-        this.agreementEditRef      = rootRef.child(`agreement-edits/${requestedAgreementEditId}`);
+        this.agreementEditRef      = firebase.database().ref(`agreement-edits/${requestedAgreementEditId}`);
         this.agreementEditCallback = this.agreementEditRef.on('value', snapshot=> {
 
           try {
@@ -84,7 +86,7 @@ export default {
       if (this.agreementDetailRef) this.agreementDetailRef.off('value', this.agreementDetailCallback);
 
       if (requestedAgreementDetailId) {
-        this.agreementDetailRef      = rootRef.child(`agreement-details/${requestedAgreementDetailId}`);
+        this.agreementDetailRef      = firebase.database().ref(`agreement-details/${requestedAgreementDetailId}`);
         this.agreementDetailCallback = this.agreementDetailRef.on('value', snapshot=> {
           try {
             const agreementDetail = firebaseService.prepareObject(snapshot, 'artifacts');

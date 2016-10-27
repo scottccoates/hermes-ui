@@ -1,23 +1,25 @@
 import firebaseService from './firebase-service.js';
 
-import storeObserver from 'src/scripts/libs/redux-js/store/store-observer';
+import * as constants from '../../../../../../../settings/constants';
 
-import {dateFromTimestamp, ymdFormat} from 'src/scripts/libs/js-utils/type/date-utils';
+import storeObserver from '../../../../../../libs/redux-js/store/store-observer';
 
-import agreementEnums from 'src/scripts/apps/formatting/agreement/agreement-enums';
+import {dateFromTimestamp, ymdFormat} from '../../../../../../libs/js-utils/type/date-utils';
+
+import agreementEnums from '../../../../../formatting/agreement/agreement-enums';
 
 export default {
-  init(container, store, rootRef) {
+  init(container, store, firebase) {
     const state  = store.getState();
     const meta   = state.session.meta;
     const userId = meta.appMetadata.hermes.userId;
 
-    const counterpartyActions = container.get('CounterpartyActions');
+    const counterpartyActions = container.get(constants.COUNTERPARTY_ACTIONS);
 
     // let's not worry about opening/closing connection for dashboard. just assume that we can always keep this open
     // because it's probably a frequently-visited screen.
     // also, we don't need to worry about users logging off, because the whole app will just be refreshed.
-    const counterpartiesRef = rootRef.child(`users-counterparties/${userId}/`);
+    const counterpartiesRef = firebase.database().ref(`users-counterparties/${userId}/`);
 
     counterpartiesRef.on("value", snapshot => {
 
