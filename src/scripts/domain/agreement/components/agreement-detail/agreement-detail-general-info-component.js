@@ -42,4 +42,4 @@ export default function () {
   }
 
   return new DependencyProvider(Component);
-};
+}

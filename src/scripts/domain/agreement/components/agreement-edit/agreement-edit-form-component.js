@@ -10,7 +10,7 @@ import Select from 'react-select';
 
 import cx from 'classnames';
 
-import ButtonSelect from '../../../../libs/react-js/components/button-select'
+import ButtonSelect from '../../../../libs/react-js/components/button-select';
 
 import Datepicker from 'react-datepicker';
 
@@ -261,12 +261,11 @@ export default function () {
                     Date *</label>
 
                   <div className="col-sm-6">
-                    <Datepicker className='form-control' selected={executionDateMoment}
+                    <Datepicker className="form-control" selected={executionDateMoment}
                                 onChange={this.onChangeExecutionDate}/>
                   </div>
                   <div className="row">
-                    <div className="col-sm-offset-6 col-sm-18">
-                    </div>
+                    <div className="col-sm-offset-6 col-sm-18" />
                   </div>
                 </div>
 
@@ -311,18 +310,18 @@ export default function () {
                   </div>
                   <div className="col-sm-9">
                     <ButtonSelect items={timeTypes}
-                                  value={this.props.values.outcomeNoticeTimeType }
+                                  value={this.props.values.outcomeNoticeTimeType}
                                   onChange={this.onChangeOutcomeNoticeTimeType}
                                   className="btn btn-sm btn-info agreement-form-button agreement-form-field-button"/>
                         <span
                           className="control-label content-section-item space-left-sm space-right-sm agreement-form-control-text">before
                         </span>
-                    <ButtonSelect items={[{label:"Expiration",value:'expiration'}]} value='expiration'
+                    <ButtonSelect items={[{label:"Expiration",value:'expiration'}]} value="expiration"
                                   className="btn btn-sm btn-info agreement-form-button agreement-form-field-button"/>
                   </div>
                   <div className="col-sm-6">
                       <span className="help-text">
-                        <i className='fa fa-info-circle space-right-md'/>
+                        <i className="fa fa-info-circle space-right-md"/>
                         This is the date by which you need to give notice to the other side about your intent to renew or cancel the contract.
                       </span>
                   </div>
@@ -352,7 +351,7 @@ export default function () {
                 <div className={outcomeAlertFormClasses}>
                   <div className="col-sm-offset-2 col-sm-2 control-label">
 
-                    <input id='agreement-form-outcome-notice-enabled' type="checkbox" {...outcomeAlertEnabled}/>
+                    <input id="agreement-form-outcome-notice-enabled" type="checkbox" {...outcomeAlertEnabled}/>
 
                   </div>
                   <div className="col-sm-11">
@@ -360,7 +359,7 @@ export default function () {
                       <div>
                         Outcome Alert
                       </div>
-                      <div className='description'>
+                      <div className="description">
                         Receive an alert prior to the contract expiring.
                       </div>
                     </label>
@@ -386,7 +385,7 @@ export default function () {
                 <div className={outcomeNoticeAlertFormClasses}>
                   <div className="col-sm-offset-2 col-sm-2 control-label">
 
-                    <input id='agreement-form-outcome-notice-alert-enabled'
+                    <input id="agreement-form-outcome-notice-alert-enabled"
                            type="checkbox" {...outcomeNoticeAlertEnabled}/>
 
                   </div>
@@ -395,7 +394,7 @@ export default function () {
                       <div>
                         Outcome Notice Alert
                       </div>
-                      <div className='description'>
+                      <div className="description">
                         Receive an alert prior to the outcome notice date.
                       </div>
                     </label>
@@ -421,7 +420,7 @@ export default function () {
             </section>
             <section className="row agreement-form-section agreement-form-section-save content-section-item">
               <div className="col-md-24">
-                <button type='submit' className="btn btn-primary">Save and Close
+                <button type="submit" className="btn btn-primary">Save and Close
                 </button>
               </div>
             </section>
@@ -432,7 +431,7 @@ export default function () {
   }
 
 
-  component = reduxForm({
+  Component = reduxForm({
     fields: [
       'name', 'counterparty', 'typeId', 'description', 'executionDate',
       'termLengthTimeAmount', 'termLengthTimeType',
@@ -444,7 +443,7 @@ export default function () {
     ],
     validate,
     returnRejectedSubmitPromise: true
-  })(component);
+  })(Component);
 
   return new DependencyProvider(formWrapper(Component, defaults));
-};
+}

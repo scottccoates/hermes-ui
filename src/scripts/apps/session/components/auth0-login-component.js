@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import DependencyProvider from '../../../libs/dependency-injection/utils/dependency-provider';
 
-import logoUrl from '../../../../assets/images/medium-logo-no-text.svg'
+import logoUrl from '../../../../assets/images/medium-logo-no-text.svg';
 
 import log from 'loglevel';
 
@@ -71,12 +71,11 @@ export default function (sessionActions, auth0LockFactory) {
 
     render() {
       return (
-        <div id="login-wrapper">
-        </div>
+        <div id="login-wrapper" />
       );
     }
   }
 
 
   return new DependencyProvider(connect(x=> x.session)(Component));
-};
+}

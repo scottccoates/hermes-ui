@@ -8,11 +8,11 @@ const Separator = React.createClass({
       <div className="separator">
           <span className="separator-body">
             <span className="separator-circle">
-              <i className="fa fa-chevron-down"></i>
+              <i className="fa fa-chevron-down" />
             </span>
           </span>
       </div>
-    )
+    );
   }
 });
 

@@ -1,4 +1,4 @@
-import * as constants from '../../../../../settings/constants'
+import * as constants from '../../../../../settings/constants';
 import log from 'loglevel';
 import actionBinder from '../../../../libs/redux-js/actions/action-binder';
 
@@ -160,4 +160,4 @@ export default function (appStore, agreementService) {
   agreementActions = actionBinder.bindActionCreatorsToStore(agreementActions, appStore);
 
   return agreementActions;
-};
+}

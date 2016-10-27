@@ -38,4 +38,4 @@ export default function (alertItemComponent) {
   });
 
   return new DependencyProvider(component);
-};
+}

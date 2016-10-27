@@ -2,7 +2,7 @@
 
 import React, {PropTypes} from 'react';
 import {Link}  from 'react-router';
-
+//todo remove calendar and reporting
 export default class Component extends React.Component {
   constructor(props, context) {
     super(props, context);

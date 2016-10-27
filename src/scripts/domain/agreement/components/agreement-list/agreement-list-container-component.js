@@ -11,7 +11,7 @@ import DependencyProvider from '../../../../libs/dependency-injection/utils/depe
 export default function (agreementListComponent) {
   const AgreementList = agreementListComponent.dependency;
 
-  var component = React.createClass({
+  let component = React.createClass({
 
     displayName: "AgreementListContainerComponent",
 
@@ -31,7 +31,7 @@ export default function (agreementListComponent) {
             <h3 className="content-section-header ">
               Sorry, there are no agreements in the system.
               <br />
-              Please <Link to="/agreements/step-1" className='underline'>upload one</Link> to get started.
+              Please <Link to="/agreements/step-1" className="underline">upload one</Link> to get started.
             </h3>
           </div>
         );
@@ -65,4 +65,4 @@ export default function (agreementListComponent) {
 
   component = connect(extracted)(component);
   return new DependencyProvider(component);
-};
+}

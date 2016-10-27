@@ -3,7 +3,7 @@ import humps from 'humps';
 export default {
   prepareCollection(collection){
     const data         = [];
-    var camelizedChild = null;
+    let camelizedChild = null;
 
     // collection is a type of firebase snapshot (`map` is not a member)
     collection.forEach(child => {

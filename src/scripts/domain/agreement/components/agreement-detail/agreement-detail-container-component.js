@@ -32,7 +32,7 @@ export default function (agreementActions, agreementDetailGeneralInfoComponent, 
     }
 
     render() {
-      var retVal = null;
+      let retVal = null;
 
       if (this.props.agreementDetail.agreement.id)
 
@@ -46,23 +46,23 @@ export default function (agreementActions, agreementDetailGeneralInfoComponent, 
             </div>
 
             <div className="container">
-              <div className='row'>
-                <div className='col-sm-18'>
+              <div className="row">
+                <div className="col-sm-18">
                   <div className="content-section space-top">
 
                     <h3 className="content-section-header">General Agreement Information</h3>
 
-                    <div className='row'>
+                    <div className="row">
                       <div className="content-section">
-                        <div className='col-sm-20'>
+                        <div className="col-sm-20">
                           <AgreementDetailGeneralInfo agreement={this.props.agreementDetail.agreement}/>
                         </div>
 
-                        <div className='col-sm-4 edit-link'>
+                        <div className="col-sm-4 edit-link">
                           <Link to={`/agreements/${this.props.agreementDetail.agreement.id}/edit`}>
                             <div>
                               {/*the div makes the entire space hoverable*/}
-                              <i className="fa fa-pencil space-right-md"></i>
+                              <i className="fa fa-pencil space-right-md" />
                               <span>edit</span>
                             </div>
                           </Link>
@@ -75,17 +75,17 @@ export default function (agreementActions, agreementDetailGeneralInfoComponent, 
 
                     <h3 className="content-section-header">Agreement Duration and Renewal Information</h3>
 
-                    <div className='row'>
+                    <div className="row">
                       <div className="content-section">
-                        <div className='col-sm-20'>
+                        <div className="col-sm-20">
                           <AgreementDetailLength agreement={this.props.agreementDetail.agreement}/>
                         </div>
 
-                        <div className='col-sm-4 edit-link'>
+                        <div className="col-sm-4 edit-link">
                           <Link to={`/agreements/${this.props.agreementDetail.agreement.id}/edit`}>
                             <div>
                               {/*the div makes the entire space hoverable*/}
-                              <i className="fa fa-pencil space-right-md"></i>
+                              <i className="fa fa-pencil space-right-md" />
                               <span>edit</span>
                             </div>
                           </Link>
@@ -94,9 +94,9 @@ export default function (agreementActions, agreementDetailGeneralInfoComponent, 
                     </div>
                   </div>
                 </div>
-                <div className='col-sm-6'>
-                  <div className='panel panel-alt'>
-                    <div className='panel-body'>
+                <div className="col-sm-6">
+                  <div className="panel panel-alt">
+                    <div className="panel-body">
                       <h3 className="content-section-header">Documents</h3>
                       <AgreementDetailArtifacts agreement={this.props.agreementDetail.agreement}
                                                 deleteArtifact={this.deleteArtifact}
@@ -105,11 +105,11 @@ export default function (agreementActions, agreementDetailGeneralInfoComponent, 
                     </div>
                   </div>
 
-                  <div className='delete-link content-section-item space-top-sm'>
-                    <a href='javascript:void(0)' onClick={this.deleteAgreement}>
+                  <div className="delete-link content-section-item space-top-sm">
+                    <a href="javascript:void(0)" onClick={this.deleteAgreement}>
                       <div>
                         {/*the div makes the entire space hoverable*/}
-                        <i className="fa fa-close space-right-md"></i>
+                        <i className="fa fa-close space-right-md" />
                         <span>Delete Agreement</span>
                       </div>
                     </a>
@@ -132,4 +132,4 @@ export default function (agreementActions, agreementDetailGeneralInfoComponent, 
   }
 
   return new DependencyProvider(connect(extracted)(Component));
-};
+}

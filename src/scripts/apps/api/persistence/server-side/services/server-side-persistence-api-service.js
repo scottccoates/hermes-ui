@@ -38,11 +38,11 @@ export default function (persistenceApiServiceUrl, appStore) {
       const status = response.status;
 
       if (status < 200 || status > 299) {
-        throw new Error(response.statusText)
+        throw new Error(response.statusText);
       }
 
       // don't call .json (if response has empty string
-      var retVal = await response.text();
+      let retVal = await response.text();
       if (retVal) {
         retVal = JSON.parse(retVal);
         retVal = humps.camelizeKeys(retVal);
@@ -58,7 +58,7 @@ export default function (persistenceApiServiceUrl, appStore) {
         const parameters = humps.decamelizeKeys(data);
 
         const queryString = stringify(parameters);
-        url               = `${url}?${queryString}`
+        url               = `${url}?${queryString}`;
       }
 
       const body = null;

@@ -36,9 +36,9 @@ export default function () {
 
         <div className="alert-item">
           <div className="simple-container">
-            <div className='row'>
+            <div className="row">
               <div className="col-sm-2">
-                <i className={classes}></i>
+                <i className={classes} />
               </div>
 
               <div className="col-sm-22 alert-content">
@@ -54,4 +54,4 @@ export default function () {
   });
 
   return new DependencyProvider(component);
-};
+}

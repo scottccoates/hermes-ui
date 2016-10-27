@@ -61,7 +61,7 @@ export default function (agreementListComponent, alertListComponent) {
             <h3 className="content-section-header ">
               Sorry, there are no agreements in the system.
               <br />
-              Please <Link to="/agreements/step-1" className='underline'>upload one</Link> to get started.
+              Please <Link to="/agreements/step-1" className="underline">upload one</Link> to get started.
             </h3>
           </div>
         );
@@ -101,4 +101,4 @@ export default function (agreementListComponent, alertListComponent) {
   }
 
   return new DependencyProvider(connect(extracted)(Component));
-};
+}

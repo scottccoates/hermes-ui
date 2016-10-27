@@ -17,7 +17,7 @@ export default {
     // must be first entry to properly set public path
     './src/webpack-public-path',
     'babel-polyfill', // http://stackoverflow.com/questions/33527653/babel-6-regeneratorruntime-is-not-defined-with-async-await
-    'webpack-hot-middleware/client?reload=true',
+    'webpack-hot-middleware/client?reload=false',
     path.resolve(__dirname, 'src/main') // Defining path seems necessary for this to work consistently on Windows machines.
   ],
   target: 'web', // necessary per https://webpack.github.io/docs/testing.html#compile-and-test

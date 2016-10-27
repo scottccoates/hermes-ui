@@ -58,7 +58,7 @@ export default function (agreementActions, agreementTypeService, agreementEditFo
 
           <div className="content-section  space-bottom">
             <div className="container">
-              <AgreementEditForm form='agreementEditContainerForm'
+              <AgreementEditForm form="agreementEditContainerForm"
                                  onValid={this.onValid} onInvalid={this.onInvalid}
                                  initialValues={this.props.agreementEdit.agreement}
                                  counterparties={this.props.userCounterparties.counterparties}
@@ -80,4 +80,4 @@ export default function (agreementActions, agreementTypeService, agreementEditFo
   }
 
   return new DependencyProvider(connect(extracted)(Component));
-};
+}

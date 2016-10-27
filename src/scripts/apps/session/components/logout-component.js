@@ -7,7 +7,7 @@ import DependencyProvider from 'src/scripts/libs/dependency-injection/utils/depe
 import { connect } from 'react-redux';
 
 export default function (sessionActions) {
-  var logout = React.createClass({
+  let logout = React.createClass({
     displayName: "LogoutComponent",
 
     _doLoginTransition(){
@@ -33,11 +33,11 @@ export default function (sessionActions) {
 
     render() {
       return (
-        <div id="logout-wrapper"></div>
+        <div id="logout-wrapper" />
       );
     }
   });
 
   logout = connect(x=>x.session)(logout);
   return new DependencyProvider(logout);
-};
+}

@@ -25,7 +25,13 @@ export default function (sidebarComponent, headerComponent, footerComponent) {
             <Header user={this.props.user}/>
 
             <div id="content-wrapper">
-              {this.props.children}
+              {
+                /*
+                 https://facebook.github.io/react/docs/top-level-api.html#react.cloneelement
+                 https://github.com/rackt/react-router/blob/15b05b4f2ca8b4ade5f7378ed1839b752a62babc/examples/passing-props-to-children/app.js
+                 */
+              }
+              {React.cloneElement(this.props.children, {loginMeta: {token: this.props.session.token}})}
             </div>
 
             <Footer/>

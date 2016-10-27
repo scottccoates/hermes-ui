@@ -49,7 +49,7 @@ export default function (persistenceApiServiceUrl, fileUploadProvider, nprogress
 
     onProgressed(progress) {
       // if we hit 100 here, it'll appear to finish twice
-      var newProgress = progress >= 100 ? 99 : progress;
+      let newProgress = progress >= 100 ? 99 : progress;
 
       this.nprogressBar.updateProgress(newProgress);
     }
@@ -77,7 +77,7 @@ export default function (persistenceApiServiceUrl, fileUploadProvider, nprogress
               </div>
             </div>
 
-            <div className="content-section ">
+            <div className="content-section space-bottom">
               <div className="container-fluid">
                 <div className="row">
                   <div className="col-md-24">
@@ -95,7 +95,7 @@ export default function (persistenceApiServiceUrl, fileUploadProvider, nprogress
                                         paramName="artifacts"
                                         headers={{"Authorization": "JWT " + this.props.loginMeta.token}}
                                         acceptedFiles=".pdf, .doc, .docx">
-                            <i className="fa fa-cloud-upload"></i>
+                            <i className="fa fa-cloud-upload"/>
 
                             <div className="primary-import-text">Select files to upload</div>
                             <div className="secondary-import-text">
@@ -107,8 +107,7 @@ export default function (persistenceApiServiceUrl, fileUploadProvider, nprogress
 
                             <h3 className="feedback-text">Importing Agreement</h3>
 
-                            <div id="important-agreement-feedback-progress">
-                            </div>
+                            <div id="important-agreement-feedback-progress"/>
 
                           </div>
                         </div>
@@ -119,28 +118,6 @@ export default function (persistenceApiServiceUrl, fileUploadProvider, nprogress
               </div>
             </div>
 
-            <div className="content-section  space-top-lg space-bottom">
-              <div className="container-fluid">
-                <section className="generate-agreement-section">
-                  <div className="row">
-                    <div className="col-md-24">
-
-                      <div className="content-section-item">
-                        <h4>
-                          <span>OR</span>
-                        </h4>
-                      </div>
-                      <div className="content-section-item space-top-lg">
-                        <Link to="/agreements/generate" className='btn btn-default btn-lg'>Generate New
-                          Agreement
-                          From
-                          Template</Link>
-                      </div>
-                    </div>
-                  </div>
-                </section>
-              </div>
-            </div>
           </div>
         </div>
 
@@ -149,4 +126,4 @@ export default function (persistenceApiServiceUrl, fileUploadProvider, nprogress
   }
 
   return new DependencyProvider(Component);
-};
+}

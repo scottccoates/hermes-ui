@@ -16,6 +16,10 @@ import Auth0AuthService from '../scripts/apps/session/services/auth0-auth-servic
 import Firebase from 'firebase';
 import FirebaseRetrievalApiService from '../scripts/apps/api/retrieval/server-side/firebase/services/firebase-retrieval-api-service';
 
+import FileUpload from '../scripts/libs/react-js/components/file-upload';
+
+import Dropzone from 'dropzone';
+
 export default {
   init(){
     const container = config.init();
@@ -38,11 +42,15 @@ export default {
     container.register(constants.AUTH_SERVICE, Auth0AuthService);
 
     container.register("Firebase", Firebase);
-
     container.register("FirebaseAppUrl", "Firebase App Url");
     container.register("FirebaseApiKey", "Firebase Api Key");
     container.register(constants.RETRIEVAL_API_SERVICE, FirebaseRetrievalApiService);
 
+    container.register(constants.FILE_UPLOAD, FileUpload);
+
+    container.register("Dropzone", Dropzone);
+
+    container.register(constants.PERSISTENCE_API_SERVICE_URL, "http://127.0.0.1:8000/api");
 
     // -- DEPENDENCIES
     Auth0Js.$inject             = ['Auth0Config']; // these are provided in the environment settings files
@@ -51,6 +59,8 @@ export default {
     Auth0AuthService.$inject    = ['Auth0Js'];
 
     FirebaseRetrievalApiService.$inject = ['Firebase', 'FirebaseAppUrl', 'FirebaseApiKey'];
+
+    FileUpload.$inject = ["Dropzone!"]; //! means 'factory' - in the component we're going to use .get to provide more ctor params
 
     return container;
   }

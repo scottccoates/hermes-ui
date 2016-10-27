@@ -31,5 +31,5 @@ export default function (firebase, firebaseAppUrl, firebaseApiKey) {
         throw new Error("Error authenticating with firebase: " + (error.stack || error));
       }
     }
-  }
-};
+  };
+}

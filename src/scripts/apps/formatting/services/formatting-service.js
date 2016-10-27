@@ -2,7 +2,7 @@ export default {
   getValueLabelFromObject(obj){
     const valueLabel = Object.keys(obj).map(origKey=> {
 
-      var newKey;
+      let newKey;
 
       if (origKey === 'true') {
         newKey = true;
@@ -25,7 +25,7 @@ export default {
 
     const valueLabel = array.map(item=> {
 
-      var newValue;
+      let newValue;
 
       if (item.id === 'true') {
         newValue = true;

@@ -33,17 +33,17 @@ export default function (agreementService, persistenceApiServiceUrl, fileUploadP
         return (
           <li className="content-section-item space-bottom-sm clearfix" key={artifact.id}>
             <a href="javascript:void(0)" onClick={this.downloadArtifact.bind(this, artifact.id)}>
-              <div className='col-sm-3 no-left-gutter gutter-xs'>
-                <i className="fa fa-file-pdf-o"></i>
+              <div className="col-sm-3 no-left-gutter gutter-xs">
+                <i className="fa fa-file-pdf-o" />
               </div>
-              <div className='col-sm-18 gutter-xs'>
+              <div className="col-sm-18 gutter-xs">
                 <span>{artifact.name}</span>
               </div>
             </a>
 
             <a href="javascript:void(0)" onClick={this.deleteArtifact.bind(this, this.props.agreement.id, artifact.id)}>
-              <div className='col-sm-3 gutter-xs'>
-                <i className="fa fa-close"></i>
+              <div className="col-sm-3 gutter-xs">
+                <i className="fa fa-close" />
               </div>
             </a>
           </li>
@@ -58,14 +58,14 @@ export default function (agreementService, persistenceApiServiceUrl, fileUploadP
               <FileUploader url={artifactUrl}
                             onSuccess={this.onSuccess}
                             onError={this.onError}
-                            className='dropzone'
+                            className="dropzone"
                             paramName="artifacts"
                             headers={{"Authorization": "JWT " + this.props.loginMeta.token}}
                             acceptedFiles=".pdf, .doc, .docx">
-                <div className='col-sm-3 no-left-gutter gutter-xs'>
-                  <i className="fa fa-cloud-upload"></i>
+                <div className="col-sm-3 no-left-gutter gutter-xs">
+                  <i className="fa fa-cloud-upload" />
                 </div>
-                <div className='col-sm-21 gutter-xs'>
+                <div className="col-sm-21 gutter-xs">
                   <span>Upload Document</span>
                 </div>
               </FileUploader>
@@ -77,4 +77,4 @@ export default function (agreementService, persistenceApiServiceUrl, fileUploadP
   }
 
   return new DependencyProvider(Component);
-};
+}

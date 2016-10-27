@@ -65,11 +65,12 @@ import AgreementDetailGeneralInfoComponent from '../scripts/domain/agreement/com
 import AgreementDetailLengthComponent from '../scripts/domain/agreement/components/agreement-detail/agreement-detail-length-component';
 import AgreementDetailArtifactsComponent from '../scripts/domain/agreement/components/agreement-detail/agreement-detail-artifacts-component';
 
-
 import AlertListComponent from '../scripts/domain/alert/components/alert-list/alert-list-component';
 import AlertListItemComponent from '../scripts/domain/alert/components/alert-list/alert-list-item-component';
 
 import ClientSidePersistenceService from '../scripts/apps/persistence/services/client-side-persistence-service';
+
+import NprogressBar from '../scripts/apps/feedback/components/loading/nprogress-bar';
 
 import DashboardComponent from '../scripts/apps/dashboard/components/dashboard-component';
 
@@ -145,6 +146,8 @@ export default {
 
     container.register(constants.DASHBOARD_COMPONENT, DashboardComponent);
 
+    container.register(constants.PROGRESS_BAR, NprogressBar);
+
     // -- DEPENDENCIES
     SessionActions.$inject    = [constants.APP_STORE, constants.SESSION_SERVICE];
     SessionService.$inject    = [constants.SESSION_REPOSITORY, constants.AUTH_SERVICE];
@@ -173,7 +176,14 @@ export default {
     AgreementActions.$inject = [constants.APP_STORE, constants.AGREEMENT_SERVICE];
     AgreementService.$inject = [constants.AGREEMENT_REPOSITORY];
 
-    AgreementListComponent.$inject = [constants.AGREEMENT_LIST_ITEM_COMPONENT];
+    AgreementListComponent.$inject            = [constants.AGREEMENT_LIST_ITEM_COMPONENT];
+    AgreementNewCreateComponent.$inject       = [constants.PERSISTENCE_API_SERVICE_URL, constants.FILE_UPLOAD, constants.PROGRESS_BAR + '!'];
+    AgreementEditContainerComponent.$inject   = [constants.AGREEMENT_ACTIONS, constants.AGREEMENT_TYPE_SERVICE, constants.AGREEMENT_EDIT_FORM_COMPONENT];
+    AgreementListContainerComponent.$inject   = [constants.AGREEMENT_LIST_COMPONENT];
+    AgreementListComponent.$inject            = [constants.AGREEMENT_LIST_ITEM_COMPONENT];
+    AgreementDetailContainerComponent.$inject = [constants.AGREEMENT_ACTIONS, constants.AGREEMENT_DETAIL_GENERAL_INFO_COMPONENT, constants.AGREEMENT_DETAIL_LENGTH_COMPONENT, constants.AGREEMENT_DETAIL_ARTIFACTS_COMPONENT];
+    AgreementDetailArtifactsComponent.$inject = [constants.AGREEMENT_SERVICE, constants.PERSISTENCE_API_SERVICE_URL, constants.FILE_UPLOAD];
+
 
     CounterpartyActions.$inject = [constants.APP_STORE, constants.COUNTERPARTY_SERVICE];
     CounterpartyService.$inject = [constants.COUNTERPARTY_REPOSITORY];

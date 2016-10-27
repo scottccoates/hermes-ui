@@ -5,7 +5,7 @@ import {Link}  from 'react-router';
 
 import DependencyProvider from '../../../../libs/dependency-injection/utils/dependency-provider';
 
-import ButtonSelect from '../../../../libs/react-js/components/button-select'
+import ButtonSelect from '../../../../libs/react-js/components/button-select';
 
 import agreementValueLabel from '../../../../apps/formatting/agreement/agreement-value-label';
 
@@ -45,4 +45,4 @@ export default function (agreementListItemComponent) {
   }
 
   return new DependencyProvider(Component);
-};
+}
