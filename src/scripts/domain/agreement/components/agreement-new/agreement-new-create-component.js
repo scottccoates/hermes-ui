@@ -87,10 +87,10 @@ export default function (persistenceApiServiceUrl, fileUploadProvider, nprogress
                       </div>
                       <div className="panel-body">
                         <div className="import-agreement-container">
-                          <FileUploader url={agreementUrl} onAddedFile={this.onAddedFile}
-                                        onProgressed={this.onProgressed}
-                                        onSuccess={this.onSuccess}
-                                        onError={this.onError}
+                          <FileUploader url={agreementUrl} onAddedFile={this.onAddedFile.bind(this)}
+                                        onProgressed={this.onProgressed.bind(this)}
+                                        onSuccess={this.onSuccess.bind(this)}
+                                        onError={this.onError.bind(this)}
                                         className={dropzoneClasses}
                                         paramName="artifacts"
                                         headers={{"Authorization": "JWT " + this.props.loginMeta.token}}

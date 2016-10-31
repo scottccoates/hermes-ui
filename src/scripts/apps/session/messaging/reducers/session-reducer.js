@@ -2,7 +2,7 @@ import * as constants from '../../../../../settings/constants';
 
 const defaultState = {
   loggedIn: false,
-  token: null,
+  tokenInfo: null,
   meta: null
 };
 

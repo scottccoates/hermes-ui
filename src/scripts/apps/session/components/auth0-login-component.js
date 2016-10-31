@@ -32,7 +32,7 @@ export default function (sessionActions, auth0LockFactory) {
         rememberLastLogin: false,
         closable: false,
         theme: {logo: logoUrl},
-        authParams: {scope: 'openid app_metadata'}
+        auth: {params: {scope: 'openid app_metadata'}, responseType: 'token'}
       };
 
       this.lock = auth0LockFactory.get(lockOptions);
@@ -71,7 +71,7 @@ export default function (sessionActions, auth0LockFactory) {
 
     render() {
       return (
-        <div id="login-wrapper" />
+        <div id="login-wrapper"/>
       );
     }
   }

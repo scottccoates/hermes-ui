@@ -31,7 +31,7 @@ export default function (sidebarComponent, headerComponent, footerComponent) {
                  https://github.com/rackt/react-router/blob/15b05b4f2ca8b4ade5f7378ed1839b752a62babc/examples/passing-props-to-children/app.js
                  */
               }
-              {React.cloneElement(this.props.children, {loginMeta: {token: this.props.session.token}})}
+              {React.cloneElement(this.props.children, {loginMeta: {token: this.props.session.tokenInfo.token}})}
             </div>
 
             <Footer/>
