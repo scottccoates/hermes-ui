@@ -31,10 +31,10 @@ export default function (dropzoneFactory) {
       // remember to use non-arrow function here because that would bind it to undefined and then `this` wouldn't work.
       this.dropzone = dropzoneFactory.get(ReactDOM.findDOMNode(this), this._dropzoneOptions.toJS());
 
-      this.dropzone.on('addedfile', this.props.onAddedFile);
-      this.dropzone.on('totaluploadprogress', this.props.onProgressed);
-      this.dropzone.on('success', this.onSuccess);
-      this.dropzone.on('error', this.props.onError);
+      this.dropzone.on('addedfile', this.props.onAddedFile.bind(this));
+      this.dropzone.on('totaluploadprogress', this.props.onProgressed.bind(this));
+      this.dropzone.on('success', this.onSuccess.bind(this));
+      this.dropzone.on('error', this.props.onError.bind(this));
     }
 
     componentWillUnmount() {
@@ -43,10 +43,10 @@ export default function (dropzoneFactory) {
       // I was running into an issue where calling `destroy` below would trigger (in dropzone) file.remove
       // which would further trigger `updateTotalUploadProgress` which would cause issues in react components that were un-mounted.
       // I would not expect `updateTotalUploadProgress` to be triggered simply be calling `destroy`.
-      this.dropzone.off('addedfile', this.props.onAddedFile);
-      this.dropzone.off('totaluploadprogress', this.props.onProgressed);
-      this.dropzone.off('success', this.onSuccess);
-      this.dropzone.off('error', this.props.onError);
+      this.dropzone.off('addedfile', this.props.onAddedFile.bind(this));
+      this.dropzone.off('totaluploadprogress', this.props.onProgressed.bind(this));
+      this.dropzone.off('success', this.onSuccess.bind(this));
+      this.dropzone.off('error', this.props.onError.bind(this));
 
       this.dropzone.destroy();
       this.dropzone = null;

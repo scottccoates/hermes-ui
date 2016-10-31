@@ -41,6 +41,7 @@ export default {
           <Route path="agreements" component={AgreementListContainerComponent}/>
           <Route path="agreements">
             <Route path="step-1" component={CreateAgreementComponent}/>
+            <Route path=':agreementId/step-2' component={AgreementEditContainerComponent}/>
           </Route>
         </Route>,
 
