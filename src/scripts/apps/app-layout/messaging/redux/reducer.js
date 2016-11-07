@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import {routerReducer} from 'react-router-redux';
+import { reducer as formReducer } from 'redux-form'
 
 import agreementEditReducer from '../../../../domain/agreement/messaging/reducers/agreement-edit-reducer';
 import agreementDetailReducer from '../../../../domain/agreement/messaging/reducers/agreement-detail-reducer';
@@ -21,6 +22,8 @@ import smartViewEditReducer from '../../../../domain/smart-view/messaging/reduce
 const rootReducer = combineReducers({
   // routing
   routing: routerReducer,
+
+  form: formReducer,
 
   // app
   session: sessionReducer,

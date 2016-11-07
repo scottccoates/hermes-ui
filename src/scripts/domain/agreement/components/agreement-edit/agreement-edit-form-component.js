@@ -4,7 +4,7 @@ import React from 'react';
 
 import DependencyProvider from '../../../../libs/dependency-injection/utils/dependency-provider';
 
-import {reduxForm} from 'redux-form';
+import {reduxForm, Field} from 'redux-form';
 
 import Select from 'react-select';
 
@@ -40,6 +40,16 @@ function validate(values) {
   errors.outcomeNoticeAlertTimeAmount = integer(values.outcomeNoticeAlertTimeAmount, 'Outcome notice alert must be a number');
 
   return errors;
+}
+
+function renderedInput(field) {
+  debugger
+  return <div>
+    <input className="form-control" {...field.input} type={field.type}/>
+    {field.meta.touched &&
+    field.meta.error &&
+    <span className="error">{field.meta.error}</span>}
+  </div>;
 }
 
 export default function () {
@@ -144,14 +154,7 @@ export default function () {
     }
 
     render() {
-      const {
-              fields: {
-                name, counterparty, description, termLengthTimeAmount, outcomeNoticeTimeAmount,durationDetails,
-                outcomeAlertEnabled,outcomeAlertTimeAmount,
-                outcomeNoticeAlertEnabled, outcomeNoticeAlertTimeAmount
-                },
-              handleSubmit
-              } = this.props;
+      const {handleSubmit} = this.props;
 
       // counterparty doesn't have an ID yet - it's just a string.
       let counterpartiesValues  = [];
@@ -166,30 +169,35 @@ export default function () {
         agreementTypesValues = formattingService.getValueLabelFromArray(userAgreementTypes);
       }
 
-      const executionDateMoment = moment(this.props.values.executionDate);
+      const executionDateMoment = moment(new Date());
+      //const executionDateMoment = moment(this.props.initialValue.executionDate);
 
       const defaultFormClasses = ['form-group'];
+      //
+
+      const name = {};
 
       const nameInvalid     = name.touched && name.invalid;
       const nameFormClasses = cx(defaultFormClasses, {'has-error': nameInvalid});
 
+      const counterparty = {};
       const counterpartyInvalid     = counterparty.touched && counterparty.invalid;
       const counterpartyFormClasses = cx(defaultFormClasses, {'has-error': counterpartyInvalid});
 
       // execution date validation https://app.asana.com/0/25386196367554/104970225146858
-      const executionDateFormClasses = cx(defaultFormClasses, {'has-error': false});
-
-      const termLengthTimeAmountInvalid = termLengthTimeAmount.touched && termLengthTimeAmount.invalid;
-      const termLengthFormClasses       = cx(defaultFormClasses, {'has-error': termLengthTimeAmountInvalid});
-
-      const outcomeNoticeTimeAmountInvalid = outcomeNoticeTimeAmount.touched && outcomeNoticeTimeAmount.invalid;
-      const outcomeNoticeFormClasses       = cx(defaultFormClasses, {'has-error': outcomeNoticeTimeAmountInvalid});
-
-      const outcomeAlertTimeAmountInvalid = outcomeAlertTimeAmount.touched && outcomeAlertTimeAmount.invalid;
-      const outcomeAlertFormClasses       = cx(defaultFormClasses, {'has-error': outcomeAlertTimeAmountInvalid});
-
-      const outcomeNoticeAlertTimeAmountInvalid = outcomeNoticeAlertTimeAmount.touched && outcomeNoticeAlertTimeAmount.invalid;
-      const outcomeNoticeAlertFormClasses       = cx(defaultFormClasses, {'has-error': outcomeNoticeAlertTimeAmountInvalid});
+      //const executionDateFormClasses = cx(defaultFormClasses, {'has-error': false});
+      //
+      //const termLengthTimeAmountInvalid = termLengthTimeAmount.touched && termLengthTimeAmount.invalid;
+      //const termLengthFormClasses       = cx(defaultFormClasses, {'has-error': termLengthTimeAmountInvalid});
+      //
+      //const outcomeNoticeTimeAmountInvalid = outcomeNoticeTimeAmount.touched && outcomeNoticeTimeAmount.invalid;
+      //const outcomeNoticeFormClasses       = cx(defaultFormClasses, {'has-error': outcomeNoticeTimeAmountInvalid});
+      //
+      //const outcomeAlertTimeAmountInvalid = outcomeAlertTimeAmount.touched && outcomeAlertTimeAmount.invalid;
+      //const outcomeAlertFormClasses       = cx(defaultFormClasses, {'has-error': outcomeAlertTimeAmountInvalid});
+      //
+      //const outcomeNoticeAlertTimeAmountInvalid = outcomeNoticeAlertTimeAmount.touched && outcomeNoticeAlertTimeAmount.invalid;
+      //const outcomeNoticeAlertFormClasses       = cx(defaultFormClasses, {'has-error': outcomeNoticeAlertTimeAmountInvalid});
 
       const submit = event => {
         // requires this setting below returnRejectedSubmitPromise: true
@@ -211,8 +219,12 @@ export default function () {
                   <label htmlFor="agreement-form-name" className="col-sm-6 control-label">Agreement Name *</label>
 
                   <div className="col-sm-18">
-                    <input autoFocus type="text" className="form-control" id="agreement-form-name" {...name}/>
-                    {nameInvalid && <div className="help-block">{name.error}</div>}
+                    <Field className='form-control'
+                      name="name"
+                      component={renderedInput}
+                      type="text"/>
+                    {/*<input autoFocus type="text" className="form-control" id="agreement-form-name" {...name}/>*/}
+                    {/*nameInvalid && <div className="help-block">{name.error}</div>*/}
                   </div>
                 </div>
 
@@ -221,10 +233,7 @@ export default function () {
                     *</label>
 
                   <div className="col-sm-18">
-                    <Select placeholder={null} options={counterpartiesValues}
-                            allowCreate
-                            value={this.props.values.counterparty}
-                            onChange={this.onChangeCounterparty}/>
+
                     {counterpartyInvalid && <div className="help-block">{counterparty.error}</div>}
                   </div>
                 </div>
@@ -233,10 +242,7 @@ export default function () {
                   <label className="col-sm-6 control-label">Agreement Type</label>
 
                   <div className="col-sm-18">
-                    <Select placeholder={null} options={agreementTypesValues}
-                            allowCreate
-                            value={this.props.values.typeId}
-                            onChange={this.onChangeAgreementType}/>
+
                   </div>
                 </div>
 
@@ -245,184 +251,12 @@ export default function () {
                     Description</label>
 
                   <div className="col-sm-18">
-                    <textarea rows="5" className="form-control" id="agreement-form-description" {...description}/>
+                    <textarea rows="5" className="form-control" id="agreement-form-description"/>
                   </div>
                 </div>
 
               </div>
 
-            </section>
-            <section className="row agreement-form-section content-section-item space-top-sm space-bottom-xl">
-              <div className="col-md-24">
-                <h3 className="content-section-header">Agreement Duration and Renewal Information</h3>
-
-                <div className={executionDateFormClasses}>
-                  <label htmlFor="agreement-form-execution-date" className="col-sm-6 control-label">Execution
-                    Date *</label>
-
-                  <div className="col-sm-6">
-                    <Datepicker className="form-control" selected={executionDateMoment}
-                                onChange={this.onChangeExecutionDate}/>
-                  </div>
-                  <div className="row">
-                    <div className="col-sm-offset-6 col-sm-18" />
-                  </div>
-                </div>
-
-                <div className={termLengthFormClasses}>
-                  <label htmlFor="agreement-form-d-length-amount" className="col-sm-6 control-label">Initial
-                    Term
-                    Length</label>
-
-                  <div className="col-sm-3">
-                    <input type="text" className="form-control"
-                           id="agreement-form-term-length-amount" {...termLengthTimeAmount}/>
-                  </div>
-                  <div className="col-sm-6">
-                    <ButtonSelect items={timeTypes}
-                                  value={this.props.values.termLengthTimeType}
-                                  onChange={this.onChangeTermLengthTimeType}
-                                  className="btn btn-sm btn-info agreement-form-button agreement-form-field-button"/>
-                  </div>
-                  <div className="row">
-                    <div className="col-sm-offset-6 col-sm-18">
-                      {termLengthTimeAmountInvalid && <div className="help-block">{termLengthTimeAmount.error}</div>}
-                    </div>
-                  </div>
-                </div>
-                <div className="form-group">
-                  <label className="col-sm-6 control-label">Auto-Renew?</label>
-
-                  <div className="col-sm-6">
-                    <ButtonSelect items={renewTypes}
-                                  value={this.props.values.autoRenew}
-                                  onChange={this.onChangeAutoRenew}
-                                  className="btn btn-sm btn-info agreement-form-button agreement-form-field-button"/>
-                  </div>
-                </div>
-                <div className={outcomeNoticeFormClasses}>
-                  <label htmlFor="agreement-form-outcome-notice-time-amount" className="col-sm-6 control-label">Outcome
-                    Notice</label>
-
-                  <div className="col-sm-3">
-                    <input type="text" className="form-control"
-                           id="agreement-form-outcome-notice-time-amount" {...outcomeNoticeTimeAmount}/>
-                  </div>
-                  <div className="col-sm-9">
-                    <ButtonSelect items={timeTypes}
-                                  value={this.props.values.outcomeNoticeTimeType}
-                                  onChange={this.onChangeOutcomeNoticeTimeType}
-                                  className="btn btn-sm btn-info agreement-form-button agreement-form-field-button"/>
-                        <span
-                          className="control-label content-section-item space-left-sm space-right-sm agreement-form-control-text">before
-                        </span>
-                    <ButtonSelect items={[{label:"Expiration",value:'expiration'}]} value="expiration"
-                                  className="btn btn-sm btn-info agreement-form-button agreement-form-field-button"/>
-                  </div>
-                  <div className="col-sm-6">
-                      <span className="help-text">
-                        <i className="fa fa-info-circle space-right-md"/>
-                        This is the date by which you need to give notice to the other side about your intent to renew or cancel the contract.
-                      </span>
-                  </div>
-                  <div className="row">
-                    <div className="col-sm-offset-6 col-sm-18">
-                      {outcomeNoticeTimeAmountInvalid &&
-                      <div className="help-block">{outcomeNoticeTimeAmount.error}</div>}
-                    </div>
-                  </div>
-                </div>
-                <div className="form-group">
-                  <label htmlFor="agreement-form-durations-details" className="col-sm-6 control-label">Other
-                    Details</label>
-
-                  <div className="col-sm-11">
-                    <textarea rows="5" className="form-control"
-                              id="agreement-form-durations-details"{...durationDetails} />
-                  </div>
-                </div>
-
-              </div>
-            </section>
-            <section className="row agreement-form-section content-section-item space-top-sm space-bottom-xl">
-              <div className="col-md-24">
-                <h3 className="content-section-header">Agreement Alerts</h3>
-
-                <div className={outcomeAlertFormClasses}>
-                  <div className="col-sm-offset-2 col-sm-2 control-label">
-
-                    <input id="agreement-form-outcome-notice-enabled" type="checkbox" {...outcomeAlertEnabled}/>
-
-                  </div>
-                  <div className="col-sm-11">
-                    <label htmlFor="agreement-form-outcome-notice-enabled" className="description-label">
-                      <div>
-                        Outcome Alert
-                      </div>
-                      <div className="description">
-                        Receive an alert prior to the contract expiring.
-                      </div>
-                    </label>
-                  </div>
-                  <div className="col-sm-3">
-                    <input type="text" className="form-control"
-                           id="agreement-form-outcome-alert" {...outcomeAlertTimeAmount}/>
-                  </div>
-                  <div className="col-sm-4">
-                    <ButtonSelect items={timeTypes}
-                                  value={this.props.values.outcomeAlertTimeType}
-                                  onChange={this.onChangeOutcomeAlertTimeType}
-                                  className="btn btn-sm btn-info agreement-form-button agreement-form-field-button"/>
-                  </div>
-                  <div className="row">
-                    <div className="col-sm-offset-4 col-sm-12">
-                      {outcomeAlertTimeAmountInvalid &&
-                      <div className="help-block">{outcomeAlertTimeAmount.error}</div>}
-                    </div>
-                  </div>
-                </div>
-
-                <div className={outcomeNoticeAlertFormClasses}>
-                  <div className="col-sm-offset-2 col-sm-2 control-label">
-
-                    <input id="agreement-form-outcome-notice-alert-enabled"
-                           type="checkbox" {...outcomeNoticeAlertEnabled}/>
-
-                  </div>
-                  <div className="col-sm-11">
-                    <label htmlFor="agreement-form-outcome-notice-alert-enabled" className="description-label">
-                      <div>
-                        Outcome Notice Alert
-                      </div>
-                      <div className="description">
-                        Receive an alert prior to the outcome notice date.
-                      </div>
-                    </label>
-                  </div>
-                  <div className="col-sm-3">
-                    <input type="text" className="form-control"
-                           id="agreement-form-outcome-notice-alert" {...outcomeNoticeAlertTimeAmount}/>
-                  </div>
-                  <div className="col-sm-4">
-                    <ButtonSelect items={timeTypes}
-                                  value={this.props.values.outcomeNoticeAlertTimeType}
-                                  onChange={this.onChangeOutcomeNoticeAlertTimeType}
-                                  className="btn btn-sm btn-info agreement-form-button agreement-form-field-button"/>
-                  </div>
-                  <div className="row">
-                    <div className="col-sm-offset-4 col-sm-12">
-                      {outcomeNoticeAlertTimeAmountInvalid &&
-                      <div className="help-block">{outcomeNoticeAlertTimeAmount.error}</div>}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-            <section className="row agreement-form-section agreement-form-section-save content-section-item">
-              <div className="col-md-24">
-                <button type="submit" className="btn btn-primary">Save and Close
-                </button>
-              </div>
             </section>
           </form>
         </div>
@@ -431,19 +265,7 @@ export default function () {
   }
 
 
-  Component = reduxForm({
-    fields: [
-      'name', 'counterparty', 'typeId', 'description', 'executionDate',
-      'termLengthTimeAmount', 'termLengthTimeType',
-      'autoRenew',
-      'outcomeNoticeTimeAmount', 'outcomeNoticeTimeType',
-      'durationDetails',
-      'outcomeAlertEnabled', 'outcomeAlertTimeAmount', 'outcomeAlertTimeType',
-      'outcomeNoticeAlertEnabled', 'outcomeNoticeAlertTimeAmount', 'outcomeNoticeAlertTimeType'
-    ],
-    validate,
-    returnRejectedSubmitPromise: true
-  })(Component);
+  Component = reduxForm()(Component);
 
-  return new DependencyProvider(formWrapper(Component, defaults));
+  return new DependencyProvider(Component, defaults);
 }

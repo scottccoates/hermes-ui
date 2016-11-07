@@ -48,6 +48,12 @@ export default function (agreementActions, agreementTypeService, agreementEditFo
     }
 
     render() {
+      let initialValues = undefined;
+
+      if (this.props.agreementEdit.agreement.id) {
+        initialValues = this.props.agreementEdit.agreement;
+      }
+
       return (
         <div id="agreement-edit-container-wrapper">
           <div className="content-section space-top space-bottom">
@@ -60,7 +66,7 @@ export default function (agreementActions, agreementTypeService, agreementEditFo
             <div className="container">
               <AgreementEditForm form="agreementEditContainerForm"
                                  onValid={this.onValid} onInvalid={this.onInvalid}
-                                 initialValues={this.props.agreementEdit.agreement}
+                                 initialValues={initialValues}
                                  counterparties={this.props.userCounterparties.counterparties}
                                  agreementTypes={this.props.userAgreementTypes.agreementTypes}
                                  onCreateAgreementType={this.onCreateAgreementType}/>
