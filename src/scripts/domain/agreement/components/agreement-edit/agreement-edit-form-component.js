@@ -46,9 +46,11 @@ function renderedInput(field) {
   debugger
   return <div>
     <input className="form-control" {...field.input} type={field.type}/>
+    {touched &&  (warning && <span>{warning}</span>)}
+
     {field.meta.touched &&
     field.meta.error &&
-    <span className="error">{field.meta.error}</span>}
+    <span >{field.meta.error}</span>}
   </div>;
 }
 

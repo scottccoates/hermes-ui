@@ -7,6 +7,26 @@ import HomePage from './components/HomePage';
 import FuelSavingsPage from './containers/FuelSavingsPage'; // eslint-disable-line import/no-named-as-default
 import AboutPage from './components/AboutPage.js';
 import NotFoundPage from './components/NotFoundPage.js';
+import Tmp from './scripts/domain/agreement/components/agreement-detail/tmp';
+import Tmp2 from './scripts/domain/agreement/components/agreement-detail/tmp2';
+
+class TempComponentClass extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+
+    this.displayName = 'Tmp!';
+  }
+
+  render() {
+    return (
+      <div id="tmp-wrapper">
+        HELLO TMP FIRST!!!!!
+      </div>
+    );
+  }
+
+}
+import Dep from './scripts/libs/dependency-injection/utils/dependency-provider';
 
 export default {
   init(container){
@@ -17,6 +37,11 @@ export default {
     const CreateAgreementComponent          = container.get(constants.AGREEMENT_NEW_CREATE_COMPONENT).dependency;
     const AgreementEditContainerComponent   = container.get(constants.AGREEMENT_EDIT_CONTAINER_COMPONENT).dependency;
     const AgreementDetailContainerComponent = container.get(constants.AGREEMENT_DETAIL_CONTAINER_COMPONENT).dependency;
+
+    //container.register('TMP', new Dep(TempComponentClass));
+    const Tmp1          = Tmp().dependency;
+    const TempComponent = container.get('TMP').dependency;
+
 
     const LoginComponent = container.get(constants.LOGIN_COMPONENT).dependency;
 
@@ -36,6 +61,11 @@ export default {
 
         <Route path="/" component={AppLayoutComponent} onEnter={requireAuth}>
           <IndexRedirect to="/dashboard"/>
+
+          <Route path="tmp" component={TempComponent}/>
+          <Route path="tmp1" component={Tmp1}/>
+          <Route path="tmp2" component={Tmp2}/>
+
           <Route path="dashboard" component={DashboardComponent}/>
 
           <Route path="agreements" component={AgreementListContainerComponent}/>
@@ -45,7 +75,7 @@ export default {
           </Route>
         </Route>,
 
-        <Route path="login" component={LoginComponent}/>
+        <Route path="login" component={LoginComponent}/>,
 
       ]
     );

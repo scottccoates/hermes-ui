@@ -11,7 +11,7 @@ export default {
   // todo devtool was eval but hard to debug
   // https://github.com/webpack/webpack.js.org/issues/110
   // https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=eval+at+%3Canonymous%3E+bundle.js+webpack+debug&safe=off&start=0
-  devtool: 'source-map', // more info:https://webpack.github.io/docs/build-performance.html#sourcemaps and https://webpack.github.io/docs/configuration.html#devtool
+  devtool: 'eval-source-map', // more info:https://webpack.github.io/docs/build-performance.html#sourcemaps and https://webpack.github.io/docs/configuration.html#devtool
   noInfo: true, // set to false to see a list of every file being bundled.
   entry: [
     // must be first entry to properly set public path
