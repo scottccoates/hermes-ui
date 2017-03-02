@@ -75,7 +75,6 @@ import NprogressBar from '../scripts/apps/feedback/components/loading/nprogress-
 import DashboardComponent from '../scripts/apps/dashboard/components/dashboard-component';
 
 import * as constants from './constants';
-import TMP from '../scripts/domain/agreement/components/agreement-detail/tmp';
 
 export default {
   init(){
@@ -149,7 +148,6 @@ export default {
 
     container.register(constants.PROGRESS_BAR, NprogressBar);
 
-    container.register('TMP',TMP);
     // -- DEPENDENCIES
     SessionActions.$inject    = [constants.APP_STORE, constants.SESSION_SERVICE];
     SessionService.$inject    = [constants.SESSION_REPOSITORY, constants.AUTH_SERVICE];

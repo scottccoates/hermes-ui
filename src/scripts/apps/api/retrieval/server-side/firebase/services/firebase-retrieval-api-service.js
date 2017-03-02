@@ -13,7 +13,7 @@ export default function (firebase, firebaseAppUrl, firebaseApiKey) {
 
       try {
         // if we start using firebase in multiple parts of the app, we should put this init logic in the main entry point of this app
-        firebase.initializeApp({databaseURL: firebaseAppUrl, apiKey: firebaseApiKey});
+        firebase.initializeApp({databaseURL: firebaseAppUrl, apiKey: firebaseApiKeyd});
 
         const firebaseToken = store.getState().session.meta.firebaseData.token;
         await firebase.auth().signInWithCustomToken(firebaseToken);
